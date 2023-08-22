@@ -6,11 +6,11 @@ The Online Retail System project aims to create an e-commerce platform with func
 
 ## Project Page
 
-You can find more information about this project on our [Project Page]([https://your-project-page-url](https://cepdnaclk.github.io/e19-co227-Online-Retail-System/)).
+You can find more information about this project on our [Project Page]([https://cepdnaclk.github.io/e19-co227-Online-Retail-System/]).
 
 ## Repository
 
-The source code for this project can be found in our [GitHub Repository]([https://github.com/your-username/your-repo-name](https://github.com/cepdnaclk/e19-co227-Online-Retail-System)).
+The source code for this project can be found in our [GitHub Repository]([https://github.com/cepdnaclk/e19-co227-Online-Retail-System]).
 
 ## Technology Stack
 
