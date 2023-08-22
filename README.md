@@ -6,20 +6,20 @@ The Online Retail System project aims to create an e-commerce platform with func
 
 ## Project Page
 
-You can find more information about this project on our [Project Page]([https://cepdnaclk.github.io/e19-co227-Online-Retail-System/]).
+You can find more information about this project on our [Project Page](https://cepdnaclk.github.io/e19-co227-Online-Retail-System/).
 
 ## Repository
 
-The source code for this project can be found in our [GitHub Repository]([https://github.com/cepdnaclk/e19-co227-Online-Retail-System]).
+The source code for this project can be found in our [GitHub Repository](https://github.com/cepdnaclk/e19-co227-Online-Retail-System).
 
 ## Technology Stack
 
 The project allows students to choose technologies they are comfortable with. Some possible technology choices could include:
 
-- **Front-end**: HTML, CSS, JavaScript, React, Angular, Vue.js
-- **Back-end**: Node.js, Django, Ruby on Rails, Flask
-- **Database**: MySQL, PostgreSQL, MongoDB
-- **Recommender System**: Python, Scikit-learn, Apriori algorithm
+- **Front-end**: HTML, CSS, JavaScript, React
+- **Back-end**: Node.js
+- **Database**: MySQL
+- **Recommender System**: Apriori algorithm
 
 ## Role: Customer
 
