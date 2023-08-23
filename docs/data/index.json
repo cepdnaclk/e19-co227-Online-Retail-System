@@ -1,0 +1,31 @@
+{
+    "team": [
+        {
+            "name": "Viduranga G.G.N.",
+            "email": "e19413@eng.pdn.ac.lk",
+            "eNumber": "E/19/413"
+        },
+        {
+            "name": "K.N.N.JAYAWARDHANA",
+            "email": "e19170@eng.pdn.ac.lk",
+            "eNumber": "E/19/170"
+        },
+        {
+            "name": "Sandaruwan K.G.S.T",
+            "email": "e19349@eng.pdn.ac.lk",
+            "eNumber": "E/19/349"
+        },
+        {
+            "name": "Kaushalya N.V.K.",
+            "email": "e19193@eng.pdn.ac.lk",
+            "eNumber": "E/19/193"
+        }
+    ],
+    "supervisors": [
+        {
+            "name": "Damitha Senevirathne",
+            "email": "damithas@eng.pdn.ac.lk"
+        }
+    ],
+    "tags": ["Online Retail System"]
+}
