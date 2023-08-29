@@ -17,7 +17,9 @@ class SignUp extends React.Component{
             addL3:'',
             image:'',
             password:'',
-            rep_password:''
+            rep_password:'',
+            submittedMsg:'',
+            loading:false
         }
         this.handleSubmit=this.handleSubmit.bind(this)
     }
@@ -25,7 +27,7 @@ class SignUp extends React.Component{
 
     handleSubmit(event){
         event.preventDefault();
-        if(this.state.password === this.state.rep_password) {
+        if(this.state.password === this.state.rep_password && this.state.password.length>7 && this.state.email!=='' && this.state.firstName!=='' && this.state.phoneNumber!=='' && this.state.addL1!=='') {
             const dto = new RegisterUserDTO(
                 this.state.email,
                 this.state.password,
@@ -36,13 +38,22 @@ class SignUp extends React.Component{
                 this.state.addL2,
                 this.state.addL3,
             );
+            this.setState({ loading: true }, () => {
+                this.forceUpdate(); // Force a re-render
+            });
             systemService.registerUser(dto)
                 .then(response => {
                     if (response.message==="Already Exist"){
-                        alert("You Already Have Account");
+                        this.setState({ submittedMsg: "exist",loading:false }, () => {
+                            this.forceUpdate(); // Force a re-render
+                        });
                     }else {
                         console.log('User registered:', response);
-                        alert("Registration Successful!");
+                        this.setState({ submittedMsg: "register_success",loading:false }, () => {
+                            this.forceUpdate(); // Force a re-render
+                        });
+                        window.location.href = '/';
+
                     }
 
                 })
@@ -52,7 +63,22 @@ class SignUp extends React.Component{
                 });
 
         }else{
-            alert("Password Does not match!");
+            if(this.state.password !== this.state.rep_password){
+                this.setState({ submittedMsg: "pwd_not_match" }, () => {
+                    this.forceUpdate(); // Force a re-render
+                });
+            }else if(this.state.password>7){
+                this.setState({ submittedMsg: "pwd_not_enough" }, () => {
+                    this.forceUpdate(); // Force a re-render
+                });
+            }
+            else {
+                this.setState({ submittedMsg: "fill_require_fields" }, () => {
+                    this.forceUpdate(); // Force a re-render
+                });
+            }
+
+
         }
 
 
@@ -72,6 +98,7 @@ class SignUp extends React.Component{
                             <p className="login-text">
                                 Register
                             </p>
+
                             <br></br>
                             <div className="item-wrap">
                                 <div className="icon-wrap">
@@ -85,7 +112,7 @@ class SignUp extends React.Component{
                                     </svg>
                                 </div>
                                 <input required minlength="4" type="text"
-                                       class="text-input is-invalid" placeholder="First Name" onChange={e=>this.setState({firstName:e.target.value})}/>
+                                       class="text-input is-invalid" placeholder="First Name*" onChange={e=>this.setState({firstName:e.target.value})}/>
 
                             </div>
                             <br></br>
@@ -100,7 +127,7 @@ class SignUp extends React.Component{
                                         <path d="M4.5 8a2.5 2.5 0 1 0 0-5 2.5 2.5 0 0 0 0 5z"/>
                                     </svg>
                                 </div>
-                                <input required minLength="4" type="text"
+                                <input minLength="4" type="text"
                                        className="text-input is-invalid" placeholder="Last Name"
                                        onChange={e => this.setState({lastName: e.target.value})}/>
 
@@ -118,7 +145,7 @@ class SignUp extends React.Component{
                                     </svg>
                                 </div>
                                 <input required minLength="4" type="text"
-                                       className="text-input is-invalid" placeholder="Email"
+                                       className="text-input is-invalid" placeholder="Email*"
                                        onChange={e => this.setState({email: e.target.value})}/>
 
                             </div>
@@ -135,7 +162,7 @@ class SignUp extends React.Component{
                                     </svg>
                                 </div>
                                 <input required minLength="4" type="text"
-                                       className="text-input is-invalid" placeholder="Phone Number"
+                                       className="text-input is-invalid" placeholder="Phone Number*"
                                        onChange={e => this.setState({phoneNumber: e.target.value})}/>
 
                             </div>
@@ -152,7 +179,7 @@ class SignUp extends React.Component{
                                     </svg>
                                 </div>
                                 <input required minLength="4" type="text"
-                                       className="text-input is-invalid" placeholder="Address Line 1"
+                                       className="text-input is-invalid" placeholder="Address Line 1*"
                                        onChange={e => this.setState({addL1: e.target.value})}/>
 
                             </div>
@@ -201,7 +228,7 @@ class SignUp extends React.Component{
                                     </svg>
                                 </div>
                                 <input required minlength="4" type="password"
-                                       class="text-input" placeholder="Password" onChange={e=>this.setState({password:e.target.value})}/>
+                                       class="text-input" placeholder="Password*" onChange={e=>this.setState({password:e.target.value})}/>
                             </div>
                             <div className="item-wrap">
                                 <div className="icon-wrap">
@@ -212,7 +239,7 @@ class SignUp extends React.Component{
                                     </svg>
                                 </div>
                                 <input required minLength="4" type="password"
-                                       className="text-input" placeholder="Repeat Password"
+                                       className="text-input" placeholder="Repeat Password*"
                                        onChange={e => this.setState({rep_password: e.target.value})}/>
                             </div>
 
@@ -220,11 +247,28 @@ class SignUp extends React.Component{
                             <div className="text-create-account">
                                 <a href="/">If You Have account? Sign In</a>
                             </div>
+                            {this.state.submittedMsg === "pwd_not_match" && <div className="alert alert-danger" role="alert">Password Does Not Match !</div>}
+                            {this.state.submittedMsg === "fill_require_fields" && <div className="alert alert-danger" role="alert">Please Fill Required Fields !</div>}
+                            {this.state.submittedMsg === "register_success" && <div className="alert alert-success" role="alert">Registration Successful!</div>}
+                            {this.state.submittedMsg === "exist" && <div className="alert alert-warning" role="alert">You Already Have Account !</div>}
+                            {this.state.submittedMsg === "pwd_not_enough" && <div className="alert alert-warning" role="alert">Password must contain at least 8 characters !</div>}
                             <p style={{textAlign: "right"}}>
                                 <button className="btn btn-primary" color="primary" onClick={this.handleSubmit}>Register</button>
                             </p>
 
                         </div>
+                        {this.state.loading && (
+                            <div className="progress">
+                                <div
+                                    className="progress-bar progress-bar-striped progress-bar-animated"
+                                    role="progressbar"
+                                    aria-valuenow="100"
+                                    aria-valuemin="0"
+                                    aria-valuemax="100"
+                                    style={{ width: "100%" }}
+                                ></div>
+                            </div>
+                        )}
                     </div>
                 </div>
             </div>

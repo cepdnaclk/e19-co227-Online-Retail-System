@@ -6,11 +6,16 @@ import Cookies from 'js-cookie';
 import {manageAccount} from "../../services/manage-account.service";
 
 class SignIn extends React.Component{
+
     constructor() {
         super();
+
         this.state = {
             email:'',
-            password:''
+            password:'',
+            rememberMe:false,
+            submittedMsg:'',
+            loading:false
         }
         this.handleSubmit=this.handleSubmit.bind(this)
         //If user is already logged in they direct to home page
@@ -20,29 +25,50 @@ class SignIn extends React.Component{
     }
 
 
+
     handleSubmit(event){
-        event.preventDefault();
 
-        systemService.loginUser(this.state.email,this.state.password)
-            .then(response => {
-                if(response.message==='success'){
+        if(this.state.email!=='' && this.state.password!==''){
+            systemService.loginUser(this.state.email,this.state.password)
+                .then(response => {
+                    if(response.message==='success'){
 
-                    Cookies.set('jwt', response.token, { expires: 1 });
-                    Cookies.set('customerID',response.customerID,{expires:1});
-                    console.log("Logged In");
-                    window.location.href = '/Home';
+                        if(this.state.rememberMe){
+                            Cookies.set('jwt', response.token, { expires: 1 });
+                        }
+                        Cookies.set('customerID',response.customerID,{expires:1});
+                        console.log("Logged In");
+                        this.setState({ loading: true }, () => {
+                            this.forceUpdate(); // Force a re-render
+                        });
+                        window.location.href = '/Home';
                     }else {
-                    alert("Login Failed!");
-                };
 
-            })
-            .catch(error => {
-                console.error('Error login:', error);
-                alert("Error Occured In Login!")
+                        this.setState({ submittedMsg: "Login Failed" }, () => {
+                            this.forceUpdate(); // Force a re-render
+                        });
+                    };
+
+                })
+                .catch(error => {
+                    console.error('Error login:', error);
+                    alert("Error Occured In Login!")
+                });
+        }else {
+            this.setState({ submittedMsg: "email_pwd_missing" }, () => {
+                this.forceUpdate(); // Force a re-render
             });
+        }
+
 
     }
 
+    handleRememberMeChange= ()=>{
+        this.setState(prevState => ({
+            rememberMe: !prevState.rememberMe
+
+        }));
+    };
 
     render() {
 
@@ -225,6 +251,9 @@ class SignIn extends React.Component{
                             <p className="login-text">
                                 Login
                             </p>
+                            {this.state.submittedMsg === "Login Failed" && <div className="alert alert-danger" role="alert">Login Failed Please Try Again!</div>}
+                            {this.state.submittedMsg === "email_pwd_missing" && <div className="alert alert-danger" role="alert">Email Or Password is Missing!</div>}
+
                             <br></br>
                                 <div className="item-wrap d-flex">
                                     <div className="icon-wrap">
@@ -246,6 +275,7 @@ class SignIn extends React.Component{
                                                 d="M3.5 0a.5.5 0 0 1 .5.5V1h8V.5a.5.5 0 0 1 1 0V1h1a2 2 0 0 1 2 2v11a2 2 0 0 1-2 2H2a2 2 0 0 1-2-2V5h16V4H0V3a2 2 0 0 1 2-2h1V.5a.5.5 0 0 1 .5-.5z"/>
                                         </svg>
                                     </div>
+
                                 </div>
                                 <br></br>
                                     <div className="item-wrap">
@@ -269,7 +299,7 @@ class SignIn extends React.Component{
                                     </div>
                                     <br></br>
                                         <section className="example-section">
-                                            <input className="form-check-input" type="checkbox" id="exampleCheckbox"/>
+                                            <input className="form-check-input" type="checkbox" id="exampleCheckbox" onChange={this.handleRememberMeChange}/>
                                                 <label className="form-check-label mx-2" htmlFor="exampleCheckbox">
                                                     Remember Me
                                                 </label>
@@ -280,6 +310,19 @@ class SignIn extends React.Component{
                                             </p>
 
                                 </div>
+                        {/* ... (existing code) */}
+                        {this.state.loading && (
+                            <div className="progress">
+                                <div
+                                    className="progress-bar progress-bar-striped progress-bar-animated"
+                                    role="progressbar"
+                                    aria-valuenow="100"
+                                    aria-valuemin="0"
+                                    aria-valuemax="100"
+                                    style={{ width: "100%" }}
+                                ></div>
+                            </div>
+                        )}
                             </div>
                         </div>
                     </div>

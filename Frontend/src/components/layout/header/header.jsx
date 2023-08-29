@@ -1,4 +1,5 @@
 import React from "react";
+import {manageAccount} from "../../../services/manage-account.service";
 
 class Header extends React.Component{
 
@@ -18,7 +19,7 @@ class Header extends React.Component{
                 </button>
 
                 <div className="collapse navbar-collapse" id="navbarSupportedContent">
-                    <ul className="navbar-nav mr-auto">
+                    <ul className="navbar-nav d-flex">
                         <li className="nav-item active">
                             <a className="nav-link" href="/#">Home <span className="sr-only">(current)</span></a>
                         </li>
@@ -38,7 +39,7 @@ class Header extends React.Component{
                             </div>
                         </li>
 
-                    </ul>
+                    <li>
                     <form className="form-inline my-2 my-lg-0 m-lg-auto">
 
                        <div className="d-flex">
@@ -46,6 +47,12 @@ class Header extends React.Component{
                            <button className="btn btn-outline-success my-2 mx-1 my-sm-0" type="submit">Search</button>
                        </div>
                     </form>
+                    </li>
+                    </ul>
+                    <div className="nav-item ms-auto mx-5">
+                        <a className="nav-link" onClick={manageAccount.logOut} href="/">Log Out</a>
+                    </div>
+
                 </div>
             </nav>
 
