@@ -2,6 +2,8 @@ import React, {useState} from "react";
 import './SignIn.component.css'
 import axios from "axios";
 import {systemService} from "../../services/systemService";
+import Cookies from 'js-cookie';
+import {manageAccount} from "../../services/manage-account.service";
 
 class SignIn extends React.Component{
     constructor() {
@@ -11,14 +13,22 @@ class SignIn extends React.Component{
             password:''
         }
         this.handleSubmit=this.handleSubmit.bind(this)
+        //If user is already logged in they direct to home page
+        if(manageAccount.isLoggedIn()){
+            window.location.href = '/Home';
+        }
     }
 
 
     handleSubmit(event){
         event.preventDefault();
+
         systemService.loginUser(this.state.email,this.state.password)
             .then(response => {
                 if(response.message==='success'){
+
+                    Cookies.set('jwt', response.token, { expires: 1 });
+                    Cookies.set('customerID',response.customerID,{expires:1});
                     console.log("Logged In");
                     window.location.href = '/Home';
                     }else {

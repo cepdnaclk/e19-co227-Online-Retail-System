@@ -7,6 +7,13 @@ const connection = mysql.createPool({
     password: "",
     database: "online_retail_system"
 });
+/*const connection = mysql.createPool({
+    connectionLimit: 10,
+    host:"bn67knmccgxrvirziqjl-mysql.services.clever-cloud.com",
+    user : "uxgx469bkivxrdm5",
+    password: "7t1sxm4EAbVO4ivcBOIR",
+    database: "bn67knmccgxrvirziqjl"
+});*/
 
 // Attempt to connect to the database
 connection.getConnection((err) => {

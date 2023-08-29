@@ -38,8 +38,13 @@ class SignUp extends React.Component{
             );
             systemService.registerUser(dto)
                 .then(response => {
-                    console.log('User registered:', response);
-                    alert("Registration Successful!");
+                    if (response.message==="Already Exist"){
+                        alert("You Already Have Account");
+                    }else {
+                        console.log('User registered:', response);
+                        alert("Registration Successful!");
+                    }
+
                 })
                 .catch(error => {
                     console.error('Error registering user:', error);
