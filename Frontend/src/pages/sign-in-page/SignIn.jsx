@@ -4,6 +4,7 @@ import axios from "axios";
 import {systemService} from "../../services/systemService";
 import Cookies from 'js-cookie';
 import {manageAccount} from "../../services/manage-account.service";
+import { withRouter } from 'react-router-dom';
 
 class SignIn extends React.Component{
 
@@ -20,7 +21,7 @@ class SignIn extends React.Component{
         this.handleSubmit=this.handleSubmit.bind(this)
         //If user is already logged in they direct to home page
         if(manageAccount.isLoggedIn()){
-            window.location.href = '/Home';
+            window.location.href = '/Home'
         }
     }
 

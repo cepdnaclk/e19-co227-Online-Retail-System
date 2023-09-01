@@ -4,9 +4,14 @@ import Header from "../../components/layout/header/header";
 import {systemService} from "../../services/systemService";
 import {RegisterUserDTO} from "../../dto/RegisterUserDTO"
 import axios from "axios";
+import {Outlet} from "react-router";
 
 class Home extends React.Component{
 
+    constructor() {
+        super();
+
+    }
 
     render() {
 
@@ -14,8 +19,7 @@ class Home extends React.Component{
         return(
 
            <div>
-               <Header />
-               Home Page
+               This is Home
            </div>
 
         );

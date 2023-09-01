@@ -1,5 +1,6 @@
 import React from "react";
 import {manageAccount} from "../../../services/manage-account.service";
+import {Link} from "react-router-dom";
 
 class Header extends React.Component{
 
@@ -21,10 +22,13 @@ class Header extends React.Component{
                 <div className="collapse navbar-collapse" id="navbarSupportedContent">
                     <ul className="navbar-nav d-flex">
                         <li className="nav-item active">
-                            <a className="nav-link" href="/#">Home <span className="sr-only">(current)</span></a>
+                            <Link className="nav-link" to='/Home'>Home</Link>
                         </li>
                         <li className="nav-item">
                             <a className="nav-link" href="/#">Products</a>
+                        </li>
+                        <li className="nav-item">
+                            <Link className="nav-link" to='/dashboard'>Seller Dashboard</Link>
                         </li>
                         <li className="nav-item dropdown">
                             <a className="nav-link dropdown-toggle" href="/#" id="navbarDropdown" role="button"
