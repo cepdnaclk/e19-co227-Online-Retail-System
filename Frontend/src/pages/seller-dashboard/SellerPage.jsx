@@ -61,6 +61,7 @@ class SellerDashboard extends React.Component{
                     </div>
                 </div>
             </div>
+        
             </div>
         );
     }

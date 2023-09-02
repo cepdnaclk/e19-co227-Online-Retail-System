@@ -5,6 +5,8 @@ import Header from "./components/layout/header/header";
 import SignIn from "./pages/sign-in-page/SignIn"
 import SignUp from "./pages/sign-up-page/SignUp";
 import Home from "./pages/home-page/Home";
+import MainLayout from './components/layout/header/MainLayout';
+import Products from './pages/products/Products';
 
 //Seller Dashboard Component
 import SellerDashboard from "./pages/seller-dashboard/SellerPage";
@@ -14,34 +16,38 @@ import AllOrders from "./pages/seller-dashboard/order-page/all-order-page/AllOrd
 import AwaitingShipment from "./pages/seller-dashboard/order-page/awaiting-shipment-page/AwaitingShipment";
 
 
-import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
+import { createBrowserRouter, createRoutesFromElements, Route, RouterProvider, Routes } from "react-router-dom";
 import {firstInputPolyfill} from "web-vitals/dist/modules/lib/polyfills/firstInputPolyfill";
 import {Main} from "./pages/main-page/Main";
+import SellerDashBoardLayout from './pages/seller-dashboard/SellerDashBoardLayout';
+
+const router = createBrowserRouter(
+  createRoutesFromElements(
+    
+    <Route path="/" element={<MainLayout />}>
+      
+      <Route path="SignIn" element={<SignIn />} />
+      <Route path="SignUp" element={<SignUp />} />
+
+      <Route path='/' element={<Header />}>
+         <Route index element={<Home />} />
+         <Route path="products" element={<Products/>} />
+         <Route path="dashboard" element={<SellerDashBoardLayout />}>
+              <Route index element={<SellerDashboard />} />
+              <Route path={"add_items"} element={<AddListing />} />
+              <Route path={"all_items"} element={<AllListing />} />
+              <Route path={"all_orders"} element={<AllOrders />} />
+              <Route path={"awaiting_shipments"} element={<AwaitingShipment />} />
+        </Route>
+      </Route>
+      
+    </Route>
+  )
+)
 
 function App() {
   return (
-      <Router>
-        <Routes>
-          <Route path="/SignIn" element={<SignIn />} />
-          <Route path="/SignUp" element={<SignUp />} />
-
-          <Route path={"/"} element={<Main />} >
-              <Route path="/Home" element={<Home />} />
-
-
-              <Route path="/dashboard" element={<SellerDashboard />}/>
-              <Route path={"/dashboard/add_items"} element={<AddListing />} />
-              <Route path={"/dashboard/all_items"} element={<AllListing />} />
-              <Route path={"/dashboard/all_orders"} element={<AllOrders />} />
-              <Route path={"/dashboard/awaiting_shipments"} element={<AwaitingShipment />} />
-
-          </Route>
-
-
-
-
-        </Routes>
-      </Router>
+     <RouterProvider router={router} />
 );
 }
 
