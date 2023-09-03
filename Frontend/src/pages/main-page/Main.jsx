@@ -8,7 +8,7 @@ export function Main() {
             <Header />
             <Outlet />
 
-
+  
         </div>
     );
 }
