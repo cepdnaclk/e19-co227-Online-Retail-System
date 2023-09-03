@@ -21,7 +21,7 @@ The project allows students to choose technologies they are comfortable with. So
 - **Database**: MySQL
 - **Recommender System**: Apriori algorithm
 
-## Role: Customer
+## Role: Customer 
 
 ### Tasks
 
