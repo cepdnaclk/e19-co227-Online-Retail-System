@@ -38,7 +38,7 @@
   }
   
   .background-image {
-    width: 100%;
+    max-width: 100%;
     height: auto;
   }
   
@@ -47,7 +47,7 @@
     top: 35%;
     left: 15%;
     transform: translate(-50%, -50%);
-    font-size: 48px;
+    font-size: 37px;
     color: rgb(33, 56, 146); 
     background-color: rgba(0, 0, 0,0); 
     padding: 10px 20px; 
@@ -58,7 +58,7 @@
     top: 55%;
     left: 15%;
     transform: translate(-50%, -50%);
-    font-size: 25px;
+    font-size: 20px;
     color: rgb(33, 56, 146); 
     background-color: rgba(0, 0, 0,0); 
     padding: 10px 20px;
