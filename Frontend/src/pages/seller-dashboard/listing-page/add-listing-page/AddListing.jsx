@@ -1,52 +1,94 @@
 import React, {useState} from "react";
 import './AddListing.css'
 import uploadImg from '../../../../assets/Image-upload.png'
-import storage from "../../../../services/firebase.service";
+import {firebaseService} from "../../../../services/firebase.service";
 import {ref , uploadBytes,deleteObject, getDownloadURL} from "firebase/storage"
+import {productService} from "../../../../services/product.service"
+import {manageAccount} from "../../../../services/manage-account.service";
+import {ProductDTO} from "../../../../dto/ProductDTO";
 
 
 class AddListing extends React.Component{
 
 
+
     constructor() {
         super();
         this.state = {
-            productName: 'product4',
-            fileSelected: true
+            productName: '',
+            productQty:'',
+            description:'',
+            productPrice:'',
+            subCategoryID :'',
+            image1:'',
+            image2:'',
+            image3:'',
+            image4:'',
+            image5:'',
+            category : [],
+            subCategory : [],
+            belongSubCategories:[],
+            fileSelected: false
         }
+
         this.imgUrls = []
+        this.isComponentMounted = false;
+
     }
+    componentDidMount() {
+
+        this.isComponentMounted = true;
+        this.getCategory()
+    }
+
+    componentWillUnmount() {
+        this.isComponentMounted = false; // Mark the component as unmounted when it unmounts
+    }
+
+    getCategory=()=>{
+        productService.getCategories().then(response=>{
+
+            const { category, subCategory } = response;
+            this.setState({category:category});
+            this.setState({subCategory:subCategory});
+            //this.forceUpdate();
+        }).catch((err)=>{
+            console.error('Error fetching combined data:', err);
+        })
+
+    }
+
+
     uploadImg = (file)=>{
         if(file ===null)return;
-        const imageRef = ref(storage,`products/${this.state.productName}/${file.name}`)
-        uploadBytes(imageRef,file).then(()=>{
-            getDownloadURL(imageRef)
+        const imgRef = `/product/${manageAccount.getSellerID()}/${file.name}`
+
+        firebaseService.uploadImage(file,imgRef).then((response)=>{
+            firebaseService.getUrl(imgRef)
                 .then((downloadURL) => {
                     console.log("Image Successfully Uploaded!");
                     console.log("Download URL:", downloadURL); // This is the correct URL
-                    this.imgUrls.push({ref:imageRef,url:downloadURL});
-            this.setState({ fileSelected: true }, () => {
-                this.forceUpdate(); // Force a re-render
-            });
+                    this.imgUrls.push({ref:imgRef,url:downloadURL});
+                    this.setState({ fileSelected: true }, () => {
+                        this.forceUpdate(); // Force a re-render
+                    });
                 })
         }).catch((e)=>{
             console.log(e)
         })
 
+
     }
     removeImage = (imageRef,index) => {
-        // Remove the image from Firebase Storage
-
-        deleteObject(imageRef)
-            .then(() => {
-                console.log(`Image successfully deleted from Firebase Storage.`);
-                this.imgUrls.splice(index, 1);
-                this.forceUpdate();
-            })
+        const imgRef = imageRef
+        firebaseService.removeImage(imgRef).then(() => {
+            console.log(`Image successfully deleted from Firebase Storage.`);
+            this.imgUrls.splice(index, 1);
+            this.forceUpdate();
+        })
             .catch((error) => {
                 console.error(`Error deleting image from Firebase Storage:`, error);
             });
-
     };
 
     handleFileChange = (event) =>{
@@ -57,12 +99,71 @@ class AddListing extends React.Component{
             if (file) {
                 this.uploadImg(file)
 
-                console.log(file)
             }
         }
 
 
     }
+    handleCategoryChange = (event)=>{
+        const selectedCategory = parseInt(event.target.value);
+
+        const filteredSubCategories = this.state.subCategory.filter((options) => {
+            return options['categoryID'] === selectedCategory;
+        });
+        console.log(filteredSubCategories);
+        this.setState({
+            belongSubCategories: filteredSubCategories,
+        });
+
+
+
+
+
+    }
+    handleSubCategoryChange = (event)=>{
+        const selectedSubCategory = event.target.value;
+        this.setState({subCategoryID:selectedSubCategory})
+
+    }
+
+    handleAddProduct=(event)=>{
+        event.preventDefault();
+        if(manageAccount.getSellerID()===undefined && this.state.productName==='' ,this.state.productQty==='', this.state.description===''){
+            alert("Please Fill The All the Fields")
+        }else if(this.state.subCategoryID===''){
+            alert("Please Select a Category")
+        }else if(this.imgUrls[0]===undefined){
+            alert("Please Add At least one Product Image")
+        }else {
+            const dto = new ProductDTO(
+                manageAccount.getSellerID(),
+                this.state.productName,
+                this.state.subCategoryID,
+                this.state.productPrice,
+                this.state.productQty,
+                this.imgUrls[0] ? this.imgUrls[0]['url'] : '',
+                this.imgUrls[1] ? this.imgUrls[1]['url'] : '',
+                this.imgUrls[2] ? this.imgUrls[2]['url'] : '',
+                this.imgUrls[3] ? this.imgUrls[3]['url'] : '',
+                this.imgUrls[4] ? this.imgUrls[4]['url'] : '',
+                this.state.description
+            )
+            console.log(dto)
+            productService.addProduct(dto).then((resp)=>{
+                if(resp.message === 'Product Added'){
+                    console.log('Product Added!');
+                }
+            }).catch((error) =>{
+                console.error('Error Adding roduct:', error);
+                alert("Error Occured In Product Adding!")
+            })
+        }
+
+
+
+    }
+
+
     render() {
         return (
           <div>
@@ -115,41 +216,68 @@ class AddListing extends React.Component{
                           <div className="col-12 col-md-6 ">
                               <form action='post' className="container">
                                   <div className="form-floating mb-3">
-                                      <input type="email" className="form-control" id="floatingInput" placeholder="name@example.com"/>
+                                      <input type="text" className="form-control" id="floatingInput" placeholder="name@example.com"
+                                      onChange={event => this.setState({productName:event.target.value})}
+                                      />
                                           <label htmlFor="floatingInput">Product Name</label>
                                   </div>
                                   <div className="form-floating mb-3">
-                                      <input type="text" className="form-control" id="floatingInput" placeholder="name@example.com"/>
+                                      <input type="text" className="form-control" id="floatingInput" placeholder="name@example.com"
+                                             onChange={event => this.setState({productPrice:event.target.value})}
+                                      />
                                       <label htmlFor="floatingInput">Product Price</label>
+                                  </div>
+                                  <div className="form-floating mb-3">
+                                      <input type="text" className="form-control" id="floatingInput" placeholder="name@example.com"
+                                             onChange={event => this.setState({productQty:event.target.value})}
+                                      />
+                                      <label htmlFor="floatingInput">Quantity</label>
                                   </div>
                                   <div className="form-floating">
                                       <select className="form-select" id="floatingSelectDisabled"
-                                              aria-label="Floating label select example" >
+                                              aria-label="Floating label select example"
+                                              onChange={this.handleCategoryChange}
+                                      >
                                           <option selected>Open this select menu</option>
-                                          <option value="1">One</option>
-                                          <option value="2">Two</option>
-                                          <option value="3">Three</option>
+                                          { this.state.category.map((option, index) => (
+
+                                              <option key={index} value={option['categoryID']}>
+                                                  {option['categoryName']}
+
+                                              </option>
+
+
+                                          ))}
                                       </select>
                                       <label htmlFor="floatingSelectDisabled">Category</label>
                                   </div>
                                   <div className="form-floating" style={{ marginTop:"15px"}} >
                                       <select className="form-select" id="floatingSelectDisabled"
-                                              aria-label="Floating label select example" >
+                                              aria-label="Floating label select example"
+                                              onChange={this.handleSubCategoryChange}
+                                      >
                                           <option selected>Open this select menu</option>
-                                          <option value="1">One</option>
-                                          <option value="2">Two</option>
-                                          <option value="3">Three</option>
+                                          { this.state.belongSubCategories.map((option, index) => (
+
+                                              <option key={index} value={option['subCategoryID']}>
+                                                  {option['subCategoryName']}
+                                              </option>
+
+
+                                          ))}
                                       </select>
                                       <label htmlFor="floatingSelectDisabled">Sub Category</label>
                                   </div>
 
                                   <div className="form-floating mb-3">
                                       <textarea className="form-control" placeholder="Leave a comment here"
-                                                id="floatingTextarea" style={{height: "100px", marginTop:"15px"}} ></textarea>
+                                                id="floatingTextarea" style={{height: "100px", marginTop:"15px"}}
+                                                onChange={event => this.setState({description:event.target.value})}
+                                      ></textarea>
                                       <label htmlFor="floatingTextarea">Product Details</label>
                                   </div>
 
-                                  <button className="btn btn-primary ">Add Product</button>
+                                  <button className="btn btn-primary " onClick={this.handleAddProduct}>Add Product</button>
                               </form>
                           </div>
                       </div>

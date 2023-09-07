@@ -7,7 +7,7 @@ const jwt = require('jsonwebtoken');
 async function createCustomer(req, res) {
     try {
         let isExist = false;
-        let { email, password, firstName,lastName,phoneNumber,addressL1,addressL2,addressL3 } = req.body;
+        let { email, password, firstName,lastName,phoneNumber,addressL1,addressL2,addressL3,role } = req.body;
         //check the user is available
         const find = 'SELECT * FROM customer WHERE email = ?';
         db.query(find,[email],(error,data)=>{
@@ -25,8 +25,8 @@ async function createCustomer(req, res) {
                         bcrypt.hash(password.trim(), salt, (err, hash) => {
 
                             console.log(hash)
-                            const query = 'INSERT INTO customer (email, password,firstName,lastName,phoneNumber,addressL1,addressL2,addressL3) VALUES (?, ?, ?, ?, ?, ?, ?, ?)';
-                            db.query(query, [email, hash, firstName,lastName,phoneNumber,addressL1,addressL2,addressL3],(error,data)=>{
+                            const query = 'INSERT INTO customer (email, password,firstName,lastName,phoneNumber,addressL1,addressL2,addressL3,role) VALUES (?, ?, ?, ?, ?, ?, ?, ?,?)';
+                            db.query(query, [email, hash, firstName,lastName,phoneNumber,addressL1,addressL2,addressL3,role],(error,data)=>{
                                 if (error) {
                                     return res.status(500).json({ error: 'Database error' });
                                 }else {
@@ -52,10 +52,10 @@ async function createCustomer(req, res) {
 async function LoginUser(req,res){
     
     try {
+        let isSeller = false;
         const {email,password} = req.body;
         const query = 'SELECT * FROM customer WHERE email = ?';
         db.query(query,[email],(error,data)=>{
-            console.log(data)
             if (error) {
                return res.status(500).json({ error: 'Database error' });
             }else if(data.length!==0){
@@ -73,7 +73,12 @@ async function LoginUser(req,res){
                         );
 
                         console.log('Logged In');
-                       return  res.status(200).json({message: 'success', token: token,customerID:data[0].customerID});
+                        if(data[0].role==='seller'){
+                            isSeller=true
+                        }else {
+                            isSeller=false
+                        }
+                       return  res.status(200).json({message: 'success',isSeller:isSeller, token: token,customerID:data[0].customerID});
                     } else {
                        return  res.status(200).json({message: 'Failed'});
 
@@ -91,5 +96,25 @@ async function LoginUser(req,res){
     }
 }
 
+async function getSeller(req,res){
+    try {
+        const customerID = req.query.customerID;
+        console.log('customer',customerID)
+        const query = 'SELECT * FROM seller WHERE customerID = ?';
+        db.query(query,[customerID],(error,data)=> {
+            console.log(data)
+            if (error) {
+                return res.status(500).json({error: 'Database error'});
+            } else if (data.length !== 0) {
+                return res.status(200).json({sellerID:data[0].sellerID,shopName:data[0].shopName})
+            }
+        })
+    }catch (error) {
+        return  res.status(500).json({ error: 'Internal server error' });
+    }
 
-module.exports = { createCustomer,LoginUser };
+
+}
+
+
+module.exports = { createCustomer,LoginUser,getSeller };

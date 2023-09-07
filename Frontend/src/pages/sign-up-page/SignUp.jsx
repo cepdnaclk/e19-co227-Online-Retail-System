@@ -19,6 +19,7 @@ class SignUp extends React.Component{
             password:'',
             rep_password:'',
             submittedMsg:'',
+            role:'customer',
             loading:false
         }
         this.handleSubmit=this.handleSubmit.bind(this)
@@ -37,6 +38,7 @@ class SignUp extends React.Component{
                 this.state.addL1,
                 this.state.addL2,
                 this.state.addL3,
+                this.state.role
             );
             this.setState({ loading: true }, () => {
                 this.forceUpdate(); // Force a re-render

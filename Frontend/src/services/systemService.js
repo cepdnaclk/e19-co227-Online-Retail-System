@@ -1,13 +1,13 @@
 // services/systemService.js
 import axios from 'axios';
 import {RegisterUserDTO} from "../dto/RegisterUserDTO";
+import {environment} from "../environments/environment"
 
-const API_URL = 'http://localhost:8081/api/v1'; // Replace with your backend URL
 
 export const systemService = {
     registerUser: async (userData) => {
         try {
-            const response = await axios.post(`${API_URL}/registerUser`, userData);
+            const response = await axios.post(`${environment.baseUrl}/registerUser`, userData);
             return response.data;
         } catch (error) {
             throw error;
@@ -19,11 +19,21 @@ export const systemService = {
                 email:email,
                 password:password
             }
-            const response = await axios.post(`${API_URL}/loginUser`, userData);
+            const response = await axios.post(`${environment.baseUrl}/loginUser`, userData);
             return  response.data;
 
         } catch (error) {
-            this.setState({ error: 'An error occurred' });
+            throw error;
+        }
+
+    },
+    getSeller:async (customerID)=>{
+        try {
+
+            const response = await axios.get(`${environment.baseUrl}/getSeller`, { params: { customerID } });
+            return  response.data;
+
+        } catch (error) {
             throw error;
         }
 

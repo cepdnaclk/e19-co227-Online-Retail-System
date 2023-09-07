@@ -5,7 +5,7 @@ import Header from "./components/layout/header/header";
 import SignIn from "./pages/sign-in-page/SignIn"
 import SignUp from "./pages/sign-up-page/SignUp";
 import Home from "./pages/home-page/Home";
-import MainLayout from './components/layout/header/MainLayout';
+import MainLayout from './components/layout/MainLayout';
 import Products from './pages/products/Products';
 
 //Seller Dashboard Component
@@ -18,7 +18,6 @@ import AwaitingShipment from "./pages/seller-dashboard/order-page/awaiting-shipm
 
 import { createBrowserRouter, createRoutesFromElements, Route, RouterProvider, Routes } from "react-router-dom";
 import {firstInputPolyfill} from "web-vitals/dist/modules/lib/polyfills/firstInputPolyfill";
-import {Main} from "./pages/main-page/Main";
 import SellerDashBoardLayout from './pages/seller-dashboard/SellerDashBoardLayout';
 
 const router = createBrowserRouter(

@@ -54,7 +54,7 @@ class Header extends React.Component{
                     </li>
                     </ul>
                     <div className="nav-item ms-auto mx-5">
-                        <a className="nav-link" onClick={manageAccount.logOut} href="/">Log Out</a>
+                        <a className="nav-link" onClick={manageAccount.logOut} href="SignIn">Log Out</a>
                     </div>
 
                 </div>
