@@ -46,15 +46,20 @@ class Home extends React.Component {
     return (
       <div className="product-list">
         {products.map((product) => (
-          <div key={product.productID} className="product"> {/* Add key prop */}
+          <div key={product.productID} className="product">
+            <img
+              src={product.productImage1} 
+              alt={product.productName} 
+              className="product-image"
+            />
             <h2>{product.productName}</h2>
-            <p>{product.description}</p>
             <p>Price: LKR {product.productPrice}</p>
           </div>
         ))}
       </div>
     );
   }
+  
   
 
   render() {
