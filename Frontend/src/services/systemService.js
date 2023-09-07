@@ -37,5 +37,16 @@ export const systemService = {
             throw error;
         }
 
+    },
+    verifyToken:async (token)=>{
+        try {
+
+            const response = await axios.get(`${environment.baseUrl}/verifyToken`, { headers: { token:token } });
+            return  response.data;
+
+        } catch (error) {
+            throw error;
+        }
+
     }
 };

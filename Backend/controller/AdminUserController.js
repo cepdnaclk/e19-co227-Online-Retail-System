@@ -115,6 +115,34 @@ async function getSeller(req,res){
 
 
 }
+async function verifyToken(req,res) {
+    try{
+        const token = req.headers.token ? req.headers.token:'empty';
+        if(token==='empty'){
+            res.status(401).json({message:'UnAuthorized Request Detected!'});
+            return;
+        }
+        const isValid = new Promise((resolve,reject)=>{
+            jwt.verify(token,process.env.JWT_ACCOUNT,(error,decoded)=>{
+                if(error){
+                    reject(false);
+                }
+                if(decoded){
+                    resolve(true);
+                }
+            });
+        });
+        isValid.then(reult=>{
+            console.log("Token verified!")
+            res.status(200).json({state:true,message:'Success'});
+        }).catch(err=>{
+            console.log("UnAuthorized Request Detected!")
+            res.status(200).json({state:true,message:'UnAuthorized Request Detected!'});
+        });
+    }catch (e) {
+        res.status(500).json({message:e});
+    }
+}
 
 
-module.exports = { createCustomer,LoginUser,getSeller };
+module.exports = { createCustomer,LoginUser,getSeller,verifyToken };
