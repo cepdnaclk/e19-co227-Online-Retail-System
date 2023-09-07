@@ -1,7 +1,9 @@
 // Import the functions you need from the SDKs you need
-import { initializeApp } from "firebase/app";
-import { getAnalytics } from "firebase/analytics";
-import {getStorage} from "firebase/storage"
+import {initializeApp} from "firebase/app";
+import {getAnalytics} from "firebase/analytics";
+import {deleteObject, getDownloadURL, getStorage, ref, uploadBytes} from "firebase/storage"
+import {manageAccount} from "./manage-account.service";
+
 
 // TODO: Add SDKs for Firebase products that you want to use
 // https://firebase.google.com/docs/web/setup#available-libraries
@@ -23,4 +25,66 @@ const app = initializeApp(firebaseConfig);
 const analytics = getAnalytics(app);
 const storage = getStorage(app);
 
-export default storage;
+
+
+export const firebaseService = {
+
+    getUrl: (path) =>{
+        try {
+            const imageRef = ref(storage,`${path}`)
+            const response = getDownloadURL(imageRef);
+            return response;
+        }catch (e) {
+            throw e
+        }
+
+
+    },
+
+    uploadImage:  (file,path)=>{
+
+        try{
+            const imageRef = ref(storage,`${path}`)
+            const response = uploadBytes(imageRef,file)
+            return response
+
+        }catch (e) {
+            throw e
+        }
+
+
+        /*then(()=>{
+            getDownloadURL(imageRef)
+                .then((downloadURL) => {
+                    console.log("Image Successfully Uploaded!");
+                    console.log("Download URL:", downloadURL);
+                    resolve( {ref: imageRef, url: downloadURL});
+
+                })
+        }).catch((e)=>{
+            console.log(e)
+            reject(e)
+        })*/
+    },
+
+    removeImage: (path)=>{
+        try{
+            const imageRef = ref(storage,`${path}`)
+            const response = deleteObject(imageRef)
+            return response;
+        }catch (e) {
+            throw e
+        }
+
+
+    }
+
+
+}
+
+
+
+
+
+
+

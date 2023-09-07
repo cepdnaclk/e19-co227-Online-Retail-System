@@ -1,10 +1,8 @@
 import React, {useState} from "react";
 import './SignIn.component.css'
-import axios from "axios";
 import {systemService} from "../../services/systemService";
 import Cookies from 'js-cookie';
 import {manageAccount} from "../../services/manage-account.service";
-import { withRouter } from 'react-router-dom';
 
 class SignIn extends React.Component{
 
@@ -16,12 +14,13 @@ class SignIn extends React.Component{
             password:'',
             rememberMe:false,
             submittedMsg:'',
+            isSeller:false,
             loading:false
         }
         this.handleSubmit=this.handleSubmit.bind(this)
         //If user is already logged in they direct to home page
         if(manageAccount.isLoggedIn()){
-            window.location.href = '/Home'
+            window.location.href = '/'
         }
     }
 
@@ -37,12 +36,24 @@ class SignIn extends React.Component{
                         if(this.state.rememberMe){
                             Cookies.set('jwt', response.token, { expires: 1 });
                         }
+
+                        if(response.isSeller===true){
+                            console.log('abjectness:',response.customerID);
+                            systemService.getSeller(response.customerID).then((resp)=>{
+                                console.log('sellerID:',resp.sellerID);
+                                Cookies.set('sellerID', resp.sellerID, { expires: 1 });
+                                Cookies.set('shopName', resp.shopName, { expires: 1 });
+
+                            }).catch((error)=>{
+                                console.error('Error getting seller Data:', error);
+                            })
+                        }
                         Cookies.set('customerID',response.customerID,{expires:1});
                         console.log("Logged In");
                         this.setState({ loading: true }, () => {
                             this.forceUpdate(); // Force a re-render
                         });
-                        window.location.href = '/Home';
+                        window.location.href = '/';
                     }else {
 
                         this.setState({ submittedMsg: "Login Failed" }, () => {

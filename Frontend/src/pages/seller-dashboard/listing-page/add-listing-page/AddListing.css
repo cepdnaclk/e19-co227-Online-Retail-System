@@ -34,7 +34,7 @@
     border: 2px dashed rgb(0, 135, 247);
     border-image: none;
     width: 90%;
-    height: 200px;
+    height: 300px;
     margin: auto;
     margin-bottom: 10px;
     box-sizing: border-box; /* Include border in the width calculation */
@@ -51,7 +51,7 @@
 
 /* Styles for the image */
 .image {
-    width: 150px; /* Adjust the image width as needed */
+    width: 200px; /* Adjust the image width as needed */
     height: auto; /* Maintain aspect ratio */
 }
 .image-container {

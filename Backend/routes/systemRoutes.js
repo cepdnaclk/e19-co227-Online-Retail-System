@@ -6,8 +6,14 @@ const productController = require('../controller/ProductController');
 
 router.post('/registerUser', customerController.createCustomer);
 router.post('/loginUser', customerController.LoginUser);
+router.get('/getSeller', customerController.getSeller);
+
+router.get('/getCategory',productController.getCategory);
+router.post('/addProduct',productController.addProduct);
+
 router.get('/top-selling-products', productController.getTopSellingProducts); 
 router.get('/newly-added-products', productController.getNewlyAddedProducts); 
+
 
 
 module.exports = router;
