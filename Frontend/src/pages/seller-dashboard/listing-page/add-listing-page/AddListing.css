@@ -108,3 +108,9 @@
     margin: 5px;
     float: right;
 }
+.container{
+    display: inline;
+    flex-wrap: wrap;
+    flex-direction: column;
+
+}

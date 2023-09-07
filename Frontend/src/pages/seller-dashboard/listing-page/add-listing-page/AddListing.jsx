@@ -166,125 +166,125 @@ class AddListing extends React.Component{
 
     render() {
         return (
-          <div>
-              <div>
-                  <div className="main-wrap">
-                      <label className="title">Add Product</label>
-                      <div className="row m-2">
-                          <div className="col-12 col-md-6 border border-1 my-2">
-                              <p>Add Image</p>
+            <div>
+                <div>
+                    <div className="main-wrap">
+                        <label className="title">Add Product</label>
+                        <div className="row m-2">
+                            <div className="col-12 col-md-6 border border-1 my-2">
+                                <p>Add Image</p>
 
 
-                              <div className="drop-zone">
+                                <div className="drop-zone">
 
 
-                                      <div>
-                                          <img src={uploadImg} className="image" alt="image uploading" />
+                                    <div>
+                                        <img src={uploadImg} className="image" alt="image uploading" />
 
-                                          <label htmlFor="file-input">
-                                              <p className="link-primary">Drop your Files Here, or Browse</p>
-                                          </label>
-                                          <input
-                                              type="file"
-                                              id="file-input"
-                                              onChange={this.handleFileChange}
-                                              style={{ display: 'none' }}
-                                              multiple
-                                              accept=".jpg, .jpeg, .png"
-                                          />
-                                      </div>
-                              </div>
+                                        <label htmlFor="file-input">
+                                            <p className="link-primary">Drop your Files Here, or Browse</p>
+                                        </label>
+                                        <input
+                                            type="file"
+                                            id="file-input"
+                                            onChange={this.handleFileChange}
+                                            style={{ display: 'none' }}
+                                            multiple
+                                            accept=".jpg, .jpeg, .png"
+                                        />
+                                    </div>
+                                </div>
 
-                              <div className="image-container">
-                                  {this.state.fileSelected && this.imgUrls.map((image, index) => (
-                                     <div className="image-wrapper">
-                                      <img
-                                          key={index}
-                                          src={image['url']}
-                                          alt={`Image ${index + 1}`}
-                                          className="image-item border "
-                                          onClick={() => this.removeImage(image["ref"],index)}
-                                      />
-                                         <div className="cross" onClick={() => this.removeImage(image["ref"],index)}>
-                                             <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><g id="SVGRepo_bgCarrier" stroke-width="0"></g><g id="SVGRepo_tracerCarrier" stroke-linecap="round" stroke-linejoin="round"></g><g id="SVGRepo_iconCarrier"> <path d="M10 12V17" stroke="#000000" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"></path> <path d="M14 12V17" stroke="#000000" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"></path> <path d="M4 7H20" stroke="#000000" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"></path> <path d="M6 10V18C6 19.6569 7.34315 21 9 21H15C16.6569 21 18 19.6569 18 18V10" stroke="#000000" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"></path> <path d="M9 5C9 3.89543 9.89543 3 11 3H13C14.1046 3 15 3.89543 15 5V7H9V5Z" stroke="#000000" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"></path> </g></svg>
-                                         </div>
-                                     </div>
+                                <div className="image-container">
+                                    {this.state.fileSelected && this.imgUrls.map((image, index) => (
+                                        <div className="image-wrapper">
+                                            <img
+                                                key={index}
+                                                src={image['url']}
+                                                alt={`Image ${index + 1}`}
+                                                className="image-item border "
+                                                onClick={() => this.removeImage(image["ref"],index)}
+                                            />
+                                            <div className="cross" onClick={() => this.removeImage(image["ref"],index)}>
+                                                <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><g id="SVGRepo_bgCarrier" stroke-width="0"></g><g id="SVGRepo_tracerCarrier" stroke-linecap="round" stroke-linejoin="round"></g><g id="SVGRepo_iconCarrier"> <path d="M10 12V17" stroke="#000000" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"></path> <path d="M14 12V17" stroke="#000000" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"></path> <path d="M4 7H20" stroke="#000000" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"></path> <path d="M6 10V18C6 19.6569 7.34315 21 9 21H15C16.6569 21 18 19.6569 18 18V10" stroke="#000000" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"></path> <path d="M9 5C9 3.89543 9.89543 3 11 3H13C14.1046 3 15 3.89543 15 5V7H9V5Z" stroke="#000000" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"></path> </g></svg>
+                                            </div>
+                                        </div>
 
-                                  ))}
-                              </div>
-                          </div>
-                          <div className="col-12 col-md-6 ">
-                              <form action='post' className="container">
-                                  <div className="form-floating mb-3">
-                                      <input type="text" className="form-control" id="floatingInput" placeholder="name@example.com"
-                                      onChange={event => this.setState({productName:event.target.value})}
-                                      />
-                                          <label htmlFor="floatingInput">Product Name</label>
-                                  </div>
-                                  <div className="form-floating mb-3">
-                                      <input type="text" className="form-control" id="floatingInput" placeholder="name@example.com"
-                                             onChange={event => this.setState({productPrice:event.target.value})}
-                                      />
-                                      <label htmlFor="floatingInput">Product Price</label>
-                                  </div>
-                                  <div className="form-floating mb-3">
-                                      <input type="text" className="form-control" id="floatingInput" placeholder="name@example.com"
-                                             onChange={event => this.setState({productQty:event.target.value})}
-                                      />
-                                      <label htmlFor="floatingInput">Quantity</label>
-                                  </div>
-                                  <div className="form-floating">
-                                      <select className="form-select" id="floatingSelectDisabled"
-                                              aria-label="Floating label select example"
-                                              onChange={this.handleCategoryChange}
-                                      >
-                                          <option selected>Open this select menu</option>
-                                          { this.state.category.map((option, index) => (
+                                    ))}
+                                </div>
+                            </div>
+                            <div className="col-12 col-md-6 ">
+                                <form action='post' className="container">
+                                    <div className="form-floating mb-3">
+                                        <input type="text" className="form-control" id="floatingInput" placeholder="name@example.com"
+                                               onChange={event => this.setState({productName:event.target.value})}
+                                        />
+                                        <label htmlFor="floatingInput">Product Name</label>
+                                    </div>
+                                    <div className="form-floating mb-3">
+                                        <input type="text" className="form-control" id="floatingInput" placeholder="name@example.com"
+                                               onChange={event => this.setState({productPrice:event.target.value})}
+                                        />
+                                        <label htmlFor="floatingInput">Product Price</label>
+                                    </div>
+                                    <div className="form-floating mb-3">
+                                        <input type="text" className="form-control" id="floatingInput" placeholder="name@example.com"
+                                               onChange={event => this.setState({productQty:event.target.value})}
+                                        />
+                                        <label htmlFor="floatingInput">Quantity</label>
+                                    </div>
+                                    <div className="form-floating">
+                                        <select className="form-select" id="floatingSelectDisabled"
+                                                aria-label="Floating label select example"
+                                                onChange={this.handleCategoryChange}
+                                        >
+                                            <option selected>Open this select menu</option>
+                                            { this.state.category.map((option, index) => (
 
-                                              <option key={index} value={option['categoryID']}>
-                                                  {option['categoryName']}
+                                                <option key={index} value={option['categoryID']}>
+                                                    {option['categoryName']}
 
-                                              </option>
-
-
-                                          ))}
-                                      </select>
-                                      <label htmlFor="floatingSelectDisabled">Category</label>
-                                  </div>
-                                  <div className="form-floating" style={{ marginTop:"15px"}} >
-                                      <select className="form-select" id="floatingSelectDisabled"
-                                              aria-label="Floating label select example"
-                                              onChange={this.handleSubCategoryChange}
-                                      >
-                                          <option selected>Open this select menu</option>
-                                          { this.state.belongSubCategories.map((option, index) => (
-
-                                              <option key={index} value={option['subCategoryID']}>
-                                                  {option['subCategoryName']}
-                                              </option>
+                                                </option>
 
 
-                                          ))}
-                                      </select>
-                                      <label htmlFor="floatingSelectDisabled">Sub Category</label>
-                                  </div>
+                                            ))}
+                                        </select>
+                                        <label htmlFor="floatingSelectDisabled">Category</label>
+                                    </div>
+                                    <div className="form-floating" style={{ marginTop:"15px"}} >
+                                        <select className="form-select" id="floatingSelectDisabled"
+                                                aria-label="Floating label select example"
+                                                onChange={this.handleSubCategoryChange}
+                                        >
+                                            <option selected>Open this select menu</option>
+                                            { this.state.belongSubCategories.map((option, index) => (
 
-                                  <div className="form-floating mb-3">
+                                                <option key={index} value={option['subCategoryID']}>
+                                                    {option['subCategoryName']}
+                                                </option>
+
+
+                                            ))}
+                                        </select>
+                                        <label htmlFor="floatingSelectDisabled">Sub Category</label>
+                                    </div>
+
+                                    <div className="form-floating mb-3">
                                       <textarea className="form-control" placeholder="Leave a comment here"
                                                 id="floatingTextarea" style={{height: "100px", marginTop:"15px"}}
                                                 onChange={event => this.setState({description:event.target.value})}
                                       ></textarea>
-                                      <label htmlFor="floatingTextarea">Product Details</label>
-                                  </div>
+                                        <label htmlFor="floatingTextarea">Product Details</label>
+                                    </div>
 
-                                  <button className="btn btn-primary " onClick={this.handleAddProduct}>Add Product</button>
-                              </form>
-                          </div>
-                      </div>
-                  </div>
-              </div>
+                                    <button className="btn btn-primary " onClick={this.handleAddProduct}>Add Product</button>
+                                </form>
+                            </div>
+                        </div>
+                    </div>
+                </div>
 
-          </div>
+            </div>
         );
     }
 
