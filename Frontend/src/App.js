@@ -19,6 +19,7 @@ import AwaitingShipment from "./pages/seller-dashboard/order-page/awaiting-shipm
 import { createBrowserRouter, createRoutesFromElements, Route, RouterProvider, Routes } from "react-router-dom";
 import {firstInputPolyfill} from "web-vitals/dist/modules/lib/polyfills/firstInputPolyfill";
 import SellerDashBoardLayout from './pages/seller-dashboard/SellerDashBoardLayout';
+import ProductDetails from './pages/productDetails/ProductDetails';
 
 const router = createBrowserRouter(
   createRoutesFromElements(
@@ -31,6 +32,7 @@ const router = createBrowserRouter(
       <Route path='/' element={<Header />}>
          <Route index element={<Home />} />
          <Route path="products" element={<Products/>} />
+         <Route path="product/:id" element={<ProductDetails />} />
          <Route path="dashboard" element={<SellerDashBoardLayout />}>
               <Route index element={<SellerDashboard />} />
               <Route path={"add_items"} element={<AddListing />} />
@@ -38,6 +40,7 @@ const router = createBrowserRouter(
               <Route path={"all_orders"} element={<AllOrders />} />
               <Route path={"awaiting_shipments"} element={<AwaitingShipment />} />
         </Route>
+        
       </Route>
       
     </Route>

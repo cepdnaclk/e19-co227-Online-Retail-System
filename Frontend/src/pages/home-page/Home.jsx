@@ -4,6 +4,7 @@ import Header from "../../components/layout/header/header";
 import Footer from "../../components/layout/footer/footer";
 import axios from "axios";
 import introImage from '../../assets/welcome-sign-near-plant.jpg'
+import { NavLink } from "react-router-dom";
 
 class Home extends React.Component {
   constructor(props) {
@@ -46,7 +47,7 @@ class Home extends React.Component {
     return (
       <div className="product-list">
         {products.map((product) => (
-          <div key={product.productID} className="product">
+          <div key={product.productID} className="product" ><NavLink to={`/product/${product.productID}`}>
             <img
               src={product.productImage1} 
               alt={product.productName} 
@@ -54,6 +55,7 @@ class Home extends React.Component {
             />
             <h2>{product.productName}</h2>
             <p>Price: LKR {product.productPrice}</p>
+            </NavLink>
           </div>
         ))}
       </div>
