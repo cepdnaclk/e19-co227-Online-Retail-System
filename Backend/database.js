@@ -1,11 +1,12 @@
-const mysql = require('mysql');
+const mysql = require('mysql2');
 
 const connection = mysql.createPool({
     connectionLimit: 10,
     host:"localhost",
     user : "root",
     password: "",
-    database: "online_retail_system"
+    database: "online_retail_system",
+    multipleStatements: true // Enable multi-queries
 });
 /*const connection = mysql.createPool({
     connectionLimit: 10,

@@ -18,6 +18,7 @@ router.get('/top-selling-products', productController.getTopSellingProducts);
 router.get('/newly-added-products', productController.getNewlyAddedProducts); 
 
 router.get('/product/:id', ProductDetailsController.getProduct); 
+router.post('/product/:id', ProductDetailsController.addToCart)
 
 
 
