@@ -247,13 +247,13 @@ class Header extends React.Component{
             id="navbarCollapse"
           >
             <div className="navbar-nav mr-auto py-0">
-              <a href="index.html" className="nav-item nav-link">
+              <a href="/" className="nav-item nav-link">
                 Home
               </a>
-              <a href="shop.html" className="nav-item nav-link">
+              <a href="/products" className="nav-item nav-link">
                 Shop
               </a>
-              <a href="detail.html" className="nav-item nav-link active">
+              <a href="" className="nav-item nav-link active">
                 Shop Detail
               </a>
               <div className="nav-item dropdown">
@@ -265,15 +265,15 @@ class Header extends React.Component{
                   Pages <i className="fa fa-angle-down mt-1" />
                 </a>
                 <div className="dropdown-menu bg-primary rounded-0 border-0 m-0">
-                  <a href="cart.html" className="dropdown-item">
+                  <a href="" className="dropdown-item">
                     Shopping Cart
                   </a>
-                  <a href="checkout.html" className="dropdown-item">
+                  <a href="" className="dropdown-item">
                     Checkout
                   </a>
                 </div>
               </div>
-              <a href="contact.html" className="nav-item nav-link">
+              <a href="" className="nav-item nav-link">
                 Contact
               </a>
             </div>
@@ -304,8 +304,8 @@ class Header extends React.Component{
   </div>
   {/* Navbar End */}
 
-            <nav className="navbar navbar-expand-lg navbar-light bg-light">
-                <a className="navbar-brand" href="/#">Navbar</a>
+            <nav className="navbar navbar-expand-lg navbar-light bg-dark">
+                <a className="navbar-brand text-white" href="/#">Navbar</a>
                 <button className="navbar-toggler" type="button" data-bs-toggle="collapse"
                         data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent"
                         aria-expanded="false" aria-label="Toggle navigation">
@@ -314,25 +314,25 @@ class Header extends React.Component{
 
                 <div className="collapse navbar-collapse" id="navbarSupportedContent">
                     <ul className="navbar-nav d-flex">
-                        <li className="nav-item active">
-                            <NavLink to="/" className="nav-link">Home</NavLink>
+                        <li className="nav-item active ">
+                            <NavLink to="/" className="nav-link text-white">Home</NavLink>
                         </li>
                         <li className="nav-item">
-                            <NavLink to="products" className="nav-link">Products</NavLink>
+                            <NavLink to="products" className="nav-link text-white">Products</NavLink>
                         </li>
                         <li className="nav-item">
-                            <NavLink to='dashboard' className="nav-link" >Seller Dashboard</NavLink>
+                            <NavLink to='dashboard' className="nav-link text-white" >Seller Dashboard</NavLink>
                         </li>
                         <li className="nav-item dropdown">
-                            <a className="nav-link dropdown-toggle" href="/#" id="navbarDropdown" role="button"
+                            <a className="nav-link dropdown-toggle text-white" href="/#" id="navbarDropdown" role="button"
                                data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                                 Dropdown
                             </a>
-                            <div className="dropdown-menu" aria-labelledby="navbarDropdown">
-                                <a className="dropdown-item" href="/#">Action</a>
-                                <a className="dropdown-item" href="/#">Another action</a>
+                            <div className="dropdown-menu bg-dark" aria-labelledby="navbarDropdown">
+                                <a className="dropdown-item text-white" href="/#">Action</a>
+                                <a className="dropdown-item text-white" href="/#">Another action</a>
                                 <div className="dropdown-divider"></div>
-                                <a className="dropdown-item" href="/#">Something else here</a>
+                                <a className="dropdown-item text-white" href="/#">Something else here</a>
                             </div>
                         </li>
 

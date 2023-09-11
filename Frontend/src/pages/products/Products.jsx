@@ -1,8 +1,10 @@
 import React from 'react'
+import Footer from '../../components/layout/footer/footer'
 
 const Products = () => {
   return (
-    <div>Products</div>
+    <div>Products<Footer/></div>
+    
   )
 }
 
