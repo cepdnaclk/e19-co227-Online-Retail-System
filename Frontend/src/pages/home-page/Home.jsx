@@ -16,11 +16,6 @@ import img2 from '../../assets/carousel-2.jpg'
 import img3 from '../../assets/carousel-3.jpg'
 import imgoffer1 from '../../assets/offer-1.jpg'
 import imgoffer2 from '../../assets/offer-2.jpg'
-import '../../scss/style.scss'
-import '../../scss/bootstrap/scss/bootstrap.scss'
-//import '../../scss/bootstrap/scss/_utilities.scss'
-//import '../../scss/bootstrap/scss/utilities/_background.scss'
-import '../../scss/bootstrap/scss/mixins/_buttons.scss'
 import Categories from "../../components/layout/categories/categories";
 
 
