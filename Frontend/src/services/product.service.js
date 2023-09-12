@@ -31,5 +31,14 @@ export const productService = {
         } catch (error) {
             throw error;
         }
+    },
+    getAllProducts:async (sellerID)=>{
+        try {
+            const response = await axios.get(`${environment.baseUrl}/getAllProductsFromSeller`,{ headers: { id:sellerID } });
+            return response.data;
+        } catch (error) {
+            throw error;
+        }
+
     }
 }

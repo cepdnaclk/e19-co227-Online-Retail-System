@@ -105,11 +105,31 @@ async function getNewlyAddedProducts(req, res) {
       res.status(500).json({ error: 'Internal server error' });
     }
   }
+
+async function getAllProductsFromSeller(req, res) {
+    try {
+        const sellerID = req.headers.id
+        const sql = 'SELECT * FROM product WHERE sellerID=?';
+        db.query(sql, [sellerID],(error, result) => {
+            if (error) {
+                console.error('Error getting products from the database:', error);
+               return  res.status(500).json({ error: 'Database error' });
+            } else {
+
+                return res.status(200).json(result);
+
+            }
+        });
+    } catch (error) {
+        console.error('Error fetching products:', error);
+         return res.status(500).json({ error: 'Internal server error' });
+    }
+}
   
 
 module.exports = {
   getTopSellingProducts,
   getNewlyAddedProducts,
-  getCategory,addProduct
+  getCategory,addProduct,getAllProductsFromSeller
 };
 

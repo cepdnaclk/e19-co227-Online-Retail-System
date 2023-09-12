@@ -6,6 +6,7 @@ import {ref , uploadBytes,deleteObject, getDownloadURL} from "firebase/storage"
 import {productService} from "../../../../services/product.service"
 import {manageAccount} from "../../../../services/manage-account.service";
 import {ProductDTO} from "../../../../dto/ProductDTO";
+import {Link} from "react-router-dom";
 
 
 class AddListing extends React.Component{
@@ -28,12 +29,12 @@ class AddListing extends React.Component{
             category : [],
             subCategory : [],
             belongSubCategories:[],
-            fileSelected: false
+            fileSelected: false,
+            isSubmitted:true
         }
 
         this.imgUrls = []
         this.isComponentMounted = false;
-
     }
     componentDidMount() {
 
@@ -127,6 +128,9 @@ class AddListing extends React.Component{
     }
 
     handleAddProduct=(event)=>{
+
+
+        this.forceUpdate()
         event.preventDefault();
         if(manageAccount.getSellerID()===undefined && this.state.productName==='' ,this.state.productQty==='', this.state.description===''){
             alert("Please Fill The All the Fields")
@@ -152,6 +156,10 @@ class AddListing extends React.Component{
             productService.addProduct(dto).then((resp)=>{
                 if(resp.message === 'Product Added'){
                     console.log('Product Added!');
+                    alert("Product Added Succesfully!")
+                    this.setState({isSubmitted:true})
+
+
                 }
             }).catch((error) =>{
                 console.error('Error Adding roduct:', error);
@@ -172,7 +180,7 @@ class AddListing extends React.Component{
                         <label className="title">Add Product</label>
                         <div className="row m-2">
                             <div className="col-12 col-md-6 border border-1 my-2">
-                                <p>Add Image</p>
+                                <p>Add Image(Max 5 images)</p>
 
 
                                 <div className="drop-zone">
@@ -225,7 +233,7 @@ class AddListing extends React.Component{
                                         <input type="text" className="form-control" id="floatingInput" placeholder="name@example.com"
                                                onChange={event => this.setState({productPrice:event.target.value})}
                                         />
-                                        <label htmlFor="floatingInput">Product Price</label>
+                                        <label htmlFor="floatingInput">Product Price($)</label>
                                     </div>
                                     <div className="form-floating mb-3">
                                         <input type="text" className="form-control" id="floatingInput" placeholder="name@example.com"
@@ -278,6 +286,7 @@ class AddListing extends React.Component{
                                     </div>
 
                                     <button className="btn btn-primary " onClick={this.handleAddProduct}>Add Product</button>
+                                    {this.state.isSubmitted && <Link to='/dashboard'></Link> }
                                 </form>
                             </div>
                         </div>
