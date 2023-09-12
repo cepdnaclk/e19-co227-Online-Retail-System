@@ -15,6 +15,7 @@ const getProduct = async(req,res)=>{
       p.productImage4,
       p.productImage5,
       p.productDetails,
+      p.sellerID,
       s.shopName,
       c.categoryName,
       sc.subcategoryName
@@ -56,13 +57,13 @@ const addToCart = async(req,res)=>{
         
               const GenCartID = (data[1][0].GencartID);
              
-              console.log(cartID)
+              //console.log(cartID)
         
         
         
               db.query(q2,[GenCartID,productID, sellerID, qty, price],(err,data)=>{
                 if(err) return res.json(err)
-                console.log("added new")
+                //console.log("added new")
               })
               
         
@@ -74,7 +75,7 @@ const addToCart = async(req,res)=>{
         db.query(q2,[cartID,productID, sellerID, qty, price],(err,data)=>{
             if(err) return res.json(err)
 
-            console.log("added existing")
+           // console.log("added existing")
             return res.json(data)
             
           })

@@ -1,8 +1,11 @@
 import React, { useEffect, useState } from 'react'
 import axios from 'axios'
-import { useParams } from 'react-router'
+import { useParams,  useNavigate } from 'react-router'
+import { manageAccount } from '../../services/manage-account.service'
+import { useManageCart } from '../../services/useManageCart'
 
-const ProductDetails = () => {
+
+const ProductDetails = (props) => {
 
   const {id} = useParams()
 
@@ -22,15 +25,74 @@ const ProductDetails = () => {
       }
     }
     fetchProductDetails()
+
     
     
   },[]);
+
+  //const {cartID} = useManageCart();
+
+  let cartID = null
+
+  const navigate = useNavigate()
+
+  const cartInfo = useManageCart();
+
+  if (cartInfo ){
+    cartID  = cartInfo.cartID
+  }
+  
+
+  const customerID = manageAccount.getCustomerID()
 
   let [qty,setQty] = useState(1)
 
   let [errQty,setErrQty] = useState("")
 
-  const handleQty = (action)=>{
+  let [cartDetails, setCartDetails] = useState({
+    cartID:"",
+    customerID:"", 
+    productID:"", 
+    sellerID:"", 
+    qty:"", 
+    price:""
+  })
+
+  useEffect(()=>{
+    setCartDetails((prev) =>( {cartID: cartID,
+      customerID:customerID, 
+      productID: product.productID, 
+      sellerID: product.sellerID, 
+      qty:product.productQty, 
+      price:product.productPrice}))
+  },[cartID,product.productPrice])
+  
+  console.log(cartDetails)
+
+  const handleCart = async (e)=>{
+    e.preventDefault()
+    //console.log(manageAccount.isLoggedIn())
+
+    if (customerID > 0 ){
+      
+
+      try{
+        await axios.post("http://localhost:8081/api/v1/product",cartDetails)
+        console.log(cartDetails)
+        
+      }
+      catch(err){
+        console.log(err)
+      }
+    }
+    else{
+      navigate("/SignIn")
+    }
+    
+    
+  }
+
+  const handleQty = (action)=>{  //handle cart qty logic
     
     if (action ==='plus'){
       
@@ -54,9 +116,9 @@ const ProductDetails = () => {
     
   }
 
-  useEffect(() => {
-      console.log(qty); // This will show the updated length
-    }, [qty]);
+  // useEffect(() => {
+  //     console.log(qty); // This will show the updated length
+  //   }, [qty]);
 
 
   return (
@@ -179,7 +241,7 @@ const ProductDetails = () => {
                 </button>
               </div>
             </div>
-            <button className="btn btn-primary px-3">
+            <button className="btn btn-primary px-3" onClick={(e)=>handleCart(e)}>
               <i className="fa fa-shopping-cart mr-1" /> Add To Cart
             </button>
             <p style={{paddingTop:"13px", paddingLeft:"10px", color:"red"}}>{errQty}</p>

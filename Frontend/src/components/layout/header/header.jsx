@@ -1,14 +1,22 @@
 import React from "react";
 import {manageAccount} from "../../../services/manage-account.service";
 import {Link, NavLink, Outlet} from "react-router-dom";
+import { useManageCart } from "../../../services/useManageCart";
 
-class Header extends React.Component{
+const Header = () => {
 
-    constructor() {
-        super();
-    }
+  //const {cartID} = useManageCart();
 
-    render() {
+  //console.log(cartID)
+
+
+  
+
+    // constructor() {
+    //     super();
+    // }
+
+    //render() {
 
         
         return( 
@@ -359,6 +367,6 @@ class Header extends React.Component{
         );
     }
 
-}
+//}
 
 export default Header;
