@@ -26,6 +26,35 @@ export const useManageCart = () => {
     }
   }, []);
 
+
+  let [qty,setQty] = useState(1)
+
+  let [errQty,setErrQty] = useState("")
+
+  const handleQty = (product,action)=>{  //handle cart qty logic
+    
+    if (action ==='plus'){
+      
+      if(qty<product.productQty){
+        setQty((prevQty) => prevQty + 1); // Use the functional form of setState
+        setErrQty((prevErr) => prevErr="");
+      }
+      else{
+        setQty(product.productQty)
+        setErrQty((prevErr) => prevErr+"Max order qty exceeded");
+        
+      }
+      
+    }
+    if (action ==='minus'){
+      if(qty>0){
+        setQty((prevQty) => prevQty - 1); // Use the functional form of setState
+        setErrQty((prevErr) => prevErr="");
+      }
+    }
+    
+  }
+
   // Return null while loading, and return cartID once it's fetched
   return loading ? "" : cartID;
 };

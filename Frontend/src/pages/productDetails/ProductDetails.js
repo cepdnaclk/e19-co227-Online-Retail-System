@@ -30,9 +30,11 @@ const ProductDetails = (props) => {
     
   },[]);
 
-  //const {cartID} = useManageCart();
+ 
 
   let cartID = null
+
+  
 
   const navigate = useNavigate()
 
@@ -40,6 +42,7 @@ const ProductDetails = (props) => {
 
   if (cartInfo ){
     cartID  = cartInfo.cartID
+    const handleQty = cartInfo.handleQty
   }
   
 
@@ -63,11 +66,11 @@ const ProductDetails = (props) => {
       customerID:customerID, 
       productID: product.productID, 
       sellerID: product.sellerID, 
-      qty:product.productQty, 
+      qty:qty, 
       price:product.productPrice}))
-  },[cartID,product.productPrice])
-  
-  console.log(cartDetails)
+  },[cartID,product.productPrice,qty])
+
+  //console.log(cartDetails)
 
   const handleCart = async (e)=>{
     e.preventDefault()
@@ -115,10 +118,6 @@ const ProductDetails = (props) => {
     }
     
   }
-
-  // useEffect(() => {
-  //     console.log(qty); // This will show the updated length
-  //   }, [qty]);
 
 
   return (

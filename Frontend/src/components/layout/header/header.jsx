@@ -110,7 +110,7 @@ const Header = () => {
               0
             </span>
           </a>
-          <a href="" className="btn px-0 ml-2">
+          <NavLink to = { `cart/${manageAccount.getCustomerID()}` } className="btn px-0 ml-2">
             <i className="fas fa-shopping-cart text-dark" />
             <span
               className="badge text-dark border border-dark rounded-circle"
@@ -118,7 +118,7 @@ const Header = () => {
             >
               0
             </span>
-          </a>
+          </NavLink>
         </div>
       </div>
     </div>
