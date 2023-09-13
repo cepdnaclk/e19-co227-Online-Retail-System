@@ -69,7 +69,7 @@ const Header = () => {
 
             {isLogged===false ?
                 <button className="btn btn-sm btn-light" type="button">
-                  <Link to="/SignIn">Sign in</Link>
+                  <Link to="/SignIn" className="text-decoration-none">Sign in</Link>
                 </button> :
               <div className="btn-group">
                 <button
@@ -77,19 +77,26 @@ const Header = () => {
                     className="btn btn-sm btn-light dropdown-toggle"
                     data-bs-toggle="dropdown"
                 >
-                  {manageAccount.getCustomerName()}
+                  Hi! {manageAccount.getCustomerName()}
                 </button>
               <div className="dropdown-menu dropdown-menu-right">
+                {isSeller &&
+                  <button className="dropdown-item" type="button">
+                    <Link to="dashboard" className="text-decoration-none">My Store</Link>
+                  </button>
+                }
                 <button className="dropdown-item" type="button">
-                  Sign in
+                  My Profile
                 </button>
                 <button className="dropdown-item" type="button"
                         onClick={()=>{
                           manageAccount.logOut()
                           setIsLogged(false)
+                          setIsSeller(false)
                         }}>
                   Log Out
                 </button>
+
               </div>
             </div>
             }
@@ -290,15 +297,16 @@ const Header = () => {
             id="navbarCollapse"
           >
             <div className="navbar-nav mr-auto py-0">
-              <a href="/" className="nav-item nav-link">
-                Home
-              </a>
-              <a href="/products" className="nav-item nav-link">
-                Shop
-              </a>
-              <a href="" className="nav-item nav-link active">
+
+                <Link to="/" className="nav-item nav-link">Home</Link>
+
+
+                <Link to="/products" className="nav-item nav-link">Shop</Link>
+
+
+              {/*<a href="" className="nav-item nav-link active">
                 Shop Detail
-              </a>
+              </a>*/}
               <div className="nav-item dropdown">
                 <a
                   href="#"
@@ -316,9 +324,9 @@ const Header = () => {
                   </a>
                 </div>
               </div>
-              { isSeller && <a href="" className="nav-item nav-link">
-                Contact
-              </a>
+              { isSeller &&
+                <Link to="dashboard" className="nav-item nav-link">Seller Dashboard</Link>
+
               }
 
             </div>
