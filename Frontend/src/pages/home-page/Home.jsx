@@ -65,7 +65,7 @@ class Home extends React.Component {
       <div className="product-list">
 
 {products.map((product) => (
-          <div className="product-item mb-4"><NavLink to={`/product/${product.productID}`} className="nav-link-style">
+          <div key={product.productID} className="product-item mb-4"><NavLink to={`/product/${product.productID}`} className="nav-link-style">
           <div className="product-img position-relative overflow-hidden">
             <img className="product-img w-100" src={product.productImage1} alt={product.productName} />
             <div className="product-action">
