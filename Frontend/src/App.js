@@ -21,6 +21,8 @@ import {firstInputPolyfill} from "web-vitals/dist/modules/lib/polyfills/firstInp
 import SellerDashBoardLayout from './pages/seller-dashboard/SellerDashBoardLayout';
 import ProductDetails from './pages/productDetails/ProductDetails';
 import EditProduct from "./pages/seller-dashboard/listing-page/all-listing-page/edit-product-page/EditProduct";
+import CartDetail from './pages/cartDetails/CartDetail';
+
 
 const router = createBrowserRouter(
   createRoutesFromElements(
@@ -34,6 +36,7 @@ const router = createBrowserRouter(
          <Route index element={<Home />} />
          <Route path="products" element={<Products/>} />
          <Route path="product/:id" element={<ProductDetails />} />
+         <Route path="cart/:id" element={<CartDetail />} />
          <Route path="dashboard" element={<SellerDashBoardLayout />}>
               <Route index element={<SellerDashboard />} />
               <Route path={"add_items"} element={<AddListing />} />

@@ -3,6 +3,10 @@ import './SignIn.component.css'
 import {systemService} from "../../services/systemService";
 import Cookies from 'js-cookie';
 import {manageAccount} from "../../services/manage-account.service";
+import {useNavigate} from 'react-router-dom';
+
+
+
 
 class SignIn extends React.Component{
 
@@ -27,6 +31,7 @@ class SignIn extends React.Component{
 
 
     handleSubmit(event){
+        
 
         if(this.state.email!=='' && this.state.password!==''){
             systemService.loginUser(this.state.email,this.state.password)
@@ -53,6 +58,7 @@ class SignIn extends React.Component{
                         this.setState({ loading: true }, () => {
                             this.forceUpdate(); // Force a re-render
                         });
+                        
                         window.location.href = '/';
                     }else {
 
