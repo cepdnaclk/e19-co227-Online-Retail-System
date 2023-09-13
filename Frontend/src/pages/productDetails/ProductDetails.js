@@ -37,15 +37,15 @@ const ProductDetails = (props) => {
 
   const cartInfo = useManageCart();
 
-  const { qty, errQty, handleQty, handleChange, productDetails,product } = useManageCart();
+  const { qty, errQty, handleQty, handleChange, productDetails } = useManageCart();
 
-  productDetails(id);   // get product details from useManageCart
+  const product = productDetails(id);   // get product details from useManageCart
 
   if (cartInfo ){
     cartID  = cartInfo.cartID
   }
   
-  console.log(cartID)
+  //console.log(product)
   const customerID = manageAccount.getCustomerID()
 
   // let [qty,setQty] = useState(1)
@@ -211,7 +211,7 @@ const ProductDetails = (props) => {
               </div>
               <input
                 className="form-control bg-secondary border-0 text-center"
-                style={{width:"25x", padding:"0"}}
+                style={{width:"32px", padding:"0", height:"48px"}}
                 
                 type="text"
                 onChange={(e)=>{ handleChange(e,product)}} //from useManageCart Hook

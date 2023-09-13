@@ -2,6 +2,7 @@ import React, { useEffect, useState } from 'react'
 import axios from 'axios'
 import { manageAccount } from '../../services/manage-account.service'
 import { useManageCart } from '../../services/useManageCart'
+import CartItem from './CartItem'
 
 const CartDetail = () => {
 
@@ -17,7 +18,7 @@ const CartDetail = () => {
     cartID  = cartInfo.cartID
   }
 
-  const { qty, errQty, handleQty, handleChange,product,productDetails } = useManageCart();
+  
 
   useEffect(()=>{
     const fetchProductDetails = async ()=>{
@@ -35,7 +36,7 @@ const CartDetail = () => {
     fetchProductDetails()
   },[])
 
-console.log(cart)
+//console.log(cart)
 
 
 
@@ -61,42 +62,7 @@ console.log(cart)
                   {cart.map((cartItem)=>(
     
                   <tr key={cartItem.productID} >
-                  {productDetails(cartItem.productID)}
-                  <td className="align-middle">
-                    <img src="img/product-1.jpg" alt="" style={{ width: 50 }} />{cartItem.productName}
-                    
-                  </td>
-                  <td className="align-middle">{cartItem.productPrice}</td>
-                  <td className="align-middle">
-                    <div
-                      className="input-group quantity mx-auto"
-                      style={{ width: 100 }}
-                    >
-                      <div className="input-group-btn">
-                        <button className="btn btn-sm btn-primary btn-minus" onClick={()=>handleQty(product,'minus') }>
-                          <i className="fa fa-minus" />
-                        </button>
-                      </div>
-                      <input
-                        type="text"
-                        className="form-control form-control-sm bg-secondary border-0 text-center"
-                        defaultValue={cartItem.qty}
-                        onChange={(e)=>{ handleChange(e,product)}} //from useManageCart Hook
-                        //value={qty}
-                      />
-                      <div className="input-group-btn">
-                        <button className="btn btn-sm btn-primary btn-plus" onClick={()=>handleQty  (product,'plus')}>
-                          <i className="fa fa-plus" />
-                        </button>
-                      </div>
-                    </div>
-                  </td>
-                  <td className="align-middle">$150</td>
-                  <td className="align-middle">
-                    <button className="btn btn-sm btn-danger">
-                      <i className="fa fa-times" />
-                    </button>
-                  </td>
+                  <CartItem cartItem ={cartItem} />
                   </tr>
               
               

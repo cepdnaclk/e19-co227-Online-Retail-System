@@ -73,8 +73,11 @@ export const useManageCart = () => {
 ///////////////fetch product details function
   let id = null
   const productDetails = (id1)=>{
-    id = id1
+    id = id1 
+    return product
   }
+
+
   const [product,setProduct] = useState([])
 
   useEffect(()=>{
@@ -92,6 +95,14 @@ export const useManageCart = () => {
     }
     fetchProductDetails()
   },[]);
+
+  // const productDetail = (id2) =>{
+  //   id = id2
+  //   return product
+  // }
+
+  //console.log(productDetail(1))
+
   
   // Return null while loading, and return cartID once it's fetched
   return {
@@ -103,7 +114,7 @@ export const useManageCart = () => {
     handleChange,
     productDetails,
     cartID,
-    product
+
     
   };
 };

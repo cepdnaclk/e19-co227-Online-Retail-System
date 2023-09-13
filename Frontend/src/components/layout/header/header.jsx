@@ -295,7 +295,7 @@ const Header = () => {
                   0
                 </span>
               </a>
-              <a href="" className="btn px-0 ml-3">
+              <NavLink to = { `cart/${manageAccount.getCustomerID()}` } className="btn px-0 ml-3">
                 <i className="fas fa-shopping-cart text-primary" />
                 <span
                   className="badge text-secondary border border-secondary rounded-circle"
@@ -303,7 +303,7 @@ const Header = () => {
                 >
                   0
                 </span>
-              </a>
+              </NavLink>
             </div>
           </div>
         </nav>
