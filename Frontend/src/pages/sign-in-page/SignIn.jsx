@@ -23,12 +23,18 @@ class SignIn extends React.Component{
         }
         this.handleSubmit=this.handleSubmit.bind(this)
         //If user is already logged in they direct to home page
-        if(manageAccount.isLoggedIn()){
+
+    }
+
+    componentDidMount() {
+        this.isLoggedIn()
+    }
+
+    isLoggedIn= async () => {
+        if (await manageAccount.isLoggedIn()===true) {
             window.location.href = '/'
         }
     }
-
-
 
     handleSubmit(event){
         
@@ -37,10 +43,6 @@ class SignIn extends React.Component{
             systemService.loginUser(this.state.email,this.state.password)
                 .then(response => {
                     if(response.message==='success'){
-
-                        if(this.state.rememberMe){
-                            Cookies.set('jwt', response.token, { expires: 1 });
-                        }
 
                         if(response.isSeller===true){
                             console.log('abjectness:',response.customerID);
@@ -53,7 +55,9 @@ class SignIn extends React.Component{
                                 console.error('Error getting seller Data:', error);
                             })
                         }
+                        Cookies.set('name', response.customerName, { expires: 1 });
                         Cookies.set('customerID',response.customerID,{expires:1});
+                        Cookies.set('jwt', response.token, { expires: 1 });
                         console.log("Logged In");
                         this.setState({ loading: true }, () => {
                             this.forceUpdate(); // Force a re-render
