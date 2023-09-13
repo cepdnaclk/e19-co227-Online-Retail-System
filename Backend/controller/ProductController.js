@@ -30,7 +30,6 @@ async function getCategory(req, res) {
             .then(([category, subCategory]) => {
                 // Combine category and subCategory data into a single object
                 const combinedData = { category, subCategory };
-                console.log(combinedData)
                 // Send the combined data as a JSON response
                 res.status(200).json(combinedData);
             })
@@ -62,6 +61,54 @@ async function addProduct(req,res){
 
             }
 
+        });
+
+    } catch (error) {
+        console.log(error)
+        return  res.status(500).json({ error: 'Internal server error' });
+    }
+
+}
+
+async function updateProduct(req,res){
+    try {
+        const productId = parseInt(req.params.id);
+        let { sellerID,productName,categoryID,productPrice,productQty,productImage1,productImage2,productImage3,productImage4,productImage5,productDetails } = req.body;
+        console.log(req.body)
+        const query = 'UPDATE product SET  productName = ?, productPrice = ?,  productQty = ?,  productImage1 = ?,  productImage2 = ?,  productImage3 = ?,  productImage4 = ?,  productImage5 = ?,  productDetails = ? WHERE productID = ?;';
+        db.query(query, [ productName,productPrice,productQty,productImage1,productImage2,productImage3,productImage4,productImage5,productDetails,productId],(error,data)=>{
+            if (error) {
+                console.log(error)
+                return res.status(500).json({ error: 'Database error' });
+            }else {
+                console.log("Product Added")
+                return  res.status(200).json({message: 'Product Updated'});
+
+            }
+
+        });
+
+    } catch (error) {
+        console.log(error)
+        return  res.status(500).json({ error: 'Internal server error' });
+    }
+
+}
+
+async function deleteProduct(req,res){
+    try {
+        const productId = parseInt(req.params.id);
+        console.log(productId)
+        const query = 'DELETE FROM product WHERE productID = ?;';
+
+        db.query(query, [productId], (error, data) => {
+            if (error) {
+                console.log(error);
+                return res.status(500).json({ error: 'Database error' });
+            } else {
+                console.log('Product Deleted');
+                return res.status(200).json({ message: 'Product Deleted' });
+            }
         });
 
     } catch (error) {
@@ -125,11 +172,16 @@ async function getAllProductsFromSeller(req, res) {
          return res.status(500).json({ error: 'Internal server error' });
     }
 }
-  
+
+
 
 module.exports = {
   getTopSellingProducts,
   getNewlyAddedProducts,
-  getCategory,addProduct,getAllProductsFromSeller
+  getCategory,
+    addProduct,
+    getAllProductsFromSeller,
+    updateProduct,
+    deleteProduct
 };
 

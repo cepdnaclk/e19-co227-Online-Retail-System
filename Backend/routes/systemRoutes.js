@@ -14,6 +14,8 @@ router.get('/verifyToken', customerController.verifyToken);
 router.get('/getCategory',productController.getCategory);
 router.post('/addProduct',productController.addProduct);
 router.get('/getAllProductsFromSeller',productController.getAllProductsFromSeller)
+router.put('/updateProduct/:id',productController.updateProduct)
+router.delete('/deleteProduct/:id',productController.deleteProduct)
 
 router.get('/top-selling-products', productController.getTopSellingProducts); 
 router.get('/newly-added-products', productController.getNewlyAddedProducts); 

@@ -6,10 +6,13 @@ import OrderImg from "../../../../assets/Delivery-amico.png";
 import SalesImg from "../../../../assets/Statistics-bro.png";
 import {productService} from "../../../../services/product.service";
 import {manageAccount} from "../../../../services/manage-account.service";
+import EditProduct from "./edit-product-page/EditProduct";
 
 function AllListing(){
 
     const [products, setProducts] = useState([]);
+    const [id,setID]=useState('')
+    const [isDeleted,setIsDeleted] = useState(false)
 
     useEffect(() => {
         productService.getAllProducts(manageAccount.getSellerID()).then((response)=>{
@@ -25,6 +28,26 @@ function AllListing(){
         };
     }, []);
 
+    const handleDeleteProduct=(event)=>{
+        event.preventDefault();
+        productService
+            .deleteProduct(id)
+            .then((resp) => {
+                if (resp.message === 'Product Deleted') {
+                        console.log('Product Deleted!');
+                        setIsDeleted(true)
+                        alert('Product Deleted Succesfully!');
+
+                }
+            })
+            .catch((error) => {
+                console.error('Error deleting product:', error);
+                alert('Error Occured In Product deleting!');
+            });
+
+
+
+    }
 
 
     return (
@@ -44,8 +67,17 @@ function AllListing(){
                                 <li className="list-group-item">Price&nbsp;:${product.productPrice}</li>
                             </ul>
                             <div className="card-body">
-                                <a href="#" className="card-link">Edit</a>
-                                <a href="#" className="card-link" style={{color:'red'}}>Delete</a>
+                                <a href="#" className="card-link">
+                                    <Link to={`edit-product/${product.productID}`} state={{ product }}
+                                    >Edit</Link>
+                                </a>
+                                <a href="#" className="card-link" onClick={(e)=>{
+                                    if (window.confirm("Are You Sure You want to delete Item?")) {
+                                        handleDeleteProduct(e);
+                                        setID(product.productID);
+                                    }
+                                }
+                                } style={{color:'red'}}>Delete</a>
                             </div>
                         </div>
 

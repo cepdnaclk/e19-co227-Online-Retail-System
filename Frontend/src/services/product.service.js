@@ -14,10 +14,19 @@ export const productService = {
 
     },
 
-    updateProduct: async (updateData)=>{
+    updateProduct: async (updateData,id)=>{
 
         try {
-            const response = await axios.post(`${environment.baseUrl}/updateProduct`, updateData);
+            const response = await axios.put(`${environment.baseUrl}/updateProduct/${id}`, updateData);
+            return response.data;
+        } catch (error) {
+            throw error;
+        }
+    },
+    deleteProduct: async (id)=>{
+
+        try {
+            const response = await axios.delete(`${environment.baseUrl}/deleteProduct/${id}`);
             return response.data;
         } catch (error) {
             throw error;

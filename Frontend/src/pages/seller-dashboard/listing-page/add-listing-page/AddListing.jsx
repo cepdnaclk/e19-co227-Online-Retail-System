@@ -128,9 +128,6 @@ class AddListing extends React.Component{
     }
 
     handleAddProduct=(event)=>{
-
-
-        this.forceUpdate()
         event.preventDefault();
         if(manageAccount.getSellerID()===undefined && this.state.productName==='' ,this.state.productQty==='', this.state.description===''){
             alert("Please Fill The All the Fields")
