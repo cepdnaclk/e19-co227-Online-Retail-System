@@ -138,7 +138,7 @@ async function getTopSellingProducts(req, res) {
 
 async function getNewlyAddedProducts(req, res) {
     try {
-      const sql = 'SELECT * FROM product ORDER BY productID DESC LIMIT 2;';
+      const sql = 'SELECT * FROM product ORDER BY productID DESC LIMIT 5;';
       db.query(sql, (error, result) => {
         if (error) {
           console.error('Error fetching newly added products from the database:', error);

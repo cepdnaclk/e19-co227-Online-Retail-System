@@ -64,17 +64,47 @@ class Home extends React.Component {
     return (
       <div className="product-list">
 
-        {products.map((product) => (
-          <div key={product.productID} className="product"><NavLink to={`/product/${product.productID}`}>
-            <img
-              src={product.productImage1} 
-              alt={product.productName} 
-              className="product-image"
-            />
-            <h2>{product.productName}</h2>
-            <p>Price: LKR {product.productPrice}</p>
-            </NavLink>
+{products.map((product) => (
+          <div className="product-item mb-4"><NavLink to={`/product/${product.productID}`} className="nav-link-style">
+          <div className="product-img position-relative overflow-hidden">
+            <img className="product-img w-100" src={product.productImage1} alt={product.productName} />
+            <div className="product-action">
+              <a className="btn btn-outline-dark btn-square" href="cart/:id">
+                <i className="fa fa-shopping-cart" />
+              </a>
+              <a className="btn btn-outline-dark btn-square" href="">
+                <i className="far fa-heart" />
+              </a>
+              <a className="btn btn-outline-dark btn-square" href="">
+                <i className="fa fa-sync-alt" />
+              </a>
+              <a className="btn btn-outline-dark btn-square" href="">
+                <i className="fa fa-search" />
+              </a>
+            </div>
           </div>
+          <div className="title text-center py-4">
+            <a className="h4 text-decoration-none text-truncate" href="">
+            {product.productName}
+            </a>
+            <div className="d-flex align-items-center justify-content-center mt-2 w-75 text-center">
+              <h5>LKR {product.productPrice}</h5>
+              <h6 className="d-flex align-items-center text-muted ml-2 ">
+                <del>LKR {product.productPrice+100}</del>
+              </h6>
+            </div>
+            <div className="d-flex align-items-center justify-content-center mb-1 color-yellow">
+              <small className="fa fa-star text-primary mr-1" />
+              <small className="fa fa-star text-primary mr-1" />
+              <small className="fa fa-star text-primary mr-1" />
+              <small className="fa fa-star text-primary mr-1" />
+              <small className="fa fa-star text-primary mr-1" />
+              <small>(99)</small>
+            </div>
+          </div></NavLink>
+        </div>
+        
+          
         ))}
       </div>
     );

@@ -6,7 +6,7 @@
 }
 
 
-.product {
+.product-item {
   border: 1px solid #ddd;
   padding: 20px;
   width: 300px; 
@@ -57,7 +57,7 @@
 
 }
 
-.product-image {
+.product-img {
 width: 200px; 
 height: 200px; 
 object-fit: contain; 
@@ -161,6 +161,18 @@ margin: 0 auto;
 }
 .custom-yellow-icon {
   color: yellow;
+}
+.nav-link-style {
+  text-decoration: none;
+  color: inherit; 
+
+}
+.nav-link-style:hover {
+  text-decoration: none; 
+  color:inherit
+}
+.title{
+  color: #283404;
 }
 
 
