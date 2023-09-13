@@ -17,6 +17,8 @@ const CartDetail = () => {
     cartID  = cartInfo.cartID
   }
 
+  const { qty, errQty, handleQty, handleChange,product,productDetails } = useManageCart();
+
   useEffect(()=>{
     const fetchProductDetails = async ()=>{
       try{
@@ -34,6 +36,8 @@ const CartDetail = () => {
   },[])
 
 console.log(cart)
+
+
 
 
   return (
@@ -56,7 +60,8 @@ console.log(cart)
           <tbody className="align-middle">
                   {cart.map((cartItem)=>(
     
-                  <tr key={cartItem.productID}>
+                  <tr key={cartItem.productID} >
+                  {productDetails(cartItem.productID)}
                   <td className="align-middle">
                     <img src="img/product-1.jpg" alt="" style={{ width: 50 }} />{cartItem.productName}
                     
@@ -68,7 +73,7 @@ console.log(cart)
                       style={{ width: 100 }}
                     >
                       <div className="input-group-btn">
-                        <button className="btn btn-sm btn-primary btn-minus">
+                        <button className="btn btn-sm btn-primary btn-minus" onClick={()=>handleQty(product,'minus') }>
                           <i className="fa fa-minus" />
                         </button>
                       </div>
@@ -76,9 +81,11 @@ console.log(cart)
                         type="text"
                         className="form-control form-control-sm bg-secondary border-0 text-center"
                         defaultValue={cartItem.qty}
+                        onChange={(e)=>{ handleChange(e,product)}} //from useManageCart Hook
+                        //value={qty}
                       />
                       <div className="input-group-btn">
-                        <button className="btn btn-sm btn-primary btn-plus">
+                        <button className="btn btn-sm btn-primary btn-plus" onClick={()=>handleQty  (product,'plus')}>
                           <i className="fa fa-plus" />
                         </button>
                       </div>
@@ -95,9 +102,6 @@ console.log(cart)
               
             ))}
             
-         
-           
-
 
           </tbody>
         </table>

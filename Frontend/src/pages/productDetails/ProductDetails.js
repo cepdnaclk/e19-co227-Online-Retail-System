@@ -9,48 +9,48 @@ const ProductDetails = (props) => {
 
   const {id} = useParams()
 
-  const [product,setProduct] = useState([])
+  // const [product,setProduct] = useState([])
 
-  useEffect(()=>{
-    const fetchProductDetails = async ()=>{
-      try{
-        const res = await axios.get("http://localhost:8081/api/v1/product/"+id)
+  // useEffect(()=>{
+  //   const fetchProductDetails = async ()=>{
+  //     try{
+  //       const res = await axios.get("http://localhost:8081/api/v1/product/"+id)
 
-        //console.log(res.data)
-        setProduct(res.data[0]) ;
+  //       //console.log(res.data)
+  //       setProduct(res.data[0]) ;
 
-      }catch(err){
-        console.log(err)
+  //     }catch(err){
+  //       console.log(err)
 
-      }
-    }
-    fetchProductDetails()
+  //     }
+  //   }
+  //   fetchProductDetails()
 
     
     
-  },[]);
+  // },[]);
 
- 
 
   let cartID = null
-
-  
 
   const navigate = useNavigate()
 
   const cartInfo = useManageCart();
 
+  const { qty, errQty, handleQty, handleChange, productDetails,product } = useManageCart();
+
+  productDetails(id);   // get product details from useManageCart
+
   if (cartInfo ){
     cartID  = cartInfo.cartID
-    const handleQty = cartInfo.handleQty
   }
   
-
+  console.log(cartID)
   const customerID = manageAccount.getCustomerID()
 
-  let [qty,setQty] = useState(1)
+  // let [qty,setQty] = useState(1)
 
-  let [errQty,setErrQty] = useState("")
+  // let [errQty,setErrQty] = useState("")
 
   let [cartDetails, setCartDetails] = useState({
     cartID:"",
@@ -77,8 +77,6 @@ const ProductDetails = (props) => {
     //console.log(manageAccount.isLoggedIn())
 
     if (customerID > 0 ){
-      
-
       try{
         await axios.post("http://localhost:8081/api/v1/product",cartDetails)
         console.log(cartDetails)
@@ -91,34 +89,31 @@ const ProductDetails = (props) => {
     else{
       navigate("/SignIn")
     }
-    
-    
   }
 
-  const handleQty = (action)=>{  //handle cart qty logic
+  // const handleQty = (action)=>{  //handle cart qty logic
     
-    if (action ==='plus'){
+  //   if (action ==='plus'){
       
-      if(qty<product.productQty){
-        setQty((prevQty) => prevQty + 1); // Use the functional form of setState
-        setErrQty((prevErr) => prevErr="");
-      }
-      else{
-        setQty(product.productQty)
-        setErrQty((prevErr) => prevErr+"Max order qty exceeded");
+  //     if(qty<product.productQty){
+  //       setQty((prevQty) => prevQty + 1); // Use the functional form of setState
+  //       setErrQty((prevErr) => prevErr="");
+  //     }
+  //     else{
+  //       setQty(product.productQty)
+  //       setErrQty((prevErr) => prevErr+"Max order qty exceeded");
         
-      }
+  //     }
       
-    }
-    if (action ==='minus'){
-      if(qty>0){
-        setQty((prevQty) => prevQty - 1); // Use the functional form of setState
-        setErrQty((prevErr) => prevErr="");
-      }
-    }
+  //   }
+  //   if (action ==='minus'){
+  //     if(qty>0){
+  //       setQty((prevQty) => prevQty - 1); // Use the functional form of setState
+  //       setErrQty((prevErr) => prevErr="");
+  //     }
+  //   }
     
-  }
-
+  // }
 
   return (
   <>
@@ -209,8 +204,8 @@ const ProductDetails = (props) => {
          
           <div className="d-flex align-items-center mb-4 pt-2">
             <div className="input-group quantity mr-3" style={{ width: 130 }}>
-              <div className="input-group-btn">
-                <button className="btn btn-primary btn-minus" onClick={()=>handleQty('minus')}>
+              <div className="input-group-btn">   
+                <button className="btn btn-primary btn-minus" onClick={()=>handleQty(product,'minus') }>
                   <i className="fa fa-minus" />
                 </button>
               </div>
@@ -219,23 +214,11 @@ const ProductDetails = (props) => {
                 style={{width:"25x", padding:"0"}}
                 
                 type="text"
-                onChange={(e)=>{
-              
-                  const newValue = parseInt(e.target.value);
-
-                    if (!isNaN(newValue) && newValue >= 1 && newValue <= product.productQty) {
-                    setQty(newValue);
-                    setErrQty((prevErr) => prevErr="");
-                    }
-                    else{ setErrQty((prevErr) => prevErr+"Max order qty exceeded");
-                    setQty(product.productQty)
-                  }
-                
-                }}
+                onChange={(e)=>{ handleChange(e,product)}} //from useManageCart Hook
                 value={qty}
               />
-              <div className="input-group-btn">
-                <button className="btn btn-primary btn-plus" onClick={()=>handleQty('plus')}>
+              <div className="input-group-btn">    
+                <button className="btn btn-primary btn-plus" onClick={()=>handleQty  (product,'plus')}>    
                   <i className="fa fa-plus" />
                 </button>
               </div>
