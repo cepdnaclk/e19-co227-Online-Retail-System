@@ -56,7 +56,7 @@ const deleteCartItem = async(req,res)=>{
 
 const changeQty = async(req,res)=>{
   const { cartID, productID, qty } = req.body;
- console.log(req.body)
+ //console.log(req.body)
   const q = "UPDATE cart_items set `qty` = ? WHERE cartID = ? AND productID = ?"
 
   db.query(q, [qty,cartID, productID ], (err, data) =>{
@@ -66,10 +66,22 @@ const changeQty = async(req,res)=>{
   })
 }
 
+const checkCart = async(req,res)=>{
+  const { cartID, productID } = req.body;
+  console.log(req.body)
+  const q = "SELECT qty FROM cart_items WHERE cartID = ? AND productID = ? "
+  db.query(q, [cartID, productID], (err, data) =>{
+    if (err) return res.json(err);
+    return res.json(data)
+  })
+
+}
+
 module.exports = {
   getCart,
   getCartDetails,
   deleteCartItem, 
-  changeQty
+  changeQty, 
+  checkCart
 
 };

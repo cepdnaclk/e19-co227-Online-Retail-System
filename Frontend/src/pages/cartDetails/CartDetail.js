@@ -61,7 +61,7 @@ useEffect(()=>{
 
 },[cart,updateCartTrigger])
 
-console.log(subTotal)
+//console.log(subTotal)
 
 
 
