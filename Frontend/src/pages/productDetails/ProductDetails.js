@@ -3,6 +3,7 @@ import axios from 'axios'
 import { useParams,  useNavigate } from 'react-router'
 import { manageAccount } from '../../services/manage-account.service'
 import { useManageCart } from '../../services/useManageCart'
+import Footer from '../../components/layout/footer/footer'
 
 
 const ProductDetails = (props) => {
@@ -422,6 +423,10 @@ const ProductDetails = (props) => {
   {/* Shop Detail End */}
 </>
 }
+
+  <Footer />
+
+
   </>
  
     

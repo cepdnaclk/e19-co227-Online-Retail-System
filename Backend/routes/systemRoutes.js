@@ -26,6 +26,8 @@ router.post('/product', ProductDetailsController.addToCart)
 
 router.post('/cart', CartController.getCart);
 router.get('/cart/:id', CartController.getCartDetails);
+router.delete('/cart', CartController.deleteCartItem);
+router.put('/cart/:id', CartController.changeQty);
 
 
 
