@@ -1,23 +1,47 @@
-import React from "react";
+import React, {useEffect, useState} from "react";
 import {manageAccount} from "../../../services/manage-account.service";
 import {Link, NavLink, Outlet} from "react-router-dom";
 import { useManageCart } from "../../../services/useManageCart";
 
 const Header = () => {
 
-  //const {cartID} = useManageCart();
+  const [isSeller,setIsSeller] = useState(false)
+  const [isLogged,setIsLogged] = useState(false)
 
-  //console.log(cartID)
+  useEffect(() => {
+    checkisLogged();
+    checkSeller();
+
+    return () => {
+      console.log('Component unmounted');
+
+    };
+  }, []);
 
 
-  
+  const checkSeller=()=>{
+    if(manageAccount.getSellerID()!==-1){
+      setIsSeller(true);
+    }
+  }
 
-    // constructor() {
-    //     super();
-    // }
+  const checkisLogged= async () => {
 
-    //render() {
+    try {
+      const isLogged = await manageAccount.isLoggedIn();
+      console.log(isLogged)
+      if (isLogged) {
+        setIsLogged(true)
+        console.log("Logged In")
+      } else {
+        // User is not logged in
+      }
+    } catch (error) {
+      // Handle errors here
+    }
 
+
+  }
         
         return( 
             <>
@@ -42,28 +66,46 @@ const Header = () => {
       </div>
       <div className="col-lg-6 text-center text-lg-right">
         <div className="d-inline-flex align-items-center">
-          <div className="btn-group">
-            <button
-              type="button"
-              className="btn btn-sm btn-light dropdown-toggle"
-              data-toggle="dropdown"
-            >
-              My Account
-            </button>
-            <div className="dropdown-menu dropdown-menu-right">
-              <button className="dropdown-item" type="button">
-                Sign in
-              </button>
-              <button className="dropdown-item" type="button">
-                Sign up
-              </button>
+
+            {isLogged===false ?
+                <button className="btn btn-sm btn-light" type="button">
+                  <Link to="/SignIn" className="text-decoration-none">Sign in</Link>
+                </button> :
+              <div className="btn-group">
+                <button
+                    type="button"
+                    className="btn btn-sm btn-light dropdown-toggle"
+                    data-bs-toggle="dropdown"
+                >
+                  Hi! {manageAccount.getCustomerName()}
+                </button>
+              <div className="dropdown-menu dropdown-menu-right">
+                {isSeller &&
+                  <button className="dropdown-item" type="button">
+                    <Link to="dashboard" className="text-decoration-none">My Store</Link>
+                  </button>
+                }
+                <button className="dropdown-item" type="button">
+                  My Profile
+                </button>
+                <button className="dropdown-item" type="button"
+                        onClick={()=>{
+                          manageAccount.logOut()
+                          setIsLogged(false)
+                          setIsSeller(false)
+                        }}>
+                  Log Out
+                </button>
+
+              </div>
             </div>
-          </div>
+            }
+
           <div className="btn-group mx-2">
             <button
               type="button"
               className="btn btn-sm btn-light dropdown-toggle"
-              data-toggle="dropdown"
+              data-bs-toggle="dropdown"
             >
               USD
             </button>
@@ -83,7 +125,7 @@ const Header = () => {
             <button
               type="button"
               className="btn btn-sm btn-light dropdown-toggle"
-              data-toggle="dropdown"
+              data-bs-toggle="dropdown"
             >
               EN
             </button>
@@ -255,15 +297,16 @@ const Header = () => {
             id="navbarCollapse"
           >
             <div className="navbar-nav mr-auto py-0">
-              <a href="/" className="nav-item nav-link">
-                Home
-              </a>
-              <a href="/products" className="nav-item nav-link">
-                Shop
-              </a>
-              <a href="" className="nav-item nav-link active">
+
+                <Link to="/" className="nav-item nav-link">Home</Link>
+
+
+                <Link to="/products" className="nav-item nav-link">Shop</Link>
+
+
+              {/*<a href="" className="nav-item nav-link active">
                 Shop Detail
-              </a>
+              </a>*/}
               <div className="nav-item dropdown">
                 <a
                   href="#"
@@ -281,9 +324,11 @@ const Header = () => {
                   </a>
                 </div>
               </div>
-              <a href="" className="nav-item nav-link">
-                Contact
-              </a>
+              { isSeller &&
+                <Link to="dashboard" className="nav-item nav-link">Seller Dashboard</Link>
+
+              }
+
             </div>
             <div className="navbar-nav ml-auto py-0 d-none d-lg-block">
               <a href="" className="btn px-0">
@@ -312,7 +357,7 @@ const Header = () => {
   </div>
   {/* Navbar End */}
 
-            <nav className="navbar navbar-expand-lg navbar-light bg-dark">
+          {/*  <nav className="navbar navbar-expand-lg navbar-light bg-dark">
                 <a className="navbar-brand text-white" href="/#">Navbar</a>
                 <button className="navbar-toggler" type="button" data-bs-toggle="collapse"
                         data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent"
@@ -359,7 +404,7 @@ const Header = () => {
                     </div>
 
                 </div>
-            </nav>
+            </nav>*/}
 
             <Outlet />
             </>

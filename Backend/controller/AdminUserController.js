@@ -68,8 +68,8 @@ async function LoginUser(req,res){
 
                     if (finalresult) {
                         const token = jwt.sign(
-                            {email: email, password: password},
-                            process.env.JWT_ACCOUNT, {expiresIn: '168h'}
+                            {email: email, id: data[0].customerID},
+                            process.env.JWT_ACCOUNT, {expiresIn: '24h'}
                         );
 
                         console.log('Logged In');
@@ -78,7 +78,7 @@ async function LoginUser(req,res){
                         }else {
                             isSeller=false
                         }
-                       return  res.status(200).json({message: 'success',isSeller:isSeller, token: token,customerID:data[0].customerID});
+                       return  res.status(200).json({message: 'success',isSeller:isSeller, token: token,customerID:data[0].customerID,customerName:data[0].firstName});
                     } else {
                        return  res.status(200).json({message: 'Failed'});
 
@@ -95,6 +95,8 @@ async function LoginUser(req,res){
        return  res.status(500).json({ error: 'Internal server error' });
     }
 }
+
+
 
 async function getSeller(req,res){
     try {

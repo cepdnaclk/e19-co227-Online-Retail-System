@@ -17,6 +17,7 @@ import img3 from '../../assets/carousel-3.jpg'
 import imgoffer1 from '../../assets/offer-1.jpg'
 import imgoffer2 from '../../assets/offer-2.jpg'
 import Categories from "../../components/layout/categories/categories";
+import { Link } from "react-router-dom";
 
 
 //import 'animate.css/animate.min.css';
@@ -33,13 +34,13 @@ class Home extends React.Component {
   }
 
   componentDidMount() {
-    // Fetch top selling products and newly added products data
+    
     this.fetchTopSellingProducts();
     this.fetchNewlyAddedProducts();
   }
 
   fetchTopSellingProducts() {
-    // Make an API request to fetch top selling products
+    
     axios.get("http://localhost:8081/api/v1/top-selling-products")
       .then((response) => {
         this.setState({ topSellingProducts: response.data });
@@ -50,7 +51,7 @@ class Home extends React.Component {
   }
 
   fetchNewlyAddedProducts() {
-    // Make an API request to fetch newly added products
+    
     axios.get("http://localhost:8081/api/v1/newly-added-products")
       .then((response) => {
         this.setState({ newlyAddedProducts: response.data });
@@ -63,53 +64,49 @@ class Home extends React.Component {
   renderProducts(products) {
     return (
       <div className="product-list">
-
-{products.map((product) => (
-          <div className="product-item mb-4"><NavLink to={`/product/${product.productID}`} className="nav-link-style">
-          <div className="product-img position-relative overflow-hidden">
-            <img className="product-img w-100" src={product.productImage1} alt={product.productName} />
-            <div className="product-action">
-              <a className="btn btn-outline-dark btn-square" href="cart/:id">
-                <i className="fa fa-shopping-cart" />
-              </a>
-              <a className="btn btn-outline-dark btn-square" href="">
-                <i className="far fa-heart" />
-              </a>
-              <a className="btn btn-outline-dark btn-square" href="">
-                <i className="fa fa-sync-alt" />
-              </a>
-              <a className="btn btn-outline-dark btn-square" href="">
-                <i className="fa fa-search" />
-              </a>
+        {products.map((product) => (
+          <div key={product.productID} className="product-item mb-4">
+            <div className="product-img position-relative overflow-hidden">
+              <img className="product-img w-100" src={product.productImage1} alt={product.productName} />
+              <div className="product-action">
+                <Link to={`/productt/${product.productID}`} className="btn btn-outline-dark btn-square">
+                  <i className="fa fa-shopping-cart" />
+                </Link>
+                <Link to={`/product/${product.productID}`} className="btn btn-outline-dark btn-square">
+                  <i className="far fa-heart" />
+                </Link>
+                <Link to={`/product/${product.productID}`} className="btn btn-outline-dark btn-square">
+                  <i className="fa fa-sync-alt" />
+                </Link>
+                <Link to={`/product/${product.productID}`} className="btn btn-outline-dark btn-square">
+                  <i className="fa fa-search" />
+                </Link>
+              </div>
+            </div>
+            <div className="title text-center py-4"><NavLink to={`/product/${product.productID}`} className="nav-link-style">
+              <div className="h4 text-decoration-none text-truncate">
+                {product.productName}
+              </div>
+              <div className="d-flex align-items-center justify-content-center mt-2 w-75 text-center">
+                <h5>${product.productPrice}</h5>
+                <h6 className="d-flex align-items-center text-muted ml-2">
+                  <del>${product.productPrice + 100}</del>
+                </h6>
+              </div>
+              <div className="d-flex align-items-center justify-content-center mb-1 color-yellow">
+                <small className="fa fa-star text-primary mr-1" />
+                <small className="fa fa-star text-primary mr-1" />
+                <small className="fa fa-star text-primary mr-1" />
+                <small className="fa fa-star text-primary mr-1" />
+                <small className="fa fa-star text-primary mr-1" />
+                <small>(99)</small>
+              </div></NavLink>
             </div>
           </div>
-          <div className="title text-center py-4">
-            <a className="h4 text-decoration-none text-truncate" href="">
-            {product.productName}
-            </a>
-            <div className="d-flex align-items-center justify-content-center mt-2 w-75 text-center">
-              <h5>LKR {product.productPrice}</h5>
-              <h6 className="d-flex align-items-center text-muted ml-2 ">
-                <del>LKR {product.productPrice+100}</del>
-              </h6>
-            </div>
-            <div className="d-flex align-items-center justify-content-center mb-1 color-yellow">
-              <small className="fa fa-star text-primary mr-1" />
-              <small className="fa fa-star text-primary mr-1" />
-              <small className="fa fa-star text-primary mr-1" />
-              <small className="fa fa-star text-primary mr-1" />
-              <small className="fa fa-star text-primary mr-1" />
-              <small>(99)</small>
-            </div>
-          </div></NavLink>
-        </div>
-        
-          
         ))}
       </div>
     );
-  }
-  
+  } 
   
 
   render() {
@@ -117,8 +114,7 @@ class Home extends React.Component {
       <div>
         
         <div className="home-page">
-          {/* Introductory Section */}
-          <section className="intro-section">
+        <section className="intro-section">
           
             
           <div className="container-fluid mb-3">

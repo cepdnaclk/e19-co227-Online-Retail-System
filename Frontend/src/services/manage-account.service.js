@@ -5,22 +5,26 @@ import {systemService} from "./systemService";
 
 export const manageAccount ={
 
-    isLoggedIn : ()=>{
+    isLoggedIn :async ()=>{
         const token = Cookies.get('jwt');
         const customerID = Cookies.get('customerID');
 
+
         if(token!==undefined && customerID!==undefined){
-            systemService.verifyToken(token).then((response)=>{
-                if(response.message==='Success'){
-                    return true
-                }else{
-                    return false
+            try {
+                const response = await systemService.verifyToken(token);
+
+                if (response.message === 'Success') {
+                    console.log('Verified!');
+                    return true; // User is logged in
+                } else {
+                    console.log('Unauthorized Login!');
+                    return false; // User is not logged in
                 }
-
-            }).catch(error=>{
-                return false
-            })
-
+            } catch (error) {
+                console.error('Error during token verification:', error);
+                return false; // Error occurred during verification
+            }
 
         }else {
             return  false
@@ -56,11 +60,21 @@ export const manageAccount ={
         }
     },
 
+    getCustomerName:()=>{
+        const customerName = Cookies.get('name');
+        if(customerName!==undefined){
+            return customerName;
+        }else {
+            return  'User'
+        }
+    },
+
     logOut: ()=>{
         Cookies.remove('jwt');
         Cookies.remove('customerID')
         Cookies.remove('sellerID')
         Cookies.remove('shopName')
+        Cookies.remove('name')
 
     }
 
