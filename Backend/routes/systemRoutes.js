@@ -19,7 +19,8 @@ router.put('/updateProduct/:id',productController.updateProduct)
 router.delete('/deleteProduct/:id',productController.deleteProduct)
 
 router.get('/top-selling-products', productController.getTopSellingProducts); 
-router.get('/newly-added-products', productController.getNewlyAddedProducts); 
+router.get('/newly-added-products', productController.getNewlyAddedProducts);
+router.get('/products/:categoryId/:subcategoryId', productController.getProductsByCategory) 
 
 router.get('/product/:id', ProductDetailsController.getProduct); 
 router.post('/product', ProductDetailsController.addToCart)
