@@ -2,6 +2,7 @@ import React, {useEffect, useState} from "react";
 import {manageAccount} from "../../../services/manage-account.service";
 import {Link, NavLink, Outlet} from "react-router-dom";
 import { useManageCart } from "../../../services/useManageCart";
+import CartSize from "../../CartSize";
 //import '../../../css/style.css'
 
 const Header = () => {
@@ -159,7 +160,7 @@ const Header = () => {
               className="badge text-dark border border-dark rounded-circle"
               style={{ paddingBottom: 2 }}
             >
-              0
+              <CartSize />
             </span>
           </NavLink>
         </div>
@@ -679,7 +680,7 @@ const Header = () => {
                   className="badge text-secondary border border-secondary rounded-circle"
                   style={{ paddingBottom: 2 }}
                 >
-                  0
+                  <CartSize />
                 </span>
               </NavLink>
             </div>

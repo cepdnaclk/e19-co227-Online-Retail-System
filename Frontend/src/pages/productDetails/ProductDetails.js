@@ -1,9 +1,10 @@
-import React, { useEffect, useState } from 'react'
+import React, { useEffect, useState, useContext } from 'react'
 import axios from 'axios'
 import { useParams,  useNavigate } from 'react-router'
 import { manageAccount } from '../../services/manage-account.service'
 import { useManageCart } from '../../services/useManageCart'
 import Footer from '../../components/layout/footer/footer'
+import { CartContext } from '../../contexts/CartContext'
 
 
 const ProductDetails = (props) => {
@@ -18,7 +19,7 @@ const ProductDetails = (props) => {
 
 
 
-  const { qty, errQty, handleQty, handleChange, productDetails } = useManageCart();
+  const { qty, errQty, handleQty, handleChange, productDetails,isInCart, setIsInCart, } = useManageCart();
 
   const product = productDetails(id);   // get product details from useManageCart
 
@@ -49,9 +50,8 @@ const ProductDetails = (props) => {
   },[cartID,product.productPrice,qty])
 
 
- // check if product is already in the cart
- const [isInCart, setIsInCart] = useState(false)
 
+  const {trigger,setTrigger} = useContext(CartContext)
  useEffect(()=>{
 
    if(cartID !== null){
@@ -65,6 +65,7 @@ const ProductDetails = (props) => {
          
          if(cartCheckQty>0){
            setIsInCart(true)
+           setTrigger(true)
          }
   
        }catch(err){
@@ -74,7 +75,7 @@ const ProductDetails = (props) => {
      }
      fetchProductDetails()
    }
- },[isInCart,cartID,product.productID])
+ })
 
 
   //console.log(cartDetails)
@@ -88,6 +89,7 @@ const ProductDetails = (props) => {
         await axios.post("http://localhost:8081/api/v1/product",cartDetails)
         //console.log(cartDetails)
         setIsInCart(true) // force render 
+        
       }
       catch(err){
         console.log(err)
@@ -97,8 +99,6 @@ const ProductDetails = (props) => {
       navigate("/SignIn")
     }
   }
-
-
 
   return (
   <>

@@ -70,11 +70,32 @@ const checkCart = async(req,res)=>{
   const { cartID, productID } = req.body;
   console.log(req.body)
   const q = "SELECT qty FROM cart_items WHERE cartID = ? AND productID = ? "
+
+  
+
+
   db.query(q, [cartID, productID], (err, data) =>{
     if (err) return res.json(err);
     return res.json(data)
+   
+    
   })
 
+}
+
+const cartSize = async(req,res)=>{
+
+  cartID = req.params.id
+  const q = `SELECT COUNT(*) as cartSize
+  FROM cart_items
+  WHERE cartID = ? ;`
+  
+
+  db.query(q,[cartID],(err,data) =>{
+    if (err) return res.json(err)
+    return res.json(data[0])
+    
+  })
 }
 
 module.exports = {
@@ -82,6 +103,7 @@ module.exports = {
   getCartDetails,
   deleteCartItem, 
   changeQty, 
-  checkCart
+  checkCart,
+  cartSize
 
 };

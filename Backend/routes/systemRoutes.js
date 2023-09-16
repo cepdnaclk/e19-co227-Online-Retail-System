@@ -36,6 +36,7 @@ router.get('/cart/:id', CartController.getCartDetails);
 router.delete('/cart', CartController.deleteCartItem);
 router.put('/cart/:id', CartController.changeQty);
 router.post('/checkcart', CartController.checkCart);
+router.get('/cartsize/:id',CartController.cartSize)
 
 
 

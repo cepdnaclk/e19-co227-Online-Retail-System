@@ -4,6 +4,7 @@ import { manageAccount } from '../../services/manage-account.service'
 import { useManageCart } from '../../services/useManageCart'
 import CartItem from './CartItem'
 import Footer from '../../components/layout/footer/footer'
+import { NavLink } from 'react-router-dom'
 
 const CartDetail = () => {
 
@@ -22,6 +23,7 @@ const CartDetail = () => {
   if (cartInfo ){
     cartID  = cartInfo.cartID
   }
+
 
  
 
@@ -63,14 +65,19 @@ useEffect(()=>{
 
 //console.log(subTotal)
 
-
-
-
   return (
     <>
   
      {/* Cart Start */}
-  <div className="container-fluid">
+
+     {!cart.length && <div className="position-relative" style={{height:"450px"}}> <div className="position-absolute top-50 start-50 translate-middle">
+      <h2 style={{paddingBottom:"20px"}}>Your Cart is Empty</h2>
+      <img style={{height:"250px"}} src='/img/213-2134500_shopping-cart-logo-png-clipart.png'
+     />
+     <h3><NavLink to="/">Shop Now</NavLink></h3>
+      </div> </div>}
+
+    {cart.length && <div className="container-fluid">
     <div className="row px-xl-5">
       <div className="col-lg-8 table-responsive mb-5">
         <table className="table table-light table-borderless table-hover text-center mb-0">
@@ -137,7 +144,8 @@ useEffect(()=>{
         </div>
       </div>
     </div>
-  </div>
+  </div> }
+  
   {/* Cart End */}
 
   <Footer />

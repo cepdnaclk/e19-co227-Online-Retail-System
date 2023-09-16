@@ -62,7 +62,7 @@ export const useManageCart = (changeQty) => {
       
     }
     if (action ==='minus'){
-      if(qty>0){
+      if(qty>1){
         setQty((prevQty) => {
           const newQty = prevQty - 1;
           if(change){
@@ -125,12 +125,10 @@ export const useManageCart = (changeQty) => {
     fetchProductDetails()
   },[]);
 
-  // const productDetail = (id2) =>{
-  //   id = id2
-  //   return product
-  // }
+ // check if product is already in the cart
+ const [isInCart, setIsInCart] = useState(false)
 
-  //console.log(productDetail(1))
+
 
   
   // Return null while loading, and return cartID once it's fetched
@@ -143,7 +141,8 @@ export const useManageCart = (changeQty) => {
     handleChange,
     productDetails,
     cartID,
-
+    isInCart,
+    setIsInCart
     
   };
 };

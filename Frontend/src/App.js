@@ -23,6 +23,8 @@ import ProductDetails from './pages/productDetails/ProductDetails';
 import EditProduct from "./pages/seller-dashboard/listing-page/all-listing-page/edit-product-page/EditProduct";
 import CartDetail from './pages/cartDetails/CartDetail';
 import CategorizedItems from './pages/CategorizedItems/CategorizedItems'
+import { CartContext } from './contexts/CartContext';
+import { useState } from 'react';
 
 
 const router = createBrowserRouter(
@@ -55,9 +57,14 @@ const router = createBrowserRouter(
   )
 )
 
+
 function App() {
+  const [trigger,setTrigger] = useState(false)
   return (
-     <RouterProvider router={router} />
+    <CartContext.Provider value={{trigger,setTrigger}}>
+      <RouterProvider router={router} />
+    </CartContext.Provider>
+     
 );
 }
 
