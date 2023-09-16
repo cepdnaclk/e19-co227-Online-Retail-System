@@ -6,6 +6,7 @@ const ProductDetailsController = require('../controller/ProductDetailsController
 const customerController = require('../controller/AdminUserController');
 const productController = require('../controller/ProductController');
 const CartController = require('../controller/CartController')
+const OrderController = require('../controller/OrderController')
 
 router.post('/registerUser', customerController.createCustomer);
 router.post('/loginUser', customerController.LoginUser);
@@ -17,6 +18,11 @@ router.post('/addProduct',productController.addProduct);
 router.get('/getAllProductsFromSeller',productController.getAllProductsFromSeller)
 router.put('/updateProduct/:id',productController.updateProduct)
 router.delete('/deleteProduct/:id',productController.deleteProduct)
+
+router.get('/getOrders',OrderController.getOrders)
+router.get('/getOrderItems',OrderController.getOrderItems)
+router.put('/updateTracking',OrderController.updateTracking)
+router.put('/updateOrderStatus',OrderController.updateStatus)
 
 router.get('/top-selling-products', productController.getTopSellingProducts); 
 router.get('/newly-added-products', productController.getNewlyAddedProducts); 

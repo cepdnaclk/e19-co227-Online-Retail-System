@@ -30,8 +30,8 @@ class SellerDashboard extends React.Component{
                             <h5>Listings</h5>
                         </div>
                         <ul className="list-group list-group-flush">
-                            <li className="list-group-item"><Link to={'add_items'}>Create Listings</Link></li>
-                            <li className="list-group-item"><Link to={'all_items'}>Active Listings</Link></li>
+                            <li className="list-group-item"><Link to={'add_items'} style={{ textDecoration: 'none' }}>Create Listings</Link></li>
+                            <li className="list-group-item"><Link to={'all_items'} style={{ textDecoration: 'none' }}>Active Listings</Link></li>
 
                         </ul>
                     </div>
@@ -42,8 +42,9 @@ class SellerDashboard extends React.Component{
                             <h5>Orders</h5>
                         </div>
                         <ul className="list-group list-group-flush">
-                            <li className="list-group-item"><Link to={'all_orders'}>All Orders</Link></li>
-                            <li className="list-group-item"><Link to={'awaiting_shipments'}>Avaiting Shipment</Link></li>
+                            <li className="list-group-item"><Link to={'all_orders/all'} style={{ textDecoration: 'none' }}>All Orders</Link></li>
+                            <li className="list-group-item"><Link to={'all_orders/pending'} style={{ textDecoration: 'none' }}>Avaiting Shipment</Link></li>
+                            <li className="list-group-item"><Link to={'all_orders/closed'} style={{ textDecoration: 'none' }}>Closed Orders</Link></li>
 
                         </ul>
                     </div>

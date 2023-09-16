@@ -55,7 +55,11 @@ function AllListing(){
 
             <div className="main-wrap ">
                 <div className="card-container row">
-                    {products.map((product,index)=>(
+
+
+                    {   products ?
+
+                        products.map((product,index)=>(
                         <div className="card" style={{width: "18rem"}}>
                             <img src={product.productImage1} className="card-img-top" alt="..."/>
                             <div className="card-body">
@@ -81,7 +85,9 @@ function AllListing(){
                             </div>
                         </div>
 
-                    ))}
+                    )):
+                    <p>Not Active Listings</p>
+                    }
 
 
                 </div>

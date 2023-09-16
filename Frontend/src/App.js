@@ -43,8 +43,8 @@ const router = createBrowserRouter(
               <Route path={"all_items"} element={<AllListing />} />
               <Route path={"all_items/edit-product/:productId"} element={<EditProduct />} />
 
-              <Route path={"all_orders"} element={<AllOrders />} />
-              <Route path={"awaiting_shipments"} element={<AwaitingShipment />} />
+              <Route path={"all_orders/:status"} element={<AllOrders />} />
+              {/*<Route path={"all_orders/:status"} element={<AwaitingShipment />} />*/}
         </Route>
         
       </Route>

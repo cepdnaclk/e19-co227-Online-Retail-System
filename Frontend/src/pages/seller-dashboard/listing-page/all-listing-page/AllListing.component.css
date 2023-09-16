@@ -2,6 +2,7 @@
 
     align-items: center;
     justify-content: center; /* This centers horizontally */
+    min-height: 400px;
 
 }
 
