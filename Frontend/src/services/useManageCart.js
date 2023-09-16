@@ -2,7 +2,7 @@ import { useEffect, useState } from "react";
 import axios from 'axios';
 import { manageAccount } from "./manage-account.service";
 
-export const useManageCart = () => {
+export const useManageCart = (changeQty) => {
   const [cartID, setCartID] = useState(null); // Initialize cartID as null
   const [loading, setLoading] = useState(true); // Add a loading state
 
@@ -31,14 +31,27 @@ export const useManageCart = () => {
 ///////////////////// funcion for handle cart qty logic
   let [qty,setQty] = useState(1)
 
+  const setQtycart =(cartQty)=>{
+    setQty(cartQty);
+  }
+
+  let change= false
   let [errQty,setErrQty] = useState("")
 
-  const handleQty = (product,action)=>{  
+  const handleQty = (product,action,change)=>{  
     
     if (action ==='plus'){
       
       if(qty<product.productQty){
-        setQty((prevQty) => prevQty + 1); // Use the functional form of setState
+        setQty((prevQty) => {
+          const newQty = prevQty + 1;
+          if(change){
+            changeQty(newQty); // Call changeQty with the updated quantity
+            change =false
+          }
+          
+          return newQty;
+        });
         setErrQty((prevErr) => prevErr="");
       }
       else{
@@ -50,18 +63,34 @@ export const useManageCart = () => {
     }
     if (action ==='minus'){
       if(qty>0){
-        setQty((prevQty) => prevQty - 1); // Use the functional form of setState
+        setQty((prevQty) => {
+          const newQty = prevQty - 1;
+          if(change){
+            changeQty(newQty); // Call changeQty with the updated quantity
+            change =false
+          }
+          
+          return newQty;
+        });
         setErrQty((prevErr) => prevErr="");
       }
     }
     
   }
 
-  const handleChange = (e,product)=>{
+  const handleChange = (e,product,change)=>{
     const newValue = parseInt(e.target.value);
 
     if (!isNaN(newValue) && newValue >= 1 && newValue <= product.productQty) {
-    setQty(newValue);
+    setQty((prevQty) => {
+      const newQty = newValue
+      if(change){
+        changeQty(newQty); // Call changeQty with the updated quantity
+        change =false
+      }
+      
+      return newQty;
+    });
     setErrQty((prevErr) => prevErr="");
     }
     else{ setErrQty((prevErr) => prevErr+"Max order qty exceeded");
@@ -109,7 +138,7 @@ export const useManageCart = () => {
     qty,
     errQty,
     handleQty,
-    setQty,
+    setQtycart,
     setErrQty,
     handleChange,
     productDetails,

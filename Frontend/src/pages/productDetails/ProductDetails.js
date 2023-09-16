@@ -3,39 +3,20 @@ import axios from 'axios'
 import { useParams,  useNavigate } from 'react-router'
 import { manageAccount } from '../../services/manage-account.service'
 import { useManageCart } from '../../services/useManageCart'
+import Footer from '../../components/layout/footer/footer'
 
 
 const ProductDetails = (props) => {
 
   const {id} = useParams()
 
-  // const [product,setProduct] = useState([])
-
-  // useEffect(()=>{
-  //   const fetchProductDetails = async ()=>{
-  //     try{
-  //       const res = await axios.get("http://localhost:8081/api/v1/product/"+id)
-
-  //       //console.log(res.data)
-  //       setProduct(res.data[0]) ;
-
-  //     }catch(err){
-  //       console.log(err)
-
-  //     }
-  //   }
-  //   fetchProductDetails()
-
-    
-    
-  // },[]);
-
-
   let cartID = null
 
   const navigate = useNavigate()
 
   const cartInfo = useManageCart();
+
+
 
   const { qty, errQty, handleQty, handleChange, productDetails } = useManageCart();
 
@@ -45,12 +26,9 @@ const ProductDetails = (props) => {
     cartID  = cartInfo.cartID
   }
   
-  //console.log(product)
+  console.log( cartID)
   const customerID = manageAccount.getCustomerID()
 
-  // let [qty,setQty] = useState(1)
-
-  // let [errQty,setErrQty] = useState("")
 
   let [cartDetails, setCartDetails] = useState({
     cartID:"",
@@ -70,6 +48,35 @@ const ProductDetails = (props) => {
       price:product.productPrice}))
   },[cartID,product.productPrice,qty])
 
+
+ // check if product is already in the cart
+ const [isInCart, setIsInCart] = useState(false)
+
+ useEffect(()=>{
+
+   if(cartID !== null){
+    
+     const fetchProductDetails = async ()=>{
+       try{
+         const res = await axios.post("http://localhost:8081/api/v1/checkcart",{cartID: cartID,
+         productID: product.productID})
+  
+         const cartCheckQty = res.data[0]?.qty || 0; // Use optional chaining and provide a default value
+         
+         if(cartCheckQty>0){
+           setIsInCart(true)
+         }
+  
+       }catch(err){
+         console.log(err)
+  
+       }
+     }
+     fetchProductDetails()
+   }
+ },[isInCart,cartID,product.productID])
+
+
   //console.log(cartDetails)
 
   const handleCart = async (e)=>{
@@ -79,8 +86,8 @@ const ProductDetails = (props) => {
     if (customerID > 0 ){
       try{
         await axios.post("http://localhost:8081/api/v1/product",cartDetails)
-        console.log(cartDetails)
-        
+        //console.log(cartDetails)
+        setIsInCart(true) // force render 
       }
       catch(err){
         console.log(err)
@@ -91,29 +98,7 @@ const ProductDetails = (props) => {
     }
   }
 
-  // const handleQty = (action)=>{  //handle cart qty logic
-    
-  //   if (action ==='plus'){
-      
-  //     if(qty<product.productQty){
-  //       setQty((prevQty) => prevQty + 1); // Use the functional form of setState
-  //       setErrQty((prevErr) => prevErr="");
-  //     }
-  //     else{
-  //       setQty(product.productQty)
-  //       setErrQty((prevErr) => prevErr+"Max order qty exceeded");
-        
-  //     }
-      
-  //   }
-  //   if (action ==='minus'){
-  //     if(qty>0){
-  //       setQty((prevQty) => prevQty - 1); // Use the functional form of setState
-  //       setErrQty((prevErr) => prevErr="");
-  //     }
-  //   }
-    
-  // }
+
 
   return (
   <>
@@ -223,10 +208,17 @@ const ProductDetails = (props) => {
                 </button>
               </div>
             </div>
-            <button className="btn btn-primary px-3" onClick={(e)=>handleCart(e)}>
+          
+            { isInCart && (<button className="btn btn-primary px-3" style = {{backgroundColor:"#f0c53a", border:"none"}} onClick={()=>{navigate("/cart/"+{cartID})}} >
+              <i className="fa fa-shopping-cart mr-1" /> Already in Cart
+            </button>)}
+
+            { !isInCart && (<button className="btn btn-primary px-3" onClick={(e)=>handleCart(e)}>
               <i className="fa fa-shopping-cart mr-1" /> Add To Cart
-            </button>
+            </button>)}
+
             <p style={{paddingTop:"13px", paddingLeft:"10px", color:"red"}}>{errQty}</p>
+
           </div>
           <div className="d-flex pt-2">
             <strong className="text-dark mr-2">Share on:</strong>
@@ -422,6 +414,10 @@ const ProductDetails = (props) => {
   {/* Shop Detail End */}
 </>
 }
+
+  <Footer />
+
+
   </>
  
     

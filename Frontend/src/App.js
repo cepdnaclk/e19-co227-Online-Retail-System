@@ -22,6 +22,7 @@ import SellerDashBoardLayout from './pages/seller-dashboard/SellerDashBoardLayou
 import ProductDetails from './pages/productDetails/ProductDetails';
 import EditProduct from "./pages/seller-dashboard/listing-page/all-listing-page/edit-product-page/EditProduct";
 import CartDetail from './pages/cartDetails/CartDetail';
+import CategorizedItems from './pages/CategorizedItems/CategorizedItems'
 
 
 const router = createBrowserRouter(
@@ -37,6 +38,7 @@ const router = createBrowserRouter(
          <Route path="products" element={<Products/>} />
          <Route path="product/:id" element={<ProductDetails />} />
          <Route path="cart/:id" element={<CartDetail />} />
+         <Route path="/category/:categoryId/subcategory/:subcategoryId" element={<CategorizedItems/>}/>
          <Route path="dashboard" element={<SellerDashBoardLayout />}>
               <Route index element={<SellerDashboard />} />
               <Route path={"add_items"} element={<AddListing />} />

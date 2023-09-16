@@ -25,14 +25,17 @@ router.put('/updateTracking',OrderController.updateTracking)
 router.put('/updateOrderStatus',OrderController.updateStatus)
 
 router.get('/top-selling-products', productController.getTopSellingProducts); 
-router.get('/newly-added-products', productController.getNewlyAddedProducts); 
+router.get('/newly-added-products', productController.getNewlyAddedProducts);
+router.get('/products/:categoryId/:subcategoryId', productController.getProductsByCategory) 
 
 router.get('/product/:id', ProductDetailsController.getProduct); 
 router.post('/product', ProductDetailsController.addToCart)
 
 router.post('/cart', CartController.getCart);
 router.get('/cart/:id', CartController.getCartDetails);
-
+router.delete('/cart', CartController.deleteCartItem);
+router.put('/cart/:id', CartController.changeQty);
+router.post('/checkcart', CartController.checkCart);
 
 
 

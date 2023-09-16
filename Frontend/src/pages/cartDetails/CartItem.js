@@ -1,10 +1,68 @@
-import React from 'react'
+import React, { useEffect, useState } from 'react'
 import { useManageCart } from '../../services/useManageCart'
+import axios from 'axios'
 
-const CartItem = ({cartItem}) => {
+const CartItem = ({cartItem, changeSubtotal, setUpdateCartTrigger}) => {
 
-  const { qty, errQty, handleQty, handleChange,productDetails } = useManageCart()
- console.log(productDetails(cartItem.productID))
+
+  const changeQty = async (qty)=>{
+
+    try{
+      await axios.put("http://localhost:8081/api/v1/cart/"+{cartID},{ qty,cartID, productID})
+
+      
+    }catch(err){
+      console.log(err)
+    }
+  }
+
+  
+  const { qty, errQty, handleQty, handleChange,productDetails,setQtycart, cartID } = useManageCart(changeQty)
+  console.log(productDetails(cartItem.productID))////////DONT DELETE THIS///////////////
+
+  const cartQty = cartItem.qty
+
+  const[total,setTotal] = useState(cartQty* cartItem.productPrice)
+
+
+
+
+  const productID = cartItem.productID
+
+  //console.log(cartID, productID)
+
+  const handleDelete = async () =>{
+    try{
+      await axios.delete("http://localhost:8081/api/v1/cart",{ data: {cartID, productID}})
+
+      setUpdateCartTrigger((prev) => !prev);
+      
+    }catch(err){
+      console.log(err)
+    }
+  }
+
+
+ 
+
+  
+
+   useEffect(()=>{
+    setQtycart(cartQty)
+    //setTotal(qty* cartItem.productPrice)
+   },[])
+
+
+   useEffect(()=>{
+
+    const newTotal = qty * cartItem.productPrice
+    setTotal(newTotal)
+    setUpdateCartTrigger((prev) => !prev);
+
+   },[qty, cartItem.productPrice ])
+
+
+
 
 
   return (
@@ -13,14 +71,14 @@ const CartItem = ({cartItem}) => {
       <img src="img/product-1.jpg" alt="" style={{ width: 50 }} />{cartItem.productName}
       
     </td>
-    <td className="align-middle">{cartItem.productPrice}</td>
+    <td className="align-middle">${cartItem.productPrice}</td>
     <td className="align-middle">
       <div
         className="input-group quantity mx-auto"
         style={{ width: 100 }}
       >
         <div className="input-group-btn">
-          <button className="btn btn-sm btn-primary btn-minus" onClick={()=>handleQty(productDetails(cartItem.productID),'minus') }>
+          <button className="btn btn-sm btn-primary btn-minus" onClick={()=>handleQty(productDetails(cartItem.productID),'minus',true) }>
 
             <i className="fa fa-minus" />
           </button>
@@ -29,27 +87,29 @@ const CartItem = ({cartItem}) => {
           type="text"
           
           className="form-control form-control-sm bg-secondary border-0 text-center"
-          //defaultValue={cartItem.qty}
-          style={{width:"20px",  height:"40px"}}
-          onChange={(e)=>{ handleChange(e,productDetails(cartItem.productID))}} //from useManageCart Hook
+          
+          style={{width:"22px", height:"40px",padding:"0" }}
+          onChange={(e)=>{ handleChange(e,productDetails(cartItem.productID),true)
+          }} //from useManageCart Hook
           value={qty}
+          
         />
         <div className="input-group-btn">
-          <button className="btn btn-sm btn-primary btn-plus" onClick={()=>handleQty  (productDetails(cartItem.productID),'plus')}>
+          <button className="btn btn-sm btn-primary btn-plus" onClick={()=>{handleQty  (productDetails(cartItem.productID),'plus',true);
+             }}>
             <i className="fa fa-plus" />
           </button>
         </div>
       </div>
     </td>
-    <td className="align-middle">$150</td>
+    <td className="align-middle">${total}</td>
     <td className="align-middle">
-      <button className="btn btn-sm btn-danger">
+      <button className="btn btn-sm btn-danger" onClick={()=> handleDelete()}>
         <i className="fa fa-times" />
       </button>
+      <span style={{color:"red", fontSize:"0.85em"}}>{errQty}</span>
     </td>
-    <td>
-    <p style={{paddingTop:"13px", paddingLeft:"10px", color:"red"}}>{errQty}</p>
-    </td>
+  
   
     </>
   )
