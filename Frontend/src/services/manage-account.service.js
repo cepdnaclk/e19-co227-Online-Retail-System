@@ -1,5 +1,6 @@
 import Cookies from 'js-cookie';
 import {systemService} from "./systemService";
+import React from "react";
 //import jwt_decode from "jsonwebtoken";
 
 
@@ -19,6 +20,7 @@ export const manageAccount ={
                     return true; // User is logged in
                 } else {
                     console.log('Unauthorized Login!');
+                    this.logOut()
                     return false; // User is not logged in
                 }
             } catch (error) {

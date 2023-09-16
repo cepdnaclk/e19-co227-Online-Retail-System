@@ -9,6 +9,8 @@ import { getStorage } from 'firebase/storage';
 import { Link, useParams } from 'react-router-dom';
 import {useLocation} from "react-router";
 
+
+
 function EditProduct() {
     const { productId } = useParams();
     const location = useLocation();
@@ -19,57 +21,54 @@ function EditProduct() {
     const [description, setDescription] = useState(product.productDetails);
     const [productPrice, setProductPrice] = useState(product.productPrice);
     const [subCategoryID, setSubCategoryID] = useState(product.subCategoryID);
-    const [images, setImages] = useState([]);
-    const [fileSelected, setFileSelected] = useState(false);
+    const [images, setImages] = useState([product.productImage1,product.productImage2,product.productImage3,product.productImage4,product.productImage5]);
     const [isSubmitted, setIsSubmitted] = useState(false);
-    const imgUrls = [product.productImage1,product.productImage2,product.productImage3,product.productImage4,product.productImage5]
-    const deletedImg = [];
+
+    let deletedImg = [];
+
 
     useEffect(() => {
-        setImages(imgUrls)
+        //remove empty slotes in images array
 
-        return () => {
-            console.log('Component unmounted');
-
-        };
-    }, [fileSelected]);
-
-
-    const uploadImg = (file) => {
-        if (file === null) return;
-        const imgRef = `/product/${manageAccount.getSellerID()}/${file.name}`;
-
-        firebaseService
-            .uploadImage(file, imgRef)
-            .then((response) => {
-                firebaseService
-                    .getUrl(imgRef)
-                    .then((downloadURL) => {
-                        console.log('Image Successfully Uploaded!');
-                        console.log('Download URL:', downloadURL);
+        const updatedImages = [...images];
+        const emptyIndex = updatedImages.indexOf('');
+        updatedImages.splice(emptyIndex,5-emptyIndex);
+        setImages(prevState => {
+            return updatedImages
+        })
 
 
-                        let foundEmptyString = false;
-                        for (let i=0;i<5;i++){
-                            if(imgUrls[i]==='' && !foundEmptyString){
-                                imgUrls[i]=downloadURL
-                                foundEmptyString=true
-                            }
-                        }
-                        setImages(imgUrls)
-                        setFileSelected(true)
-                        handleUpdateProduct();
-                      /*  const updatedImages = images.map((url, index) => {
-                            if (!foundEmptyString && url === '') {
-                                foundEmptyString = true;
-                                return downloadURL;
-                            }
-                            return url;
-                        });
 
-                        setImages(updatedImages);
 
-*/
+
+      return () => {
+          console.log('Component unmounted');
+
+      };
+  }, []);
+
+
+
+  const uploadImg = (file) => {
+      if (file === null) return;
+      const imgRef = `/product/${manageAccount.getSellerID()}/${file.name}`;
+
+      firebaseService
+          .uploadImage(file, imgRef)
+          .then((response) => {
+              firebaseService
+                  .getUrl(imgRef)
+                  .then((downloadURL) => {
+                      console.log('Image Successfully Uploaded!');
+                      console.log('Download URL:', downloadURL);
+
+
+                      setImages(prevState => {
+                          return  [...prevState,downloadURL]
+                      })
+
+                      updateProductDB()
+
                     })
                     .catch((e) => {
                         console.log(e);
@@ -83,13 +82,14 @@ function EditProduct() {
     const removeImage = (imageRef, index) => {
 
         deletedImg.push(imageRef)
-        //imgUrls.splice(index, 1,'')
-        setFileSelected(true)
-        const newImages = [...images]; // Create a copy of the original array
-        newImages.splice(index, 1,''); // Remove the item at the specified index
-        setImages(newImages);
-        removeImgFromFirebase()
 
+        const newImages = [...images]; // Create a copy of the original array
+        newImages.splice(index, 1, ''); // Remove the item at the specified index
+        setImages(newImages);
+
+
+
+        removeImgFromFirebase()
 
 
     };
@@ -101,8 +101,8 @@ function EditProduct() {
                 .removeImage(imageRef)
                 .then(() => {
                     console.log(`Image successfully deleted from Firebase Storage.`);
-                    handleUpdateProduct();
-                    setFileSelected(true)
+                    updateProductDB()
+
                 })
                 .catch((error) => {
                     console.error(`Error deleting image from Firebase Storage:`, error);
@@ -111,18 +111,20 @@ function EditProduct() {
 
     }
 
-    const handleFileChange = (event) => {
+    const handleFileChange = async (event) => {
         const files = Array.from(event.target.files).slice(0, 5);
         for (let i = 0; i < 5; i++) {
             const file = files[i];
             if (file) {
-                uploadImg(file);
+                uploadImg(file)
+
             }
         }
+
     };
 
     const handleUpdateProduct = (event) => {
-
+        event.preventDefault();
         if (
             manageAccount.getSellerID() === undefined &&
             productName === '' &&
@@ -135,39 +137,64 @@ function EditProduct() {
         } else if (images[0] === '' && images[1] === '' && images[2] === '' && images[3] === '' && images[4] === '') {
             alert('Please Add at least one Product Image');
         } else {
-            const dto = new ProductDTO(
-                manageAccount.getSellerID(),
-                productName,
-                subCategoryID,
-                productPrice,
-                productQty,
-                images[0],
-                images[1],
-                images[2],
-                images[3],
-                images[4],
-                description
-            );
 
-            productService
-                .updateProduct(dto,productId)
-                .then((resp) => {
-                    if (resp.message === 'Product Updated') {
-                        if(isSubmitted===true){
-                            console.log('Product Updated!');
-                            alert('Product Updated Succesfully!');
-                        }else {
-                            console.log('Image Updated!');
-                        }
+            updateProductDB()
 
-                    }
-                })
-                .catch((error) => {
-                    console.error('Error Updating roduct:', error);
-                    alert('Error Occured In Product Updating!');
-                });
+
         }
     };
+
+    const updateProductDB=()=>{
+        //Set First Image Visible
+        if(images[0]===''){
+            images.map((image,index)=>{
+                if(image!==''){
+                    const arr = [...images]
+                    arr[0]=image
+                    arr.splice(index,1)
+                    setImages((prevState)=>{
+                        return  arr
+                    })
+
+                }
+            })
+        }
+
+
+        const dto = new ProductDTO(
+            manageAccount.getSellerID(),
+            productName,
+            subCategoryID,
+            productPrice,
+            productQty,
+            images[0]===undefined ? '':images[0],
+            images[1]===undefined ? '':images[1],
+            images[2]===undefined ? '':images[2],
+            images[3]===undefined ? '':images[3],
+            images[4]===undefined ? '':images[4],
+            description
+        );
+
+        productService
+            .updateProduct(dto,productId)
+            .then((resp) => {
+                if (resp.message === 'Product Updated') {
+                    if(isSubmitted===true){
+                        console.log('Product Updated!');
+                        alert('Product Updated Succesfully!');
+                        setIsSubmitted(false)
+                    }else {
+                        console.log('Image Updated!');
+                    }
+
+                }
+            })
+            .catch((error) => {
+                console.error('Error Updating roduct:', error);
+                alert('Error Occured In Product Updating!');
+            });
+
+    }
 
     return (
         <div>
@@ -328,14 +355,15 @@ function EditProduct() {
                                 <button
                                     className="btn btn-primary "
                                     onClick={(e) => {
-                                        handleUpdateProduct(e);
                                         setIsSubmitted(true);
+                                        handleUpdateProduct(e);
+
                                     }}
 
                                 >
                                     Update
                                 </button>
-                                {isSubmitted && <Link to="/dashboard"></Link>}
+
                             </form>
                         </div>
                     </div>

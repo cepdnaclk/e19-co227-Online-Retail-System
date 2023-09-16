@@ -2,6 +2,7 @@ import React, {useEffect, useState} from "react";
 import {manageAccount} from "../../../services/manage-account.service";
 import {Link, NavLink, Outlet} from "react-router-dom";
 import { useManageCart } from "../../../services/useManageCart";
+//import '../../../css/style.css'
 
 const Header = () => {
 
@@ -207,7 +208,7 @@ const Header = () => {
           className="btn d-flex align-items-center justify-content-between bg-primary w-100"
           data-bs-toggle="collapse"
           href="#navbar-vertical"
-          style={{ height: 65, padding: "0 30px" }}
+          style={{ height: 70, padding: "0 30px" }}
         >
           <h6 className="text-dark m-0">
             <i className="fa fa-bars mr-2" />
@@ -218,61 +219,393 @@ const Header = () => {
         <nav
           className="collapse position-absolute navbar navbar-vertical navbar-light align-items-start p-0 bg-light"
           id="navbar-vertical"
-          style={{ width: "calc(100% - 30px)", zIndex: 999 }}
+          style={{ width: "calc(100% - 30px)", zIndex: 999 ,top: '70px', left: '10px'}}
         >
-          <div className="navbar-nav w-100">
-            <div className="nav-item dropdown dropright ">
+
+          <div className="navbar-nav w-100 ">
+            {/**/}
+              <div className="nav-item dropdown dropright ">
+                      <a
+                        href="#"
+                        className="nav-link "
+                        role="button"
+                        data-bs-toggle="dropdown"
+                        aria-expanded="false"
+                      >
+                        Electronics <i className="fa fa-angle-right float-right mt-1" />
+                      </a>
+                      <div className="dropdown-menu position-absolute rounded-0 border-0 m-0" style={{ left: '285px', top:'0px' }}>
+                        <a href="/category/1/subcategory/1" className="dropdown-item">
+                          Smartphones
+                        </a>
+                        <a href="/category/1/subcategory/2" className="dropdown-item">
+                          Laptops and Computers
+                        </a>
+                        <a href="/category/1/subcategory/3" className="dropdown-item">
+                          Audio and Headphones
+                        </a>
+                        <a href="/category/1/subcategory/4" className="dropdown-item">
+                          Cameras and Photography
+                        </a>
+                        <a href="/category/1/subcategory/5" className="dropdown-item">
+                          Home Appliances
+                        </a>
+                      </div>
+              </div>
+        {/**/}
+              <div className="nav-item dropdown dropright">
+                    <a
+                      href="#"
+                      className="nav-link"
+                      role="button"
+                      data-bs-toggle="dropdown"
+                      aria-expanded="false"
+                    >
+                      Fashion <i className="fa fa-angle-right float-right mt-1" />
+                    </a>
+                    <div className="dropdown-menu position-absolute rounded-0 border-0 m-0" style={{ left: '285px', top: '0px' }}>
+                      <a href="/category/2/subcategory/6" className="dropdown-item">
+                        Men's Clothing
+                      </a>
+                      <a href="/category/2/subcategory/7" className="dropdown-item">
+                        Women's Clothing
+                      </a>
+                      <a href="/category/2/subcategory/8" className="dropdown-item">
+                        Shoes
+                      </a>
+                      <a href="/category/2/subcategory/9" className="dropdown-item">
+                        Accessories
+                      </a>
+                    </div>
+                  </div>
+          {/* */}
+          <div className="nav-item dropdown dropright">
+                  <a
+                    href="#"
+                    className="nav-link"
+                    role="button"
+                    data-bs-toggle="dropdown"
+                    aria-expanded="false"
+                  >
+                    Home and Furniture <i className="fa fa-angle-right float-right mt-1" />
+                  </a>
+                  <div className="dropdown-menu position-absolute rounded-0 border-0 m-0" style={{ left: '285px', top:'0px' }}>
+                    <a href="/category/3/subcategory/15" className="dropdown-item">
+                      Living Room Furniture
+                    </a>
+                    <a href="/category/3/subcategory/16" className="dropdown-item">
+                      Bedroom Furniture
+                    </a>
+                    <a href="/category/3/subcategory/17" className="dropdown-item">
+                      Kitchen and Dining
+                    </a>
+                    <a href="/category/3/subcategory/18" className="dropdown-item">
+                      Home Decor
+                    </a>
+                    <a href="/category/3/subcategory/19" className="dropdown-item">
+                      Bedding and Bath
+                    </a>
+                  </div>
+                </div>
+        {/* */}
+        <div className="nav-item dropdown dropright">
+                <a
+                  href="#"
+                  className="nav-link"
+                  role="button"
+                  data-bs-toggle="dropdown"
+                  aria-expanded="false"
+                >
+                  Sports and Outdoors <i className="fa fa-angle-right float-right mt-1" />
+                </a>
+                <div className="dropdown-menu position-absolute rounded-0 border-0 m-0" style={{ left: '285px', top:'0px' }}>
+                  <a href="/category/4/subcategory/20" className="dropdown-item">
+                    Sports Equipment
+                  </a>
+                  <a href="/category/4/subcategory/21" className="dropdown-item">
+                    Activewear
+                  </a>
+                  <a href="/category/4/subcategory/22" className="dropdown-item">
+                    Outdoor Gear
+                  </a>
+                  <a href="/category/4/subcategory/23" className="dropdown-item">
+                    Fitness Accessories
+                  </a>
+                  <a href="/category/4/subcategory/24" className="dropdown-item">
+                    Team Sports
+                  </a>
+                </div>
+              </div>
+        {/* */}
+        <div className="nav-item dropdown dropright">
+                <a
+                  href="#"
+                  className="nav-link"
+                  role="button"
+                  data-bs-toggle="dropdown"
+                  aria-expanded="false"
+                >
+                  Automotive and Tools <i className="fa fa-angle-right float-right mt-1" />
+                </a>
+                <div className="dropdown-menu position-absolute rounded-0 border-0 m-0" style={{ left: '285px', top:'0px' }}>
+                  <a href="/category/11/subcategory/55" className="dropdown-item">
+                    Auto Parts and Accessories
+                  </a>
+                  <a href="/category/11/subcategory/56" className="dropdown-item">
+                    Tools and Equipment
+                  </a>
+                  <a href="/category/11/subcategory/57" className="dropdown-item">
+                    Car Care and Maintenance
+                  </a>
+                  <a href="/category/11/subcategory/58" className="dropdown-item">
+                    Motorcycle Gear
+                  </a>
+                  <a href="/category/11/subcategory/59" className="dropdown-item">
+                    Automotive Electronics
+                  </a>
+                </div>
+              </div>
+
+        {/* */}
+        <div className="nav-item dropdown dropright">
+                  <a
+                    href="#"
+                    className="nav-link"
+                    role="button"
+                    data-bs-toggle="dropdown"
+                    aria-expanded="false"
+                  >
+                    Beauty and Personal Care <i className="fa fa-angle-right float-right mt-1" />
+                  </a>
+                  <div className="dropdown-menu position-absolute rounded-0 border-0 m-0" style={{ left: '285px', top:'0px' }}>
+                    <a href="/category/5/subcategory/25" className="dropdown-item">
+                      Skincare
+                    </a>
+                    <a href="/category/5/subcategory/26" className="dropdown-item">
+                      Makeup and Cosmetics
+                    </a>
+                    <a href="/category/5/subcategory/27" className="dropdown-item">
+                      Haircare
+                    </a>
+                    <a href="/category/5/subcategory/28" className="dropdown-item">
+                      Perfumes and Fragrances
+                    </a>
+                    <a href="/category/5/subcategory/29" className="dropdown-item">
+                      Grooming
+                    </a>
+                  </div>
+                </div>
+
+        {/* */}
+        <div className="nav-item dropdown dropright">
               <a
                 href="#"
-                className="nav-link dropdown-toggle"
-                role="button" data-bs-toggle="dropdown" aria-expanded="false"
-               
-                
-                
+                className="nav-link"
+                role="button"
+                data-bs-toggle="dropdown"
+                aria-expanded="false"
               >
-                Dresses <i className="fa fa-angle-right float-right mt-1" />
+                Toys and Games <i className="fa fa-angle-right float-right mt-1" />
               </a>
-              <div className="dropdown-menu position-absolute rounded-0 border-0 m-0">
-                <a href="" className="dropdown-item">
-                  Men's Dresses
+              <div className="dropdown-menu position-absolute rounded-0 border-0 m-0" style={{ left: '285px', top:'0px' }}>
+                <a href="/category/6/subcategory/30" className="dropdown-item">
+                  Toys for Kids
                 </a>
-                <a href="" className="dropdown-item">
-                  Women's Dresses
+                <a href="/category/6/subcategory/31" className="dropdown-item">
+                  Board Games and Puzzles
                 </a>
-                <a href="" className="dropdown-item">
-                  Baby's Dresses
+                <a href="/category/6/subcategory/32" className="dropdown-item">
+                  Outdoor Play
+                </a>
+                <a href="/category/6/subcategory/33" className="dropdown-item">
+                  Collectibles
+                </a>
+                <a href="/category/6/subcategory/34" className="dropdown-item">
+                  Video Games and Consoles
                 </a>
               </div>
             </div>
-            <a href="" className="nav-item nav-link">
-              Shirts
-            </a>
-            <a href="" className="nav-item nav-link">
-              Jeans
-            </a>
-            <a href="" className="nav-item nav-link">
-              Swimwear
-            </a>
-            <a href="" className="nav-item nav-link">
-              Sleepwear
-            </a>
-            <a href="" className="nav-item nav-link">
-              Sportswear
-            </a>
-            <a href="" className="nav-item nav-link">
-              Jumpsuits
-            </a>
-            <a href="" className="nav-item nav-link">
-              Blazers
-            </a>
-            <a href="" className="nav-item nav-link">
-              Jackets
-            </a>
-            <a href="" className="nav-item nav-link">
-              Shoes
-            </a>
+      {/* */}
+      <div className="nav-item dropdown dropright">
+              <a
+                href="#"
+                className="nav-link"
+                role="button"
+                data-bs-toggle="dropdown"
+                aria-expanded="false"
+              >
+                Books and Media <i className="fa fa-angle-right float-right mt-1" />
+              </a>
+              <div className="dropdown-menu position-absolute rounded-0 border-0 m-0" style={{ left: '285px', top:'0px' }}>
+                <a href="/category/7/subcategory/35" className="dropdown-item">
+                  Fiction Books
+                </a>
+                <a href="/category/7/subcategory/36" className="dropdown-item">
+                  Non-Fiction Books
+                </a>
+                <a href="/category/7/subcategory/37" className="dropdown-item">
+                  Movies and TV Shows
+                </a>
+                <a href="/category/7/subcategory/38" className="dropdown-item">
+                  Music (CDs, Vinyl, Digital)
+                </a>
+                <a href="/category/7/subcategory/39" className="dropdown-item">
+                  E-books and Audiobooks
+                </a>
+              </div>
+            </div>
+      {/* */}
+      <div className="nav-item dropdown dropright">
+                <a
+                  href="#"
+                  className="nav-link"
+                  role="button"
+                  data-bs-toggle="dropdown"
+                  aria-expanded="false"
+                >
+                  Jewelry and Watches <i className="fa fa-angle-right float-right mt-1" />
+                </a>
+                <div className="dropdown-menu position-absolute rounded-0 border-0 m-0" style={{ left: '285px', top:'0px' }}>
+                  <a href="/category/8/subcategory/40" className="dropdown-item">
+                    Necklaces and Pendants
+                  </a>
+                  <a href="/category/8/subcategory/41" className="dropdown-item">
+                    Rings
+                  </a>
+                  <a href="/category/8/subcategory/42" className="dropdown-item">
+                    Watches (Men's and Women's)
+                  </a>
+                  <a href="/category/8/subcategory/43" className="dropdown-item">
+                    Bracelets and Bangles
+                  </a>
+                  <a href="/category/8/subcategory/44" className="dropdown-item">
+                    Earrings
+                  </a>
+                </div>
+              </div>
+
+      {/* */}
+      <div className="nav-item dropdown dropright">
+                <a
+                  href="#"
+                  className="nav-link"
+                  role="button"
+                  data-bs-toggle="dropdown"
+                  aria-expanded="false"
+                >
+                  Health and Wellness <i className="fa fa-angle-right float-right mt-1" />
+                </a>
+                <div className="dropdown-menu position-absolute rounded-0 border-0 m-0" style={{ left: '285px', top:'0px' }}>
+                  <a href="/category/9/subcategory/45" className="dropdown-item">
+                    Vitamins and Supplements
+                  </a>
+                  <a href="/category/9/subcategory/46" className="dropdown-item">
+                    Fitness Equipment
+                  </a>
+                  <a href="/category/9/subcategory/47" className="dropdown-item">
+                    Health Monitors
+                  </a>
+                  <a href="/category/9/subcategory/48" className="dropdown-item">
+                    Alternative Medicine
+                  </a>
+                  <a href="/category/9/subcategory/49" className="dropdown-item">
+                    Personal Care (Oral Care, Hygiene)
+                  </a>
+                </div>
+              </div>
+
+      {/* */}
+      <div className="nav-item dropdown dropright">
+                    <a
+                      href="#"
+                      className="nav-link"
+                      role="button"
+                      data-bs-toggle="dropdown"
+                      aria-expanded="false"
+                    >
+                      Food and Beverages <i className="fa fa-angle-right float-right mt-1" />
+                    </a>
+                    <div className="dropdown-menu position-absolute rounded-0 border-0 m-0" style={{ left: '285px', top:'0px' }}>
+                      <a href="/category/10/subcategory/50" className="dropdown-item">
+                        Groceries
+                      </a>
+                      <a href="/category/10/subcategory/51" className="dropdown-item">
+                        Snacks and Sweets
+                      </a>
+                      <a href="/category/10/subcategory/52" className="dropdown-item">
+                        Beverages (Coffee, Tea, Soft Drinks)
+                      </a>
+                      <a href="/category/10/subcategory/53" className="dropdown-item">
+                        Gourmet and Specialty Foods
+                      </a>
+                      <a href="/category/10/subcategory/54" className="dropdown-item">
+                        Cooking and Baking Supplies
+                      </a>
+                    </div>
+                  </div>
+      {/* */}
+      <div className="nav-item dropdown dropright">
+                <a
+                  href="#"
+                  className="nav-link"
+                  role="button"
+                  data-bs-toggle="dropdown"
+                  aria-expanded="false"
+                >
+                  Automotive and Tools <i className="fa fa-angle-right float-right mt-1" />
+                </a>
+                <div className="dropdown-menu position-absolute rounded-0 border-0 m-0" style={{ left: '285px', top:'0px' }}>
+                  <a href="/category/11/subcategory/55" className="dropdown-item">
+                    Auto Parts and Accessories
+                  </a>
+                  <a href="/category/11/subcategory/56" className="dropdown-item">
+                    Tools and Equipment
+                  </a>
+                  <a href="/category/11/subcategory/57" className="dropdown-item">
+                    Car Care and Maintenance
+                  </a>
+                  <a href="/category/11/subcategory/58" className="dropdown-item">
+                    Motorcycle Gear
+                  </a>
+                  <a href="/category/11/subcategory/59" className="dropdown-item">
+                    Automotive Electronics
+                  </a>
+                </div>
+              </div>
+
+      {/* */}
+      <div className="nav-item dropdown dropright">
+                  <a
+                    href="#"
+                    className="nav-link"
+                    role="button"
+                    data-bs-toggle="dropdown"
+                    aria-expanded="false"
+                  >
+                    Office Supplies <i className="fa fa-angle-right float-right mt-1" />
+                  </a>
+                  <div className="dropdown-menu position-absolute rounded-0 border-0 m-0" style={{ left: '285px', top:'0px' }}>
+                    <a href="/category/12/subcategory/60" className="dropdown-item">
+                      Art Supplies for Office
+                    </a>
+                    <a href="/category/12/subcategory/61" className="dropdown-item">
+                      Office Supplies
+                    </a>
+                    <a href="/category/12/subcategory/62" className="dropdown-item">
+                      Writing Instruments
+                    </a>
+                    <a href="/category/12/subcategory/63" className="dropdown-item">
+                      Paper and Notebooks
+                    </a>
+                    <a href="/category/12/subcategory/64" className="dropdown-item">
+                      Desk Accessories
+                    </a>
+                  </div>
+                </div>
+
           </div>
         </nav>
+
       </div>
       <div className="col-lg-9">
         <nav className="navbar navbar-expand-lg bg-dark navbar-dark py-3 py-lg-0 px-0">

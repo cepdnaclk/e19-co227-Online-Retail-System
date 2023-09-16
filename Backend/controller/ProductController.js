@@ -172,6 +172,24 @@ async function getAllProductsFromSeller(req, res) {
          return res.status(500).json({ error: 'Internal server error' });
     }
 }
+async function getProductsByCategory(req, res) {
+    try {
+        const subcategoryId = req.params.subcategoryId;
+
+        const sql = 'SELECT * FROM product WHERE categoryID = ?';
+        db.query(sql, [subcategoryId], (error, result) => {
+            if (error) {
+                console.error('Error fetching products by category and subcategory:', error);
+                res.status(500).json({ error: 'Database error' });
+            } else {
+                res.status(200).json(result);
+            }
+        });
+    } catch (error) {
+        console.error('Error fetching products by category and subcategory:', error);
+        res.status(500).json({ error: 'Internal server error' });
+    }
+}
 
 
 
@@ -182,6 +200,7 @@ module.exports = {
     addProduct,
     getAllProductsFromSeller,
     updateProduct,
-    deleteProduct
+    deleteProduct,
+    getProductsByCategory
 };
 
