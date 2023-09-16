@@ -35,7 +35,7 @@ export const useManageCart = (changeQty) => {
     setQty(cartQty);
   }
 
-  let change= false
+  //let change= false
   let [errQty,setErrQty] = useState("")
 
   const handleQty = (product,action,change)=>{  
