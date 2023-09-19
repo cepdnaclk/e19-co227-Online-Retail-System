@@ -16,6 +16,8 @@ import img2 from '../../assets/carousel-2.jpg'
 import img3 from '../../assets/carousel-3.jpg'
 import imgoffer1 from '../../assets/offer-1.jpg'
 import imgoffer2 from '../../assets/offer-2.jpg'
+import imgoffer3 from '../../assets/offer-3.jpg'
+import imgoffer4 from '../../assets/offer-4.jpg'
 import Categories from "../../components/layout/categories/categories";
 import { Link } from "react-router-dom";
 
@@ -216,6 +218,36 @@ class Home extends React.Component {
           <h2>Top Selling</h2>
           {this.renderProducts(this.state.topSellingProducts)}
           
+          <div className="container-fluid pt-5 pb-3">
+            <div className="row px-xl-5">
+              <div className="col-md-6">
+                <div className="product-offer mb-30" style={{ height: 300 }}>
+                  <img className="img-fluid" src={imgoffer3} alt="" />
+                  <div className="offer-text">
+                    <h5 className="text-white text-uppercase">Save 10%</h5>
+                    <h2 className="text-white mb-3">Special Offer</h2>
+                    <a href="" className="btn btn-primary">
+                      Shop Now
+                    </a>
+                  </div>
+                </div>
+              </div>
+              <div className="col-md-6">
+                <div className="product-offer mb-30" style={{ height: 300 }}>
+                  <img className="img-fluid" src={imgoffer4} alt="" />
+                  <div className="offer-text">
+                    <h5 className="text-white text-uppercase">Save 20%</h5>
+                    <h2 className="text-white mb-3">Special Offer</h2>
+                    <a href="" className="btn btn-primary">
+                      Shop Now
+                    </a>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+
           <h2>New Products</h2>
           {this.renderProducts(this.state.newlyAddedProducts)}
         </div>
