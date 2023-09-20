@@ -653,7 +653,7 @@ const Header = () => {
                   <a href="" className="dropdown-item">
                     Shopping Cart
                   </a>
-                  <a href="" className="dropdown-item">
+                  <a href="/checkout" className="dropdown-item">
                     Checkout
                   </a>
                 </div>
