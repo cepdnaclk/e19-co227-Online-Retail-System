@@ -8,6 +8,8 @@ const productController = require('../controller/ProductController');
 const CartController = require('../controller/CartController')
 const OrderController = require('../controller/OrderController')
 
+const apriory = require('../controller/RecomenderSystemComtroller')
+
 router.post('/registerUser', customerController.createCustomer);
 router.post('/loginUser', customerController.LoginUser);
 router.get('/getSeller', customerController.getSeller);

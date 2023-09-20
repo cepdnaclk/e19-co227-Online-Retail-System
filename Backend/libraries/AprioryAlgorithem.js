@@ -46,18 +46,25 @@ class Apriori {
         return this.frequentItemsets;
     }
 
-    generateCandidateKItemsets(k) {
-        const candidateKItemsets = [];
+        generateCandidateKItemsets(k) {
+            const candidateKItemsets = [];
 
-        for (const itemset of this.frequentItemsets[k - 1]) {
-            for (const item of this.frequentItemsets[k - 1]) {
-                if (item > itemset[itemset.length - 1]) {
-                    const newCandidateItemset = [...itemset, item];
-                    candidateKItemsets.push(newCandidateItemset);
+            // Check if frequentItemsets[k - 1] is defined and an array
+            if (
+                this.frequentItemsets &&
+                Array.isArray(this.frequentItemsets[k - 1])
+            ) {
+                for (const itemset of this.frequentItemsets[k - 1]) {
+                    for (const item of this.frequentItemsets[k - 1]) {
+                        if (item > itemset[itemset.length - 1]) {
+                            const newCandidateItemset = [...itemset, item];
+                            candidateKItemsets.push(newCandidateItemset);
+                        }
+                    }
                 }
             }
-        }
-
         return candidateKItemsets;
     }
 }
+
+module.exports=Apriori
