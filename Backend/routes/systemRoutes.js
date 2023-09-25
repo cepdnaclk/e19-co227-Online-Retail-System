@@ -26,6 +26,8 @@ router.get('/getOrderItems',OrderController.getOrderItems)
 router.put('/updateTracking',OrderController.updateTracking)
 router.put('/updateOrderStatus',OrderController.updateStatus)
 router.delete('/deleteOrder/:id',OrderController.deleteOrder)
+router.post('/customer',OrderController.getcustomerinfo)
+
 
 router.get('/top-selling-products', productController.getTopSellingProducts); 
 router.get('/newly-added-products', productController.getNewlyAddedProducts);

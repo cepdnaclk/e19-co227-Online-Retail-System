@@ -22,6 +22,7 @@ const getCartDetails = async(req, res)=>{
   ci.productID,
   p.productName,
   p.productPrice,
+  p.productImage1,
   ci.qty
 FROM
   customer c
