@@ -14,7 +14,7 @@ export const useManageCart = (changeQty) => {
       const fetchCartDetails = async () => {
         try {
           const res = await axios.post("http://localhost:8081/api/v1/cart", { customerID });
-         
+  
           setCartID(res.data[0].cartID);
           setLoading(false); // Set loading to false once data is fetched
         } catch (err) {

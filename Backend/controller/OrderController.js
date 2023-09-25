@@ -93,9 +93,41 @@ const updateStatus = async(req,res)=>{
 
 }
 
+const getcustomerinfo = async(req,res) =>{
+
+    const customerID = req.body.customerID
+
+    const q = 
+    
+    `SELECT
+    c.firstName,
+    c.lastName,
+    c.email,
+    c.phoneNumber,
+    c.addressL1,
+    c.addressL2,
+    c.addressL3
+  FROM
+  customer AS c
+
+  WHERE
+    c.customerID = ?;
+  `
+  
+  db.query(q,[customerID],(err,data)=>{
+    if(err) return res.json(err)
+    return res.json(data)
+  })
+  
+  }
+
+
+
+
 module.exports = {
     getOrders,
     getOrderItems,
     updateTracking,
-    updateStatus
+    updateStatus,
+    getcustomerinfo
 }

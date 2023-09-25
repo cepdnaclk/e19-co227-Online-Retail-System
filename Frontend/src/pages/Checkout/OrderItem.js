@@ -45,11 +45,7 @@ const OrderItem = ({cartItem, setUpdateCartTrigger}) => {
 
   return (
     <>
-    <td className="align-middle">
-      {cartItem.productName}
-      
-    </td>
-    <td className="align-middle">${cartItem.productPrice}</td>
+    <td className="align-middle">{cartItem.productName}</td>
     <td className="align-middle">{qty}</td>
     <td className="align-middle">${total}</td>
     </>

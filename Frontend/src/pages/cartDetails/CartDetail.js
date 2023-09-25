@@ -32,7 +32,7 @@ const CartDetail = () => {
       try{
         const res = await axios.get("http://localhost:8081/api/v1/cart/"+userID)
 
-        
+        //console.log(res.data);
         setCart(res.data) ;
 
       }catch(err){
@@ -137,9 +137,12 @@ useEffect(()=>{
               <h5>Total</h5>
               <h5>${subTotal+shipping}</h5>
             </div>
-            <button className="btn btn-block btn-primary font-weight-bold my-3 py-3">
-              Proceed To Checkout
-            </button>
+            <a href='/checkout'>
+              <button className="btn btn-block btn-primary font-weight-bold my-3 py-3">
+                Proceed To Checkout
+              </button>
+            </a>
+            
           </div>
         </div>
       </div>
