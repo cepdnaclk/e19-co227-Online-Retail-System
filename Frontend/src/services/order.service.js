@@ -42,6 +42,17 @@ export const orderService = {
             throw error;
         }
 
+    },
+
+    deleteOrder:async (id)=>{
+        try {
+
+            const response = await axios.delete(`${environment.baseUrl}/deleteOrder/${id}`);
+            return response.data;
+        } catch (error) {
+            throw error;
+        }
+
     }
 
 }

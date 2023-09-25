@@ -93,9 +93,45 @@ const updateStatus = async(req,res)=>{
 
 }
 
+const deleteOrder = async(req,res)=>{
+
+    try{
+        const id = parseInt(req.params.id);
+        console.log(id)
+        const query= 'DELETE FROM order_item WHERE orderID = ?';
+        db.query(query,[id],(err,data)=>{
+            if (err) {
+                console.log(err)
+                return res.status(500).json({ error: 'Database error' });
+            }else {
+
+                const query= 'DELETE FROM `order` WHERE orderID = ?';
+                db.query(query,[id],(err,data)=>{
+                    if (err) {
+                        console.log(err)
+                        return res.status(500).json({ error: 'Database error' });
+                    }else {
+                        console.log(data)
+                        return  res.status(200).json({message:"Order Deleted"});
+
+                    }
+
+                });
+
+            }
+
+        });
+    }catch (error) {
+        console.log(error)
+        return  res.status(500).json({ error: 'Internal server error' });
+    }
+
+}
+
 module.exports = {
     getOrders,
     getOrderItems,
     updateTracking,
-    updateStatus
+    updateStatus,
+    deleteOrder
 }
