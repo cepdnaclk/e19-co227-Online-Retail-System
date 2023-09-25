@@ -71,7 +71,7 @@ const Header = () => {
 
             {isLogged===false ?
                 <button className="btn btn-sm btn-light" type="button">
-                  <Link to="/SignIn" className="text-decoration-none">Sign in</Link>
+                  <Link to="/SignIn" className="text-decoration-none text-success">Sign in</Link>
                 </button> :
               <div className="btn-group">
                 <button
@@ -169,10 +169,10 @@ const Header = () => {
     <div className="row align-items-center bg-light py-3 px-xl-5 d-none d-lg-flex">
       <div className="col-lg-4">
         <a href="" className="text-decoration-none">
-          <span className="h1 text-uppercase text-primary bg-dark px-2">
+          <span className="h1 text-uppercase text-success bg-dark px-2">
             Gadget
           </span>
-          <span className="h1 text-uppercase text-dark bg-primary px-2 ml-n1">
+          <span className="h1 text-uppercase text-dark bg-success px-2 ml-n1">
             Wave
           </span>
         </a>
@@ -185,9 +185,9 @@ const Header = () => {
               className="form-control"
               placeholder="Search for products"
             />
-            <div className="input-group-append">
-              <span className="input-group-text bg-transparent text-primary">
-                <i className="fa fa-search" />
+            <div className="input-group-append text-success">
+              <span className="input-group-text bg-transparent ">
+                <i className="fa fa-search text-success" />
               </span>
             </div>
           </div>
@@ -206,15 +206,15 @@ const Header = () => {
     <div className="row px-xl-5">
       <div className="col-lg-3 d-none d-lg-block">
         <a
-          className="btn d-flex align-items-center justify-content-between bg-primary w-100"
+          className="btn d-flex align-items-center justify-content-between bg-success w-100"
           data-bs-toggle="collapse"
           href="#navbar-vertical"
           style={{ height: 70, padding: "0 30px" }}
         >
-          <h6 className="text-dark m-0">
+          <h5 className="text-dark m-0">
             <i className="fa fa-bars mr-2" />
             Categories
-          </h6>
+          </h5>
           <i className="fa fa-angle-down text-dark" />
         </a>
         <nav
@@ -337,7 +337,7 @@ const Header = () => {
                   </a>
                 </div>
               </div>
-        {/* */}
+        {/* 
         <div className="nav-item dropdown dropright">
                 <a
                   href="#"
@@ -367,7 +367,7 @@ const Header = () => {
                 </div>
               </div>
 
-        {/* */}
+         */}
         <div className="nav-item dropdown dropright">
                   <a
                     href="#"
@@ -586,19 +586,19 @@ const Header = () => {
                     Office Supplies <i className="fa fa-angle-right float-right mt-1" />
                   </a>
                   <div className="dropdown-menu position-absolute rounded-0 border-0 m-0" style={{ left: '285px', top:'0px' }}>
-                    <a href="/category/12/subcategory/60" className="dropdown-item">
+                    <a href="/category/12/subcategory/10" className="dropdown-item">
                       Art Supplies for Office
                     </a>
-                    <a href="/category/12/subcategory/61" className="dropdown-item">
+                    <a href="/category/12/subcategory/11" className="dropdown-item">
                       Office Supplies
                     </a>
-                    <a href="/category/12/subcategory/62" className="dropdown-item">
+                    <a href="/category/12/subcategory/12" className="dropdown-item">
                       Writing Instruments
                     </a>
-                    <a href="/category/12/subcategory/63" className="dropdown-item">
+                    <a href="/category/12/subcategory/13" className="dropdown-item">
                       Paper and Notebooks
                     </a>
-                    <a href="/category/12/subcategory/64" className="dropdown-item">
+                    <a href="/category/12/subcategory/14" className="dropdown-item">
                       Desk Accessories
                     </a>
                   </div>
@@ -649,7 +649,7 @@ const Header = () => {
                 >
                   Pages <i className="fa fa-angle-down mt-1" />
                 </a>
-                <div className="dropdown-menu bg-primary rounded-0 border-0 m-0">
+                <div className="dropdown-menu bg-success rounded-0 border-0 m-0">
                   <a href="" className="dropdown-item">
                     Shopping Cart
                   </a>
@@ -666,7 +666,7 @@ const Header = () => {
             </div>
             <div className="navbar-nav ml-auto py-0 d-none d-lg-block">
               <a href="" className="btn px-0">
-                <i className="fas fa-heart text-primary" />
+                <i className="fas fa-heart text-success" />
                 <span
                   className="badge text-secondary border border-secondary rounded-circle"
                   style={{ paddingBottom: 2 }}
@@ -675,7 +675,7 @@ const Header = () => {
                 </span>
               </a>
               <NavLink to = { `cart/${manageAccount.getCustomerID()}` } className="btn px-0 ml-3">
-                <i className="fas fa-shopping-cart text-primary" />
+                <i className="fas fa-shopping-cart text-success" />
                 <span
                   className="badge text-secondary border border-secondary rounded-circle"
                   style={{ paddingBottom: 2 }}

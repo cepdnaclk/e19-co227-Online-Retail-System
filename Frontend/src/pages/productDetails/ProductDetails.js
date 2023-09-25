@@ -171,7 +171,7 @@ const ProductDetails = (props) => {
           <p>{product.categoryName} {`->`} {product.subcategoryName}</p>
           <p><strong>Seller:</strong> {product.shopName}</p>
           <div className="d-flex mb-3">
-            <div className="text-primary mr-2">
+            <div className="text-success mr-2">
               <small className="fas fa-star" />
               <small className="fas fa-star" />
               <small className="fas fa-star" />
@@ -190,12 +190,12 @@ const ProductDetails = (props) => {
           <div className="d-flex align-items-center mb-4 pt-2">
             <div className="input-group quantity mr-3" style={{ width: 130 }}>
               <div className="input-group-btn">   
-                <button className="btn btn-primary btn-minus" onClick={()=>handleQty(product,'minus') }>
+                <button className="btn btn-success btn-minus" onClick={()=>handleQty(product,'minus') }>
                   <i className="fa fa-minus" />
                 </button>
               </div>
               <input
-                className="form-control bg-secondary border-0 text-center"
+                className="form-control bg-white border-0 text-center"
                 style={{width:"32px", padding:"0", height:"48px"}}
                 
                 type="text"
@@ -203,18 +203,18 @@ const ProductDetails = (props) => {
                 value={qty}
               />
               <div className="input-group-btn">    
-                <button className="btn btn-primary btn-plus" onClick={()=>handleQty  (product,'plus')}>    
+                <button className="btn btn-success btn-plus" onClick={()=>handleQty  (product,'plus')}>    
                   <i className="fa fa-plus" />
                 </button>
               </div>
             </div>
           
-            { isInCart && (<button className="btn btn-primary px-3" style = {{backgroundColor:"#f0c53a", border:"none"}} onClick={()=>{navigate("/cart/"+{cartID})}} >
-              <i className="fa fa-shopping-cart mr-1" /> Already in Cart
+            { isInCart && (<button className="btn btn-success px-3" style = {{backgroundColor:"#f0c53a", border:"none"}} onClick={()=>{navigate("/cart/"+{cartID})}} >
+              <i className="fa fa-shopping-cart mr-1 " /> Already in Cart
             </button>)}
 
-            { !isInCart && (<button className="btn btn-primary px-3" onClick={(e)=>handleCart(e)}>
-              <i className="fa fa-shopping-cart mr-1" /> Add To Cart
+            { !isInCart && (<button className="btn btn-success text-dark px-3" onClick={(e)=>handleCart(e)}>
+              <i className="fa fa-shopping-cart mr-1 " /> Add To Cart
             </button>)}
 
             <p style={{paddingTop:"13px", paddingLeft:"10px", color:"red"}}>{errQty}</p>
