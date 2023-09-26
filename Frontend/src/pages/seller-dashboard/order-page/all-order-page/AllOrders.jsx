@@ -192,8 +192,10 @@ function AllOrders(){
                                                     <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                                                 </div>
                                                 <div class="modal-body">
-                                                    {order.firstName} {order.lastName} <br/>
-                                                    {order.address} <br/>
+                                                    {order.name} <br/>
+                                                    {order.address1} <br/>
+                                                    {order.address2} <br/>
+                                                    {order.address3} <br/>
                                                     {order.phoneNumber} <br/>
                                                     {order.email}
 

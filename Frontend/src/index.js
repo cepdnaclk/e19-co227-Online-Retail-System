@@ -6,9 +6,7 @@ import reportWebVitals from './reportWebVitals';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import "jquery/dist/jquery.min.js";
 import 'bootstrap/dist/js/bootstrap.bundle'
-import '@mui/material'
-import '@emotion/react'
-import '@emotion/styled'
+
 
 import 'jquery';
 import 'popper.js/dist/umd/popper.min'

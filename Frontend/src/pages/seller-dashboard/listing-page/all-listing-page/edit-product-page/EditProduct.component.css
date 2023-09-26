@@ -1,0 +1,115 @@
+.category-select{
+    width: 100%;
+    height: 35px;
+    border-radius: 5px;
+    opacity: 70%;
+
+
+}
+.title{
+    margin-top: -10px;
+    margin-left: 10px;
+    font-size: large;
+    font-weight: bold;
+}
+.main-wrap{
+    padding-top: 15px;
+    width: 95%;
+    align-items: center;
+    margin: 10px auto;
+
+}
+.row{
+    padding-top: 5px;
+}
+.border{
+    border-radius: 10px;
+}
+.drop-zone {
+    display: flex;
+    flex-direction: column; /* Arrange children vertically */
+    align-items: center; /* Center horizontally */
+    justify-content: center; /* Center vertically */
+    border-radius: 10px;
+    border: 2px dashed rgb(0, 135, 247);
+    border-image: none;
+    width: 90%;
+    height: 300px;
+    margin: auto;
+    margin-bottom: 10px;
+    box-sizing: border-box; /* Include border in the width calculation */
+    text-align: center; /* Center text within the container */
+}
+
+/* Styles for the icon */
+.icon-wrap {
+    width: 40px;
+    height: 40px; /* Adjust the height as needed */
+    margin-bottom: 10px;
+
+}
+
+/* Styles for the image */
+.image {
+    width: 200px; /* Adjust the image width as needed */
+    height: auto; /* Maintain aspect ratio */
+}
+.image-container {
+    text-align: center;
+    max-width: 100%;
+    overflow: hidden;
+    margin-bottom: 10px;
+}
+
+
+.image-container img {
+    border: gray;
+    border-width: 2px;
+    max-width: 100%;
+    width: 100px;
+    height: auto;
+    border-radius: 5px;
+}
+
+.image-container > div {
+    display: inline-block; /* Arrange child elements horizontally */
+}
+.image-wrapper {
+    position: relative;
+    margin: 10px;
+}
+
+.image-item {
+    max-width: 150px;
+    height: auto;
+    border: 2px solid #ddd;
+}
+
+.cross {
+    position: absolute;
+    top: 3px;
+    right: 5px;
+    width: 30px;
+    height: 30px;
+    display: none;
+    cursor: pointer;
+}
+
+.image-wrapper:hover .cross {
+    display: block;
+}
+
+.image-wrapper:hover .image-item {
+    opacity: 50%;
+}
+
+.btn{
+    margin: 5px;
+    float: right;
+}
+.container{
+    display: inline;
+    flex-wrap: wrap;
+    flex-direction: column;
+
+}
