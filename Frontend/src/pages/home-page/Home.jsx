@@ -26,6 +26,7 @@ import { Link } from "react-router-dom";
 
 
 
+
 class Home extends React.Component {
   constructor(props) {
     super(props);
@@ -66,23 +67,29 @@ class Home extends React.Component {
   renderProducts(products) {
     return (
       <div className="product-list">
+
         {products.map((product) => (
           <div key={product.productID} className="product-item mb-4">
             <div className="product-img position-relative overflow-hidden">
               <img className="product-img w-100" src={product.productImage1} alt={product.productName} />
               <div className="product-action">
+
                 <Link to={`/productt/${product.productID}`} className="btn btn-outline-dark btn-square">
-                  <i className="fa fa-shopping-cart" />
+                  <i className="fa fa-shopping-cart text-success" />
                 </Link>
+
                 <Link to={`/product/${product.productID}`} className="btn btn-outline-dark btn-square">
-                  <i className="far fa-heart" />
+                  <i className="far fa-heart text-success" />
                 </Link>
+
                 <Link to={`/product/${product.productID}`} className="btn btn-outline-dark btn-square">
-                  <i className="fa fa-sync-alt" />
+                  <i className="fa fa-sync-alt text-success" />
                 </Link>
+
                 <Link to={`/product/${product.productID}`} className="btn btn-outline-dark btn-square">
-                  <i className="fa fa-search" />
+                  <i className="fa fa-search text-success" />
                 </Link>
+
               </div>
             </div>
             <div className="title text-center py-4"><NavLink to={`/product/${product.productID}`} className="nav-link-style">
@@ -92,15 +99,21 @@ class Home extends React.Component {
               <div className="d-flex align-items-center justify-content-center mt-2 w-75 text-center">
                 <h5>${product.productPrice}</h5>
                 <h6 className="d-flex align-items-center text-muted ml-2">
-                  <del>${product.productPrice + 100}</del>
+                  <del>${product.productPrice < 5 ? product.productPrice+product.productPrice/10 : product.productPrice + Math.floor(product.productPrice/20)}</del>
                 </h6>
+
               </div>
               <div className="d-flex align-items-center justify-content-center mb-1 color-yellow">
-                <small className="fa fa-star text-primary mr-1" />
-                <small className="fa fa-star text-primary mr-1" />
-                <small className="fa fa-star text-primary mr-1" />
-                <small className="fa fa-star text-primary mr-1" />
-                <small className="fa fa-star text-primary mr-1" />
+                <small className="fa fa-star text-success mr-1" />
+
+                <small className="fa fa-star text-success  mr-1" />
+
+                <small className="fa fa-star text-success  mr-1" />
+
+                <small className="fa fa-star text-success mr-1" />
+
+                <small className="fa fa-star text-success mr-1" />
+
                 <small>(99)</small>
               </div></NavLink>
             </div>
@@ -190,32 +203,37 @@ class Home extends React.Component {
           <div className="row px-xl-5 pb-3">
             <div className="col-lg-3 col-md-6 col-sm-12 pb-1">
               <div className="d-flex align-items-center bg-light mb-4" style={{ padding: '30px' }}>
-                <h1 className="fa fa-check text-primary m-0 mr-3 custom-yellow-icon" ></h1>
+                <h1 className="fa fa-check text-success m-0 mr-3 custom-yellow-icon" ></h1>
                 <h5 className="font-weight-semi-bold m-0">Quality Product</h5>
               </div>
+
             </div>
             <div className="col-lg-3 col-md-6 col-sm-12 pb-1">
               <div className="d-flex align-items-center bg-light mb-4" style={{ padding: '30px' }}>
-                <h1 className="fa fa-shipping-fast text-primary m-0 mr-2 "></h1>
+                <h1 className="fa fa-shipping-fast text-success m-0 mr-2 "></h1>
                 <h5 className="font-weight-semi-bold m-0">Free Shipping</h5>
               </div>
             </div>
+
             <div className="col-lg-3 col-md-6 col-sm-12 pb-1">
               <div className="d-flex align-items-center bg-light mb-4" style={{ padding: '30px' }}>
-                <h1 className="fas fa-exchange-alt text-primary m-0 mr-3"></h1>
-                <h5 className="font-weight-semi-bold m-0">14-Day Return</h5>
+                <h1 className="fas fa-exchange-alt text-success m-0 mr-3"></h1>
+                <h5 className="font-weight-semi-bold m-0 margingleft-10px">14-Day Return</h5>
               </div>
             </div>
+            
             <div className="col-lg-3 col-md-6 col-sm-12 pb-1">
               <div className="d-flex align-items-center bg-light mb-4" style={{ padding: '30px' }}>
-                <h1 className="fa fa-phone-volume text-primary m-0 mr-3"></h1>
+                <h1 className="fa fa-phone-volume text-success m-0 mr-3"></h1>
                 <h5 className="font-weight-semi-bold m-0">24/7 Support</h5>
               </div>
             </div>
           
           </div></div>
           
-          <h2>Top Selling</h2>
+          <h2 className="section-title position-relative text-uppercase mx-xl-5 mb-4">
+              <span className="bg-white pr-3">top selling</span>
+          </h2>
           {this.renderProducts(this.state.topSellingProducts)}
           
           <div className="container-fluid pt-5 pb-3">
@@ -225,7 +243,7 @@ class Home extends React.Component {
                   <img className="img-fluid" src={imgoffer3} alt="" />
                   <div className="offer-text">
                     <h5 className="text-white text-uppercase">Save 10%</h5>
-                    <h2 className="text-white mb-3">Special Offer</h2>
+                    <h2 className="text-white mb-3 special-offer-text">Special Offer</h2>
                     <a href="" className="btn btn-primary">
                       Shop Now
                     </a>
@@ -248,7 +266,9 @@ class Home extends React.Component {
           </div>
 
 
-          <h2>New Products</h2>
+          <h2 className="section-title position-relative text-uppercase mx-xl-5 mb-4">
+            <span className="bg-white pr-3">New products</span>
+          </h2>
           {this.renderProducts(this.state.newlyAddedProducts)}
         </div>
         <Categories/>

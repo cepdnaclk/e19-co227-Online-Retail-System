@@ -9,7 +9,7 @@ const CartController = require('../controller/CartController')
 const OrderController = require('../controller/OrderController')
 const RecomenderSystemComtroller = require('../controller/RecomenderSystemComtroller')
 
-const apriory = require('../controller/RecomenderSystemComtroller')
+//const apriory = require('../controller/RecomenderSystemComtroller')
 
 router.post('/registerUser', customerController.createCustomer);
 router.post('/loginUser', customerController.LoginUser);
@@ -26,6 +26,7 @@ router.get('/getOrders',OrderController.getOrders)
 router.get('/getOrderItems',OrderController.getOrderItems)
 router.put('/updateTracking',OrderController.updateTracking)
 router.put('/updateOrderStatus',OrderController.updateStatus)
+router.post('/customer',OrderController.getcustomerinfo)
 
 router.get('/top-selling-products', productController.getTopSellingProducts); 
 router.get('/newly-added-products', productController.getNewlyAddedProducts);

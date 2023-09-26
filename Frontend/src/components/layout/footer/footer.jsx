@@ -23,15 +23,15 @@ const Footer = () => {
 
       </p>
       <p className="mb-2">
-        <i className="fa fa-map-marker-alt text-primary mr-3" />
+        <i className="fa fa-map-marker-alt text-success mr-3" />
         123 Street, Colombo 9, Sri Lanka 
       </p>
       <p className="mb-2">
-        <i className="fa fa-envelope text-primary mr-3 yellow"  />
+        <i className="fa fa-envelope text-success mr-3 yellow"  />
         info@example.com
       </p>
       <p className="mb-0">
-        <i className="fa fa-phone-alt text-primary mr-3" />
+        <i className="fa fa-phone-alt text-success mr-3" />
         +012 345 67890
       </p>
     </div>
@@ -106,23 +106,23 @@ const Footer = () => {
                 placeholder="Your Email Address"
               />
               <div className="input-group-append">
-                <button className="btn btn-primary">Sign Up</button>
+                <button className="btn btn-success text-dark">Sign Up</button>
               </div>
             </div>
           </form>
           <h6 className="text-secondary text-uppercase mt-4 mb-3 text-white">Follow Us</h6>
           <div className="d-flex">
-            <a className="btn btn-primary btn-square mr-2 " href="#">
-              <i className="fab fa-twitter" />
+            <a className="btn btn-success btn-square mr-2 " href="#">
+              <i className="fab fa-twitter text-dark" />
             </a>
-            <a className="btn btn-primary btn-square mr-2" href="#">
-              <i className="fab fa-facebook-f" />
+            <a className="btn btn-success btn-square mr-2" href="#">
+              <i className="fab fa-facebook-f text-dark" />
             </a>
-            <a className="btn btn-primary btn-square mr-2"  href="#">
-              <i className="fab fa-linkedin-in" />
+            <a className="btn btn-success btn-square mr-2"  href="#">
+              <i className="fab fa-linkedin-in text-dark" />
             </a>
-            <a className="btn btn-primary btn-square" href="#">
-              <i className="fab fa-instagram" />
+            <a className="btn btn-success btn-square" href="#">
+              <i className="fab fa-instagram text-dark" />
             </a>
           </div>
         </div>
@@ -136,11 +136,11 @@ const Footer = () => {
     <div className="col-md-6 px-xl-0">
       <p className="mb-md-0 text-center text-md-left text-secondary">
         ©{" "}
-        <a className="text-primary text-#ff377" href="#">
+        <a className="text-success text-#ff377" href="#">
           Domain
         </a>
         . All Rights Reserved. Designed by
-        <a className="text-primary" href="https://htmlcodex.com">
+        <a className="text-success" href="https://htmlcodex.com">
           HTML Codex
         </a>
       </p>

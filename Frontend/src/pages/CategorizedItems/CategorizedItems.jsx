@@ -27,9 +27,13 @@ const CategorizedItems = () => {
 
   return (
     <div>
-      <h2>Categorized Items</h2>
-      <p>Category ID: {categoryId}</p>
-      <p>Subcategory ID: {subcategoryId}</p>
+
+
+
+
+     {/* <h2>Categorized Items</h2>*/}
+      <h4><p>Category Name {categoryId}  >>
+      Subcategory Name {subcategoryId}</p></h4>
 
       <div className="product-list">
         {products.map((product) => (
@@ -37,36 +41,52 @@ const CategorizedItems = () => {
             <div className="product-img position-relative overflow-hidden">
               <img className="product-img w-100" src={product.productImage1} alt={product.productName} />
               <div className="product-action">
+
                 <Link to={`/productt/${product.productID}`} className="btn btn-outline-dark btn-square">
-                  <i className="fa fa-shopping-cart" />
+                  <i className="fa fa-shopping-cart text-success" />
                 </Link>
+
                 <Link to={`/product/${product.productID}`} className="btn btn-outline-dark btn-square">
-                  <i className="far fa-heart" />
+                  <i className="far fa-heart text-success" />
                 </Link>
+
                 <Link to={`/product/${product.productID}`} className="btn btn-outline-dark btn-square">
-                  <i className="fa fa-sync-alt" />
+                  <i className="fa fa-sync-alt text-success" />
                 </Link>
+
                 <Link to={`/product/${product.productID}`} className="btn btn-outline-dark btn-square">
-                  <i className="fa fa-search" />
+                  <i className="fa fa-search text-success" />
                 </Link>
               </div>
             </div>
             <div className="title text-center py-4"><NavLink to={`/product/${product.productID}`} className="nav-link-style">
+              
               <div className="h4 text-decoration-none text-truncate">
                 {product.productName}
               </div>
+
               <div className="d-flex align-items-center justify-content-center mt-2 w-75 text-center">
+
                 <h5>${product.productPrice}</h5>
+
                 <h6 className="d-flex align-items-center text-muted ml-2">
-                  <del>${product.productPrice + 100}</del>
+                  <del>${product.productPrice < 5 ? product.productPrice+product.productPrice/10 : product.productPrice + Math.floor(product.productPrice/20)}</del>
                 </h6>
+
               </div>
+
               <div className="d-flex align-items-center justify-content-center mb-1 color-yellow">
-                <small className="fa fa-star text-primary mr-1" />
-                <small className="fa fa-star text-primary mr-1" />
-                <small className="fa fa-star text-primary mr-1" />
-                <small className="fa fa-star text-primary mr-1" />
-                <small className="fa fa-star text-primary mr-1" />
+
+                <small className="fa fa-star text-success mr-1" />
+
+                <small className="fa fa-star text-success mr-1" />
+
+                <small className="fa fa-star text-success mr-1" />
+
+                <small className="fa fa-star text-success mr-1" />
+
+                <small className="fa fa-star text-success mr-1" />
+
                 <small>(99)</small>
               </div></NavLink>
             </div>

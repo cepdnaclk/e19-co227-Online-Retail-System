@@ -7,6 +7,11 @@ import SignUp from "./pages/sign-up-page/SignUp";
 import Home from "./pages/home-page/Home";
 import MainLayout from './components/layout/MainLayout';
 import Products from './pages/products/Products';
+import Checkout from './pages/Checkout/OrderDetail';
+import Successful from './pages/Checkout/Success';
+
+
+
 
 //Seller Dashboard Component
 import SellerDashboard from "./pages/seller-dashboard/SellerPage";
@@ -38,6 +43,8 @@ const router = createBrowserRouter(
       <Route path='/' element={<Header />}>
          <Route index element={<Home />} />
          <Route path="products" element={<Products/>} />
+         <Route path="/checkout" element={<Checkout/>} />
+         <Route path="/successful" element={<Successful/>} />
          <Route path="product/:id" element={<ProductDetails />} />
          <Route path="cart/:id" element={<CartDetail />} />
          <Route path="/category/:categoryId/subcategory/:subcategoryId" element={<CategorizedItems/>}/>
