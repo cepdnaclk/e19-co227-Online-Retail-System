@@ -7,6 +7,7 @@ const customerController = require('../controller/AdminUserController');
 const productController = require('../controller/ProductController');
 const CartController = require('../controller/CartController')
 const OrderController = require('../controller/OrderController')
+const RecomenderSystemComtroller = require('../controller/RecomenderSystemComtroller')
 
 //const apriory = require('../controller/RecomenderSystemComtroller')
 
@@ -44,6 +45,8 @@ router.delete('/cart', CartController.deleteCartItem);
 router.put('/cart/:id', CartController.changeQty);
 router.post('/checkcart', CartController.checkCart);
 router.get('/cartsize/:id',CartController.cartSize)
+
+router.get('/productRCMND/:id', RecomenderSystemComtroller.getReccomnederProduct)
 
 
 

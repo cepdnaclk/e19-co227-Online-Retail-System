@@ -107,7 +107,7 @@ export const useManageCart = (changeQty) => {
   }
 
 
-  const [product,setProduct] = useState([])
+  const [product,setProduct] = useState({})
 
   useEffect(()=>{
     const fetchProductDetails = async ()=>{
@@ -123,7 +123,7 @@ export const useManageCart = (changeQty) => {
       }
     }
     fetchProductDetails()
-  },[]);
+  },[id]);
 
  // check if product is already in the cart
  const [isInCart, setIsInCart] = useState(false)
