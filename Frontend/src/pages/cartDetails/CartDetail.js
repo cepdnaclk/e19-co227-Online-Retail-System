@@ -1,10 +1,12 @@
-import React, { useEffect, useState } from 'react'
+import React, { useEffect, useState, useContext } from 'react'
 import axios from 'axios'
 import { manageAccount } from '../../services/manage-account.service'
 import { useManageCart } from '../../services/useManageCart'
 import CartItem from './CartItem'
 import Footer from '../../components/layout/footer/footer'
 import { NavLink } from 'react-router-dom'
+import RecommendedProducts from '../../components/layout/RecommendedProducts'
+import { HeaderContext } from '../../contexts/HeaderContext'
 
 const CartDetail = () => {
 
@@ -23,6 +25,13 @@ const CartDetail = () => {
   if (cartInfo ){
     cartID  = cartInfo.cartID
   }
+
+ 
+  const{setTrigger} = useContext(HeaderContext)
+    let rec = true
+  
+
+  
 
 
  
@@ -63,6 +72,8 @@ useEffect(()=>{
 
 },[cart,updateCartTrigger])
 
+
+
 //console.log(subTotal)
 
   return (
@@ -77,7 +88,7 @@ useEffect(()=>{
      <h4 style={{marginTop:"25px" , marginLeft:"65px"}} ><NavLink to="/" style={{textDecoration:'none', backgroundColor:"#33cc99", padding:"5px 10px 5px 10px", borderRadius:"7px", color:"black", }}>Shop Now</NavLink></h4>
       </div> </div>}
 
-    {cart.length && <div className="container-fluid">
+    {cart.length && (<div className="container-fluid">
     <div className="row px-xl-5">
       <div className="col-lg-8 table-responsive mb-5">
         <table className="table table-light table-borderless table-hover text-center mb-0">
@@ -147,9 +158,43 @@ useEffect(()=>{
         </div>
       </div>
     </div>
-  </div> }
+  </div>  
+
+
+  )
+
+  }
+
   
   {/* Cart End */}
+
+      {cart.length && (cart.map((cartItem) => {
+
+                
+          
+          if(rec){
+
+            rec = false
+            
+            return(
+              
+            <div key={cartItem.productID}>
+               <RecommendedProducts id={cartItem.productID}  />
+               </div>)
+          }
+
+          else {  return (null)}
+         
+
+      }
+      
+        
+            
+      ))}
+
+      
+{/* {(<RecommendedProducts id={cart[0].productID}/>)} */}
+  
 
   <Footer />
     
