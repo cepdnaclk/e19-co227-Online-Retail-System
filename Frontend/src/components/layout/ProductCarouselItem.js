@@ -18,7 +18,7 @@ const ProductCarouselItem = ({id}) => {
       try{
         const res = await axios.get("http://localhost:8081/api/v1/product/"+id)
 
-        console.log(res.data)
+        //console.log(res.data)
         setProduct(res.data[0]) ;
 
       }catch(err){
@@ -29,16 +29,20 @@ const ProductCarouselItem = ({id}) => {
     fetchProductDetails()
   },[id]);
 
+  useEffect(()=>{
+    console.log(product)
+  },[product])
+
 
 
 
   return (
-    <>
-       
-          <div className="product-img position-relative overflow-hidden">
+    <div>
+        <div className="product-item bg-light">
+        <div className="product-img position-relative overflow-hidden">
           <img className="product-img w-100" src={product.productImage1} alt={product.productName} />
 
-             <div className="product-action">
+          <div className="product-action">
                 <Link to={`/product/${product.productID}`} className="btn btn-outline-dark btn-square">
                   <i className="fa fa-shopping-cart" />
                 </Link>
@@ -73,10 +77,16 @@ const ProductCarouselItem = ({id}) => {
                 <small>(99)</small>
               </div></NavLink>
             </div>
+
+            </div>
+
+        
+         
+     
     
          
         
-      </>
+      </div>
   )
 }
 

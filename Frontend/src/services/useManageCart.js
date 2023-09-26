@@ -107,7 +107,7 @@ export const useManageCart = (changeQty) => {
   }
 
 
-  const [product,setProduct] = useState([])
+  const [product,setProduct] = useState({})
 
   useEffect(()=>{
     const fetchProductDetails = async ()=>{

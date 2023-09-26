@@ -105,7 +105,7 @@ const ProductDetails = (props) => {
 
   return (
   <>
-    {product && <>
+    {product && (<>
   {/* Shop Detail Start */}
   <div className="container-fluid pb-5" style={{margin:"20px 0px"}}>
     <div className="row px-xl-5" >
@@ -417,7 +417,7 @@ const ProductDetails = (props) => {
   {/* Shop Detail End */}
 
 
-</>
+</>)
 }
 
   <RecommendedProducts id={id}/>
