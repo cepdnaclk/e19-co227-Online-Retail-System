@@ -191,7 +191,26 @@ async function getProductsByCategory(req, res) {
     }
 }
 
+async function getproductcount(req, res) {
+    try{
+        const CategoryId = req.params.categoryId;
 
+        const sql= 'SELECT s.CategoryID AS CategoryID, COUNT(p.productID) AS count FROM sub_category s LEFT JOIN product p ON s.subCategoryID = p.categoryID WHERE s.categoryID = ? ';
+        db.query(sql, [CategoryId], (error, result) => {
+            if (error) {
+                console.error('Error fetching products by category and subcategory:', error);
+                res.status(500).json({ error: 'Database error' });
+            } else {
+                res.status(200).json(result);
+            }
+        });
+    } catch (error){
+        console.error('error fetching count',error);
+        res.status(500).json({error:'internal error of server'})
+
+    }
+       
+}
 
 module.exports = {
   getTopSellingProducts,
@@ -201,6 +220,7 @@ module.exports = {
     getAllProductsFromSeller,
     updateProduct,
     deleteProduct,
-    getProductsByCategory
+    getProductsByCategory,
+    getproductcount
 };
 

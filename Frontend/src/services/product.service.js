@@ -58,5 +58,14 @@ export const productService = {
             throw error;
         }
 
+    },
+    getCategoriescount : async (categoryId)=>{
+        try {
+            const response = await axios.get(`${environment.baseUrl}/categoryCount/${categoryId}`);
+            return response.data;
+        } catch (error) {
+            throw error;
+        }
+
     }
 }

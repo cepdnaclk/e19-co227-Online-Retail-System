@@ -37,6 +37,7 @@ router.post('/setAsSeller/:id',customerController.setAsSeller)
 router.get('/top-selling-products', productController.getTopSellingProducts); 
 router.get('/newly-added-products', productController.getNewlyAddedProducts);
 router.get('/products/:categoryId/:subcategoryId', productController.getProductsByCategory) 
+router.get('/categoryCount/:categoryId',productController.getproductcount);
 
 router.get('/product/:id', ProductDetailsController.getProduct); 
 router.post('/product', ProductDetailsController.addToCart)

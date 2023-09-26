@@ -3,7 +3,7 @@ import './Home.component.css';
 import Footer from "../../components/layout/footer/footer";
 import axios from "axios";
 import { NavLink } from "react-router-dom";
-import '../../css/style.css'
+//import '../../css/style.css'
 import '../../css/style.min.css'
 import '../../css/bootstrap.css'
 import '../../css/bootstrap.min.css'
@@ -19,6 +19,7 @@ import imgoffer2 from '../../assets/offer-2.jpg'
 import imgoffer3 from '../../assets/offer-3.jpg'
 import imgoffer4 from '../../assets/offer-4.jpg'
 import Categories from "../../components/layout/categories/categories";
+import Categor from "../../components/layout/categories/categor";
 import { Link } from "react-router-dom";
 
 
@@ -75,44 +76,44 @@ class Home extends React.Component {
               <div className="product-action">
 
                 <Link to={`/productt/${product.productID}`} className="btn btn-outline-dark btn-square">
-                  <i className="fa fa-shopping-cart text-success" />
+                  <i className="fa fa-shopping-cart text-warning" />
                 </Link>
 
                 <Link to={`/product/${product.productID}`} className="btn btn-outline-dark btn-square">
-                  <i className="far fa-heart text-success" />
+                  <i className="far fa-heart text-warning" />
                 </Link>
 
                 <Link to={`/product/${product.productID}`} className="btn btn-outline-dark btn-square">
-                  <i className="fa fa-sync-alt text-success" />
+                  <i className="fa fa-sync-alt text-warning" />
                 </Link>
 
                 <Link to={`/product/${product.productID}`} className="btn btn-outline-dark btn-square">
-                  <i className="fa fa-search text-success" />
+                  <i className="fa fa-search text-warning" />
                 </Link>
 
               </div>
             </div>
             <div className="title text-center py-4"><NavLink to={`/product/${product.productID}`} className="nav-link-style">
-              <div className="h4 text-decoration-none text-truncate">
+              <div className="h5 text-decoration-none text-truncate">
                 {product.productName}
               </div>
               <div className="d-flex align-items-center justify-content-center mt-2 w-75 text-center">
-                <h5>${product.productPrice}</h5>
-                <h6 className="d-flex align-items-center text-muted ml-2">
+                <p>${product.productPrice}</p>
+                <h6 className="d-flex align-items-center text-muted ml-2 font-size:5px">
                   <del>${product.productPrice < 5 ? product.productPrice+product.productPrice/10 : product.productPrice + Math.floor(product.productPrice/20)}</del>
-                </h6>
+                </h6 >
 
               </div>
               <div className="d-flex align-items-center justify-content-center mb-1 color-yellow">
-                <small className="fa fa-star text-success mr-1" />
+                <small className="fa fa-star text-warning mr-1" />
 
-                <small className="fa fa-star text-success  mr-1" />
+                <small className="fa fa-star text-warning  mr-1" />
 
-                <small className="fa fa-star text-success  mr-1" />
+                <small className="fa fa-star text-warning  mr-1" />
 
-                <small className="fa fa-star text-success mr-1" />
+                <small className="fa fa-star text-warning mr-1" />
 
-                <small className="fa fa-star text-success mr-1" />
+                <small className="fa fa-star text-warning mr-1" />
 
                 <small>(99)</small>
               </div></NavLink>
@@ -203,28 +204,32 @@ class Home extends React.Component {
           <div className="row px-xl-5 pb-3">
             <div className="col-lg-3 col-md-6 col-sm-12 pb-1">
               <div className="d-flex align-items-center bg-light mb-4" style={{ padding: '30px' }}>
-                <h1 className="fa fa-check text-success m-0 mr-3 custom-yellow-icon" ></h1>
+                <h1 className="fa fa-check text-warning
+                 m-0 mr-3 custom-yellow-icon" ></h1>
                 <h5 className="font-weight-semi-bold m-0">Quality Product</h5>
               </div>
 
             </div>
             <div className="col-lg-3 col-md-6 col-sm-12 pb-1">
               <div className="d-flex align-items-center bg-light mb-4" style={{ padding: '30px' }}>
-                <h1 className="fa fa-shipping-fast text-success m-0 mr-2 "></h1>
+                <h1 className="fa fa-shipping-fast text-warning
+                 m-0 mr-2 "></h1>
                 <h5 className="font-weight-semi-bold m-0">Free Shipping</h5>
               </div>
             </div>
 
             <div className="col-lg-3 col-md-6 col-sm-12 pb-1">
               <div className="d-flex align-items-center bg-light mb-4" style={{ padding: '30px' }}>
-                <h1 className="fas fa-exchange-alt text-success m-0 mr-3"></h1>
+                <h1 className="fas fa-exchange-alt text-warning
+                 m-0 mr-3"></h1>
                 <h5 className="font-weight-semi-bold m-0 margingleft-10px">14-Day Return</h5>
               </div>
             </div>
             
             <div className="col-lg-3 col-md-6 col-sm-12 pb-1">
               <div className="d-flex align-items-center bg-light mb-4" style={{ padding: '30px' }}>
-                <h1 className="fa fa-phone-volume text-success m-0 mr-3"></h1>
+                <h1 className="fa fa-phone-volume text-warning
+                 m-0 mr-3"></h1>
                 <h5 className="font-weight-semi-bold m-0">24/7 Support</h5>
               </div>
             </div>
@@ -272,6 +277,7 @@ class Home extends React.Component {
           {this.renderProducts(this.state.newlyAddedProducts)}
         </div>
         <Categories/>
+        <Categor/>
         <Footer />
       </div>
     );
