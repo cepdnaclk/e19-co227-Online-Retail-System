@@ -1,7 +1,7 @@
 import React, {useEffect, useState} from "react";
 import './AllListing.component.css'
 import ListningImg from "../../../../assets/Product presentation-rafiki.png";
-import {Link} from "react-router-dom";
+import {Link, useNavigate} from "react-router-dom";
 import OrderImg from "../../../../assets/Delivery-amico.png";
 import SalesImg from "../../../../assets/Statistics-bro.png";
 import {productService} from "../../../../services/product.service";
@@ -9,7 +9,7 @@ import {manageAccount} from "../../../../services/manage-account.service";
 import EditProduct from "./edit-product-page/EditProduct";
 
 function AllListing(){
-
+    const navigate = useNavigate()
     const [products, setProducts] = useState([]);
     //const [id,setID]=useState('')
     const [isDeleted,setIsDeleted] = useState(false)
@@ -17,6 +17,9 @@ function AllListing(){
     useEffect(() => {
         productService.getAllProducts(manageAccount.getSellerID()).then((response)=>{
              setProducts(response)
+            if(response.length===0){
+                navigate('/empty')
+            }
             console.log(response)
 
         }).catch((error)=>{
