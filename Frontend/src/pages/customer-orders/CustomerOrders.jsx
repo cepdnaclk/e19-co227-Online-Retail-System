@@ -29,7 +29,9 @@ function CustomerOrders(){
             setOrderData(prevState => {
                 return updateArr
             })
-
+            if(updateArr.length===0){
+                navigate('/empty')
+            }
            /* if(status==='pending'){
                 const newArr = updateArr.filter((order) => order.orderStatus === 'Pending');
 
@@ -172,7 +174,7 @@ function CustomerOrders(){
                                         <div class="modal-dialog modal-dialog-centered">
                                             <div class="modal-content">
                                                 <div class="modal-header">
-                                                    <h1 class="modal-title fs-5" id="staticBackdropLabel">Shipping Address</h1>
+                                                    <h1 class="modal-title fs-5" id="staticBackdropLabel">Order Details</h1>
                                                     <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                                                 </div>
                                                 <div class="modal-body">

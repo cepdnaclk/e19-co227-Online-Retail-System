@@ -33,6 +33,7 @@ import { useState } from 'react';
 import {manageAccount} from "./services/manage-account.service";
 import UserDetails from "./pages/userDetails/UserDetails";
 import CustomerOrders from "./pages/customer-orders/CustomerOrders";
+import EmptyPage from "./pages/empty-page/EmptyPage";
 
 
 const router = createBrowserRouter(
@@ -50,6 +51,7 @@ const router = createBrowserRouter(
                 <Route path="cart/:id" element={<CartDetail />} />
                 <Route path="user" element={<UserDetails />} />
                 <Route path="my-orders" element={<CustomerOrders />} />
+                <Route path="/empty" element={<EmptyPage />} />
                 <Route path="/category/:categoryId/subcategory/:subcategoryId" element={<CategorizedItems/>}/>
                 <Route path="dashboard" element={<SellerDashBoardLayout />}>
                     <Route index element={<SellerDashboard />} />

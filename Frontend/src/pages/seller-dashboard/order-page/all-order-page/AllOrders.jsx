@@ -2,13 +2,13 @@ import React, {useEffect, useState} from "react";
 import './AllOrders.component.css'
 import {orderService} from "../../../../services/order.service";
 import {manageAccount} from "../../../../services/manage-account.service";
-import {useParams} from "react-router-dom";
+import {useNavigate, useParams} from "react-router-dom";
 import {productService} from "../../../../services/product.service";
 
 
 function AllOrders(){
     const { status } = useParams();
-
+    const navigate= useNavigate();
     const [orderData,setOrderData] = useState([])
     const [orderItems,setOrderItems] = useState([])
     const [trackingID,settrackingID] = useState('')
@@ -21,6 +21,8 @@ function AllOrders(){
         getOrders()
 
 
+
+
     }, [update]);
 
 
@@ -29,6 +31,9 @@ function AllOrders(){
 
             const updateArr = response.data
 
+            if(updateArr.length===0){
+               navigate('/empty')
+            }
             if(status==='pending'){
                 const newArr = updateArr.filter((order) => order.orderStatus === 'Pending');
 
