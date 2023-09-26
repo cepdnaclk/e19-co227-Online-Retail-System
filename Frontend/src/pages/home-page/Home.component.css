@@ -1,4 +1,4 @@
-
+{/*
 .product-list {
   display:grid;
   flex-wrap: wrap;
@@ -64,10 +64,7 @@ object-fit:fill;
 display: block;
 margin: 0 auto;
 }
-
-.container-fluid {
-  padding: 0;
-}
+*/}
 
 /* Style for the carousel */
 #header-carousel {

@@ -3,7 +3,7 @@ import './Home.component.css';
 import Footer from "../../components/layout/footer/footer";
 import axios from "axios";
 import { NavLink } from "react-router-dom";
-//import '../../css/style.css'
+import '../../css/style.css'
 import '../../css/style.min.css'
 import '../../css/bootstrap.css'
 import '../../css/bootstrap.min.css'
