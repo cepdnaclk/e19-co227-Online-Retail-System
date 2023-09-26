@@ -147,10 +147,10 @@ const Header = () => {
     <div className="row align-items-center bg-light py-3 px-xl-5 d-none d-lg-flex">
       <div className="col-lg-4">
         <a href="" className="text-decoration-none">
-          <span className="h1 text-uppercase text-success bg-dark px-2">
+          <span className="h1 text-uppercase text-white bg-dark px-2">
             Gadget
           </span>
-          <span className="h1 text-uppercase text-dark bg-success px-2 ml-n1">
+          <span className="h1 text-uppercase text-dark bg-white px-2 ml-n1">
             Wave
           </span>
         </a>
@@ -184,7 +184,7 @@ const Header = () => {
     <div className="row px-xl-5">
       <div className="col-lg-3 d-none d-lg-block">
         <a
-          className="btn d-flex align-items-center justify-content-between bg-success w-100"
+          className="btn d-flex align-items-center justify-content-between bg-warning w-100"
           data-bs-toggle="collapse"
           href="#navbar-vertical"
           style={{ height: 70, padding: "0 30px" }}
