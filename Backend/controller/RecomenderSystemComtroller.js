@@ -1,19 +1,49 @@
-const Apriori = require('../libraries/AprioryAlgorithem');
+const db = require('../database');
+const fi = require('frequent-itemset');
 
-// Create an Apriori object with a minimum support threshold of 2%.
-const apriori = new Apriori(0.02);
+const getReccomnederProduct = async(req,res)=>{
 
-// Load the transaction database.
-const transactions = [
-    [1, 3, 4],
-    [2, 3, 5],
-    [1, 2, 3, 5],
-    [2, 5],
-    [1, 2, 3, 5],
-];
+    
+    const productID = req.params.id
 
-// Execute the Apriori algorithm.
-const frequentItemsets = apriori.exec(transactions);
-console.log(frequentItemsets)
+    const q = 'SELECT orderID, GROUP_CONCAT(productID ORDER BY productID ASC) as productIDs FROM order_item GROUP BY orderID';
 
 
+          db.query(q, (err,data) => {
+            if(err) return res.json(err)
+             
+              //console.log(data)
+
+              const purchaseHistory = data.map((row) => row.productIDs.split(','));
+
+              console.log(purchaseHistory)
+
+              const frequentItemsets = fi(
+                purchaseHistory,
+                0.6,
+                true
+              )
+
+              console.log(frequentItemsets);
+
+              const filteredItemsets = frequentItemsets
+                .filter((itemset) => itemset.includes(productID))
+                .map((itemset) => itemset.map((productID) => parseInt(productID, 10)));
+
+            console.log('Filtered Itemsets:', filteredItemsets);
+    
+            
+              return res.json(filteredItemsets)
+          })
+
+    
+
+
+  
+}
+
+
+
+module.exports = {
+    getReccomnederProduct
+  };

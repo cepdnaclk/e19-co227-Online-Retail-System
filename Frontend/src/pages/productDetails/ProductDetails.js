@@ -5,6 +5,8 @@ import { manageAccount } from '../../services/manage-account.service'
 import { useManageCart } from '../../services/useManageCart'
 import Footer from '../../components/layout/footer/footer'
 import { CartContext } from '../../contexts/CartContext'
+import RecommendedProducts from '../../components/layout/RecommendedProducts'
+import { NavLink } from 'react-router-dom'
 
 
 const ProductDetails = (props) => {
@@ -20,6 +22,7 @@ const ProductDetails = (props) => {
 
 
   const { qty, errQty, handleQty, handleChange, productDetails,isInCart, setIsInCart, } = useManageCart();
+  
 
   const product = productDetails(id);   // get product details from useManageCart
 
@@ -27,7 +30,7 @@ const ProductDetails = (props) => {
     cartID  = cartInfo.cartID
   }
   
-  console.log( cartID)
+  console.log('inproduct')
   const customerID = manageAccount.getCustomerID()
 
 
@@ -412,8 +415,12 @@ const ProductDetails = (props) => {
     </div>
   </div>
   {/* Shop Detail End */}
+
+
 </>
 }
+
+  <RecommendedProducts id={id}/>
 
   <Footer />
 

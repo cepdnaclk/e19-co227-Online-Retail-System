@@ -57,7 +57,7 @@ useEffect(()=>{
      sub += item.productPrice * item.qty
     });
   
-    setSubTotal(sub)
+    setSubTotal((prevsub)=> prevsub = sub)
   }
   changeSubtotal()
 
@@ -72,9 +72,9 @@ useEffect(()=>{
 
      {!cart.length && <div className="position-relative" style={{height:"450px"}}> <div className="position-absolute top-50 start-50 translate-middle">
       <h2 style={{paddingBottom:"20px"}}>Your Cart is Empty</h2>
-      <img style={{height:"250px"}} src='/img/213-2134500_shopping-cart-logo-png-clipart.png'
+      <img style={{height:"250px"}} src='/img/shopping-cart-svgrepo-com.svg'
      />
-     <h3><NavLink to="/">Shop Now</NavLink></h3>
+     <h4 style={{marginTop:"25px" , marginLeft:"65px"}} ><NavLink to="/" style={{textDecoration:'none', backgroundColor:"#33cc99", padding:"5px 10px 5px 10px", borderRadius:"7px", color:"black", }}>Shop Now</NavLink></h4>
       </div> </div>}
 
     {cart.length && <div className="container-fluid">

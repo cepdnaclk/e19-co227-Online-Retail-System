@@ -123,7 +123,7 @@ export const useManageCart = (changeQty) => {
       }
     }
     fetchProductDetails()
-  },[]);
+  },[id]);
 
  // check if product is already in the cart
  const [isInCart, setIsInCart] = useState(false)

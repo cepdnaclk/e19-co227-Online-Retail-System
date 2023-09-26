@@ -19,52 +19,61 @@ class Apriori {
 
         // Add the frequent 1-item sets to the frequent itemsets list.
         this.frequentItemsets = this.frequentItemsets.concat(
-            candidate1Itemsets.filter((item) => candidate1ItemsetCounts[item] >= this.minSupport)
+            Object.keys(candidate1ItemsetCounts).filter((item) => candidate1ItemsetCounts[item] >= this.minSupport).map(item => [parseInt(item)])
         );
 
         // Generate the candidate k-item sets for k > 1.
-        for (let k = 2; k <= Infinity; k++) {
+        for (let k = 2; ; k++) {
             const candidateKItemsets = this.generateCandidateKItemsets(k);
 
-            // Count the support of the candidate k-item sets.
-            const candidateKItemsetCounts = candidateKItemsets.reduce((acc, itemset) => {
-                acc[itemset] = (acc[itemset] || 0) + transactions.filter((transaction) => transaction.includes(...itemset)).length;
-                return acc;
-            }, {});
-
-            // Add the frequent k-item sets to the frequent itemsets list.
-            this.frequentItemsets = this.frequentItemsets.concat(
-                candidateKItemsets.filter((itemset) => candidateKItemsetCounts[itemset] >= this.minSupport)
-            );
-
-            // If there are no more frequent k-item sets, then stop.
-            if (this.frequentItemsets.length === 0) {
+            // If there are no more candidate k-item sets, then stop.
+            if (candidateKItemsets.length === 0) {
                 break;
             }
+
+            // Count the support of the candidate k-item sets.
+            const candidateKItemsetCounts = {};
+            for (const transaction of transactions) {
+                for (const itemset of candidateKItemsets) {
+                    if (itemset.every(item => transaction.includes(item))) {
+                        const key = itemset.join(',');
+                        candidateKItemsetCounts[key] = (candidateKItemsetCounts[key] || 0) + 1;
+                    }
+                }
+            }
+
+            // Add the frequent k-item sets to the frequent itemsets list.
+            const frequentKItemsets = Object.keys(candidateKItemsetCounts)
+                .filter((itemset) => candidateKItemsetCounts[itemset] >= this.minSupport)
+                .map(itemset => itemset.split(',').map(item => parseInt(item)));
+
+            // If no frequent k-item sets were found, break out of the loop.
+            if (frequentKItemsets.length === 0) {
+                break;
+            }
+
+            this.frequentItemsets = this.frequentItemsets.concat(frequentKItemsets);
         }
 
         return this.frequentItemsets;
     }
 
-        generateCandidateKItemsets(k) {
-            const candidateKItemsets = [];
+    generateCandidateKItemsets(k) {
+        const candidateKItemsets = [];
 
-            // Check if frequentItemsets[k - 1] is defined and an array
-            if (
-                this.frequentItemsets &&
-                Array.isArray(this.frequentItemsets[k - 1])
-            ) {
-                for (const itemset of this.frequentItemsets[k - 1]) {
-                    for (const item of this.frequentItemsets[k - 1]) {
-                        if (item > itemset[itemset.length - 1]) {
-                            const newCandidateItemset = [...itemset, item];
-                            candidateKItemsets.push(newCandidateItemset);
-                        }
+        for (const itemset1 of this.frequentItemsets) {
+            for (const itemset2 of this.frequentItemsets) {
+                if (itemset1 < itemset2) {
+                    const newCandidateItemset = [...itemset1, ...itemset2].sort();
+                    if (newCandidateItemset.length === k) {
+                        candidateKItemsets.push(newCandidateItemset);
                     }
                 }
             }
-        return candidateKItemsets;
+        }
+
+        return [...new Set(candidateKItemsets)]; // Remove duplicates
     }
 }
 
-module.exports=Apriori
+module.exports = Apriori;
