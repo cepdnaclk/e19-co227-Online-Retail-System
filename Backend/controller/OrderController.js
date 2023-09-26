@@ -74,6 +74,7 @@ const updateStatus = async(req,res)=>{
     try{
         const {id,status} = req.body
         console.log(status)
+        console.log(id)
         const query= 'UPDATE `order` SET orderStatus=? WHERE orderID=?;';
         db.query(query,[status,id],(err,data)=>{
             if (err) {
@@ -156,6 +157,29 @@ const getcustomerinfo = async(req,res) =>{
   })
   
   }
+//get Customer Orders for see their order status
+const getCustomerOrders = async(req,res)=>{
+
+    try{
+        const id = req.headers.id
+        const query= 'SELECT o.*, c.firstName AS firstName,c.lastName AS lastName, c.email AS email,c.phoneNumber AS phoneNumber FROM `order` AS o JOIN `customer` AS c ON o.customerID = c.customerID WHERE o.customerID = ?;';
+        db.query(query,[id],(err,data)=>{
+            if (err) {
+                console.log(err)
+                return res.status(500).json({ error: 'Database error' });
+            }else {
+                return  res.status(200).json({data:data});
+
+            }
+
+        });
+    }catch (error) {
+        console.log(error)
+        return  res.status(500).json({ error: 'Internal server error' });
+    }
+
+}
+
 
 
 module.exports = {
@@ -164,6 +188,7 @@ module.exports = {
     updateTracking,
     updateStatus,
     deleteOrder,
-    getcustomerinfo
+    getcustomerinfo,
+    getCustomerOrders
 
 }

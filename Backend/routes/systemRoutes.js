@@ -22,6 +22,8 @@ router.get('/getAllProductsFromSeller',productController.getAllProductsFromSelle
 router.put('/updateProduct/:id',productController.updateProduct)
 router.delete('/deleteProduct/:id',productController.deleteProduct)
 
+router.get('/getCustomerOrders',OrderController.getCustomerOrders)
+
 router.get('/getOrders',OrderController.getOrders)
 router.get('/getOrderItems',OrderController.getOrderItems)
 router.put('/updateTracking',OrderController.updateTracking)

@@ -32,6 +32,7 @@ import { HeaderContext } from './contexts/HeaderContext';
 import { useState } from 'react';
 import {manageAccount} from "./services/manage-account.service";
 import UserDetails from "./pages/userDetails/UserDetails";
+import CustomerOrders from "./pages/customer-orders/CustomerOrders";
 
 
 const router = createBrowserRouter(
@@ -48,6 +49,7 @@ const router = createBrowserRouter(
                 <Route path="product/:id" element={<ProductDetails />} />
                 <Route path="cart/:id" element={<CartDetail />} />
                 <Route path="user" element={<UserDetails />} />
+                <Route path="my-orders" element={<CustomerOrders />} />
                 <Route path="/category/:categoryId/subcategory/:subcategoryId" element={<CategorizedItems/>}/>
                 <Route path="dashboard" element={<SellerDashBoardLayout />}>
                     <Route index element={<SellerDashboard />} />

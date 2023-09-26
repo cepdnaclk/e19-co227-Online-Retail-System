@@ -72,17 +72,17 @@ const Header = () => {
           </a>
         </div>
       </div>
-      <div className="col-lg-6 text-center text-lg-right">
-        <div className="d-inline-flex align-items-center">
+      <div className="col-lg-6 text-right text-lg-right">
+        <div className="d-inline-flex align-items-end">
 
             {isLogged===false ?
-                <button className="btn btn-sm btn-light" type="button">
+                <button className="btn btn-sm btn-secondary" type="button">
                   <Link to="/SignIn" className="text-decoration-none text-success">Sign in</Link>
                 </button> :
               <div className="btn-group">
                 <button
                     type="button"
-                    className="btn btn-sm btn-light dropdown-toggle"
+                    className="btn btn-sm btn-secondary dropdown-toggle"
                     data-bs-toggle="dropdown"
                 >
                   Hi! {manageAccount.getCustomerName()}
@@ -112,45 +112,14 @@ const Header = () => {
             </div>
             }
 
-          <div className="btn-group mx-2">
+          <div className="btn-group mx-1">
             <button
               type="button"
-              className="btn btn-sm btn-light dropdown-toggle"
-              data-bs-toggle="dropdown"
+              className="btn btn-sm btn-secondary "
             >
-              USD
+              <Link to={'/my-orders'} className="text-decoration-none" style={{color:'white'}}>My Orders</Link>
+
             </button>
-            <div className="dropdown-menu dropdown-menu-right">
-              <button className="dropdown-item" type="button">
-                EUR
-              </button>
-              <button className="dropdown-item" type="button">
-                GBP
-              </button>
-              <button className="dropdown-item" type="button">
-                CAD
-              </button>
-            </div>
-          </div>
-          <div className="btn-group">
-            <button
-              type="button"
-              className="btn btn-sm btn-light dropdown-toggle"
-              data-bs-toggle="dropdown"
-            >
-              EN
-            </button>
-            <div className="dropdown-menu dropdown-menu-right">
-              <button className="dropdown-item" type="button">
-                FR
-              </button>
-              <button className="dropdown-item" type="button">
-                AR
-              </button>
-              <button className="dropdown-item" type="button">
-                RU
-              </button>
-            </div>
           </div>
         </div>
         <div className="d-inline-flex align-items-center d-block d-lg-none">

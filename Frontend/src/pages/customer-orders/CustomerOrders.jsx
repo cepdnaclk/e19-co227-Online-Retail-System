@@ -1,14 +1,12 @@
 import React, {useEffect, useState} from "react";
-import './AllOrders.component.css'
-import {orderService} from "../../../../services/order.service";
-import {manageAccount} from "../../../../services/manage-account.service";
-import {useParams} from "react-router-dom";
-import {productService} from "../../../../services/product.service";
+import './Order.component.css'
+import {useNavigate, useParams} from "react-router";
+import {manageAccount} from "../../services/manage-account.service";
+import {orderService} from "../../services/order.service";
 
+function CustomerOrders(){
 
-function AllOrders(){
-    const { status } = useParams();
-
+    const navigate = useNavigate()
     const [orderData,setOrderData] = useState([])
     const [orderItems,setOrderItems] = useState([])
     const [trackingID,settrackingID] = useState('')
@@ -25,17 +23,20 @@ function AllOrders(){
 
 
     const getOrders=()=>{
-        orderService.getOrders(manageAccount.getSellerID()).then((response)=>{
+        orderService.getCustomerOrders(manageAccount.getCustomerID()).then((response)=>{
 
             const updateArr = response.data
+            setOrderData(prevState => {
+                return updateArr
+            })
 
-            if(status==='pending'){
+           /* if(status==='pending'){
                 const newArr = updateArr.filter((order) => order.orderStatus === 'Pending');
 
-               setOrderData(prevState => {
-                   return newArr
-               })
-           }else if(status==='closed'){
+                setOrderData(prevState => {
+                    return newArr
+                })
+            }else if(status==='closed'){
                 const newArr = updateArr.filter((order) => order.orderStatus === 'Closed');
 
                 setOrderData(prevState => {
@@ -45,9 +46,7 @@ function AllOrders(){
                 setOrderData(prevState => {
                     return updateArr
                 })
-            }
-
-
+            }*/
 
             response.data.map((order,index)=>{
                 getOrderItems(order.orderID)
@@ -77,18 +76,6 @@ function AllOrders(){
 
     }
 
-    const handleAddTracking=(event)=>{
-        orderService.updateTracking(currentOrderID,trackingID,deliveryCompany).then(respoonse=>{
-            console.log(respoonse.message)
-            updateStatus("Shipped")
-
-        }).catch((e)=>{
-                console.log(e)
-            }
-        )
-
-    }
-
     const updateStatus=(status,id)=>{
         orderService.updateOrderStatus(id,status).then(response=>{
             console.log(response.message)
@@ -108,6 +95,7 @@ function AllOrders(){
                     console.log('Order Deleted!');
                     setUpdate('deleted')
                     alert('Order Deleted Succesfully!');
+                    navigate('/my-orders')
 
 
                 }
@@ -131,7 +119,7 @@ function AllOrders(){
                 <table className="table">
                     <thead>
                     <tr>
-                        <th scope="col">Action</th>
+                        <th scope="col">Order</th>
                         <th scope="col">Buyer</th>
                         <th scope="col">Order Items</th>
                         <th scope="col">Total</th>
@@ -143,46 +131,42 @@ function AllOrders(){
                     {orderData.map((order,index)=>(
                         <tr>
                             <th scope="row">
-                                <div className="btn-group">
-                                    <button type="button" className="btn btn-light dropdown-toggle"
-                                            data-bs-toggle="dropdown" aria-expanded="false">
-                                        Action
+                                <div className="btn-group row mx-2">
+                                    <button type="button" className="btn btn-secondary"
+                                             aria-expanded="false" data-bs-toggle="modal" data-bs-target="#staticBackdrop2">
+                                        Order Details
                                     </button>
-                                    <ul className="dropdown-menu">
+                                    {order.orderStatus === 'Pending' ?
+                                        <button type="button" className="btn btn-danger"
+                                                aria-expanded="false"
+                                                onClick={()=>{
+
+                                                    if(window.confirm("Are you sure you want to cancel this order?"))
+                                                    updateStatus("Closed",order.orderID);
+
+                                                }}
+                                        >
+                                            Cancel
+                                        </button>
+
+                                        :
+                                    <button type="button" className="btn btn-danger"
+                                            aria-expanded="false" data-bs-toggle="modal" data-bs-target="#staticBackdrop3">
+                                        Remove
+                                    </button>
+                                    }
+
+
+
+                                    {/*<ul className="dropdown-menu">
                                         <li><a className="dropdown-item" type='button' data-bs-toggle="modal" data-bs-target="#staticBackdrop1" onClick={()=>{setCurrentOrderID(order.orderID)}}>Add Tracking</a></li>
-                                        <li><a className="dropdown-item" type='button' onClick={()=>{ updateStatus("Closed",order.orderID); }}>Close Order</a></li>
+                                        <li><a className="dropdown-item" type='button' onClick={()=>{ setCurrentOrderID(order.orderID);updateStatus("Closed"); }}>Close Order</a></li>
                                         <li><a className="dropdown-item" type='button' data-bs-toggle="modal" data-bs-target="#staticBackdrop2">Shipping Details</a></li>
                                         <li><a className="dropdown-item" type='button' data-bs-toggle="modal" data-bs-target="#staticBackdrop3" style={{color:'red'}}>Delete</a></li>
-                                    </ul>
+                                    </ul>*/}
 
-                                    {/*Model for Add tracking*/}
-                                    <div class="modal fade" id="staticBackdrop1" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
-                                        <div class="modal-dialog modal-dialog-centered">
-                                            <div class="modal-content">
-                                                <div class="modal-header">
-                                                    <h1 class="modal-title fs-5" id="staticBackdropLabel">Add Tracking</h1>
-                                                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                                                </div>
-                                                <div class="modal-body">
-                                                    <div className="form-floating mb-3">
-                                                        <input type="email" className="form-control" id="floatingInput"
-                                                               placeholder="name@example.com"  onChange={(e)=>{settrackingID(e.target.value)}} />
-                                                        <label htmlFor="floatingInput">Tracking Number</label>
-                                                    </div>
-                                                    <div className="form-floating mb-3">
-                                                        <input type="email" className="form-control" id="floatingInput"
-                                                               placeholder="name@example.com"  onChange={(e)=>{setdeliveryCompany(e.target.value)}}/>
-                                                        <label htmlFor="floatingInput">Delivery Company</label>
-                                                    </div>
-                                                </div>
-                                                <div class="modal-footer">
-                                                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-                                                    <button type="button" class="btn btn-primary" onClick={handleAddTracking} data-bs-dismiss="modal">Add</button>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
 
+                                    {/*Model For Order Details*/}
 
                                     <div class="modal fade" id="staticBackdrop2" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
                                         <div class="modal-dialog modal-dialog-centered">
@@ -192,6 +176,7 @@ function AllOrders(){
                                                     <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                                                 </div>
                                                 <div class="modal-body">
+                                                    <h2>Address</h2>
                                                     {order.name} <br/>
                                                     {order.address1} <br/>
                                                     {order.address2} <br/>
@@ -239,36 +224,36 @@ function AllOrders(){
                                 </div>
                             </th>
                             <td>{order.firstName} {order.lastName}<br/>{order.email}</td>
-                          {
-                              orderItems[index]!==undefined &&
-                              orderItems[index].map((item,index)=>(
+                            {
+                                orderItems[index]!==undefined &&
+                                orderItems[index].map((item,index)=>(
 
-                                  <tr>
-                                      <td>
-                                          <div className="card mb-3" style={{maxWidth: "300px"}}>
-                                              <div className="row g-0">
-                                                  <div className="col-md-4">
-                                                      <img src={item.image} className="img-fluid rounded-start" alt="..."/>
-                                                  </div>
-                                                  <div className="col-md-8 items-detail" >
-                                                      <div className="card-body" >
-                                                          <h6 className="card-title">{item.productName}</h6>
-                                                          <ul className="list-group list-group-flush">
-                                                              <li className="list-group-item">ID&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;:{item.orderID}</li>
-                                                              <li className="list-group-item">Qty&nbsp;&nbsp;&nbsp;:{item.itemQty}(left:{item.qty-item.itemQty})</li>
-                                                              <li className="list-group-item">Sub Total&nbsp;:{(item.totalPrice/item.itemQty).toFixed(2)}x{item.itemQty}</li>
-                                                          </ul>
-                                                      </div>
-                                                  </div>
-                                              </div>
-                                          </div>
+                                    <tr>
+                                        <td>
+                                            <div className="card mb-3" style={{maxWidth: "300px"}}>
+                                                <div className="row g-0">
+                                                    <div className="col-md-4">
+                                                        <img src={item.image} className="img-fluid rounded-start" alt="..."/>
+                                                    </div>
+                                                    <div className="col-md-8 items-detail" >
+                                                        <div className="card-body" >
+                                                            <h6 className="card-title">{item.productName}</h6>
+                                                            <ul className="list-group list-group-flush">
+                                                                <li className="list-group-item">ID&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;:{item.orderID}</li>
+                                                                <li className="list-group-item">Qty&nbsp;&nbsp;&nbsp;:{item.itemQty}(left:{item.qty-item.itemQty})</li>
+                                                                <li className="list-group-item">Sub Total&nbsp;:{(item.totalPrice/item.itemQty).toFixed(2)}x{item.itemQty}</li>
+                                                            </ul>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
 
-                                      </td>
+                                        </td>
 
-                                  </tr>
+                                    </tr>
 
                                 ))
-                          }
+                            }
 
                             <td><h5>${order.orderTotal}</h5>
 
@@ -327,4 +312,4 @@ function AllOrders(){
 
 }
 
-export default AllOrders;
+export default CustomerOrders;
