@@ -19,6 +19,8 @@ const ProductDetails = (props) => {
 
   const cartInfo = useManageCart();
 
+  const [rec, setRec] = useState(false)
+
 
 
   const { qty, errQty, handleQty, handleChange, productDetails,isInCart, setIsInCart, } = useManageCart();
@@ -420,7 +422,7 @@ const ProductDetails = (props) => {
 </>)
 }
 
-  <RecommendedProducts id={id}/>
+  <RecommendedProducts id={id} setRec={setRec}/>
 
   <Footer />
 

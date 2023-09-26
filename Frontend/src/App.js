@@ -71,9 +71,11 @@ const router = createBrowserRouter(
 
 function App() {
   const [trigger,setTrigger] = useState(false)
+  const [rec, setRec] = useState(true)
+
 
   return (
-    <HeaderContext.Provider value={{trigger,setTrigger}}>
+    <HeaderContext.Provider value={{trigger,setTrigger,rec,setRec}}>
       <RouterProvider router={router} />
     </HeaderContext.Provider>
 

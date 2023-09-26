@@ -29,9 +29,7 @@ const ProductCarouselItem = ({id}) => {
     fetchProductDetails()
   },[id]);
 
-  useEffect(()=>{
-    console.log(product)
-  },[product])
+
 
 
 
