@@ -1,7 +1,7 @@
 import React, { useEffect, useState,useContext } from 'react'
 import { useManageCart } from '../../services/useManageCart'
 import axios from 'axios'
-import { CartContext } from '../../contexts/CartContext'
+import { HeaderContext } from '../../contexts/HeaderContext'
 
 const CartItem = ({cartItem, changeSubtotal, setUpdateCartTrigger}) => {
 
@@ -32,7 +32,7 @@ const CartItem = ({cartItem, changeSubtotal, setUpdateCartTrigger}) => {
 
   //console.log(cartID, productID)
 
-  const{setTrigger} = useContext(CartContext)
+  const{setTrigger} = useContext(HeaderContext)
 
   const handleDelete = async () =>{
     try{

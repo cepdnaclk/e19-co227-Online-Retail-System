@@ -11,7 +11,7 @@ import EditProduct from "./edit-product-page/EditProduct";
 function AllListing(){
 
     const [products, setProducts] = useState([]);
-    const [id,setID]=useState('')
+    //const [id,setID]=useState('')
     const [isDeleted,setIsDeleted] = useState(false)
 
     useEffect(() => {
@@ -26,10 +26,11 @@ function AllListing(){
             console.log('Component unmounted');
 
         };
-    }, []);
+    }, [isDeleted]);
 
-    const handleDeleteProduct=(event)=>{
+    const handleDeleteProduct=(event,id)=>{
         event.preventDefault();
+        console.log(id)
         productService
             .deleteProduct(id)
             .then((resp) => {
@@ -37,12 +38,13 @@ function AllListing(){
                         console.log('Product Deleted!');
                         setIsDeleted(true)
                         alert('Product Deleted Succesfully!');
+                        setIsDeleted(false)
 
                 }
             })
             .catch((error) => {
                 console.error('Error deleting product:', error);
-                alert('Error Occured In Product deleting!');
+                alert('Product Can\'t be deleted There are Order Placed Related to this Product!');
             });
 
 
@@ -75,10 +77,13 @@ function AllListing(){
                                     <Link to={`edit-product/${product.productID}`} state={{ product }}
                                     >Edit</Link>
                                 </a>
-                                <a href="#" className="card-link" onClick={(e)=>{
+                                <a href="#" className="card-link"
+                                   onClick={(e)=>{
+
                                     if (window.confirm("Are You Sure You want to delete Item?")) {
-                                        handleDeleteProduct(e);
-                                        setID(product.productID);
+
+                                        handleDeleteProduct(e,product.productID);
+
                                     }
                                 }
                                 } style={{color:'red'}}>Delete</a>

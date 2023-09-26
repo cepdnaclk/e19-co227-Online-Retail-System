@@ -146,5 +146,59 @@ async function verifyToken(req,res) {
     }
 }
 
+async function updateUser(req,res){
+    try {
+        const id = parseInt(req.params.id);
+        let { firstName,lastName ,phoneNumber ,addressL1 ,addressL2,addressL3 } = req.body;
+        console.log(firstName)
+        const query = 'UPDATE customer SET  firstName = ?, lastName = ?,  phoneNumber = ?,  addressL1 = ?,  addressL2 = ?,  addressL3 = ? WHERE customerID = ?;';
+        db.query(query, [firstName,lastName ,phoneNumber ,addressL1 ,addressL2,addressL3 ,id],(error,data)=>{
+            if (error) {
+                console.log(error)
+                return res.status(500).json({ error: 'Database error' });
+            }else {
+                console.log("Product Added")
+                return  res.status(200).json({message: 'Customer Updated'});
 
-module.exports = { createCustomer,LoginUser,getSeller,verifyToken };
+            }
+
+        });
+
+    } catch (error) {
+        console.log(error)
+        return  res.status(500).json({ error: 'Internal server error' });
+    }
+
+}
+async function setAsSeller(req,res){
+    try {
+        const customerID = req.params.id;
+        const shopName = req.body.shopName;
+
+        const query = 'INSERT INTO seller (customerID, shopName) VALUES (?, ?)';
+        db.query(query,[customerID,shopName],(error,data)=> {
+            console.log(data)
+            if (error) {
+                return res.status(500).json({error: 'Database error'});
+            } else {
+                const cusQuery = "UPDATE customer SET role = ? WHERE customerID = ?";
+                db.query(cusQuery,["seller",customerID],(error,data)=> {
+                    if (error) {
+                        return res.status(500).json({error: 'Database error'});
+                    }else {
+                        return res.status(200).json({message:"success"})
+                    }
+                    })
+
+            }
+        })
+    }catch (error) {
+        return  res.status(500).json({ error: 'Internal server error' });
+    }
+
+
+}
+
+
+
+module.exports = { createCustomer,LoginUser,getSeller,verifyToken,updateUser,setAsSeller };

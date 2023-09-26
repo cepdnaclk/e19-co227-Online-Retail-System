@@ -28,50 +28,53 @@ import ProductDetails from './pages/productDetails/ProductDetails';
 import EditProduct from "./pages/seller-dashboard/listing-page/all-listing-page/edit-product-page/EditProduct";
 import CartDetail from './pages/cartDetails/CartDetail';
 import CategorizedItems from './pages/CategorizedItems/CategorizedItems'
-import { CartContext } from './contexts/CartContext';
+import { HeaderContext } from './contexts/HeaderContext';
 import { useState } from 'react';
+import {manageAccount} from "./services/manage-account.service";
+import UserDetails from "./pages/userDetails/UserDetails";
 
 
 const router = createBrowserRouter(
-  createRoutesFromElements(
-    
-    <Route path="/" element={<MainLayout />}>
-      
-      <Route path="SignIn" element={<SignIn />} />
-      <Route path="SignUp" element={<SignUp />} />
+    createRoutesFromElements(
 
-      <Route path='/' element={<Header />}>
-         <Route index element={<Home />} />
-         <Route path="products" element={<Products/>} />
-         <Route path="/checkout" element={<Checkout/>} />
-         <Route path="/successful" element={<Successful/>} />
-         <Route path="product/:id" element={<ProductDetails />} />
-         <Route path="cart/:id" element={<CartDetail />} />
-         <Route path="/category/:categoryId/subcategory/:subcategoryId" element={<CategorizedItems/>}/>
-         <Route path="dashboard" element={<SellerDashBoardLayout />}>
-              <Route index element={<SellerDashboard />} />
-              <Route path={"add_items"} element={<AddListing />} />
-              <Route path={"all_items"} element={<AllListing />} />
-              <Route path={"all_items/edit-product/:productId"} element={<EditProduct />} />
+        <Route path="/" element={<MainLayout />}>
 
-              <Route path={"all_orders/:status"} element={<AllOrders />} />
-              {/*<Route path={"all_orders/:status"} element={<AwaitingShipment />} />*/}
+            <Route path="SignIn" element={<SignIn />} />
+            <Route path="SignUp" element={<SignUp />} />
+
+            <Route path='/' element={<Header />}>
+                <Route index element={<Home />} />
+                <Route path="products" element={<Products/>} />
+                <Route path="product/:id" element={<ProductDetails />} />
+                <Route path="cart/:id" element={<CartDetail />} />
+                <Route path="user" element={<UserDetails />} />
+                <Route path="/category/:categoryId/subcategory/:subcategoryId" element={<CategorizedItems/>}/>
+                <Route path="dashboard" element={<SellerDashBoardLayout />}>
+                    <Route index element={<SellerDashboard />} />
+                    <Route path={"add_items"} element={<AddListing />} />
+                    <Route path={"all_items"} element={<AllListing />} />
+                    <Route path={"all_items/edit-product/:productId"} element={<EditProduct />} />
+
+                    <Route path={"all_orders/:status"} element={<AllOrders />} />
+                    {/*<Route path={"all_orders/:status"} element={<AwaitingShipment />} />*/}
+                </Route>
+
+            </Route>
+
+
         </Route>
-        
-      </Route>
-      
-    </Route>
-  )
+    )
 )
 
 
 function App() {
   const [trigger,setTrigger] = useState(false)
+
   return (
-    <CartContext.Provider value={{trigger,setTrigger}}>
+    <HeaderContext.Provider value={{trigger,setTrigger}}>
       <RouterProvider router={router} />
-    </CartContext.Provider>
-     
+    </HeaderContext.Provider>
+
 );
 }
 

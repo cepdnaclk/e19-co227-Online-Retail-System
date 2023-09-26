@@ -1,29 +1,35 @@
 import React, {useEffect, useState} from "react";
 import {manageAccount} from "../../../services/manage-account.service";
-import {Link, NavLink, Outlet} from "react-router-dom";
+import {Link, NavLink, Outlet, useNavigate} from "react-router-dom";
 import { useManageCart } from "../../../services/useManageCart";
 import CartSize from "../../CartSize";
+import {useContext} from "react";
+import {HeaderContext} from "../../../contexts/HeaderContext";
 //import '../../../css/style.css'
 
 const Header = () => {
-
+  const navigate = useNavigate();
   const [isSeller,setIsSeller] = useState(false)
   const [isLogged,setIsLogged] = useState(false)
+  const {trigger,setTrigger} = useContext(HeaderContext)
 
   useEffect(() => {
     checkisLogged();
     checkSeller();
 
+
     return () => {
       console.log('Component unmounted');
 
     };
-  }, []);
+  }, [trigger]);
 
 
   const checkSeller=()=>{
+    console.log('sellerID header',manageAccount.getSellerID())
     if(manageAccount.getSellerID()!==-1){
       setIsSeller(true);
+
     }
   }
 
@@ -88,13 +94,16 @@ const Header = () => {
                   </button>
                 }
                 <button className="dropdown-item" type="button">
-                  My Profile
+                  <Link to="user" className="text-decoration-none">My Profile</Link>
                 </button>
                 <button className="dropdown-item" type="button"
                         onClick={()=>{
                           manageAccount.logOut()
                           setIsLogged(false)
                           setIsSeller(false)
+                          setTrigger(true)
+                          navigate("/")
+
                         }}>
                   Log Out
                 </button>

@@ -11,7 +11,7 @@
     padding-top: 50px;
 
 }
-.image-wrap svg{
+.image-wrap img{
     height: 320px;
     max-width: 100%;
 }
@@ -40,7 +40,6 @@
     width: 100%;
     height: 50px;
     display: flex;
-    border-bottom: 1px solid #bdc3c7;
 
 
 }
@@ -84,4 +83,6 @@
     cursor: pointer;
 }
 
-
+.submit-bt{
+    margin: 5px;
+}

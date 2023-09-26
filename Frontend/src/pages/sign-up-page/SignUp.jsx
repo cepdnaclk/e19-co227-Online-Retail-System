@@ -102,6 +102,8 @@ class SignUp extends React.Component{
                             </p>
 
                             <br></br>
+
+                            <form className="row g-3 needs-validation" novalidate>
                             <div className="item-wrap">
                                 <div className="icon-wrap">
                                     <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16"
@@ -254,10 +256,24 @@ class SignUp extends React.Component{
                             {this.state.submittedMsg === "register_success" && <div className="alert alert-success" role="alert">Registration Successful!</div>}
                             {this.state.submittedMsg === "exist" && <div className="alert alert-warning" role="alert">You Already Have Account !</div>}
                             {this.state.submittedMsg === "pwd_not_enough" && <div className="alert alert-warning" role="alert">Password must contain at least 8 characters !</div>}
-                            <p style={{textAlign: "right"}}>
-                                <button className="btn btn-primary" color="primary" onClick={this.handleSubmit}>Register</button>
+                            <p style={{textAlign: "right",margin:'2px'}}>
+                                {this.state.loading ? (
+                                        <button className="btn btn-primary" type="button">
+                                                <span className="spinner-border spinner-border-sm" role="status"
+                                                      aria-hidden="true"></span>
+                                            Loading...
+                                        </button>
+
+
+                                    ):
+                                    <button className="btn btn-primary" type="submit" color="primary" onClick={this.handleSubmit}>Register</button>
+                                }
+
+
                             </p>
 
+
+                            </form>
                         </div>
                         {this.state.loading && (
                             <div className="progress">

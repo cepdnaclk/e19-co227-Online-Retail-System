@@ -3,6 +3,7 @@ import './AllOrders.component.css'
 import {orderService} from "../../../../services/order.service";
 import {manageAccount} from "../../../../services/manage-account.service";
 import {useParams} from "react-router-dom";
+import {productService} from "../../../../services/product.service";
 
 
 function AllOrders(){
@@ -14,6 +15,7 @@ function AllOrders(){
     const [deliveryCompany,setdeliveryCompany] = useState('')
     const [currentOrderID,setCurrentOrderID] =useState(0)
     const [update,setUpdate] = useState('')
+
 
     useEffect(() => {
         getOrders()
@@ -96,6 +98,29 @@ function AllOrders(){
         })
     }
 
+    const handleDeleteOrder=(event,id)=>{
+        event.preventDefault();
+        console.log(id)
+        orderService
+            .deleteOrder(id)
+            .then((resp) => {
+                if (resp.message === 'Order Deleted') {
+                    console.log('Order Deleted!');
+                    setUpdate('deleted')
+                    alert('Order Deleted Succesfully!');
+
+
+                }
+            })
+            .catch((error) => {
+                console.error('Error deleting Order:', error);
+                alert('Error deleting Order!');
+            });
+
+
+
+    }
+
 
     return (
         <div>
@@ -127,7 +152,7 @@ function AllOrders(){
                                         <li><a className="dropdown-item" type='button' data-bs-toggle="modal" data-bs-target="#staticBackdrop1" onClick={()=>{setCurrentOrderID(order.orderID)}}>Add Tracking</a></li>
                                         <li><a className="dropdown-item" type='button' onClick={()=>{ setCurrentOrderID(order.orderID);updateStatus("Closed"); }}>Close Order</a></li>
                                         <li><a className="dropdown-item" type='button' data-bs-toggle="modal" data-bs-target="#staticBackdrop2">Shipping Details</a></li>
-
+                                        <li><a className="dropdown-item" type='button' data-bs-toggle="modal" data-bs-target="#staticBackdrop3" style={{color:'red'}}>Delete</a></li>
                                     </ul>
 
                                     {/*Model for Add tracking*/}
@@ -180,7 +205,33 @@ function AllOrders(){
                                         </div>
                                     </div>
 
-
+                                    <div className="modal fade" id="staticBackdrop3" tabIndex="-1"
+                                         aria-labelledby="exampleModalLabel" aria-hidden="true">
+                                        <div className="modal-dialog">
+                                            <div className="modal-content">
+                                                <div className="modal-header">
+                                                    <h5 className="modal-title" id="exampleModalLabel" style={{color:'red'}}>Delete Order</h5>
+                                                    <button type="button" className="btn-close" data-bs-dismiss="modal"
+                                                            aria-label="Close"></button>
+                                                </div>
+                                                <div className="modal-body">
+                                                    Are you sure You want to delete this Order?
+                                                </div>
+                                                <div className="modal-footer">
+                                                    <button type="button" className="btn btn-secondary"
+                                                            data-bs-dismiss="modal">Close
+                                                    </button>
+                                                    <button type="button" className="btn btn-primary" style={{color:'red'}}
+                                                            onClick={event => {
+                                                                handleDeleteOrder(event,order.orderID)
+                                                            }}
+                                                            data-bs-dismiss="modal"
+                                                    >Yes
+                                                    </button>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
 
 
                                 </div>

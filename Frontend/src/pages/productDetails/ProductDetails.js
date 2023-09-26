@@ -4,7 +4,7 @@ import { useParams,  useNavigate } from 'react-router'
 import { manageAccount } from '../../services/manage-account.service'
 import { useManageCart } from '../../services/useManageCart'
 import Footer from '../../components/layout/footer/footer'
-import { CartContext } from '../../contexts/CartContext'
+import { HeaderContext } from '../../contexts/HeaderContext'
 import RecommendedProducts from '../../components/layout/RecommendedProducts'
 import { NavLink } from 'react-router-dom'
 
@@ -54,7 +54,7 @@ const ProductDetails = (props) => {
 
 
 
-  const {trigger,setTrigger} = useContext(CartContext)
+  const {trigger,setTrigger} = useContext(HeaderContext)
  useEffect(()=>{
 
    if(cartID !== null){

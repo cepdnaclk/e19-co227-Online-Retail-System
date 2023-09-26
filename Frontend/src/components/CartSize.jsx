@@ -1,14 +1,14 @@
 import axios from 'axios'
 import { useEffect,useState,useContext } from 'react'
 import { useManageCart } from '../services/useManageCart'
-import { CartContext } from '../contexts/CartContext'
+import { HeaderContext } from '../contexts/HeaderContext'
 
 
 
 const CartSize = () => {
   const {cartID} = useManageCart()
 
-  const {trigger,setTrigger} = useContext(CartContext)
+  const {trigger,setTrigger} = useContext(HeaderContext)
 
 
   const [cartSize,setCartSize] = useState(0)
