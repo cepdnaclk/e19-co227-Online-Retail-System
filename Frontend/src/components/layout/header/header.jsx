@@ -55,7 +55,7 @@ const Header = () => {
             <>
               {/* Topbar Start */}
   <div className="container-fluid">
-    <div className="row bg-secondary py-1 px-xl-5">
+    <div className="row bg-light py-1 px-xl-5">
       <div className="col-lg-6 d-none d-lg-block">
         <div className="d-inline-flex align-items-center h-100">
           <a className="text-body mr-3" href="">
@@ -147,11 +147,11 @@ const Header = () => {
     <div className="row align-items-center bg-light py-3 px-xl-5 d-none d-lg-flex">
       <div className="col-lg-4">
         <a href="" className="text-decoration-none">
-          <span className="h1 text-uppercase text-white bg-dark px-2">
+          <span className="h1 text-uppercase text-white bg-dark px-2 font-style">
             Gadget
           </span>
           <span className="h1 text-uppercase text-dark bg-white px-2 ml-n1">
-            Wave
+          𝓦𝓪𝓿𝓮
           </span>
         </a>
       </div>
@@ -180,7 +180,7 @@ const Header = () => {
   {/* Topbar End */}
 
               {/* Navbar Start */}
-  <div className="container-fluid bg-dark mb-30">
+  <div className="container-fluid  mb-30"style={{ backgroundColor: "#f5db67" }}>
     <div className="row px-xl-5">
       <div className="col-lg-3 d-none d-lg-block">
         <a
@@ -606,14 +606,14 @@ const Header = () => {
           </button>
           <div
             className="collapse navbar-collapse justify-content-between"
-            id="navbarCollapse"
+            id="navbarCollapse" style={{ backgroundColor: "#f5db67" }}
           >
             <div className="navbar-nav mr-auto py-0">
 
-                <Link to="/" className="nav-item nav-link">Home</Link>
+                <Link to="/" className="nav-item nav-link text-dark">Home</Link>
 
 
-                <Link to="/products" className="nav-item nav-link">Shop</Link>
+                <Link to="/products" className="nav-item nav-link text-dark">Shop</Link>
 
 
               {/*<a href="" className="nav-item nav-link active">
@@ -622,13 +622,13 @@ const Header = () => {
               <div className="nav-item dropdown">
                 <a
                   href="#"
-                  className="nav-link dropdown-toggle"
+                  className="nav-link dropdown-toggle text-dark"
                   data-bs-toggle="dropdown"
                 >
-                  Pages <i className="fa fa-angle-down mt-1" />
+                  Pages <i className="fa fa-angle-down mt-1 text-dark" />
                 </a>
-                <div className="dropdown-menu bg-success rounded-0 border-0 m-0">
-                  <a href="" className="dropdown-item">
+                <div className="dropdown-menu rounded-0 border-0 m-0" style={{ backgroundColor: "#f5db67" }}>
+                  <a href="" className="dropdown-item text-dark">
                     Shopping Cart
                   </a>
                   <a href="/checkout" className="dropdown-item">
@@ -637,14 +637,14 @@ const Header = () => {
                 </div>
               </div>
               { isSeller &&
-                <Link to="dashboard" className="nav-item nav-link">Seller Dashboard</Link>
+                <Link to="dashboard" className="nav-item nav-link text-dark">Seller Dashboard</Link>
 
               }
 
             </div>
             <div className="navbar-nav ml-auto py-0 d-none d-lg-block">
               <a href="" className="btn px-0">
-                <i className="fas fa-heart text-success" />
+                <i className="fas fa-heart text-warning border-dark" />
                 <span
                   className="badge text-secondary border border-secondary rounded-circle"
                   style={{ paddingBottom: 2 }}
@@ -653,7 +653,7 @@ const Header = () => {
                 </span>
               </a>
               <NavLink to = { `cart/${manageAccount.getCustomerID()}` } className="btn px-0 ml-3">
-                <i className="fas fa-shopping-cart text-success" />
+                <i className="fas fa-shopping-cart text-warning" />
                 <span
                   className="badge text-secondary border border-secondary rounded-circle"
                   style={{ paddingBottom: 2 }}
