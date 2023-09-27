@@ -73,7 +73,7 @@ const Header = () => {
         </div>
       </div>
       <div className="col-lg-6 text-right text-lg-right">
-        <div className="d-inline-flex align-items-end">
+       {/* <div className="d-inline-flex align-items-end">
 
             {isLogged===false ?
                 <button className="btn btn-sm btn-secondary" type="button">
@@ -121,19 +121,50 @@ const Header = () => {
 
             </button>
           </div>
-        </div>
+        </div>*/}
         <div className="d-inline-flex align-items-center d-block d-lg-none">
-          <a href="" className="btn px-0 ml-2">
-            <i className="fas fa-heart text-dark" />
-            <span
-              className="badge text-dark border border-dark rounded-circle"
-              style={{ paddingBottom: 2 }}
-            >
-              0
-            </span>
-          </a>
+          <div className="dropdown ml-3">
+            <a className="btn px-4 dropdown-toggle" type="button" id="dropdownMenuButton1" data-bs-toggle="dropdown" aria-expanded="false">
+              <i className="fas fa-user text-warning" />
+            </a>
+            <ul className="dropdown-menu" aria-labelledby="dropdownMenuButton1">
+              {isLogged === false ? (
+                  <li key="signin">
+
+                    <Link to="/SignIn" className="text-decoration-none text-warning dropdown-item">Sign in</Link>
+
+                  </li>
+              ) : (
+                  <>
+                    <li key="greeting"><a className="dropdown-item" style={{borderBottom:"1px solid black"}}>Hi! {manageAccount.getCustomerName()}</a></li>
+                    <li> <Link to={'/my-orders'} className="text-decoration-none dropdown-item">My Orders</Link></li>
+                    {isSeller && (
+                        <li key="mystore">
+                          <Link to="dashboard" className="text-decoration-none dropdown-item">My Store</Link>
+                        </li>
+                    )}
+                    <li key="myprofile"><Link to="user" className="text-decoration-none dropdown-item">My Profile</Link></li>
+                    <li key="logout">
+                      <button
+                          className="dropdown-item"
+                          type="button"
+                          onClick={() => {
+                            manageAccount.logOut();
+                            setIsLogged(false);
+                            setIsSeller(false);
+                            setTrigger(true);
+                            navigate("/");
+                          }}
+                      >
+                        Log Out
+                      </button>
+                    </li>
+                  </>
+              )}
+            </ul>
+          </div>
           <NavLink to = { `cart/${manageAccount.getCustomerID()}` } className="btn px-0 ml-2">
-            <i className="fas fa-shopping-cart text-dark" />
+            <i className="fas fa-shopping-cart text-warning" />
             <span
               className="badge text-dark border border-dark rounded-circle"
               style={{ paddingBottom: 2 }}
@@ -588,12 +619,13 @@ const Header = () => {
       </div>
       <div className="col-lg-9">
         <nav className="navbar navbar-expand-lg bg-dark navbar-dark py-3 py-lg-0 px-0">
+
           <a href="" className="text-decoration-none d-block d-lg-none">
-            <span className="h1 text-uppercase text-dark bg-light px-2">
-              Multi
+            <span className="h1 text-uppercase text-white bg-dark px-2 font-style">
+              Gadget
             </span>
-            <span className="h1 text-uppercase text-light bg-primary px-2 ml-n1">
-              Shop
+            <span className="h1 text-uppercase text-dark bg-white px-2 ml-n1">
+              𝓦𝓪𝓿𝓮
             </span>
           </a>
           <button
@@ -642,26 +674,56 @@ const Header = () => {
               }
 
             </div>
-            <div className="navbar-nav ml-auto py-0 d-none d-lg-block">
-              <a href="" className="btn px-0">
-                <i className="fas fa-heart text-warning border-dark" />
-                <span
-                  className="badge text-secondary border border-secondary rounded-circle"
-                  style={{ paddingBottom: 2 }}
-                >
-                  0
-                </span>
-              </a>
-              <NavLink to = { `cart/${manageAccount.getCustomerID()}` } className="btn px-0 ml-3">
+            <div className="navbar-nav ml-auto py-0 d-none d-lg-flex align-items-center">
+              <div className="dropdown ml-3">
+                <a className="btn px-4 dropdown-toggle" type="button" id="dropdownMenuButton1" data-bs-toggle="dropdown" aria-expanded="false">
+                  <i className="fas fa-user text-warning" />
+                </a>
+                <ul className="dropdown-menu" aria-labelledby="dropdownMenuButton1">
+                  {isLogged === false ? (
+                      <li key="signin">
+
+                          <Link to="/SignIn" className="text-decoration-none text-warning dropdown-item">Sign in</Link>
+
+                      </li>
+                  ) : (
+                      <>
+                        <li key="greeting"><a className="dropdown-item" style={{borderBottom:"1px solid black"}}>Hi! {manageAccount.getCustomerName()}</a></li>
+                        <li> <Link to={'/my-orders'} className="text-decoration-none dropdown-item">My Orders</Link></li>
+                        {isSeller && (
+                            <li key="mystore">
+                              <Link to="dashboard" className="text-decoration-none dropdown-item">My Store</Link>
+                            </li>
+                        )}
+                        <li key="myprofile"><Link to="user" className="text-decoration-none dropdown-item">My Profile</Link></li>
+                        <li key="logout">
+                          <button
+                              className="dropdown-item"
+                              type="button"
+                              onClick={() => {
+                                manageAccount.logOut();
+                                setIsLogged(false);
+                                setIsSeller(false);
+                                setTrigger(true);
+                                navigate("/");
+                              }}
+                          >
+                            Log Out
+                          </button>
+                        </li>
+                      </>
+                  )}
+                </ul>
+              </div>
+
+              <NavLink to={`cart/${manageAccount.getCustomerID()}`} className="btn px-0 ml-3">
                 <i className="fas fa-shopping-cart text-warning" />
-                <span
-                  className="badge text-secondary border border-secondary rounded-circle"
-                  style={{ paddingBottom: 2 }}
-                >
-                  <CartSize />
-                </span>
+                <span className="badge text-secondary border border-secondary rounded-circle" style={{ paddingBottom: 2 }}>
+      <CartSize />
+    </span>
               </NavLink>
             </div>
+
           </div>
         </nav>
       </div>
