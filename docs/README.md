@@ -8,7 +8,7 @@ This is a sample image, to show how to add images to your page. To learn more op
 ![Sample Image](./images/sample.png)
  -->
 
-![Homepage Image](./images/Homepage.png)
+
 
 ## Team
 -  E/19/413, Viduranga G.G.N., [email](mailto:e19413@eng.pdn.ac.lk)
@@ -25,6 +25,9 @@ This is a sample image, to show how to add images to your page. To learn more op
 ## Introduction
 
  The Online Retail System project aims to create an e-commerce platform with functionalities similar to eBay, focusing on a limited set of use cases. The project also has the potential to incorporate a recommender system to enhance the customer experience. The system will have two primary roles: Customers and Store Owners.
+ 
+![Homepage Image](./images/Homepage.png)
+![Homepage Image](./images/Categories.png)
 
 ## Technology Stack
 
