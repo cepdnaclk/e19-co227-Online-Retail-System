@@ -39,6 +39,8 @@ router.get('/newly-added-products', productController.getNewlyAddedProducts);
 router.get('/products/:categoryId/:subcategoryId', productController.getProductsByCategory) 
 router.get('/categoryCount/:categoryId',productController.getproductcount);
 
+router.get('/:categoryName/:categoryID/:count',productController.getProductsByMainCategory);
+
 router.get('/product/:id', ProductDetailsController.getProduct); 
 router.post('/product', ProductDetailsController.addToCart)
 

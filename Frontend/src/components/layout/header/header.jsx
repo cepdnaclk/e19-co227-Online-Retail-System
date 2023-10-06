@@ -5,7 +5,7 @@ import { useManageCart } from "../../../services/useManageCart";
 import CartSize from "../../CartSize";
 import {useContext} from "react";
 import {HeaderContext} from "../../../contexts/HeaderContext";
-//import '../../../css/style.css'
+import '../../../css/style.css'
 
 const Header = () => {
   const navigate = useNavigate();
@@ -211,7 +211,7 @@ const Header = () => {
   {/* Topbar End */}
 
               {/* Navbar Start */}
-  <div className="container-fluid  mb-30"style={{ backgroundColor: "#f5db67" }}>
+  <div className="container-fluid background-color  mb-30">
     <div className="row px-xl-5">
       <div className="col-lg-3 d-none d-lg-block">
         <a
@@ -618,7 +618,7 @@ const Header = () => {
 
       </div>
       <div className="col-lg-9">
-        <nav className="navbar navbar-expand-lg bg-dark navbar-dark py-3 py-lg-0 px-0">
+        <nav className="navbar navbar-expand-lg background-color navbar-light py-3 py-lg-1 px-0">
 
           <a href="" className="text-decoration-none d-block d-lg-none">
             <span className="h1 text-uppercase text-white bg-dark px-2 font-style">
@@ -637,8 +637,8 @@ const Header = () => {
             <span className="navbar-toggler-icon" />
           </button>
           <div
-            className="collapse navbar-collapse justify-content-between"
-            id="navbarCollapse" style={{ backgroundColor: "#f5db67" }}
+            className="collapse navbar-collapse background-color justify-content-between"
+            id="navbarCollapse"
           >
             <div className="navbar-nav mr-auto py-0">
 
@@ -651,23 +651,7 @@ const Header = () => {
               {/*<a href="" className="nav-item nav-link active">
                 Shop Detail
               </a>*/}
-              <div className="nav-item dropdown">
-                <a
-                  href="#"
-                  className="nav-link dropdown-toggle text-dark"
-                  data-bs-toggle="dropdown"
-                >
-                  Pages <i className="fa fa-angle-down mt-1 text-dark" />
-                </a>
-                <div className="dropdown-menu rounded-0 border-0 m-0" style={{ backgroundColor: "#f5db67" }}>
-                  <a href="" className="dropdown-item text-dark">
-                    Shopping Cart
-                  </a>
-                  <a href="/checkout" className="dropdown-item">
-                    Checkout
-                  </a>
-                </div>
-              </div>
+
               { isSeller &&
                 <Link to="dashboard" className="nav-item nav-link text-dark">Seller Dashboard</Link>
 
@@ -677,13 +661,13 @@ const Header = () => {
             <div className="navbar-nav ml-auto py-0 d-none d-lg-flex align-items-center">
               <div className="dropdown ml-3">
                 <a className="btn px-4 dropdown-toggle" type="button" id="dropdownMenuButton1" data-bs-toggle="dropdown" aria-expanded="false">
-                  <i className="fas fa-user text-warning" />
+                  <i className="fas fa-user text-dark" />
                 </a>
                 <ul className="dropdown-menu" aria-labelledby="dropdownMenuButton1">
                   {isLogged === false ? (
                       <li key="signin">
 
-                          <Link to="/SignIn" className="text-decoration-none text-warning dropdown-item">Sign in</Link>
+                          <Link to="/SignIn" className="text-decoration-none text-dark dropdown-item">Sign in</Link>
 
                       </li>
                   ) : (
@@ -717,7 +701,7 @@ const Header = () => {
               </div>
 
               <NavLink to={`cart/${manageAccount.getCustomerID()}`} className="btn px-0 ml-3">
-                <i className="fas fa-shopping-cart text-warning" />
+                <i className="fas fa-shopping-cart text-dark" />
                 <span className="badge text-secondary border border-secondary rounded-circle" style={{ paddingBottom: 2 }}>
       <CartSize />
     </span>
