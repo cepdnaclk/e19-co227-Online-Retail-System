@@ -27,8 +27,12 @@ class SignUp extends React.Component{
 
 
     handleSubmit(event){
+        //validate email
+        const regex = /^[a-zA-Z0-9.!#$%&'*+/=?^_`{|}~-]+@[a-zA-Z0-9-]+(?:\.[a-zA-Z0-9-]+)*$/;
+        let isemailValid = regex.test(this.state.email);
+
         event.preventDefault();
-        if(this.state.password === this.state.rep_password && this.state.password.length>7 && this.state.email!=='' && this.state.firstName!=='' && this.state.phoneNumber!=='' && this.state.addL1!=='') {
+        if(this.state.password === this.state.rep_password && this.state.password.length>7 && this.state.email!=='' && isemailValid && this.state.firstName!=='' && this.state.phoneNumber!=='' && this.state.addL1!=='') {
             const dto = new RegisterUserDTO(
                 this.state.email,
                 this.state.password,
@@ -71,6 +75,10 @@ class SignUp extends React.Component{
                 });
             }else if(this.state.password>7){
                 this.setState({ submittedMsg: "pwd_not_enough" }, () => {
+                    this.forceUpdate(); // Force a re-render
+                });
+            }else if(!isemailValid){
+                this.setState({ submittedMsg: "enter_valid_email" }, () => {
                     this.forceUpdate(); // Force a re-render
                 });
             }
@@ -255,6 +263,7 @@ class SignUp extends React.Component{
                             {this.state.submittedMsg === "fill_require_fields" && <div className="alert alert-danger" role="alert">Please Fill Required Fields !</div>}
                             {this.state.submittedMsg === "register_success" && <div className="alert alert-success" role="alert">Registration Successful!</div>}
                             {this.state.submittedMsg === "exist" && <div className="alert alert-warning" role="alert">You Already Have Account !</div>}
+                            {this.state.submittedMsg === "enter_valid_email" && <div className="alert alert-warning" role="alert">Enter Valid Email !</div>}
                             {this.state.submittedMsg === "pwd_not_enough" && <div className="alert alert-warning" role="alert">Password must contain at least 8 characters !</div>}
                             <p style={{textAlign: "right",margin:'2px'}}>
                                 {this.state.loading ? (
