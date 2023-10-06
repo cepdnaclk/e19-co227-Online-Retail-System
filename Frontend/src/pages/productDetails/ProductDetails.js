@@ -106,7 +106,7 @@ const ProductDetails = (props) => {
   }
 
   return (
-  <>
+  <div style={{backgroundColor:'#f5f5f5'}}>
     {product && (<>
   {/* Shop Detail Start */}
   <div className="container-fluid pb-5" style={{margin:"20px 0px"}}>
@@ -195,7 +195,7 @@ const ProductDetails = (props) => {
           <div className="d-flex align-items-center mb-4 pt-2">
             <div className="input-group quantity mr-3" style={{ width: 130 }}>
               <div className="input-group-btn">   
-                <button className="btn btn-success btn-minus" onClick={()=>handleQty(product,'minus') }>
+                <button className="btn btn-success btn-minus" style={{backgroundColor:'#ffd333', border:'none', color:'black'}} onClick={()=>handleQty(product,'minus') }>
                   <i className="fa fa-minus" />
                 </button>
               </div>
@@ -208,17 +208,17 @@ const ProductDetails = (props) => {
                 value={qty}
               />
               <div className="input-group-btn">    
-                <button className="btn btn-success btn-plus" onClick={()=>handleQty  (product,'plus')}>    
+                <button className="btn btn-success btn-plus" style={{backgroundColor:'#ffd333', border:'none' ,color:'black'}} onClick={()=>handleQty  (product,'plus')}>    
                   <i className="fa fa-plus" />
                 </button>
               </div>
             </div>
           
-            { isInCart && (<button className="btn btn-success px-3" style = {{backgroundColor:"#f0c53a", border:"none"}} onClick={()=>{navigate("/cart/"+{cartID})}} >
+            { isInCart && (<button className="btn btn-success text-dark px-3" style = {{backgroundColor:"#f0c53a", border:"none"}} onClick={()=>{navigate("/cart/"+{cartID})}} >
               <i className="fa fa-shopping-cart mr-1 " /> Already in Cart
             </button>)}
 
-            { !isInCart && (<button className="btn btn-success text-dark px-3" onClick={(e)=>handleCart(e)}>
+            { !isInCart && (<button className="btn btn-success text-dark px-3" style={{backgroundColor:'#ffd333', border:'none'}} onClick={(e)=>handleCart(e)}>
               <i className="fa fa-shopping-cart mr-1 " /> Add To Cart
             </button>)}
 
@@ -427,7 +427,7 @@ const ProductDetails = (props) => {
   <Footer />
 
 
-  </>
+  </div>
  
     
   )

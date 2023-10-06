@@ -49,8 +49,6 @@ const CartItem = ({cartItem, changeSubtotal, setUpdateCartTrigger}) => {
 
  
 
-  
-
    useEffect(()=>{
     setQtycart(cartQty)
     //setTotal(qty* cartItem.productPrice)
@@ -82,7 +80,7 @@ const CartItem = ({cartItem, changeSubtotal, setUpdateCartTrigger}) => {
         style={{ width: 100 }}
       >
         <div className="input-group-btn">
-          <button className="btn btn-sm btn-primary btn-minus" onClick={()=>handleQty(productDetails(cartItem.productID),'minus',true) }>
+          <button className="btn btn-sm btn-primary btn-minus" style={{backgroundColor:'#ffd333', border:'none'}} onClick={()=>handleQty(productDetails(cartItem.productID),'minus',true) }>
 
             <i className="fa fa-minus" />
           </button>
@@ -90,7 +88,8 @@ const CartItem = ({cartItem, changeSubtotal, setUpdateCartTrigger}) => {
         <input
           type="text"
           
-          className="form-control form-control-sm bg-secondary border-0 text-center"
+          className="form-control form-control-sm bg border-0 text-center"
+          
           
           style={{width:"22px", height:"40px",padding:"0" }}
           onChange={(e)=>{ handleChange(e,productDetails(cartItem.productID),true)
@@ -99,7 +98,7 @@ const CartItem = ({cartItem, changeSubtotal, setUpdateCartTrigger}) => {
           
         />
         <div className="input-group-btn">
-          <button className="btn btn-sm btn-primary btn-plus" onClick={()=>{handleQty  (productDetails(cartItem.productID),'plus',true);
+          <button className="btn btn-sm btn-primary btn-plus" style={{backgroundColor:'#ffd333', border:'none'}} onClick={()=>{handleQty  (productDetails(cartItem.productID),'plus',true);
              }}>
             <i className="fa fa-plus" />
           </button>
