@@ -31,10 +31,7 @@ const CartDetail = () => {
     let rec = true
   
 
-  
 
-
- 
 
   useEffect(()=>{
     const fetchProductDetails = async ()=>{
@@ -77,7 +74,7 @@ useEffect(()=>{
 //console.log(subTotal)
 
   return (
-    <>
+    <div  style={{backgroundColor:'#f5f5f5'}}>
   
      {/* Cart Start */}
 
@@ -88,7 +85,7 @@ useEffect(()=>{
      <h4 style={{marginTop:"25px" , marginLeft:"65px"}} ><NavLink to="/" style={{textDecoration:'none', backgroundColor:"#33cc99", padding:"5px 10px 5px 10px", borderRadius:"7px", color:"black", }}>Shop Now</NavLink></h4>
       </div> </div>}
 
-    {cart.length && (<div className="container-fluid">
+    {cart.length && (<div className="container-fluid" style={{backgroundColor:'#f5f5f5'}}>
     <div className="row px-xl-5">
       <div className="col-lg-8 table-responsive mb-5">
         <table className="table table-light table-borderless table-hover text-center mb-0">
@@ -101,12 +98,12 @@ useEffect(()=>{
               <th>Remove</th>
             </tr>
           </thead>
-          <tbody className="align-middle">
+          <tbody className="align-middle" >
 
             
                 { cart.map((cartItem)=>(
     
-                  <tr key={cartItem.productID} >
+                  <tr key={cartItem.productID} style={{backgroundColor:'#ffffff'}}>
                   <CartItem cartItem ={cartItem}  setUpdateCartTrigger={setUpdateCartTrigger} />
                   </tr>
                  ))
@@ -125,14 +122,14 @@ useEffect(()=>{
               placeholder="Coupon Code"
             />
             <div className="input-group-append">
-              <button className="btn btn-primary">Apply Coupon</button>
+              <button className="btn btn-primary" style={{backgroundColor:'#ffd333', border:'none'}}>Apply Coupon</button>
             </div>
           </div>
         </form>
         <h5 className="section-title position-relative text-uppercase mb-3">
-          <span className="bg-secondary pr-3">Cart Summary</span>
+          <span className="bg- pr-3" style={{backgroundColor:'#93999F', padding:'3px', borderRadius:'3px'}}>Cart Summary</span>
         </h5>
-        <div className="bg-light p-30 mb-5">
+        <div className=" p-30 mb-5" style={{backgroundColor:'#ffffff'}}>
           <div className="border-bottom pb-2">
             <div className="d-flex justify-content-between mb-3">
               <h6>Subtotal</h6>
@@ -149,7 +146,7 @@ useEffect(()=>{
               <h5>${subTotal+shipping}</h5>
             </div>
             <a href='/checkout'>
-              <button className="btn btn-block btn-primary font-weight-bold my-3 py-3">
+              <button className="btn btn-block btn-primary font-weight-bold my-3 py-3" style={{backgroundColor:'#ffd333', border:'none'}}>
                 Proceed To Checkout
               </button>
             </a>
@@ -198,7 +195,7 @@ useEffect(()=>{
 
   <Footer />
     
-    </>
+    </div>
     
   )
 }
