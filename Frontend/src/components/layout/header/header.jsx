@@ -6,6 +6,8 @@ import CartSize from "../../CartSize";
 import {useContext} from "react";
 import {HeaderContext} from "../../../contexts/HeaderContext";
 import '../../../css/style.css'
+import './header.component.css'
+import '../themeColor.css'
 
 const Header = () => {
   const navigate = useNavigate();
@@ -196,7 +198,7 @@ const Header = () => {
             />
             <div className="input-group-append text-success">
               <span className="input-group-text bg-transparent ">
-                <i className="fa fa-search text-success" />
+                <i className="fa fa-search custom-text-warning" />
               </span>
             </div>
           </div>
@@ -215,7 +217,7 @@ const Header = () => {
     <div className="row px-xl-5">
       <div className="col-lg-3 d-none d-lg-block">
         <a
-          className="btn d-flex align-items-center justify-content-between bg-warning w-100"
+          className="btn d-flex align-items-center justify-content-between btn-warning custom-btn-warning w-100"
           data-bs-toggle="collapse"
           href="#navbar-vertical"
           style={{ height: 70, padding: "0 30px" }}

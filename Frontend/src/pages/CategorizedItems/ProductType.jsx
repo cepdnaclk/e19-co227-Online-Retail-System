@@ -92,15 +92,15 @@ const ProductType = () => {
 
               <div className="d-flex align-items-center justify-content-center mb-1 color-yellow">
 
-                <small className="fa fa-star text-warning mr-1" />
+                <small className="fa fa-star custom-text-warning mr-1" />
 
-                <small className="fa fa-star text-warning mr-1" />
+                <small className="fa fa-star custom-text-warning mr-1" />
 
-                <small className="fa fa-star text-warning mr-1" />
+                <small className="fa fa-star custom-text-warning mr-1" />
 
-                <small className="fa fa-star text-warning mr-1" />
+                <small className="fa fa-star custom-text-warning mr-1" />
 
-                <small className="fa fa-star text-warning mr-1" />
+                <small className="fa fa-star custom-text-warning mr-1" />
 
                 <small>(99)</small>
               </div></NavLink>
