@@ -35,6 +35,10 @@
   --font-family-sans-serif: "Roboto", sans-serif;
   --font-family-monospace: SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace;
 }
+.background-color{
+  background-color: #f5db67;
+
+}
 
 *,
 *::before,

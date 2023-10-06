@@ -1,8 +1,8 @@
-import React, {useState} from "react";
+import React from "react";
 import './SignUp.component.css'
 import {systemService} from "../../services/systemService";
 import {RegisterUserDTO} from "../../dto/RegisterUserDTO"
-import axios from "axios";
+
 
 class SignUp extends React.Component{
     constructor() {

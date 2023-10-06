@@ -141,7 +141,7 @@ const Footer = () => {
         </a>
         . All Rights Reserved. Designed by
         <a className="text-warning" href="https://htmlcodex.com">
-          HTML Codex
+          Group 5
         </a>
       </p>
     </div>
