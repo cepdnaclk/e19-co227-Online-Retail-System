@@ -11,3 +11,13 @@
   .nav-item:hover .dropdown-menu {
     display: block;
   }
+  .nav-link-style {
+    text-decoration: none;
+    color: inherit; 
+  
+  }
+  
+  .nav-link-style:hover {
+    text-decoration: none; 
+    color:inherit
+  }

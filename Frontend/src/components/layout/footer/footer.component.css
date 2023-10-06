@@ -6,3 +6,13 @@
 .footer .img-fluid {
   max-width: 1000px;
 }
+.nav-link-style {
+  text-decoration: none;
+  color: inherit; 
+
+}
+
+.nav-link-style:hover {
+  text-decoration: none; 
+  color:inherit
+}

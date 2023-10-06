@@ -41,27 +41,27 @@ const Footer = () => {
         <div className="col-md-4 mb-5">
           <h5 className="text-white text-uppercase mb-4 text-white">Quick Shop</h5>
           <div className="d-flex flex-column justify-content-start">
-            <a className="text-white mb-2" href="/">
+            <a className="text-white mb-2 nav-link" href="/">
               <i className="fa fa-angle-right mr-2" />
               Home
             </a>
-            <a className="text-white mb-2" href="/products">
+            <a className="text-white mb-2 nav-link" href="/products">
               <i className="fa fa-angle-right mr-2" />
               Our Shop
             </a>
-            <a className="text-white mb-2" href="#">
+            <a className="text-white mb-2 nav-link" href="#">
               <i className="fa fa-angle-right mr-2" />
               Shop Detail
             </a>
-            <a className="text-white mb-2" href="#">
+            <a className="text-white mb-2 nav-link" href="#">
               <i className="fa fa-angle-right mr-2" />
               Shopping Cart
             </a>
-            <a className="text-white mb-2" href="#">
+            <a className="text-white mb-2 nav-link" href="#">
               <i className="fa fa-angle-right mr-2" />
               Checkout
             </a>
-            <a className="text-white" href="#">
+            <a className="text-white nav-link" href="#">
               <i className="fa fa-angle-right mr-2" />
               Contact Us
             </a>
@@ -70,27 +70,27 @@ const Footer = () => {
         <div className="col-md-4 mb-5">
           <h5 className="text-white text-uppercase mb-4 text-white">My Account</h5>
           <div className="d-flex flex-column justify-content-start">
-            <a className="text-white mb-2" href="/">
+            <a className="text-white mb-2 nav-link" href="/">
               <i className="fa fa-angle-right mr-2" />
               Home
             </a>
-            <a className="text-white mb-2" href="/products">
+            <a className="text-white mb-2 nav-link" href="/products">
               <i className="fa fa-angle-right mr-2" />
               Our Shop
             </a>
-            <a className="text-white mb-2" href="#">
+            <a className="text-white mb-2 nav-link" href="#">
               <i className="fa fa-angle-right mr-2" />
               Shop Detail
             </a>
-            <a className="text-white mb-2" href="#">
+            <a className="text-white mb-2 nav-link" href="#">
               <i className="fa fa-angle-right mr-2" />
               Shopping Cart
             </a>
-            <a className="text-white mb-2" href="#">
+            <a className="text-white mb-2 nav-link" href="#">
               <i className="fa fa-angle-right mr-2" />
               Checkout
             </a>
-            <a className="text-white" href="#">
+            <a className="text-white nav-link" href="#">
               <i className="fa fa-angle-right mr-2" />
               Contact Us
             </a>
@@ -141,9 +141,8 @@ const Footer = () => {
           Domain
         </a>
         . All Rights Reserved. Designed by
-        <a className="custom-text-warning" href="https://htmlcodex.com">
           Group 5
-        </a>
+        
       </p>
     </div>
     <div className="col-md-6 px-xl-0 text-center text-md-right">

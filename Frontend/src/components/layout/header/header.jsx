@@ -60,16 +60,16 @@ const Header = () => {
     <div className="row bg-light py-1 px-xl-5">
       <div className="col-lg-6 d-none d-lg-block">
         <div className="d-inline-flex align-items-center h-100">
-          <a className="text-body mr-3" href="">
+          <a className="text-body mr-3 nav-link" href="">
             About
           </a>
-          <a className="text-body mr-3" href="">
+          <a className="text-body mr-3 nav-link" href="">
             Contact
           </a>
-          <a className="text-body mr-3" href="">
+          <a className="text-body mr-3 nav-link" href="">
             Help
           </a>
-          <a className="text-body mr-3" href="">
+          <a className="text-body mr-3 nav-link" href="">
             FAQs
           </a>
         </div>
@@ -213,7 +213,7 @@ const Header = () => {
   {/* Topbar End */}
 
               {/* Navbar Start */}
-  <div className="container-fluid background-color  mb-30">
+  <div className="container-fluid background-color mb-30">
     <div className="row px-xl-5">
       <div className="col-lg-3 d-none d-lg-block">
         <a
@@ -639,15 +639,15 @@ const Header = () => {
             <span className="navbar-toggler-icon" />
           </button>
           <div
-            className="collapse navbar-collapse background-color justify-content-between"
-            id="navbarCollapse"
+            className="collapse navbar-collapse background-color justify-content-between "
+            id="navbarCollapse" style={{marginTop: '11px'}}
           >
             <div className="navbar-nav mr-auto py-0">
 
-                <Link to="/" className="nav-item nav-link text-dark">Home</Link>
+                <Link to="/" className="nav-item nav-link text-dark" style={{marginLeft:'10px'}}>Home</Link>
 
 
-                <Link to="/products" className="nav-item nav-link text-dark">Shop</Link>
+                <Link to="/products" className="nav-item nav-link text-dark"style={{marginLeft:'12px'}}>Shop</Link>
 
 
               {/*<a href="" className="nav-item nav-link active">
@@ -655,7 +655,7 @@ const Header = () => {
               </a>*/}
 
               { isSeller &&
-                <Link to="dashboard" className="nav-item nav-link text-dark">Seller Dashboard</Link>
+                <Link to="dashboard" className="nav-item nav-link text-dark"style={{marginLeft:'12px'}}>Seller Dashboard</Link>
 
               }
 
