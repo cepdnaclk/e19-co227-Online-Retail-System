@@ -176,7 +176,7 @@ const ProductDetails = (props) => {
           <p>{product.categoryName} {`->`} {product.subcategoryName}</p>
           <p><strong>Seller:</strong> {product.shopName}</p>
           <div className="d-flex mb-3">
-            <div className="text-success mr-2">
+            <div className="text-warning mr-2">
               <small className="fas fa-star" />
               <small className="fas fa-star" />
               <small className="fas fa-star" />
@@ -195,7 +195,7 @@ const ProductDetails = (props) => {
           <div className="d-flex align-items-center mb-4 pt-2">
             <div className="input-group quantity mr-3" style={{ width: 130 }}>
               <div className="input-group-btn">   
-                <button className="btn btn-success btn-minus" onClick={()=>handleQty(product,'minus') }>
+                <button className="btn btn-warning btn-minus" onClick={()=>handleQty(product,'minus') }>
                   <i className="fa fa-minus" />
                 </button>
               </div>
@@ -208,7 +208,7 @@ const ProductDetails = (props) => {
                 value={qty}
               />
               <div className="input-group-btn">    
-                <button className="btn btn-success btn-plus" onClick={()=>handleQty  (product,'plus')}>    
+                <button className="btn btn-warning btn-plus" onClick={()=>handleQty  (product,'plus')}>    
                   <i className="fa fa-plus" />
                 </button>
               </div>
@@ -218,7 +218,7 @@ const ProductDetails = (props) => {
               <i className="fa fa-shopping-cart mr-1 " /> Already in Cart
             </button>)}
 
-            { !isInCart && (<button className="btn btn-success text-dark px-3" onClick={(e)=>handleCart(e)}>
+            { !isInCart && (<button className="btn btn-warning text-dark px-3" onClick={(e)=>handleCart(e)}>
               <i className="fa fa-shopping-cart mr-1 " /> Add To Cart
             </button>)}
 

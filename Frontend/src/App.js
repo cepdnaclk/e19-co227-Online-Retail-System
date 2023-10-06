@@ -28,6 +28,7 @@ import ProductDetails from './pages/productDetails/ProductDetails';
 import EditProduct from "./pages/seller-dashboard/listing-page/all-listing-page/edit-product-page/EditProduct";
 import CartDetail from './pages/cartDetails/CartDetail';
 import CategorizedItems from './pages/CategorizedItems/CategorizedItems'
+import ProductTypes from './pages/CategorizedItems/ProductType';
 import { HeaderContext } from './contexts/HeaderContext';
 import { useState } from 'react';
 import {manageAccount} from "./services/manage-account.service";
@@ -52,6 +53,7 @@ const router = createBrowserRouter(
                 <Route path="user" element={<UserDetails />} />
                 <Route path="my-orders" element={<CustomerOrders />} />
                 <Route path="/empty" element={<EmptyPage />} />
+                <Route path="/:categoryName/:categoryID/:count" element={<ProductTypes/>}/>
                 <Route path="/category/:categoryId/subcategory/:subcategoryId" element={<CategorizedItems/>}/>
                 <Route path="dashboard" element={<SellerDashBoardLayout />}>
                     <Route index element={<SellerDashboard />} />

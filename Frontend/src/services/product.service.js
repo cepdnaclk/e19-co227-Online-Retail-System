@@ -67,5 +67,14 @@ export const productService = {
             throw error;
         }
 
+    },
+    getProductByMainCategory : async (categoryID,categoryName,count)=>{
+        try {
+            const response = await axios.get(`${environment.baseUrl}/${categoryName}/${categoryID}/${count}`);
+            return response.data;
+        } catch (error) {
+            throw error;
+        }
+
     }
 }

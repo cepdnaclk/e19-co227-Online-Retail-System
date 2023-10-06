@@ -176,7 +176,7 @@ async function getProductsByCategory(req, res) {
     try {
         const subcategoryId = req.params.subcategoryId;
 
-        const sql = 'SELECT * FROM product WHERE categoryID = ?';
+        const sql = 'SELECT product.*, sub_category.subCategoryName AS subCategoryName, category.categoryName AS CategoryName FROM product INNER JOIN sub_category ON product.categoryID = sub_category.subCategoryID INNER JOIN category ON category.categoryID=sub_category.categoryID WHERE product.categoryID = ?';
         db.query(sql, [subcategoryId], (error, result) => {
             if (error) {
                 console.error('Error fetching products by category and subcategory:', error);
@@ -212,6 +212,32 @@ async function getproductcount(req, res) {
        
 }
 
+async function getProductsByMainCategory(req, res) {
+    try {
+        const categoryId = req.params.categoryID;
+
+        const sql = 'SELECT * FROM product JOIN sub_category ON product.categoryID =sub_category.subCategoryID WHERE sub_category.categoryID= ?';
+
+        db.query(sql, [categoryId], (error, result) => {
+
+            if (error) {
+
+                console.error('Error fetching products by category and subcategory:', error);
+                res.status(500).json({ error: 'Database error' });
+
+            } else {
+
+                res.status(200).json(result);
+            }
+        });
+        
+    } catch (error) {
+        console.error('Error fetching products by main category:', error);
+        res.status(500).json({ error: 'Internal server error' });
+    }
+}
+
+
 module.exports = {
   getTopSellingProducts,
   getNewlyAddedProducts,
@@ -221,6 +247,7 @@ module.exports = {
     updateProduct,
     deleteProduct,
     getProductsByCategory,
+    getProductsByMainCategory,
     getproductcount
 };
 
