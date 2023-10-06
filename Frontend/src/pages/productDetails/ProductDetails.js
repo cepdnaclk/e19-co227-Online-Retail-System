@@ -176,7 +176,7 @@ const ProductDetails = (props) => {
           <p>{product.categoryName} {`->`} {product.subcategoryName}</p>
           <p><strong>Seller:</strong> {product.shopName}</p>
           <div className="d-flex mb-3">
-            <div className="text-success mr-2">
+            <div className="text-warning mr-2">
               <small className="fas fa-star" />
               <small className="fas fa-star" />
               <small className="fas fa-star" />

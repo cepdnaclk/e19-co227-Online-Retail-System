@@ -120,10 +120,11 @@ const handleSubmit = async (e) => {
   e.preventDefault();
   // Here, you can handle the form submission, send data to the server, and process the order.
   // You would typically make an API request to create the order on the server.
+  navigate("/successful");
   console.log('Form data:', formData);
   try {
     await axios.post("http://localhost:8800/order", formData);
-  navigate("/successful");
+    
   } catch (err) {
     console.log(err);
     setError(true)
@@ -327,9 +328,12 @@ const handleSubmit = async (e) => {
               <h5>Total</h5>
               <h5>${subTotal+shipping}</h5>
             </div>
-            <button onClick = {handleSubmit} className="btn btn-block btn-primary font-weight-bold my-3 py-3">
-              Buy now
-            </button>
+            
+              <button onClick = {handleSubmit} className="btn btn-block btn-primary font-weight-bold my-3 py-3">
+                Buy now
+              </button>
+            
+            
           </div>
         </div>
         </div>

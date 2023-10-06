@@ -75,7 +75,7 @@ const Categor = () => {
 
           <div className="col-lg-3 col-md-4 col-sm-6 pb-1" key={category.id}>
 
-            <a className="text-decoration-none" href="/" >
+            <a className="text-decoration-none" href={`/${category.name}/${category.id}/${category.count}`} >
 
               <div className="cat-item d-flex align-items-center mb-4">
                 <div className="overflow-hidden" style={{ width: 100, height: 100 }}>
@@ -84,7 +84,7 @@ const Categor = () => {
                 </div>
                 <div className="catname text-warning flex-fill pl-3">
                   <h6>{category.name}</h6>
-                  {/* You can add the count here */}
+                  
                   <small className="text-body">{category.count} Products</small>
                 </div>
               </div>

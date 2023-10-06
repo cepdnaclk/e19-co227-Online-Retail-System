@@ -75,20 +75,20 @@ class Home extends React.Component {
               <img className="product-img w-100" src={product.productImage1} alt={product.productName} />
               <div className="product-action">
 
-                <Link to={`/productt/${product.productID}`} className="btn btn-outline-dark btn-square">
-                  <i className="fa fa-shopping-cart text-warning" />
+                <Link to={`/product/${product.productID}`} className="btn btn-outline-dark btn-square">
+                  <i className="fa fa-shopping-cart" />
                 </Link>
 
                 <Link to={`/product/${product.productID}`} className="btn btn-outline-dark btn-square">
-                  <i className="far fa-heart text-warning" />
+                  <i className="far fa-heart" />
                 </Link>
 
                 <Link to={`/product/${product.productID}`} className="btn btn-outline-dark btn-square">
-                  <i className="fa fa-sync-alt text-warning" />
+                  <i className="fa fa-sync-alt" />
                 </Link>
 
                 <Link to={`/product/${product.productID}`} className="btn btn-outline-dark btn-square">
-                  <i className="fa fa-search text-warning" />
+                  <i className="fa fa-search" />
                 </Link>
 
               </div>
@@ -176,6 +176,7 @@ class Home extends React.Component {
             </div>
           </div>
         </div>
+        
         <div className="col-lg-4">
           <div className="product-offer mb-30" style={{ height: '200px' }}>
             <img className="img-fluid" src={imgoffer1} alt="" />
@@ -197,7 +198,7 @@ class Home extends React.Component {
       </div>
     </div>
 
-
+       
             
           </section>
           <div className="container-fluid pt-5">
@@ -235,6 +236,7 @@ class Home extends React.Component {
             </div>
           
           </div></div>
+          <Categor/>
           
           <h2 className="section-title position-relative text-uppercase mx-xl-5 mb-4">
               <span className="bg-white pr-3">top selling</span>
@@ -276,8 +278,8 @@ class Home extends React.Component {
           </h2>
           {this.renderProducts(this.state.newlyAddedProducts)}
         </div>
-        <Categories/>
-        <Categor/>
+        
+        
         <Footer />
       </div>
     );
