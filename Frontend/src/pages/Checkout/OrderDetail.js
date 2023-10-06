@@ -54,13 +54,7 @@ useEffect(()=>{
 //checkOut file
 
 //getcustomer info
-const [customer,setcustomer] = useState({  firstName: '',
-lastName: '',
-email: '',
-mobile: '',
-address1: '',
-address2: '',
-address3: '',});
+const [customer,setcustomer] = useState([]);
 
 
   const customerID = manageAccount.getCustomerID();

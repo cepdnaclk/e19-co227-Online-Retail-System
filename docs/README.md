@@ -8,6 +8,8 @@ This is a sample image, to show how to add images to your page. To learn more op
 ![Sample Image](./images/sample.png)
  -->
 
+![Homepage Image](./images/Homepage.png)
+
 ## Team
 -  E/19/413, Viduranga G.G.N., [email](mailto:e19413@eng.pdn.ac.lk)
 -  E/19/170, K.N.N.JAYAWARDHANA, [email](mailto:e19170@eng.pdn.ac.lk)
