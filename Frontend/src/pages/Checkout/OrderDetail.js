@@ -54,7 +54,13 @@ useEffect(()=>{
 //checkOut file
 
 //getcustomer info
-const [customer,setcustomer] = useState([])
+const [customer,setcustomer] = useState({  firstName: '',
+lastName: '',
+email: '',
+mobile: '',
+address1: '',
+address2: '',
+address3: '',});
 
 
   const customerID = manageAccount.getCustomerID();
@@ -65,6 +71,7 @@ const [customer,setcustomer] = useState([])
       setcustomer(res.data) ;
 
       console.log(res.data);
+      console.log(customer);
       
     }catch(err){
       console.log(err)
@@ -310,7 +317,7 @@ const handleSubmit = async (e) => {
           </div>
         </form>
         <h5 className="section-title position-relative text-uppercase mb-3">
-          <span className="bg-white pr-3">Cart Summary</span>
+          <span className="bg-white pr-3">Payment</span>
         </h5>
         <div className="bg-white p-30 mb-5">
           <div className="border-bottom pb-2">
