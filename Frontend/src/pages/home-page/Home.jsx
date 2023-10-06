@@ -278,7 +278,7 @@ class Home extends React.Component {
           </h2>
           {this.renderProducts(this.state.newlyAddedProducts)}
         </div>
-        <Categories/>
+        
         
         <Footer />
       </div>

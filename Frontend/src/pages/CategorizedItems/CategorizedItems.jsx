@@ -80,7 +80,7 @@ const CategorizedItems = () => {
               <img className="product-img w-100" src={product.productImage1} alt={product.productName} />
               <div className="product-action">
 
-                <Link to={`/productt/${product.productID}`} className="btn btn-outline-dark btn-square">
+                <Link to={`/product/${product.productID}`} className="btn btn-outline-dark btn-square">
                   <i className="fa fa-shopping-cart" />
                 </Link>
 
