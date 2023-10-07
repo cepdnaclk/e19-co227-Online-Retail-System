@@ -180,6 +180,63 @@ const getCustomerOrders = async(req,res)=>{
 
 }
 
+const getSalesAmount = async(req,res)=>{
+
+    try{
+        const id = req.headers.id
+
+        //get data since past 30 days
+        const today = new Date();
+        const past30Days = new Date(today);
+        past30Days.setDate(today.getDate() - 30);
+        const past7Days = new Date(today);
+        past7Days.setDate(today.getDate() - 7);
+
+
+        const query= 'SELECT orderDate, orderTotal\n' +
+            '  FROM `order`\n' +
+            '  WHERE DATE(orderDate) >= DATE(?) AND sellerID = ?';
+        db.query(query,[past30Days,id],(err,data)=>{
+            if (err) {
+                console.log(err)
+                return res.status(500).json({ error: 'Database error' });
+            }else {
+                //Calculate the sales in today, 7 days and 30 days
+                let totalToday = 0;
+                let totalPast7Days = 0;
+                let totalPast30Days = 0;
+
+                data.forEach((row) => {
+                    const orderDate = new Date(row.orderDate);
+                    const orderTotal = row.orderTotal;
+
+                    if (orderDate >= currentDate) {
+                        totalToday += orderTotal;
+                    }
+
+                    if (orderDate >= past7Days) {
+                        totalPast7Days += orderTotal;
+                    }
+
+                    if (orderDate >= past30Days) {
+                        totalPast30Days += orderTotal;
+                    }
+
+            });
+                return  res.status(200).json({today:totalToday,past7Days:totalPast7Days,past30Days:totalPast30Days});
+
+            }
+
+        });
+    }catch (error) {
+        console.log(error)
+        return  res.status(500).json({ error: 'Internal server error' });
+    }
+
+}
+
+
+
 
 
 module.exports = {
@@ -189,6 +246,7 @@ module.exports = {
     updateStatus,
     deleteOrder,
     getcustomerinfo,
-    getCustomerOrders
+    getCustomerOrders,
+    getSalesAmount
 
 }
