@@ -1,25 +1,18 @@
 
-.footer a:hover {
-  color: #e8e7e6; 
-}
-
-.footer .form-control {
-  border-color: #ffc107; 
-}
-
-.footer .btn-primary {
-  background-color: #ffc107; 
-  border-color: #ffc107; 
-}
-
 .footer p {
   font-size: 14px; 
-  color: #ffffff;
 }
 
 .footer .img-fluid {
   max-width: 1000px;
 }
-.btn-primary{
-  color: #9ba138;
+.nav-link-style {
+  text-decoration: none;
+  color: inherit; 
+
+}
+
+.nav-link-style:hover {
+  text-decoration: none; 
+  color:inherit
 }

@@ -18,9 +18,10 @@ import imgoffer1 from '../../assets/offer-1.jpg'
 import imgoffer2 from '../../assets/offer-2.jpg'
 import imgoffer3 from '../../assets/offer-3.jpg'
 import imgoffer4 from '../../assets/offer-4.jpg'
-import Categories from "../../components/layout/categories/categories";
+//import Categories from "../../components/layout/categories/categories";
 import Categor from "../../components/layout/categories/categor";
 import { Link } from "react-router-dom";
+import '../../components/layout/themeColor.css'
 
 
 //import 'animate.css/animate.min.css';
@@ -105,15 +106,15 @@ class Home extends React.Component {
 
               </div>
               <div className="d-flex align-items-center justify-content-center mb-1 color-yellow">
-                <small className="fa fa-star text-warning mr-1" />
+                <small className="fa fa-star custom-text-warning mr-1" />
 
-                <small className="fa fa-star text-warning  mr-1" />
+                <small className="fa fa-star custom-text-warning  mr-1" />
 
-                <small className="fa fa-star text-warning  mr-1" />
+                <small className="fa fa-star custom-text-warning  mr-1" />
 
-                <small className="fa fa-star text-warning mr-1" />
+                <small className="fa fa-star custom-text-warning mr-1" />
 
-                <small className="fa fa-star text-warning mr-1" />
+                <small className="fa fa-star custom-text-warning mr-1" />
 
                 <small>(99)</small>
               </div></NavLink>
@@ -133,7 +134,7 @@ class Home extends React.Component {
         <section className="intro-section">
           
             
-          <div className="container-fluid mb-3">
+    <div className="container-fluid mb-3">
       <div className="row px-xl-5">
         <div className="col-lg-8">
           <div id="header-carousel" className="carousel slide carousel-fade mb-30 mb-lg-0" data-ride="carousel">
@@ -183,7 +184,7 @@ class Home extends React.Component {
             <div className="offer-text">
               <h6 className="text-white text-uppercase">Save 20%</h6>
               <h3 className="text-white mb-3">Special Offer</h3>
-              <a href="/products" className="btn btn-primary">Shop Now</a>
+              <a href="/products" className="btn custom-btn-primary">Shop Now</a>
             </div>
           </div>
           <div className="product-offer mb-30" style={{ height: '200px' }}>
@@ -191,7 +192,7 @@ class Home extends React.Component {
             <div className="offer-text">
               <h6 className="text-white text-uppercase">Save 20%</h6>
               <h3 className="text-white mb-3">Special Offer</h3>
-              <a href="/products" className="btn btn-primary">Shop Now</a>
+              <a href="/products" className="btn custom-btn-primary">Shop Now</a>
             </div>
           </div>
         </div>
@@ -205,15 +206,15 @@ class Home extends React.Component {
           <div className="row px-xl-5 pb-3">
             <div className="col-lg-3 col-md-6 col-sm-12 pb-1">
               <div className="d-flex align-items-center bg-light mb-4" style={{ padding: '30px' }}>
-                <h1 className="fa fa-check text-warning
-                 m-0 mr-3 custom-yellow-icon" ></h1>
+                <h1 className="fa fa-check custom-text-warning
+                 m-0 mr-3 " ></h1>
                 <h5 className="font-weight-semi-bold m-0">Quality Product</h5>
               </div>
 
             </div>
             <div className="col-lg-3 col-md-6 col-sm-12 pb-1">
               <div className="d-flex align-items-center bg-light mb-4" style={{ padding: '30px' }}>
-                <h1 className="fa fa-shipping-fast text-warning
+                <h1 className="fa fa-shipping-fast custom-text-warning
                  m-0 mr-2 "></h1>
                 <h5 className="font-weight-semi-bold m-0">Free Shipping</h5>
               </div>
@@ -221,7 +222,7 @@ class Home extends React.Component {
 
             <div className="col-lg-3 col-md-6 col-sm-12 pb-1">
               <div className="d-flex align-items-center bg-light mb-4" style={{ padding: '30px' }}>
-                <h1 className="fas fa-exchange-alt text-warning
+                <h1 className="fas fa-exchange-alt custom-text-warning
                  m-0 mr-3"></h1>
                 <h5 className="font-weight-semi-bold m-0 margingleft-10px">14-Day Return</h5>
               </div>
@@ -229,7 +230,7 @@ class Home extends React.Component {
             
             <div className="col-lg-3 col-md-6 col-sm-12 pb-1">
               <div className="d-flex align-items-center bg-light mb-4" style={{ padding: '30px' }}>
-                <h1 className="fa fa-phone-volume text-warning
+                <h1 className="fa fa-phone-volume custom-text-warning
                  m-0 mr-3"></h1>
                 <h5 className="font-weight-semi-bold m-0">24/7 Support</h5>
               </div>
@@ -251,7 +252,7 @@ class Home extends React.Component {
                   <div className="offer-text">
                     <h5 className="text-white text-uppercase">Save 10%</h5>
                     <h2 className="text-white mb-3 special-offer-text">Special Offer</h2>
-                    <a href="" className="btn btn-primary">
+                    <a href="" className="btn custom-btn-primary">
                       Shop Now
                     </a>
                   </div>
@@ -263,7 +264,7 @@ class Home extends React.Component {
                   <div className="offer-text">
                     <h5 className="text-white text-uppercase">Save 20%</h5>
                     <h2 className="text-white mb-3">Special Offer</h2>
-                    <a href="" className="btn btn-primary">
+                    <a href="" className="btn custom-btn-primary">
                       Shop Now
                     </a>
                   </div>

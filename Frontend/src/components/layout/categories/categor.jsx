@@ -82,7 +82,7 @@ const Categor = () => {
 
                   <img className="img-fluid" src={`img/cat-${category.id}.jpg`} alt='.' />
                 </div>
-                <div className="catname text-warning flex-fill pl-3">
+                <div className="catname custom-text-warning flex-fill pl-3">
                   <h6>{category.name}</h6>
                   
                   <small className="text-body">{category.count} Products</small>

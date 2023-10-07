@@ -1,0 +1,10 @@
+.custom-text-warning {
+    color: rgb(10, 10, 10); 
+}
+.custom-btn-warning{
+    background-color: #2dddd4!important;
+}
+.custom-btn-primary{
+    background-color: rgb(170, 234, 9)!important;
+    border: #2dddd4!important;
+}

@@ -3,13 +3,21 @@
     color: black;
 
 }
-/* Initially hide the dropdown menu */
+
 .dropdown-menu {
     display:none;
   }
   
-  /* When hovering over the parent nav-item, show the dropdown menu */
   .nav-item:hover .dropdown-menu {
     display: block;
   }
-
+  .nav-link-style {
+    text-decoration: none;
+    color: inherit; 
+  
+  }
+  
+  .nav-link-style:hover {
+    text-decoration: none; 
+    color:inherit
+  }
