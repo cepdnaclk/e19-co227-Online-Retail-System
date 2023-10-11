@@ -125,7 +125,7 @@ const handleSubmit = async (e) => {
   console.log('Form data:', formData);
   try {
     await axios.post("http://localhost:8081/api/v1/putorder", formData);
-    //navigate("/successful");
+    navigate("/successful");
     
   } catch (err) {
     console.log(err);

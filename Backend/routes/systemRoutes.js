@@ -32,6 +32,7 @@ router.put('/updateTracking',OrderController.updateTracking)
 router.put('/updateOrderStatus',OrderController.updateStatus)
 router.delete('/deleteOrder/:id',OrderController.deleteOrder)
 router.post('/customer',OrderController.getcustomerinfo)
+router.post('/putorder',OrderController.putOrder)
 
 router.put('/updateCustomer/:id',customerController.updateUser)
 router.post('/setAsSeller/:id',customerController.setAsSeller)

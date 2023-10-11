@@ -180,6 +180,32 @@ const getCustomerOrders = async(req,res)=>{
 
 }
 
+const putOrder = async(req,res)=>{
+    try {
+        
+        let { firstName,lastName ,phoneNumber ,addressL1 ,addressL2,addressL3,customerid,paymentmethod } = req.body;
+        console.log(firstName)
+        const query1 = 'INSERT INTO `order` firstName = ?, lastName = ?,  phoneNumber = ?,  addressL1 = ?,  addressL2 = ?,  addressL3 = ? customerID = ?;';
+        db.query(query1, [firstName,lastName ,phoneNumber ,addressL1 ,addressL2,addressL3 ,customerid],(error,data)=>{
+            if (error) {
+                console.log(error)
+                return res.status(500).json({ error: 'Database error' });
+            }else {
+                console.log("Order Added")
+                return  res.status(200).json({message: 'Customer Updated'});
+
+            }
+
+        });
+
+    } catch (error) {
+        console.log(error)
+        return  res.status(500).json({ error: 'Internal server error' });
+    }
+
+}
+
+
 const getSalesAmount = async(req,res)=>{
 
     try{
@@ -247,6 +273,6 @@ module.exports = {
     deleteOrder,
     getcustomerinfo,
     getCustomerOrders,
-    getSalesAmount
-
+    getSalesAmount,
+    putOrder
 }
