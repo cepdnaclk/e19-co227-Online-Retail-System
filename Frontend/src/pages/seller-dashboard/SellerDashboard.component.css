@@ -20,3 +20,11 @@
     height: 200px;
     margin: 25px; /* Add margin to provide spacing between cards */
 }
+.list-group-item {
+    display: flex;
+    justify-content: space-between;
+}
+.list-group-item span {
+    float: right;
+    font-weight: bold;
+}

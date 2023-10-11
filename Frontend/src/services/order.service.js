@@ -64,6 +64,16 @@ export const orderService = {
             throw error;
         }
 
+    },
+
+    getSalesTotal:async (id)=>{
+        try {
+            const response = await axios.get(`${environment.baseUrl}/sales`,{headers:{id:id}});
+            return response.data;
+        } catch (error) {
+            throw error;
+        }
+
     }
 
 }
