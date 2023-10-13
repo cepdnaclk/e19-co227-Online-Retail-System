@@ -18,15 +18,16 @@ const getProduct = async(req,res)=>{
       p.sellerID,
       s.shopName,
       c.categoryName,
-      sc.subcategoryName
+      sc.subCategoryName
   FROM
       product p
   JOIN
       seller s ON p.sellerID = s.sellerID
   JOIN
-      category c ON p.categoryID = c.categoryID
+      sub_category sc ON p.categoryID = sc.subCategoryID
+      
   JOIN
-      sub_category sc ON c.categoryID = sc.categoryID
+      category c ON sc.categoryID = c.categoryID
   WHERE
       p.productID = ?
   GROUP BY

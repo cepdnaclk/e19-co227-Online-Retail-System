@@ -160,7 +160,7 @@ const ProductDetails = (props) => {
       <div className="col-lg-7 h-auto mb-30" >
         <div className="h-100 bg-light p-30">
           <h1>{product.productName}</h1>
-          <p>{product.categoryName} {`->`} {product.subcategoryName}</p>
+          <p>{product.categoryName} {`->`} {product.subCategoryName}</p>
           <p><strong>Seller:</strong> {product.shopName}</p>
           <div className="d-flex mb-3">
             <div className="text-warning mr-2">
