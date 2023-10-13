@@ -7,6 +7,8 @@ import Footer from '../../components/layout/footer/footer'
 import { HeaderContext } from '../../contexts/HeaderContext'
 import RecommendedProducts from '../../components/layout/RecommendedProducts'
 import { NavLink } from 'react-router-dom'
+import { FacebookShareButton, TwitterShareButton,PinterestShareButton,
+  LinkedinShareButton } from 'react-share';
 
 
 const ProductDetails = (props) => {
@@ -21,8 +23,9 @@ const ProductDetails = (props) => {
 
   const [rec, setRec] = useState(false)
 
+  const currentUrl = window.location.href;
 
-
+  
   const { qty, errQty, handleQty, handleChange, productDetails,isInCart, setIsInCart, } = useManageCart();
   
 
@@ -112,63 +115,47 @@ const ProductDetails = (props) => {
   <div className="container-fluid pb-5" style={{margin:"20px 0px"}}>
     <div className="row px-xl-5" >
       <div className="col-lg-5 mb-30" >
-        <div
-          id="product-carousel"
-          className="carousel slide"
-          data-ride="carousel"
-        >
-          <div className="carousel-inner bg-light">
-            <div className="carousel-item active">
-              <img
-                className="w-100 h-100"
-                src={product.productImage1}
-                alt="Image"
-              />
+
+      <div id="carouselExampleDark" className="carousel carousel-dark slide carousel-fade" data-bs-ride="carousel">
+          <div className="carousel-inner">
+            <div className="carousel-item active" data-bs-interval={7000}>
+              <img src={product.productImage1} className="w-100 h-100" alt="Image" />
             </div>
-            <div className="carousel-item">
-              <img
-                className="w-100 h-100"
-                src={product.productImage2}
-                alt="Image"
-              />
+            <div className="carousel-item" data-bs-interval={7000}>
+              <img src={product.productImage2} className="w-100 h-100" alt="Image" />
             </div>
-            <div className="carousel-item">
-              <img
-                className="w-100 h-100"
-                src={product.productImage3}
-                alt="Image"
-              />
+            <div className="carousel-item" data-bs-interval={7000}>
+              <img src={product.productImage3} className="w-100 h-100" alt="Image" />
             </div>
-            <div className="carousel-item">
-              <img
-                className="w-100 h-100"
-                src={product.productImage4}
-                alt="Image"
-              />
+            <div className="carousel-item" data-bs-interval={7000}>
+              <img src={product.productImage4} className="w-100 h-100" alt="Image" />
             </div>
-            <div className="carousel-item">
-              <img
-                className="w-100 h-100"
-                src={product.productImage5}
-                alt="Image"
-              />
+            <div className="carousel-item" data-bs-interval={7000}>
+              <img src={product.productImage5} className="w-100 h-100" alt="Image" />
             </div>
           </div>
-          <a
+          <button
             className="carousel-control-prev"
-            href="#product-carousel"
-            data-slide="prev"
+            type="button"
+            data-bs-target="#carouselExampleDark"
+            data-bs-slide="prev"
           >
-            <i className="fa fa-2x fa-angle-left text-dark" />
-          </a>
-          <a
+            <span className="carousel-control-prev-icon" aria-hidden="true" />
+            <span className="visually-hidden">Previous</span>
+          </button>
+          <button
             className="carousel-control-next"
-            href="#product-carousel"
-            data-slide="next"
+            type="button"
+            data-bs-target="#carouselExampleDark"
+            data-bs-slide="next"
           >
-            <i className="fa fa-2x fa-angle-right text-dark" />
-          </a>
+            <span className="carousel-control-next-icon" aria-hidden="true" />
+            <span className="visually-hidden">Next</span>
+          </button>
         </div>
+
+
+
       </div>
       <div className="col-lg-7 h-auto mb-30" >
         <div className="h-100 bg-light p-30">
@@ -228,18 +215,31 @@ const ProductDetails = (props) => {
           <div className="d-flex pt-2">
             <strong className="text-dark mr-2">Share on:</strong>
             <div className="d-inline-flex">
-              <a className="text-dark px-2" href="">
-                <i className="fab fa-facebook-f" />
-              </a>
-              <a className="text-dark px-2" href="">
-                <i className="fab fa-twitter" />
-              </a>
-              <a className="text-dark px-2" href="">
-                <i className="fab fa-linkedin-in" />
-              </a>
-              <a className="text-dark px-2" href="">
-                <i className="fab fa-pinterest" />
-              </a>
+                <FacebookShareButton url={currentUrl} quote={`Check out ${product.productName} on Gadget Wave store!`}>
+          <a className="text-dark px-2" href="">
+                    <i className="fab fa-facebook-f" />
+                  </a>
+          </FacebookShareButton>
+
+          <TwitterShareButton url={currentUrl} title={`Check out ${product.productName} on Gadget Wave store!`}>
+          <a className="text-dark px-2" href="">
+                    <i className="fab fa-twitter" />
+                  </a>
+          </TwitterShareButton>
+
+
+          <LinkedinShareButton url={currentUrl} title={`Check out ${product.productName} on Gadget Wave store!`}>
+          <a className="text-dark px-2" href="">
+                    <i className="fab fa-linkedin-in" />
+                  </a>
+          </LinkedinShareButton>
+
+
+              <div>
+    
+
+    
+    </div>
             </div>
           </div>
         </div>
@@ -274,7 +274,7 @@ const ProductDetails = (props) => {
           <div className="tab-content">
             <div className="tab-pane fade show active" id="tab-pane-1">
               <h4 className="mb-3">Product Description</h4>
-              <p>
+              <p style={{ whiteSpace: 'pre-line' }}>
                 {product.productDetails}
               </p>
             </div>
