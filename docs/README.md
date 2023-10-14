@@ -31,6 +31,7 @@ This is a sample image, to show how to add images to your page. To learn more op
  The Online Retail System project aims to create an e-commerce platform with customer friendly functionalities, focusing on a limited set of use cases. The project also has the potential to incorporate a recommender system to enhance the customer experience. The system will have two primary roles: Customers and Store Owners.
  
 ![Homepage Image 1](./images/Homepage.png)
+
 ![Homepage Image 2](./images/Categories.png)
 
 ## Technology Stack
@@ -59,7 +60,9 @@ The project allows students to choose technologies they are comfortable with. So
 6. **View Order Details**:  Customers can access their order history, view detailed order information, track the status of current orders, and easily reorder items from their history. .
 
 ![Product](./images/Product-Page.png)
+
 ![Cart](./images/Cart.png)
+
 ![Order](./images/order-details-customer.png)
 
 ## Store Owner Role
@@ -76,7 +79,9 @@ The project allows students to choose technologies they are comfortable with. So
 4. **View Sales Summery**: Store owners can access a sales report that displays the total sales revenue for their store on specific dates, allowing them to track their business's financial performance over time.
 
 ![Add Item](./images/Add-Product.png)
+
 ![Order Page](./images/Seller-Order-Handle.png)
+
 ![Order](./images/order-details-customer.png)
 
 
