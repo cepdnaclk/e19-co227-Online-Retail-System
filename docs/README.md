@@ -60,13 +60,17 @@ The project allows students to choose technologies they are comfortable with. So
 6. **View Order Details**:  Customers can access their order history, view detailed order information, track the status of current orders, and easily reorder items from their history. .
 
 ![Product](./images/Product-Page.png)
+--------------------------------------------------------------------------------------------------------------------------------------------
 
 ![Cart](./images/Cart.png)
+--------------------------------------------------------------------------------------------------------------------------------------------
 
 ![Order](./images/order-details-customer.png)
+--------------------------------------------------------------------------------------------------------------------------------------------
 
 ## Store Owner Role
 ![DashBoard](./images/Seller-Dashboard.png)
+--------------------------------------------------------------------------------------------------------------------------------------------
 
 ### Tasks
 
@@ -79,10 +83,13 @@ The project allows students to choose technologies they are comfortable with. So
 4. **View Sales Summery**: Store owners can access a sales report that displays the total sales revenue for their store on specific dates, allowing them to track their business's financial performance over time.
 
 ![Add Item](./images/Add-Product.png)
+--------------------------------------------------------------------------------------------------------------------------------------------
 
 ![Order Page](./images/Seller-Order-Handle.png)
+--------------------------------------------------------------------------------------------------------------------------------------------
 
 ![Order](./images/order-details-customer.png)
+--------------------------------------------------------------------------------------------------------------------------------------------
 
 
 ## Recommender System
