@@ -165,7 +165,7 @@ const Header = () => {
               )}
             </ul>
           </div>
-          <NavLink to = { `cart/${manageAccount.getCustomerID()}` } className="btn px-0 ml-2">
+          <Link to = { `cart/${manageAccount.getCustomerID()}` } className="btn px-0 ml-2">
             <i className="fas fa-shopping-cart text-dark" />
             <span
               className="badge text-dark border border-dark rounded-circle"
@@ -173,7 +173,7 @@ const Header = () => {
             >
               <CartSize />
             </span>
-          </NavLink>
+          </Link>
         </div>
       </div>
     </div>
@@ -702,12 +702,12 @@ const Header = () => {
                 </ul>
               </div>
 
-              <NavLink to={`cart/${manageAccount.getCustomerID()}`} className="btn px-0 ml-3">
+              <Link to={`cart/${manageAccount.getCustomerID()}`} className="btn px-0 ml-3">
                 <i className="fas fa-shopping-cart text-white" />
                 <span className="badge text-secondary border border-secondary rounded-circle" style={{ paddingBottom: 2 }}>
       <CartSize />
     </span>
-              </NavLink>
+              </Link>
             </div>
 
           </div>
