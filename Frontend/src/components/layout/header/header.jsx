@@ -127,13 +127,13 @@ const Header = () => {
         <div className="d-inline-flex align-items-center d-block d-lg-none">
           <div className="dropdown ml-3">
             <a className="btn px-4 dropdown-toggle" type="button" id="dropdownMenuButton1" data-bs-toggle="dropdown" aria-expanded="false">
-              <i className="fas fa-user text-warning" />
+              <i className="fas fa-user text-dark" />
             </a>
             <ul className="dropdown-menu" aria-labelledby="dropdownMenuButton1">
               {isLogged === false ? (
                   <li key="signin">
 
-                    <Link to="/SignIn" className="text-decoration-none text-warning dropdown-item">Sign in</Link>
+                    <Link to="/SignIn" className="text-decoration-none text-dark dropdown-item">Sign in</Link>
 
                   </li>
               ) : (
@@ -166,7 +166,7 @@ const Header = () => {
             </ul>
           </div>
           <NavLink to = { `cart/${manageAccount.getCustomerID()}` } className="btn px-0 ml-2">
-            <i className="fas fa-shopping-cart text-warning" />
+            <i className="fas fa-shopping-cart text-dark" />
             <span
               className="badge text-dark border border-dark rounded-circle"
               style={{ paddingBottom: 2 }}
@@ -213,14 +213,14 @@ const Header = () => {
   {/* Topbar End */}
 
               {/* Navbar Start */}
-  <div className="container-fluid background-color mb-30">
+  <div className="container-fluid background-color mb-30 " >
     <div className="row px-xl-5">
-      <div className="col-lg-3 d-none d-lg-block">
+      <div className="col-lg-3 d-none d-lg-block background-color2 pt-0 mb-1" >
         <a
-          className="btn d-flex align-items-center justify-content-between btn-warning custom-btn-warning w-100"
+          className="btn d-flex align-items-center m-0 justify-content-between w-100 "
           data-bs-toggle="collapse"
           href="#navbar-vertical"
-          style={{ height: 70, padding: "0 30px" }}
+          style={{ height: '70px', padding: "0 30px",outline: "none" }}
         >
           <h5 className="text-dark m-0">
             <i className="fa fa-bars mr-2" />
@@ -229,7 +229,7 @@ const Header = () => {
           <i className="fa fa-angle-down text-dark" />
         </a>
         <nav
-          className="collapse position-absolute navbar navbar-vertical navbar-light align-items-start p-0 bg-light"
+          className="collapse position-absolute navbar navbar-vertical navbar-light align-items-start p-0 bg-light background-color2"
           id="navbar-vertical"
           style={{ width: "calc(100% - 30px)", zIndex: 999 ,top: '70px', left: '10px'}}
         >
@@ -640,14 +640,14 @@ const Header = () => {
           </button>
           <div
             className="collapse navbar-collapse background-color justify-content-between "
-            id="navbarCollapse" style={{marginTop: '11px'}}
+            id="navbarCollapse" style={{marginTop: '5px'}}
           >
-            <div className="navbar-nav mr-auto py-0">
+            <div className="navbar-nav mr-auto py-1">
 
-                <Link to="/" className="nav-item nav-link text-dark" style={{marginLeft:'10px'}}>Home</Link>
+                <Link to="/" className="nav-item nav-link text-white font-weight-bold" style={{marginLeft:'10px'}}>Home</Link>
 
 
-                <Link to="/products" className="nav-item nav-link text-dark"style={{marginLeft:'12px'}}>Shop</Link>
+                <Link to="/products" className="nav-item nav-link text-white font-weight-bold"style={{marginLeft:'12px'}}>Shop</Link>
 
 
               {/*<a href="" className="nav-item nav-link active">
@@ -655,7 +655,7 @@ const Header = () => {
               </a>*/}
 
               { isSeller &&
-                <Link to="dashboard" className="nav-item nav-link text-dark"style={{marginLeft:'12px'}}>Seller Dashboard</Link>
+                <Link to="dashboard" className="nav-item nav-link text-white font-weight-bold"style={{marginLeft:'12px'}}>Seller Dashboard</Link>
 
               }
 
@@ -663,7 +663,7 @@ const Header = () => {
             <div className="navbar-nav ml-auto py-0 d-none d-lg-flex align-items-center">
               <div className="dropdown ml-3">
                 <a className="btn px-4 dropdown-toggle" type="button" id="dropdownMenuButton1" data-bs-toggle="dropdown" aria-expanded="false">
-                  <i className="fas fa-user text-dark" />
+                  <i className="fas fa-user text-white" />
                 </a>
                 <ul className="dropdown-menu" aria-labelledby="dropdownMenuButton1">
                   {isLogged === false ? (
@@ -703,7 +703,7 @@ const Header = () => {
               </div>
 
               <NavLink to={`cart/${manageAccount.getCustomerID()}`} className="btn px-0 ml-3">
-                <i className="fas fa-shopping-cart text-dark" />
+                <i className="fas fa-shopping-cart text-white" />
                 <span className="badge text-secondary border border-secondary rounded-circle" style={{ paddingBottom: 2 }}>
       <CartSize />
     </span>

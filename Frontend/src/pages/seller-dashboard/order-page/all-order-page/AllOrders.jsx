@@ -112,6 +112,7 @@ function AllOrders(){
                 if (resp.message === 'Order Deleted') {
                     console.log('Order Deleted!');
                     setUpdate('deleted')
+                    getOrders()
                     alert('Order Deleted Succesfully!');
 
 

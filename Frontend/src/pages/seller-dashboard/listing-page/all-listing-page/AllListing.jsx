@@ -15,8 +15,16 @@ function AllListing(){
     const [isDeleted,setIsDeleted] = useState(false)
 
     useEffect(() => {
+        getProducts()
+        return () => {
+            console.log('Component unmounted');
+
+        };
+    }, [isDeleted]);
+
+    const getProducts = () =>{
         productService.getAllProducts(manageAccount.getSellerID()).then((response)=>{
-             setProducts(response)
+            setProducts(response)
             if(response.length===0){
                 navigate('/empty')
             }
@@ -25,11 +33,9 @@ function AllListing(){
         }).catch((error)=>{
             console.error('Error fetching products:', error);
         })
-        return () => {
-            console.log('Component unmounted');
 
-        };
-    }, [isDeleted]);
+    }
+
 
     const handleDeleteProduct=(event,id)=>{
         event.preventDefault();
@@ -41,7 +47,9 @@ function AllListing(){
                         console.log('Product Deleted!');
                         setIsDeleted(true)
                         alert('Product Deleted Succesfully!');
-                        setIsDeleted(false)
+
+                        //Update the database
+                        getProducts()
 
                 }
             })
@@ -49,8 +57,6 @@ function AllListing(){
                 console.error('Error deleting product:', error);
                 alert('Product Can\'t be deleted There are Order Placed Related to this Product!');
             });
-
-
 
     }
 
