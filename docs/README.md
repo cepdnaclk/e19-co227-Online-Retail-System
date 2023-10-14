@@ -18,13 +18,17 @@ This is a sample image, to show how to add images to your page. To learn more op
 
 ## Table of Contents
 1. [Introduction](#introduction)
+2. [Technology Stack](#technology-stack)
+3. [Customer Role](#customer-role)
+4. [Store Owner Role](#store-owner-role)
+4. [Reomender System](#recommender-system)
 2. [Links](#links)
 
 ---
 
 ## Introduction
 
- The Online Retail System project aims to create an e-commerce platform with functionalities similar to eBay, focusing on a limited set of use cases. The project also has the potential to incorporate a recommender system to enhance the customer experience. The system will have two primary roles: Customers and Store Owners.
+ The Online Retail System project aims to create an e-commerce platform with customer friendly functionalities, focusing on a limited set of use cases. The project also has the potential to incorporate a recommender system to enhance the customer experience. The system will have two primary roles: Customers and Store Owners.
  
 ![Homepage Image 1](./images/Homepage.png)
 ![Homepage Image 2](./images/Categories.png)
@@ -38,7 +42,7 @@ The project allows students to choose technologies they are comfortable with. So
 - **Database**: MySQL
 - **Recommender System**: Apriori algorithm
 
-## Role: Customer
+## Customer Role
 
 ### Tasks
 
@@ -46,23 +50,39 @@ The project allows students to choose technologies they are comfortable with. So
 
 2. **Initiate Shopping Cart**: Customers can initiate a shopping cart, which will be used to accumulate selected food items.
 
-3. **Add Food Items to Shopping Cart**: Customers can browse the available food items and add them to their shopping carts.
+3. **Add Items to Shopping Cart**: Customers can browse the available food items and add them to their shopping carts.
 
-4. **Remove Food Items from Shopping Cart**: Customers can remove food items from the shopping cart if they change their minds.
+4. **Remove Items from Shopping Cart**: Customers can remove food items from the shopping cart if they change their minds.
 
-5. **Complete Payment**: The project doesn't require actual payment implementation. Instead, it should display the total amount of the items in the shopping cart.
+5. **Complete Payment**:  Customers can pay with different payment methods.
 
-## Role: Store Owner
+6. **View Order Details**:  Customers can access their order history, view detailed order information, track the status of current orders, and easily reorder items from their history. .
+
+![Product](./images/Product-Page.png)
+![Cart](./images/Cart.png)
+![Order](./images/order-details-customer.png)
+
+## Store Owner Role
+![DashBoard](./images/Seller-Dashboard.png)
 
 ### Tasks
 
-1. **Add Food Items**: Store owners can add new food items to the system, specifying details like name, description, price, and availability.
+1. **Add Items**: Store owners can add new food items to the system, specifying details like name, description, price, and availability.
 
-2. **Remove Food Items**: Store owners can remove food items that are no longer available or relevant.
+2. **Remove Items**: Store owners can remove food items that are no longer available or relevant.
 
-## Additional Use Case: Recommender System
+3. **Handle Customer Orders**: Store owners can manage incoming customer orders, including reviewing order details, confirming orders, and updating the order status as it progresses through stages such as processing, shipping, and delivery.
 
-Implementing a recommender system can significantly enhance the customer experience by suggesting relevant food items based on their preferences and browsing history.
+4. **View Sales Summery**: Store owners can access a sales report that displays the total sales revenue for their store on specific dates, allowing them to track their business's financial performance over time.
+
+![Add Item](./images/Add-Product.png)
+![Order Page](./images/Seller-Order-Handle.png)
+![Order](./images/order-details-customer.png)
+
+
+## Recommender System
+
+Implementing a recommender system can significantly enhance the customer experience by suggesting relevant items based on their preferences and browsing history.
 
 ### Suggested Algorithm: Apriori Algorithm
 
