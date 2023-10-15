@@ -183,31 +183,63 @@ const getCustomerOrders = async(req,res)=>{
 const putOrder = async(req,res)=>{
     try {
         
-        let { firstName,lastName,mobile,address1,address2,address3,customerid,paymentmethod,sellerid } = req.body.formData;
+        let { firstName,lastName,mobile,address1,address2,address3,customerid,sellerid } = req.body.formData;
         console.log(req.body.cart)
-        const query1 = "INSERT INTO `order` (firstName, lastName, phoneNumber, address1, address2, address3, customerID, sellerID) VALUES (?, ?, ?, ?, ?, ?, ?, ?); SELECT LAST_INSERT_ID() AS GenorderID;"
+        
+        let orderDate = new Date();
+        let price = 0;
+        let totalPrice = 0;
+        for (let item of req.body.cart) {
+            price = item.productPrice;
+            totalPrice += price ;
+        }
+        const query1 = "INSERT INTO `order` (firstName, lastName, phoneNumber, address1, address2, address3, customerID, sellerID, orderTotal, orderDate) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?); SELECT LAST_INSERT_ID() AS GenorderID;"
 
-        //const query2 = "INSERT INTO order_item (orderID,productID,itemQty,totalPrice) VALUES (?,?,?,?);"
-
-        db.query(query1, [firstName,lastName,mobile,address1,address2,address3,customerid,sellerid],(error,data)=>{
+        db.query(query1, [firstName,lastName,mobile,address1,address2,address3,customerid,sellerid,totalPrice, orderDate],(error,data)=>{
             if (error) {
                 console.log(error)
                 return res.status(500).json({ error: 'Database error' });
             }else {
                 console.log("Order Added")
-                return  res.status(200).json({message: 'Customer Updated'});
+
+                const GenOrderID = (data[1][0].GenorderID);
+                //query 2 for update order_item table
+
+                const cartItems = req.body.cart;
+                let placeholders = cartItems.map(() => "(?, ?, ?, ?)").join(", ");
+
+                let values = [];
+                for (let item of cartItems) {
+                    values = values.concat([GenOrderID,item.productID, item.productPrice, item.qty]);
+                }
+
+                let query2 = `INSERT INTO order_item (orderId,productID,totalPrice,itemQty) VALUES ${placeholders}`;
+
+                db.query(query2, values, (error, results, fields) => {
+                    if (error) {
+                        console.error(error);
+                    } else {
+                        console.log("Data inserted successfully!");
+
+                        // delete from cart_item table
+                        for (let item of cartItems) {
+                            db.query("DELETE FROM cart_items WHERE productID = ?", [item.productID], (error, results, fields) => {
+                                if (error) {
+                                    console.error(error);
+                                } else {
+                                    console.log(`Item with productID ${item.productID} deleted from cart table.`);
+                                }
+                            });
+                        }
+                                                
+                    }
+                });
+
+                return  res.status(200).json({message: 'Order Updated'});
+
+
             }
         });
-        
-        // db.query(query2, [firstName,lastName,mobile,address1,address2,address3,customerid,sellerid],(error,data)=>{
-        //     if (error) {
-        //         console.log(error)
-        //         return res.status(500).json({ error: 'Database error' });
-        //     }else {
-        //         console.log("Also Order item Added")
-        //         return  res.status(200).json({message: 'Customer Updated'});
-        //     }
-        // });
 
     } catch (error) {
         console.log(error)
@@ -228,12 +260,11 @@ const getSalesAmount = async(req,res)=>{
         const past7Days = new Date(today);
         past7Days.setDate(today.getDate() - 7);
 
+
         const query= 'SELECT orderDate, orderTotal\n' +
             '  FROM `order`\n' +
             '  WHERE DATE(orderDate) >= DATE(?) AND sellerID = ?';
         db.query(query,[past30Days,id],(err,data)=>{
-
-
             if (err) {
                 console.log(err)
                 return res.status(500).json({ error: 'Database error' });
@@ -247,7 +278,7 @@ const getSalesAmount = async(req,res)=>{
                     const orderDate = new Date(row.orderDate);
                     const orderTotal = row.orderTotal;
 
-                    if (orderDate === today) {
+                    if (orderDate === currentDate) {
                         totalToday += orderTotal;
                     }
 
