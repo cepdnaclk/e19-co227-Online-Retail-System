@@ -112,6 +112,7 @@ function AllOrders(){
                 if (resp.message === 'Order Deleted') {
                     console.log('Order Deleted!');
                     setUpdate('deleted')
+                    getOrders()
                     alert('Order Deleted Succesfully!');
 
 
@@ -149,7 +150,7 @@ function AllOrders(){
                         <tr>
                             <th scope="row">
                                 <div className="btn-group">
-                                    <button type="button" className="btn btn-light dropdown-toggle"
+                                    <button type="button" className="btn btn-outline-primary dropdown-toggle"
                                             data-bs-toggle="dropdown" aria-expanded="false">
                                         Action
                                     </button>

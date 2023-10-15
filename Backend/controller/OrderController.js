@@ -218,11 +218,12 @@ const getSalesAmount = async(req,res)=>{
         const past7Days = new Date(today);
         past7Days.setDate(today.getDate() - 7);
 
-
         const query= 'SELECT orderDate, orderTotal\n' +
             '  FROM `order`\n' +
             '  WHERE DATE(orderDate) >= DATE(?) AND sellerID = ?';
         db.query(query,[past30Days,id],(err,data)=>{
+
+
             if (err) {
                 console.log(err)
                 return res.status(500).json({ error: 'Database error' });
@@ -236,7 +237,7 @@ const getSalesAmount = async(req,res)=>{
                     const orderDate = new Date(row.orderDate);
                     const orderTotal = row.orderTotal;
 
-                    if (orderDate >= currentDate) {
+                    if (orderDate === today) {
                         totalToday += orderTotal;
                     }
 
