@@ -183,26 +183,36 @@ const getCustomerOrders = async(req,res)=>{
 const putOrder = async(req,res)=>{
     try {
         
-        let { firstName,lastName ,phoneNumber ,addressL1 ,addressL2,addressL3,customerid,paymentmethod } = req.body;
-        console.log(firstName)
-        const query1 = 'INSERT INTO `order` firstName = ?, lastName = ?,  phoneNumber = ?,  addressL1 = ?,  addressL2 = ?,  addressL3 = ? customerID = ?;';
-        db.query(query1, [firstName,lastName ,phoneNumber ,addressL1 ,addressL2,addressL3 ,customerid],(error,data)=>{
+        let { firstName,lastName,mobile,address1,address2,address3,customerid,paymentmethod,sellerid } = req.body.formData;
+        console.log(req.body.cart)
+        const query1 = "INSERT INTO `order` (firstName, lastName, phoneNumber, address1, address2, address3, customerID, sellerID) VALUES (?, ?, ?, ?, ?, ?, ?, ?); SELECT LAST_INSERT_ID() AS GenorderID;"
+
+        //const query2 = "INSERT INTO order_item (orderID,productID,itemQty,totalPrice) VALUES (?,?,?,?);"
+
+        db.query(query1, [firstName,lastName,mobile,address1,address2,address3,customerid,sellerid],(error,data)=>{
             if (error) {
                 console.log(error)
                 return res.status(500).json({ error: 'Database error' });
             }else {
                 console.log("Order Added")
                 return  res.status(200).json({message: 'Customer Updated'});
-
             }
-
         });
+        
+        // db.query(query2, [firstName,lastName,mobile,address1,address2,address3,customerid,sellerid],(error,data)=>{
+        //     if (error) {
+        //         console.log(error)
+        //         return res.status(500).json({ error: 'Database error' });
+        //     }else {
+        //         console.log("Also Order item Added")
+        //         return  res.status(200).json({message: 'Customer Updated'});
+        //     }
+        // });
 
     } catch (error) {
         console.log(error)
         return  res.status(500).json({ error: 'Internal server error' });
     }
-
 }
 
 

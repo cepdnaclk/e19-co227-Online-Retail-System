@@ -58,13 +58,14 @@ const [customer,setcustomer] = useState([]);
 
 
   const customerID = manageAccount.getCustomerID();
+  const sellerID = manageAccount.getSellerID();
 
   const fetchCustomerDetails = async ()=>{
     try{
       const res = await axios.post("http://localhost:8081/api/v1/customer", {customerID})
-      setcustomer(res.data) ;
+      setcustomer(res.data[0]) ;
 
-      console.log(res.data);
+      console.log(res.data[0]);
       console.log(customer);
       
     }catch(err){
@@ -78,10 +79,10 @@ useEffect(() => {
 
 }, []);
 
-
 const [formData, setFormData] = useState({
   customerid: customerID,
-  firstName: customer.firstName,
+  sellerid: sellerID,
+  firstName: '',
   lastName: '',
   email: '',
   mobile: '',
@@ -90,6 +91,23 @@ const [formData, setFormData] = useState({
   address3: '',
   paymentMethod: 'creditCard',
 });
+
+useEffect(()=>{
+  setFormData({
+    customerid: customerID,
+    sellerid: sellerID,
+    paymentMethod: 'creditCard',
+    firstName: customer.firstName,
+    lastName: customer.lastName,
+    email: customer.email,
+    mobile: customer.phoneNumber,
+    address1: customer.addressL1,
+    address2: customer.addressL2,
+    address3: customer.addressL3,
+  })
+
+},[customer])
+
 
 const handleInputChange = (e) => {
   const { name, value } = e.target;
@@ -124,7 +142,8 @@ const handleSubmit = async (e) => {
   // You would typically make an API request to create the order on the server.
   console.log('Form data:', formData);
   try {
-    await axios.post("http://localhost:8081/api/v1/putorder", formData);
+    await axios.post("http://localhost:8081/api/v1/putorder", { formData: formData, cart: cart });
+    console.log(formData)
     navigate("/successful");
     
   } catch (err) {
