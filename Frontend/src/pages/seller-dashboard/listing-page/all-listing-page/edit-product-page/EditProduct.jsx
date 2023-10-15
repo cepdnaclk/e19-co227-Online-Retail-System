@@ -22,9 +22,10 @@ function EditProduct() {
     const [productPrice, setProductPrice] = useState(product.productPrice);
     const [subCategoryID, setSubCategoryID] = useState(product.subCategoryID);
     const [images, setImages] = useState([product.productImage1,product.productImage2,product.productImage3,product.productImage4,product.productImage5]);
-    const [isSubmitted, setIsSubmitted] = useState(false);
+    //const [isSubmitted, setIsSubmitted] = useState(false);
 
     let deletedImg = [];
+    let isSubmitted = false
 
 
     useEffect(() => {
@@ -36,10 +37,6 @@ function EditProduct() {
         setImages(prevState => {
             return updatedImages
         })
-
-
-
-
 
       return () => {
           console.log('Component unmounted');
@@ -86,11 +83,7 @@ function EditProduct() {
         const newImages = [...images]; // Create a copy of the original array
         newImages.splice(index, 1, ''); // Remove the item at the specified index
         setImages(newImages);
-
-
-
         removeImgFromFirebase()
-
 
     };
 
@@ -137,9 +130,7 @@ function EditProduct() {
         } else if (images[0] === '' && images[1] === '' && images[2] === '' && images[3] === '' && images[4] === '') {
             alert('Please Add at least one Product Image');
         } else {
-
             updateProductDB()
-
 
         }
     };
@@ -182,7 +173,7 @@ function EditProduct() {
                     if(isSubmitted===true){
                         console.log('Product Updated!');
                         alert('Product Updated Succesfully!');
-                        setIsSubmitted(false)
+                        isSubmitted=false
                     }else {
                         console.log('Image Updated!');
                     }
@@ -355,7 +346,9 @@ function EditProduct() {
                                 <button
                                     className="btn btn-primary "
                                     onClick={(e) => {
-                                        setIsSubmitted(true);
+
+                                        isSubmitted=true;
+
                                         handleUpdateProduct(e);
 
                                     }}

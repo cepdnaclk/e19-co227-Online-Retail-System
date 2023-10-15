@@ -134,12 +134,12 @@ function CustomerOrders(){
                         <tr>
                             <th scope="row">
                                 <div className="btn-group row mx-2">
-                                    <button type="button" className="btn btn-secondary"
+                                    <button type="button" className="btn btn-secondary rounded-pill"
                                              aria-expanded="false" data-bs-toggle="modal" data-bs-target="#staticBackdrop2">
                                         Order Details
                                     </button>
                                     {order.orderStatus === 'Pending' ?
-                                        <button type="button" className="btn btn-danger"
+                                        <button type="button" className="btn btn-danger rounded-pill"
                                                 aria-expanded="false"
                                                 onClick={()=>{
 
