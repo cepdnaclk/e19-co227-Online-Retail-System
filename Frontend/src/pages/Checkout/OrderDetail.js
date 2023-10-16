@@ -139,6 +139,7 @@ const handleSubmit = async (e) => {
   // Here, you can handle the form submission, send data to the server, and process the order.
   // You would typically make an API request to create the order on the server.
   console.log('Form data:', formData);
+
   try {
     await axios.post("http://localhost:8081/api/v1/putorder", { formData: formData, cart: cart });
     console.log(formData)

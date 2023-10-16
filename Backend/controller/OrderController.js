@@ -188,58 +188,63 @@ const putOrder = async(req,res)=>{
         
         let orderDate = new Date();
         let price = 0;
-        let totalPrice = 0;
+        let D_charge = 10;
+        let totalPrice = D_charge;        //delivery charge (10/=)
         for (let item of req.body.cart) {
-            price = item.productPrice;
+            price = item.productPrice * item.qty;
             totalPrice += price ;
         }
-        const query1 = "INSERT INTO `order` (firstName, lastName, phoneNumber, address1, address2, address3, customerID, sellerID, orderTotal, orderDate) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?); SELECT LAST_INSERT_ID() AS GenorderID;"
 
-        db.query(query1, [firstName,lastName,mobile,address1,address2,address3,customerid,sellerid,totalPrice, orderDate],(error,data)=>{
-            if (error) {
-                console.log(error)
-                return res.status(500).json({ error: 'Database error' });
-            }else {
-                console.log("Order Added")
+        if (totalPrice !== D_charge) {
+            const query1 = "INSERT INTO `order` (firstName, lastName, phoneNumber, address1, address2, address3, customerID, sellerID, orderTotal, orderDate) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?); SELECT LAST_INSERT_ID() AS GenorderID;"
 
-                const GenOrderID = (data[1][0].GenorderID);
-                //query 2 for update order_item table
+            db.query(query1, [firstName,lastName,mobile,address1,address2,address3,customerid,sellerid,totalPrice, orderDate],(error,data)=>{
+                if (error) {
+                    console.log(error)
+                    return res.status(500).json({ error: 'Database error' });
+                }else {
+                    console.log("Order Added")
 
-                const cartItems = req.body.cart;
-                let placeholders = cartItems.map(() => "(?, ?, ?, ?)").join(", ");
+                    const GenOrderID = (data[1][0].GenorderID);
+                    //query 2 for update order_item table
 
-                let values = [];
-                for (let item of cartItems) {
-                    values = values.concat([GenOrderID,item.productID, item.productPrice, item.qty]);
-                }
+                    const cartItems = req.body.cart;
+                    let placeholders = cartItems.map(() => "(?, ?, ?, ?)").join(", ");
 
-                let query2 = `INSERT INTO order_item (orderId,productID,totalPrice,itemQty) VALUES ${placeholders}`;
-
-                db.query(query2, values, (error, results, fields) => {
-                    if (error) {
-                        console.error(error);
-                    } else {
-                        console.log("Data inserted successfully!");
-
-                        // delete from cart_item table
-                        for (let item of cartItems) {
-                            db.query("DELETE FROM cart_items WHERE productID = ?", [item.productID], (error, results, fields) => {
-                                if (error) {
-                                    console.error(error);
-                                } else {
-                                    console.log(`Item with productID ${item.productID} deleted from cart table.`);
-                                }
-                            });
-                        }
-                                                
+                    let values = [];
+                    for (let item of cartItems) {
+                        values = values.concat([GenOrderID,item.productID, item.productPrice, item.qty]);
                     }
-                });
 
-                return  res.status(200).json({message: 'Order Updated'});
+                    let query2 = `INSERT INTO order_item (orderId,productID,totalPrice,itemQty) VALUES ${placeholders}`;
+
+                    db.query(query2, values, (error, results, fields) => {
+                        if (error) {
+                            console.error(error);
+                        } else {
+                            console.log("Data inserted successfully!");
+
+                            // delete from cart_item table
+                            for (let item of cartItems) {
+                                db.query("DELETE FROM cart_items WHERE productID = ?", [item.productID], (error, results, fields) => {
+                                    if (error) {
+                                        console.error(error);
+                                    } else {
+                                        console.log(`Item with productID ${item.productID} deleted from cart table.`);
+                                    }
+                                });
+                            }
+                                                    
+                        }
+                    });
+
+                    return  res.status(200).json({message: 'Order Updated'});
 
 
-            }
-        });
+                }
+            });
+        }
+
 
     } catch (error) {
         console.log(error)
