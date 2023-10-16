@@ -47,9 +47,9 @@ const RecommendedProducts = ({ id }) => {
     
      
     {product && ( <> 
-        <div className="container-fluid py-5" style={{marginTop:'100px'}}>
-          <h2 className="section-title position-relative text-uppercase mx-xl-5 mb-4" style={{marginTop:'100px', }}>
-            <span className="bg-third pr-3" style={{backgroundColor:'#93999F', padding:'4px', borderRadius:'4px', }}>You May Also Like</span>
+        <div className="container-fluid py-5 " >
+          <h2 className="section-title position-relative text-uppercase mx-xl-5 mb-4" >
+            <span className="bg-third pr-3" >You May Also Like</span>
           </h2>
 
           <div className="row px-xl-5" >
