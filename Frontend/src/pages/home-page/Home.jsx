@@ -107,7 +107,7 @@ class Home extends React.Component {
       <div>
         
         <div className="home-page">
-        <section className="intro-section">
+        <section className="intro-section content">
           
             
     <div className="container-fluid mb-3">
@@ -274,7 +274,7 @@ class Home extends React.Component {
 
 
           <h2 className="section-title position-relative text-uppercase mx-xl-5 mb-4">
-            <span className="bg-white pr-3">New products</span>
+            <span className="bg-white pr-3">New Arrivals</span>
           </h2>
           {this.renderProducts(this.state.newlyAddedProducts)}
         </div>

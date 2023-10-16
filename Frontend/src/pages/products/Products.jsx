@@ -24,7 +24,7 @@ useEffect(() => {
   }, []); 
 
 return (
-    <div className="product-list">
+    <div className="product-list content">
 
       {ProductForShop.map((product) => (
 
@@ -36,18 +36,6 @@ return (
 
               <Link to={`/product/${product.productID}`} className="btn btn-outline-dark btn-square">
                 <i className="fa fa-shopping-cart" />
-              </Link>
-
-              <Link to={`/product/${product.productID}`} className="btn btn-outline-dark btn-square">
-                <i className="far fa-heart " />
-              </Link>
-
-              <Link to={`/product/${product.productID}`} className="btn btn-outline-dark btn-square">
-                <i className="fa fa-sync-alt " />
-              </Link>
-
-              <Link to={`/product/${product.productID}`} className="btn btn-outline-dark btn-square">
-                <i className="fa fa-search" />
               </Link>
 
             </div>
@@ -67,17 +55,7 @@ return (
                   <del>${product.productPrice < 5 ? product.productPrice + product.productPrice / 10 : product.productPrice + Math.floor(product.productPrice / 20)}</del>
                 </h6>
               </div>
-              <div className="d-flex align-items-center justify-content-center mb-1">
-
-
-                <small className="fa fa-star custom-text-warning mr-1" />
-                <small className="fa fa-star custom-text-warning mr-1" />
-                <small className="fa fa-star custom-text-warning mr-1" />
-                <small className="fa fa-star custom-text-warning mr-1" />
-                <small className="fa fa-star custom-text-warning mr-1" />
-
-                <small>(99)</small>
-              </div>
+              
             </NavLink>
 
           </div>

@@ -37,9 +37,9 @@ const ProductType = () => {
 
 
   return (
-    <div className="container">
+    <div className="container content">
       
-      <h5 className="section-title position-relative text-uppercase mx-xl-5 mb-4">
+      <h5 className="section-title position-relative text-uppercase mx-xl-5 mb-4" style={{ paddingTop: '200px' }}>
         <span className="bg-white pr-3">  Category : {categoryName} - ( {count} )  products 
         </span>  
     </h5>
@@ -54,21 +54,11 @@ const ProductType = () => {
 
               <div className="product-action">
 
-                <Link to={`/productt/${product.productID}`} className="btn btn-outline-dark btn-square">
+                <Link to={`/product/${product.productID}`} className="btn btn-outline-dark btn-square">
                   <i className="fa fa-shopping-cart " />
                 </Link>
 
-                <Link to={`/product/${product.productID}`} className="btn btn-outline-dark btn-square">
-                  <i className="far fa-heart " />
-                </Link>
-
-                <Link to={`/product/${product.productID}`} className="btn btn-outline-dark btn-square">
-                  <i className="fa fa-sync-alt " />
-                </Link>
-
-                <Link to={`/product/${product.productID}`} className="btn btn-outline-dark btn-square">
-                  <i className="fa fa-search " />
-                </Link>
+               
 
               </div>
             </div>
@@ -90,20 +80,7 @@ const ProductType = () => {
 
               </div>
 
-              <div className="d-flex align-items-center justify-content-center mb-1 color-yellow">
-
-                <small className="fa fa-star custom-text-warning mr-1" />
-
-                <small className="fa fa-star custom-text-warning mr-1" />
-
-                <small className="fa fa-star custom-text-warning mr-1" />
-
-                <small className="fa fa-star custom-text-warning mr-1" />
-
-                <small className="fa fa-star custom-text-warning mr-1" />
-
-                <small>(99)</small>
-              </div></NavLink>
+              </NavLink>
             </div>
           </div>
         ))}

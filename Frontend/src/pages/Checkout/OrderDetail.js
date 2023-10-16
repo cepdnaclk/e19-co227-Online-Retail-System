@@ -158,7 +158,7 @@ const handleSubmit = async (e) => {
     <>
   
      {/* Cart Start */}
-  <div className="container-fluid">
+  <div className="container-fluid " style={{ paddingTop: '210px' }}>
     <div className="row px-xl-5">
       <div className="col-lg-8">
 

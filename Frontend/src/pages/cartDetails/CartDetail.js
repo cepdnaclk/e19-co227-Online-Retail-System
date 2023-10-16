@@ -74,7 +74,7 @@ useEffect(()=>{
 //console.log(subTotal)
 
   return (
-    <div  >
+    <div style={{ paddingTop: '200px' }} >
   
      {/* Cart Start */}
 
