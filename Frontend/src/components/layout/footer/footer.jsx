@@ -1,4 +1,4 @@
-import React from "react";
+import React, {useEffect, useState} from "react";
 import './footer.component.css'
 import '../../../css/style.css'
 import '../../../css/style.min.css'
@@ -9,11 +9,54 @@ import '../../../css/bootstrap-reboot.min.css'
 import '../../../css/bootstrap-grid.min.css'
 import '../../../css/bootstrap-grid.css'
 import '../../layout/themeColor.css'
-import { NavLink } from "react-router-dom"
+import {NavLink, useNavigate} from "react-router-dom";
 import {manageAccount} from "../../../services/manage-account.service";
+import {useContext} from "react";
+import {HeaderContext} from "../../../contexts/HeaderContext";
 
 
 const Footer = () => {
+
+  const navigate = useNavigate();
+  const [isSeller,setIsSeller] = useState(false)
+  const [isLogged,setIsLogged] = useState(false)
+  const {trigger,setTrigger} = useContext(HeaderContext)
+
+  useEffect(() => {
+    checkisLogged();
+    checkSeller();
+
+
+    return () => {
+      console.log('Component unmounted');
+
+    };
+  }, [trigger]);
+
+
+  const checkSeller=()=>{
+    console.log('sellerID header',manageAccount.getSellerID())
+    if(manageAccount.getSellerID()!==-1){
+      setIsSeller(true);
+
+    }
+  }
+
+  const checkisLogged= async () => {
+
+    try {
+      const isLogged = await manageAccount.isLoggedIn();
+      console.log(isLogged)
+      if (isLogged) {
+        setIsLogged(true)
+        console.log("Logged In")
+      } else {
+        // User is not logged in
+      }
+    } catch (error) {
+      // Handle errors here
+    }
+  }
   return (
     <footer className="footer">
       <div className="container-fluid bg-secondary text-white mt-5 pt-15">
@@ -54,23 +97,32 @@ const Footer = () => {
         <div className="col-md-4 mb-5">
           <h5 className="text-white text-uppercase mb-4 text-white">My Account</h5>
           <div className="d-flex flex-column justify-content-start">
-            <a className="text-white mb-2 nav-link text-10px" href="/">
+            <a className="text-white mb-2 nav-link text-10px" href="/my-orders">
               <i className="fa fa-angle-right mr-2" />
-              Home
+             My Orders
             </a>
-            <a className="text-white mb-2 nav-link" href="/products">
+            <a className="text-white mb-2 nav-link" href="dashboard">
               <i className="fa fa-angle-right mr-2" />
-              Our Shop
+             My Store
             </a>
             
-            <NavLink exact to={`/cart/${manageAccount.getCustomerID()}`} className="text-white mb-2 nav-link"> 
+            <a className="text-white mb-2 nav-link" href="/user"> 
               <i className="fa fa-angle-right mr-2" />
-              Shopping Cart
-            </NavLink>
-            <a className="text-white mb-2 nav-link" href="/checkout">
-              <i className="fa fa-angle-right mr-2" />
-              Checkout
+              My profile
             </a>
+            
+            <a className="text-white mb-2 nav-link"
+                  href="/"
+                  onClick={() => {
+                    manageAccount.logOut();
+                    setIsLogged(false);
+                    setIsSeller(false);
+                    setTrigger(true);
+                  }}
+                >
+                  <i className="fa fa-angle-right mr-2" /> Log Out
+                </a>
+
             
           </div>
         </div>
@@ -91,16 +143,16 @@ const Footer = () => {
             </div>
           </form>*/}
           <div className="d-flex">
-            <a className="btn custom-btn-warning btn-square mr-2 " href="#">
+            <a className="btn custom-btn-warning btn-square mr-2 " href="/">
               <i className="fab fa-twitter text-dark" />
             </a>
-            <a className="btn custom-btn-warning btn-square mr-2" href="#">
+            <a className="btn custom-btn-warning btn-square mr-2" href="/">
               <i className="fab fa-facebook-f text-dark" />
             </a>
-            <a className="btn custom-btn-warning btn-square mr-2"  href="#">
+            <a className="btn custom-btn-warning btn-square mr-2"  href="/">
               <i className="fab fa-linkedin-in text-dark" />
             </a>
-            <a className="btn custom-btn-warning btn-square" href="#">
+            <a className="btn custom-btn-warning btn-square" href="/">
               <i className="fab fa-instagram text-dark" />
             </a>
           </div>

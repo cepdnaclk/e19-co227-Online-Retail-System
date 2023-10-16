@@ -59,20 +59,7 @@ const Header = () => {
   <div className="container-fluid contentfixed" >
     <div className="row bg-light py-1 px-xl-5">
       <div className="col-lg-6 d-none d-lg-block">
-        <div className="d-inline-flex align-items-center h-100">
-          <a className="text-body mr-3 nav-link" href="">
-            About
-          </a>
-          <a className="text-body mr-3 nav-link" href="">
-            Contact
-          </a>
-          <a className="text-body mr-3 nav-link" href="">
-            Help
-          </a>
-          <a className="text-body mr-3 nav-link" href="">
-            FAQs
-          </a>
-        </div>
+       
       </div>
       <div className="col-lg-6 text-right text-lg-right">
        {/* <div className="d-inline-flex align-items-end">
