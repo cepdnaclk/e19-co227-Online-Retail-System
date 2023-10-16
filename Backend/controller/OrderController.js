@@ -162,7 +162,7 @@ const getCustomerOrders = async(req,res)=>{
 
     try{
         const id = req.headers.id
-        const query= 'SELECT o.*, c.firstName AS firstName,c.lastName AS lastName, c.email AS email,c.phoneNumber AS phoneNumber FROM `order` AS o JOIN `customer` AS c ON o.customerID = c.customerID WHERE o.customerID = ?;';
+        const query= 'SELECT o.*,  c.email AS email FROM `order` AS o JOIN `customer` AS c ON o.customerID = c.customerID WHERE o.customerID = ?;';
         db.query(query,[id],(err,data)=>{
             if (err) {
                 console.log(err)
