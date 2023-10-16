@@ -56,7 +56,7 @@ const Header = () => {
         return( 
             <>
               {/* Topbar Start */}
-  <div className="container-fluid">
+  <div className="container-fluid" >
     <div className="row bg-light py-1 px-xl-5">
       <div className="col-lg-6 d-none d-lg-block">
         <div className="d-inline-flex align-items-center h-100">
@@ -183,7 +183,7 @@ const Header = () => {
           <span className="h1 text-uppercase text-white bg-dark px-2 font-style">
             Gadget
           </span>
-          <span className="h1 text-uppercase text-dark bg-white px-2 ml-n1">
+          <span className="h1 text-uppercase text-dark  px-2 ml-n1">
           𝓦𝓪𝓿𝓮
           </span>
         </a>
@@ -213,7 +213,7 @@ const Header = () => {
   {/* Topbar End */}
 
               {/* Navbar Start */}
-  <div className="container-fluid background-color mb-30 " >
+  <div className="container-fluid background-color  " >
     <div className="row px-xl-5">
       <div className="col-lg-3 d-none d-lg-block background-color2 pt-0 mb-1" >
         <a
@@ -703,9 +703,12 @@ const Header = () => {
               </div>
 
               <Link to={`cart/${manageAccount.getCustomerID()}`} className="btn px-0 ml-3">
-                <i className="fas fa-shopping-cart text-white" />
-                <span className="badge text-secondary border border-secondary rounded-circle" style={{ paddingBottom: 2 }}>
-      <CartSize />
+                <i className="fas fa-shopping-cart textColor" />
+                <span className="badge border border-white rounded-circle  " style={{ paddingBottom: 3, marginLeft:'2px' }}>
+                  <span >
+                  <CartSize />
+                  </span>
+      
     </span>
               </Link>
             </div>

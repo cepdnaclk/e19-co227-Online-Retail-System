@@ -27,5 +27,14 @@
   }
 
   .background-color2{
-      background-color: #EACD2C;
+      background-color: #eacd2c;
+      
   }
+
+  .textColor{
+    color: #eacd2c;
+  }
+
+.borderPrimary{
+  border-color: #eacd2c;
+}

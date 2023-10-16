@@ -108,11 +108,13 @@ const ProductDetails = (props) => {
     }
   }
 
+  const discountedPrice = product.productPrice < 5 ? product.productPrice + product.productPrice / 10 : product.productPrice + Math.floor(product.productPrice / 20)
+
   return (
-  <div style={{backgroundColor:'#f5f5f5'}}>
+  <div style={{backgroundColor:'#f8f9fa'}} className='pt-5'>
     {product && (<>
   {/* Shop Detail Start */}
-  <div className="container-fluid pb-5" style={{margin:"20px 0px"}}>
+  <div className="container-fluid pb-5" >
     <div className="row px-xl-5" >
       <div className="col-lg-5 mb-30" >
 
@@ -121,18 +123,18 @@ const ProductDetails = (props) => {
             <div className="carousel-item active" data-bs-interval={7000}>
               <img src={product.productImage1} className="w-100 h-100" alt="Image" />
             </div>
-            <div className="carousel-item" data-bs-interval={7000}>
+           { product.productImage2 && <div className="carousel-item" data-bs-interval={7000}>
               <img src={product.productImage2} className="w-100 h-100" alt="Image" />
-            </div>
-            <div className="carousel-item" data-bs-interval={7000}>
+            </div>}
+            {product.productImage3 &&  <div className="carousel-item" data-bs-interval={7000}>
               <img src={product.productImage3} className="w-100 h-100" alt="Image" />
-            </div>
-            <div className="carousel-item" data-bs-interval={7000}>
+            </div>}
+           {product.productImage4 &&  <div className="carousel-item" data-bs-interval={7000}>
               <img src={product.productImage4} className="w-100 h-100" alt="Image" />
-            </div>
-            <div className="carousel-item" data-bs-interval={7000}>
+            </div>}
+            {product.productImage5 &&  <div className="carousel-item" data-bs-interval={7000}>
               <img src={product.productImage5} className="w-100 h-100" alt="Image" />
-            </div>
+            </div>}
           </div>
           <button
             className="carousel-control-prev"
@@ -157,27 +159,64 @@ const ProductDetails = (props) => {
 
 
       </div>
-      <div className="col-lg-7 h-auto mb-30" >
-        <div className="h-100 bg-light p-30">
+      <div className="col-lg-7 h-auto mb-30 bg-white" >
+        <div className="h-100  p-30" >
           <h1>{product.productName}</h1>
           <p>{product.categoryName} {`->`} {product.subCategoryName}</p>
           <p><strong>Seller:</strong> {product.shopName}</p>
-          <div className="d-flex mb-3">
-            <div className="text-warning mr-2">
-              <small className="fas fa-star" />
-              <small className="fas fa-star" />
-              <small className="fas fa-star" />
-              <small className="fas fa-star-half-alt" />
-              <small className="far fa-star" />
-            </div>
-            <small className="pt-1">(99 Reviews)</small>
+
+          
+          <div className="d-flex text-muted fs-5">
+                  <div className='mr-5'>M.R.P. :</div>
+                  
+                  <del>${discountedPrice}</del>
           </div>
-          <h3 className="font-weight-semi-bold mb-4">${product.productPrice}</h3>
-          <p className="mb-4">
-            Volup erat ipsum diam elitr rebum et dolor. Est nonumy elitr erat
-            diam stet sit clita ea. Sanc ipsum et, labore clita lorem magna duo
-            dolor no sea Nonumy
-          </p>
+         
+
+          <div className="d-flex ">
+          
+          <div className="font-weight-bold fs-5 mr-2">Deal Price :</div>
+
+          <div className="font-weight-bold text-danger fs-5"> ${product.productPrice}</div>
+
+          </div>
+
+          <div className="d-flex text-muted fs-5  ">
+                  <div className='mr-4'>You Save :</div>
+                  
+                  <div className='text-success'>${discountedPrice-product.productPrice}</div>
+          </div>
+          
+         
+          <div className="d-flex mb-3 mt-4">
+            <div className="return text-center mr-5">
+              <div className="font-size-20 my-2 color-second">
+                <span className="fas fa-retweet border p-3 rounded-pill " style={{backgroundColor:'#ffd333'}} />
+              </div>
+              <p  className="font-rale font-size-12">
+                10 Days <br /> Replacement
+              </p>
+            </div>
+            <div className="return text-center mr-5">
+              <div className="font-size-20 my-2 color-second">
+                <span className="fas fa-truck  border p-3 rounded-pill" style={{backgroundColor:'#ffd333'}}/>
+              </div>
+              <p className="font-rale font-size-12">
+                Cash on Delivery <br />
+                Available
+              </p>
+            </div>
+            <div className="return text-center mr-5">
+              <div className="font-size-20 my-2 color-second">
+                <span className="fas fa-check-double border p-3 rounded-pill"style={{backgroundColor:'#ffd333'}} />
+              </div>
+              <p className="font-rale font-size-12">
+                1 Year <br />
+                Warranty
+              </p>
+            </div>
+          </div>
+        
          
           <div className="d-flex align-items-center mb-4 pt-2">
             <div className="input-group quantity mr-3" style={{ width: 130 }}>
@@ -205,7 +244,7 @@ const ProductDetails = (props) => {
               <i className="fa fa-shopping-cart mr-1 " /> Already in Cart
             </button>)}
 
-            { !isInCart && (<button className="btn btn-success text-dark px-3" style={{backgroundColor:'#ffd333', border:'none'}} onClick={(e)=>handleCart(e)}>
+            { !isInCart && (<button className="btn btn-success text-dark px-3" style={{backgroundColor:'#ffa41c', border:'none'}} onClick={(e)=>handleCart(e)}>
               <i className="fa fa-shopping-cart mr-1 " /> Add To Cart
             </button>)}
 
@@ -245,25 +284,17 @@ const ProductDetails = (props) => {
         </div>
       </div>
     </div>
-    <div className="row px-xl-5">
-      <div className="col">
-        <div className="bg-light p-30">
-          <div className="nav nav-tabs mb-4">
-         
-            
-          </div>
-          <div className="tab-content">
-            <div className="tab-pane fade show active" id="tab-pane-1">
-              <h4 className="mb-3">Product Description</h4>
-              <p style={{ whiteSpace: 'pre-line' }}>
+    <div className="row px-xl-5 "  >
+
+        <div className="row-lg-7 h-auto mb-30  pt-3 pl-3 bg-white">
+     
+              <h4 className="mb-3 pb-2 border-bottom">Product Description</h4>
+              <p style={{ whiteSpace: 'pre-line' }} >
                 {product.productDetails}
               </p>
-            </div>
-            
+              </div>
            
-          </div>
-        </div>
-      </div>
+            
     </div>
   </div>
   {/* Shop Detail End */}
