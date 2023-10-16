@@ -117,6 +117,7 @@ useEffect(()=>{
         <h5 className="section-title position-relative text-uppercase mb-3">
           <span className="bg-white pr-3 pl-3">Cart Summary</span>
         </h5>
+        
         <div className=" p-30 mb-5" style={{backgroundColor:'#ffffff'}}>
           <div className="border-bottom pb-2">
             <div className="d-flex justify-content-between mb-3">

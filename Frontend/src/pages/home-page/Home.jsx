@@ -82,6 +82,7 @@ class Home extends React.Component {
 
               </div>
             </div>
+            
             <div className="title text-center py-4"><NavLink to={`/product/${product.productID}`} className="nav-link-style">
               <div className="h5 text-decoration-none text-truncate">
                 {product.productName}
@@ -183,7 +184,7 @@ class Home extends React.Component {
             <div className="offer-text">
               <h6 className="text-white text-uppercase">Save 20%</h6>
               <h3 className="text-white mb-3">Special Offer</h3>
-              <a href="/products" className="btn custom-btn-primary">Shop Now</a>
+              <a href="/products" className="btn custom-btn-primary" >Shop Now</a>
             </div>
           </div>
           <div className="product-offer mb-30" style={{ height: '200px' }}>

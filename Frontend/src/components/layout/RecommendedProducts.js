@@ -49,8 +49,10 @@ const RecommendedProducts = ({ id }) => {
     {product && ( <> 
         <div className="container-fluid py-5 " >
           <h2 className="section-title position-relative text-uppercase mx-xl-5 mb-4" >
-            <span className="bg-third pr-3" >You May Also Like</span>
+            <span className=" bg-white pr-3 pl-3" >You May Also Like</span>
           </h2>
+
+       
 
           <div className="row px-xl-5" >
             <Carousel responsive={responsive}>

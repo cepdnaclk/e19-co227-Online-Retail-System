@@ -5,6 +5,10 @@
     background-color: #eacd2c !important;
 }
 .custom-btn-primary{
-    background-color: rgb(170, 234, 9)!important;
+    background-color: #eacd2c!important;
     border: #2dddd4!important;
+}
+
+.custom-btn-primary:hover{
+    color: grey!important;
 }

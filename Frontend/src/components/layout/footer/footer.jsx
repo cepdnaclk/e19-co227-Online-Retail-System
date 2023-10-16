@@ -130,11 +130,8 @@ const Footer = () => {
     <div className="col-md-6 px-xl-0">
       <p className="mb-md-0 text-center text-md-left text-white">
         ©{" "}
-        <a className="custom-text-warning text-#ff377" href="#">
-          Domain
-        </a>
-        . All Rights Reserved. Designed by
-          Group 5
+        
+          Copyright 2023. All Rights Reserved. Designed by Group 5
         
       </p>
     </div>
