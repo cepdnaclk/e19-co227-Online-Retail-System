@@ -35,7 +35,7 @@ return (
             <div className="product-action">
 
               <Link to={`/product/${product.productID}`} className="btn btn-outline-dark btn-square">
-                <i className="fa fa-shopping-cart" />
+                <i className="fa fa-eye" />
               </Link>
 
             </div>
@@ -44,11 +44,11 @@ return (
 
             <NavLink to={`/product/${product.productID}`} className="nav-link-style">
 
-              <div className="h4 text-decoration-none text-truncate">
+              <div className="h6">
                 {product.productName}
               </div>
 
-              <div className="d-flex align-items-center justify-content-center mt-2 w-75 text-center">
+              <div className="d-flex align-items-center justify-content-center mt-2 text-center">
                 <h6>${product.productPrice}</h6>
 
                 <h6 className="d-flex align-items-center text-muted ml-2">

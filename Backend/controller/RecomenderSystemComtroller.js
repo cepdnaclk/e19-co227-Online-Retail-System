@@ -20,7 +20,7 @@ const getReccomnederProduct = async(req,res)=>{
 
               const frequentItemsets = fi(
                 purchaseHistory,
-                0.6,
+                0.1,
                 true
               )
 

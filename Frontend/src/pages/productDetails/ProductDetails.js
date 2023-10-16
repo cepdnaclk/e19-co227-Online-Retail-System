@@ -111,16 +111,16 @@ const ProductDetails = (props) => {
   const discountedPrice = product.productPrice < 5 ? product.productPrice + product.productPrice / 10 : product.productPrice + Math.floor(product.productPrice / 20)
 
   return (
-  <div style={{backgroundColor:'#f8f9fa'}} className='pt-5'>
+  <div  className='pt-5'>
     {product && (<>
   {/* Shop Detail Start */}
-  <div className="container-fluid pb-5" >
+  <div className="container-fluid " >
     <div className="row px-xl-5" style={{ paddingTop: '190px' }} >
-      <div className="col-lg-5 mb-30" >
+      <div className="col-lg-5 mb-30 pt-10"   >
 
       <div id="carouselExampleDark" className="carousel carousel-dark slide carousel-fade" data-bs-ride="carousel">
           <div className="carousel-inner">
-            <div className="carousel-item active" data-bs-interval={7000}>
+            <div className="carousel-item active" data-bs-interval={5000}>
               <img src={product.productImage1} className="w-100 h-100" alt="Image" />
             </div>
            { product.productImage2 && <div className="carousel-item" data-bs-interval={7000}>
@@ -155,11 +155,9 @@ const ProductDetails = (props) => {
             <span className="visually-hidden">Next</span>
           </button>
         </div>
-
-
-
       </div>
-      <div className="col-lg-7 h-auto mb-30 bg-white" >
+
+      <div className="col-lg-7 h-auto mb-30 bg-light" >
         <div className="h-100  p-30" >
           <h1>{product.productName}</h1>
           <p>{product.categoryName} {`->`} {product.subCategoryName}</p>
@@ -286,7 +284,7 @@ const ProductDetails = (props) => {
     </div>
     <div className="row px-xl-5 "  >
 
-        <div className="row-lg-7 h-auto mb-30  pt-3 pl-3 bg-white">
+        <div className="row-lg-7 h-auto  pt-3 pl-3 bg-light">
      
               <h4 className="mb-3 pb-2 border-bottom">Product Description</h4>
               <p style={{ whiteSpace: 'pre-line' }} >
