@@ -7,7 +7,7 @@ import OrderItem from './OrderItem'
 import CheckOut from './checkOut'
 import { Link, useNavigate } from "react-router-dom";
 
-const CartDetail = () => {
+const OrderDetail = () => {
 
   const [cart,setCart] = useState([])
   const shipping = 10
@@ -50,8 +50,6 @@ useEffect(()=>{
 
 },[cart,updateCartTrigger])
 
-////////////////////////////////////////////////////////////////////////// supun's work
-//checkOut file
 
 //getcustomer info
 const [customer,setcustomer] = useState([]);
@@ -141,6 +139,7 @@ const handleSubmit = async (e) => {
   // Here, you can handle the form submission, send data to the server, and process the order.
   // You would typically make an API request to create the order on the server.
   console.log('Form data:', formData);
+
   try {
     await axios.post("http://localhost:8081/api/v1/putorder", { formData: formData, cart: cart });
     console.log(formData)
@@ -159,7 +158,7 @@ const handleSubmit = async (e) => {
     <>
   
      {/* Cart Start */}
-  <div className="container-fluid">
+  <div className="container-fluid " style={{ paddingTop: '210px' }}>
     <div className="row px-xl-5">
       <div className="col-lg-8">
 
@@ -294,7 +293,7 @@ const handleSubmit = async (e) => {
       
       <div className="col-lg-4">
         <h5 className="section-title position-relative text-uppercase mb-3">
-          <span className="bg-white pr-3 pl-3">Order Summery</span>
+          <span className="bg-white pr-3 pl-3">Order Total</span>
         </h5>
         <div className="col table-responsive mb-5">
         <table className="table table-white mb-0">
@@ -318,9 +317,20 @@ const handleSubmit = async (e) => {
         </table>
         </div>
         <div className="col">
-
+        <form className="mb-30" action="">
+          <div className="input-group">
+            <input
+              type="text"
+              className="form-control border-0 p-4"
+              placeholder="Coupon Code"
+            />
+            <div className="input-group-append">
+              <button className="btn btn-primary">Apply Coupon</button>
+            </div>
+          </div>
+        </form>
         <h5 className="section-title position-relative text-uppercase mb-3">
-          <span className="bg-white pr-3">Order Total</span>
+          <span className="bg-white pr-3">Payment</span>
         </h5>
         <div className="bg-white p-30 mb-5">
           <div className="border-bottom pb-2">
@@ -339,7 +349,7 @@ const handleSubmit = async (e) => {
               <h5>${subTotal+shipping}</h5>
             </div>
             
-              <button onClick = {handleSubmit} className="btn btn-block btn-warning font-weight-bold my-3 py-3">
+              <button onClick = {handleSubmit} className="btn btn-block btn-primary font-weight-bold my-3 py-3">
                 Buy now
               </button>
             
@@ -360,4 +370,4 @@ const handleSubmit = async (e) => {
   )
 }
 
-export default CartDetail
+export default OrderDetail

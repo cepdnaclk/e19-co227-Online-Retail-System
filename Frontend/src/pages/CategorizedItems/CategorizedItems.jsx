@@ -45,7 +45,7 @@ const CategorizedItems = () => {
   }, [categoryId, subcategoryId]);
 
   return (
-    <div>
+    <div style={{ paddingTop: '210px' }}>
 
 
 {/*
@@ -84,17 +84,7 @@ const CategorizedItems = () => {
                   <i className="fa fa-shopping-cart" />
                 </Link>
 
-                <Link to={`/product/${product.productID}`} className="btn btn-outline-dark btn-square">
-                  <i className="far fa-heart " />
-                </Link>
-
-                <Link to={`/product/${product.productID}`} className="btn btn-outline-dark btn-square">
-                  <i className="fa fa-sync-alt " />
-                </Link>
-
-                <Link to={`/product/${product.productID}`} className="btn btn-outline-dark btn-square">
-                  <i className="fa fa-search" />
-                </Link>
+              
               </div>
             </div>
             <div className="title text-center py-4"><NavLink to={`/product/${product.productID}`} className="nav-link-style">
@@ -113,20 +103,7 @@ const CategorizedItems = () => {
 
               </div>
 
-              <div className="d-flex align-items-center justify-content-center mb-1 color-yellow">
-
-                <small className="fa fa-star custom-text-warning mr-1" />
-
-                <small className="fa fa-star custom-text-warning mr-1" />
-
-                <small className="fa fa-star custom-text-warning mr-1" />
-
-                <small className="fa fa-star custom-text-warning mr-1" />
-
-                <small className="fa fa-star custom-text-warning mr-1" />
-
-                <small>(99)</small>
-              </div></NavLink>
+              </NavLink>
             </div>
           </div>
         ))}
