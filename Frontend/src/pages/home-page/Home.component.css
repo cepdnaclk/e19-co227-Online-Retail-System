@@ -175,6 +175,9 @@ margin: 0 auto;
 .title{
   color: #040403;
 }
+.content {
+  padding-top: 210px;
+}
 {/*
 @keyframes fadeIn {
   from {

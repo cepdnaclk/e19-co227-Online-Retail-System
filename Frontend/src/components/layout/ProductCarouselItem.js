@@ -66,14 +66,7 @@ const ProductCarouselItem = ({id}) => {
                   <del>${product.productPrice + 100}</del>
                 </h6>
               </div>
-              <div className="d-flex align-items-center justify-content-center mb-1 color-yellow">
-                <small className="fa fa-star text-primary mr-1" />
-                <small className="fa fa-star text-primary mr-1" />
-                <small className="fa fa-star text-primary mr-1" />
-                <small className="fa fa-star text-primary mr-1" />
-                <small className="fa fa-star text-primary mr-1" />
-                <small>(99)</small>
-              </div></NavLink>
+              </NavLink>
             </div>
 
             </div>

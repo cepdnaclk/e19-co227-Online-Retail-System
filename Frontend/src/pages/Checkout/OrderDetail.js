@@ -139,6 +139,7 @@ const handleSubmit = async (e) => {
   // Here, you can handle the form submission, send data to the server, and process the order.
   // You would typically make an API request to create the order on the server.
   console.log('Form data:', formData);
+
   try {
     await axios.post("http://localhost:8081/api/v1/putorder", { formData: formData, cart: cart });
     console.log(formData)
@@ -157,7 +158,7 @@ const handleSubmit = async (e) => {
     <>
   
      {/* Cart Start */}
-  <div className="container-fluid">
+  <div className="container-fluid " style={{ paddingTop: '210px' }}>
     <div className="row px-xl-5">
       <div className="col-lg-8">
 
