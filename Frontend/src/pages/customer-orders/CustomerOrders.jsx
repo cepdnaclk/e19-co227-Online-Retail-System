@@ -179,7 +179,7 @@ function CustomerOrders(){
                                                 </div>
                                                 <div class="modal-body">
                                                     <h2>Address</h2>
-                                                    {order.name} <br/>
+                                                    {order.firstName} {order.lastName}<br/>
                                                     {order.address1} <br/>
                                                     {order.address2} <br/>
                                                     {order.address3} <br/>
@@ -242,7 +242,7 @@ function CustomerOrders(){
                                                             <h6 className="card-title">{item.productName}</h6>
                                                             <ul className="list-group list-group-flush">
                                                                 <li className="list-group-item">ID&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;:{item.orderID}</li>
-                                                                <li className="list-group-item">Qty&nbsp;&nbsp;&nbsp;:{item.itemQty}(left:{item.qty-item.itemQty})</li>
+                                                                <li className="list-group-item">Qty&nbsp;&nbsp;&nbsp;: {item.itemQty}  (left:{item.qty})</li>
                                                                 <li className="list-group-item">Sub Total&nbsp;:{(item.totalPrice/item.itemQty).toFixed(2)}x{item.itemQty}</li>
                                                             </ul>
                                                         </div>
