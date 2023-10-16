@@ -278,7 +278,13 @@ const getSalesAmount = async(req,res)=>{
                     const orderDate = new Date(row.orderDate);
                     const orderTotal = row.orderTotal;
 
-                    if (orderDate === today) {
+                    function isSameDate(date1, date2) {
+                        return date1.getDate() === date2.getDate() &&
+                            date1.getMonth() === date2.getMonth() &&
+                            date1.getFullYear() === date2.getFullYear();
+                    }
+
+                    if (isSameDate(orderDate, today)) {
                         totalToday += orderTotal;
                     }
 
