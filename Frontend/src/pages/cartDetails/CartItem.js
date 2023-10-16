@@ -69,7 +69,7 @@ const CartItem = ({cartItem, changeSubtotal, setUpdateCartTrigger}) => {
 
   return (
     <>
-    <td className="align-middle">
+    <td className="align-middle text-left " style={{paddingLeft:"25px"}}>
       <img src={cartItem.productImage1} alt="" style={{ width: 50 }} />{cartItem.productName}
       
     </td>

@@ -278,7 +278,7 @@ const getSalesAmount = async(req,res)=>{
                     const orderDate = new Date(row.orderDate);
                     const orderTotal = row.orderTotal;
 
-                    if (orderDate === currentDate) {
+                    if (orderDate === today) {
                         totalToday += orderTotal;
                     }
 
