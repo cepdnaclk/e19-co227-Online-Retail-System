@@ -77,23 +77,27 @@ class Home extends React.Component {
               <div className="product-action">
 
                 <Link to={`/product/${product.productID}`} className="btn btn-outline-dark btn-square">
-                  <i className="fa fa-shopping-cart" />
+                  <i className="fa fa-eye" />
                 </Link>
 
               </div>
             </div>
             
             <div className="title text-center py-4"><NavLink to={`/product/${product.productID}`} className="nav-link-style">
-              <div className="h5 text-decoration-none text-truncate">
+              <div className="h6 ">
                 {product.productName}
               </div>
-              <div className="d-flex align-items-center justify-content-center mt-2 w-75 text-center">
-                <p>${product.productPrice}</p>
-                <h6 className="d-flex align-items-center text-muted ml-2 font-size:5px">
-                  <del>${product.productPrice < 5 ? product.productPrice+product.productPrice/10 : product.productPrice + Math.floor(product.productPrice/20)}</del>
-                </h6 >
-
+              <div className="d-flex align-items-center justify-content-center mt-2">
+                <h6>{product.productPrice}</h6>
+                <h6 className="text-muted ml-2">
+                  <del>
+                    {product.productPrice < 5
+                      ? product.productPrice + product.productPrice / 10
+                      : product.productPrice + Math.floor(product.productPrice / 20)}
+                  </del>
+                </h6>
               </div>
+
          </NavLink>
             </div>
           </div>
@@ -158,8 +162,8 @@ class Home extends React.Component {
                 <img className="position-absolute w-100 h-100" src={img2} style={{ objectFit: 'cover' }} alt="" />
                 <div className="carousel-caption d-flex flex-column align-items-center justify-content-center">
                   <div className="p-3"style={{ maxWidth: '700px', display: 'flex', flexDirection: 'column', alignItems: 'center', justifyContent: 'center' }}>
-                    <h1 className="display-4 text-white mb-3 animate__animated animate__fadeInDown">Women Fashion</h1>
-                    <p className="mx-md-5 px-5 animate__animated animate__bounceIn">Lorem rebum magna amet lorem magna erat diam stet. Sadips duo stet amet amet ndiam elitr ipsum diam</p>
+                    <h1 className="display-4 text-white mb-3 animate__animated animate__fadeInDown">Electronics</h1>
+                    <p className="mx-md-5 px-5 animate__animated animate__bounceIn">Elevate your technology experience with our thoughtfully chosen range of electronic innovations and gadgets.</p>
                     <a className="btn btn-outline-light py-2 px-4 mt-3 animate__animated animate__fadeInUp" href="/products">Shop Now</a>
                   </div>
                 </div>
@@ -168,8 +172,8 @@ class Home extends React.Component {
                 <img className="position-absolute w-100 h-100" src={img3} style={{ objectFit: 'cover' }} alt="" />
                 <div className="carousel-caption d-flex flex-column align-items-center justify-content-center">
                   <div className="p-3" style={{ maxWidth: '700px', display: 'flex', flexDirection: 'column', alignItems: 'center', justifyContent: 'center' }}>
-                    <h1 className="display-4 text-white mb-3 animate__animated animate__fadeInDown">Kids Fashion</h1>
-                    <p className="mx-md-5 px-5 animate__animated animate__bounceIn">Lorem rebum magna amet lorem magna erat diam stet. Sadips duo stet amet amet ndiam elitr ipsum diam</p>
+                    <h1 className="display-4 text-white mb-3 animate__animated animate__fadeInDown">Fashion</h1>
+                    <p className="mx-md-5 px-5 animate__animated animate__bounceIn"> Discover the latest in style with our fashion-forward choices. </p>
                     <a className="btn btn-outline-light py-2 px-4 mt-3 animate__animated animate__fadeInUp" href="/products">Shop Now</a>
                   </div>
                 </div>
