@@ -1,10 +1,11 @@
-import React, { useEffect, useState } from 'react'
+import React, { useEffect, useState, useContext } from 'react'
 import axios from 'axios'
 import { manageAccount } from '../../services/manage-account.service'
 import { useManageCart } from '../../services/useManageCart'
 import Footer from '../../components/layout/footer/footer'
 import OrderItem from './OrderItem'
 import CheckOut from './checkOut'
+import { HeaderContext } from '../../contexts/HeaderContext'
 import { Link, useNavigate } from "react-router-dom";
 
 const OrderDetail = () => {
@@ -14,6 +15,8 @@ const OrderDetail = () => {
   const [updateCartTrigger, setUpdateCartTrigger] = useState(false); 
   const userID = manageAccount.getCustomerID()
   const cartInfo = useManageCart();
+
+  const { setIsInCart, } = useManageCart();
   let cartID = null
 
   if (cartInfo ){
@@ -133,15 +136,16 @@ const paymentMethods = [
   { id: "creditCard", label: "Credit Card" },
 ];
 
+const {trigger,setTrigger} = useContext(HeaderContext)
 
 const handleSubmit = async (e) => {
   e.preventDefault();
-  // Here, you can handle the form submission, send data to the server, and process the order.
-  // You would typically make an API request to create the order on the server.
+  
   console.log('Form data:', formData);
 
   try {
     await axios.post("http://localhost:8081/api/v1/putorder", { formData: formData, cart: cart });
+    setTrigger(true)
     console.log(formData)
     navigate("/successful");
     
@@ -317,18 +321,7 @@ const handleSubmit = async (e) => {
         </table>
         </div>
         <div className="col">
-        <form className="mb-30" action="">
-          <div className="input-group">
-            <input
-              type="text"
-              className="form-control border-0 p-4"
-              placeholder="Coupon Code"
-            />
-            <div className="input-group-append">
-              <button className="btn btn-primary">Apply Coupon</button>
-            </div>
-          </div>
-        </form>
+
         <h5 className="section-title position-relative text-uppercase mb-3">
           <span className="bg-white pr-3">Payment</span>
         </h5>
@@ -349,7 +342,7 @@ const handleSubmit = async (e) => {
               <h5>${subTotal+shipping}</h5>
             </div>
             
-              <button onClick = {handleSubmit} className="btn btn-block btn-primary font-weight-bold my-3 py-3">
+              <button onClick = {handleSubmit} className="btn btn-block  font-weight-bold my-3 py-3" style={{backgroundColor:"#ffd333"}}>
                 Buy now
               </button>
             
