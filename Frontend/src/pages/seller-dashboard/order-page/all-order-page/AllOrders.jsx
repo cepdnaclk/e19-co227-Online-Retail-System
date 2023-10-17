@@ -85,7 +85,7 @@ function AllOrders(){
     const handleAddTracking=(event)=>{
         orderService.updateTracking(currentOrderID,trackingID,deliveryCompany).then(respoonse=>{
             console.log(respoonse.message)
-            updateStatus("Shipped")
+            updateStatus("Shipped",currentOrderID)
 
         }).catch((e)=>{
                 console.log(e)
