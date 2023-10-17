@@ -7,7 +7,6 @@
     "@fortawesome/free-solid-svg-icons": "^6.4.2",
     "@fortawesome/react-fontawesome": "^0.2.0",
     "@testing-library/jest-dom": "^5.17.0",
-    "@testing-library/react": "^13.4.0",
     "@testing-library/user-event": "^13.5.0",
     "axios": "^1.4.0",
     "boostrap": "^2.0.0",
@@ -50,5 +49,10 @@
       "last 1 firefox version",
       "last 1 safari version"
     ]
+  },
+  "devDependencies": {
+    "@testing-library/react": "^14.0.0",
+    "babel-core": "^7.0.0-bridge.0",
+    "jest": "^27.5.1"
   }
 }

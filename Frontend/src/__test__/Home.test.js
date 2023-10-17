@@ -49,14 +49,9 @@ test('displays quality badge', () => {
 });*/
 import React from 'react';
 import { render, screen, fireEvent, waitFor } from '@testing-library/react';
-import Home from './Home';
-
-// Mock Axios and data for data fetching tests
-import axios from 'axios';
-import MockAdapter from 'axios-mock-adapter';
+import Home from '../pages/home-page/Home';
 import {homePageService} from "../services/home-page.services";
 
-// ... Mock Axios configuration for data fetching ...
 
 describe('Home component', () => {
     it('renders the component', () => {
