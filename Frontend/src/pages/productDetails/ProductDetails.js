@@ -115,7 +115,7 @@ const ProductDetails = (props) => {
     {product && (<>
   {/* Shop Detail Start */}
   <div className="container-fluid " >
-    <div className="row px-xl-5" style={{ paddingTop: '190px' }} >
+    <div className="row px-xl-5" style={{ paddingTop: '140px' }} >
       <div className="col-lg-5 mb-30 pt-10"   >
 
       <div id="carouselExampleDark" className="carousel carousel-dark slide carousel-fade" data-bs-ride="carousel">

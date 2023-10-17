@@ -45,7 +45,7 @@ const CategorizedItems = () => {
   }, [categoryId, subcategoryId]);
 
   return (
-    <div style={{ paddingTop: '210px' }}>
+    <div style={{ paddingTop: '195px' }}>
 
 
 {/*

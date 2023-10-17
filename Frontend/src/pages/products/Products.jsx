@@ -24,7 +24,7 @@ useEffect(() => {
   }, []); 
 
 return (
-    <div className="product-list content">
+    <div className="product-list" style={{ paddingTop: '195px' }}>
 
       {ProductForShop.map((product) => (
 
