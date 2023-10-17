@@ -41,7 +41,7 @@ const OrderDetail = () => {
 
 
 useEffect(()=>{
-  if (cart[1] ){
+  if (cart[0] ){
     console.log('dasd',cart[0].sellerID)
     setSellerID(cart[0].sellerID.toString())
   }
@@ -95,7 +95,7 @@ useEffect(() => {
 
 const [formData, setFormData] = useState({
   customerid: customerID,
-  sellerid: 0,
+  sellerid: '',
   firstName: '',
   lastName: '',
   email: '',
