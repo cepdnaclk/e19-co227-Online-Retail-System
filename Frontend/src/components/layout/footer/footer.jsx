@@ -17,7 +17,7 @@ import {HeaderContext} from "../../../contexts/HeaderContext";
 
 const Footer = () => {
 
-  const navigate = useNavigate();
+
   const [isSeller,setIsSeller] = useState(false)
   const [isLogged,setIsLogged] = useState(false)
   const {trigger,setTrigger} = useContext(HeaderContext)
