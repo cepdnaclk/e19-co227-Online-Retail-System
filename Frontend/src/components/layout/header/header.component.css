@@ -39,7 +39,8 @@
   border-color: #eacd2c;
 }
 .contentfixed {
-  top: 0; 
+
+  top: 0;
   left: 0; 
   width: 100%; 
   background-color: #fff; 
@@ -48,7 +49,7 @@
   position: fixed;
 }
 .contentfixed-2 {
-  top: 88px;
+  top: 72px;
   left: 0; 
   width: 100%; 
   overflow-block: 10px;

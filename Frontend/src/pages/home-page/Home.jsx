@@ -22,6 +22,7 @@ import imgoffer4 from '../../assets/offer-4.jpg'
 import Categor from "../../components/layout/categories/categor";
 import { Link } from "react-router-dom";
 import '../../components/layout/themeColor.css'
+import {homePageService} from "../../services/home-page.services";
 
 
 //import 'animate.css/animate.min.css';
@@ -45,25 +46,23 @@ class Home extends React.Component {
   }
 
   fetchTopSellingProducts() {
-    
-    axios.get("http://localhost:8081/api/v1/top-selling-products")
-      .then((response) => {
-        this.setState({ topSellingProducts: response.data });
-      })
-      .catch((error) => {
-        console.error("Error fetching top selling products:", error);
-      });
+
+    homePageService.getTopSellingProducts().then(response=>{
+      this.setState({ topSellingProducts: response });
+    }).catch((error) => {
+      console.error("Error fetching top selling products:", error);
+    });
   }
 
   fetchNewlyAddedProducts() {
-    
-    axios.get("http://localhost:8081/api/v1/newly-added-products")
-      .then((response) => {
-        this.setState({ newlyAddedProducts: response.data });
-      })
-      .catch((error) => {
-        console.error("Error fetching newly added products:", error);
-      });
+
+    homePageService.getNewlyAddedProducts().then((response) => {
+      this.setState({ newlyAddedProducts: response });
+    }).catch((error) => {
+      console.error("Error fetching newly added products:", error);
+    });
+
+
   }
 
   renderProducts(products) {

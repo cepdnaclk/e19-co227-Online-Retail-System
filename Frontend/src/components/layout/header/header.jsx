@@ -62,55 +62,7 @@ const Header = () => {
        
       </div>
       <div className="col-lg-6 text-right text-lg-right">
-       {/* <div className="d-inline-flex align-items-end">
 
-            {isLogged===false ?
-                <button className="btn btn-sm btn-secondary" type="button">
-                  <Link to="/SignIn" className="text-decoration-none text-warning">Sign in</Link>
-                </button> :
-              <div className="btn-group">
-                <button
-                    type="button"
-                    className="btn btn-sm btn-secondary dropdown-toggle"
-                    data-bs-toggle="dropdown"
-                >
-                  Hi! {manageAccount.getCustomerName()}
-                </button>
-              <div className="dropdown-menu dropdown-menu-right">
-                {isSeller &&
-                  <button className="dropdown-item" type="button">
-                    <Link to="dashboard" className="text-decoration-none">My Store</Link>
-                  </button>
-                }
-                <button className="dropdown-item" type="button">
-                  <Link to="user" className="text-decoration-none">My Profile</Link>
-                </button>
-                <button className="dropdown-item" type="button"
-                        onClick={()=>{
-                          manageAccount.logOut()
-                          setIsLogged(false)
-                          setIsSeller(false)
-                          setTrigger(true)
-                          navigate("/")
-
-                        }}>
-                  Log Out
-                </button>
-
-              </div>
-            </div>
-            }
-
-          <div className="btn-group mx-1">
-            <button
-              type="button"
-              className="btn btn-sm btn-secondary "
-            >
-              <Link to={'/my-orders'} className="text-decoration-none" style={{color:'white'}}>My Orders</Link>
-
-            </button>
-          </div>
-        </div>*/}
         <div className="d-inline-flex align-items-center d-block d-lg-none">
           <div className="dropdown ml-3">
             <a className="btn px-4 dropdown-toggle" type="button" id="dropdownMenuButton1" data-bs-toggle="dropdown" aria-expanded="false">
@@ -164,7 +116,7 @@ const Header = () => {
         </div>
       </div>
     </div>
-    <div className="row align-items-center bg-light py-3 px-xl-5 d-none d-lg-flex">
+    <div className="row align-items-center bg-light py-2 px-xl-5 d-none d-lg-flex">
       <div className="col-lg-4">
         <a href="" className="text-decoration-none">
           <span className="h1 text-uppercase text-white bg-dark px-2 font-style">
@@ -335,37 +287,7 @@ const Header = () => {
                   </a>
                 </div>
               </div>
-        {/* 
-        <div className="nav-item dropdown dropright">
-                <a
-                  href="#"
-                  className="nav-link"
-                  role="button"
-                  data-bs-toggle="dropdown"
-                  aria-expanded="false"
-                >
-                  Automotive and Tools <i className="fa fa-angle-right float-right mt-1" />
-                </a>
-                <div className="dropdown-menu position-absolute rounded-0 border-0 m-0" style={{ left: '285px', top:'0px' }}>
-                  <a href="/category/11/subcategory/55" className="dropdown-item">
-                    Auto Parts and Accessories
-                  </a>
-                  <a href="/category/11/subcategory/56" className="dropdown-item">
-                    Tools and Equipment
-                  </a>
-                  <a href="/category/11/subcategory/57" className="dropdown-item">
-                    Car Care and Maintenance
-                  </a>
-                  <a href="/category/11/subcategory/58" className="dropdown-item">
-                    Motorcycle Gear
-                  </a>
-                  <a href="/category/11/subcategory/59" className="dropdown-item">
-                    Automotive Electronics
-                  </a>
-                </div>
-              </div>
 
-         */}
         <div className="nav-item dropdown dropright">
                   <a
                     href="#"
