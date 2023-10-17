@@ -4,9 +4,9 @@ import { manageAccount } from '../../services/manage-account.service'
 import { useManageCart } from '../../services/useManageCart'
 import Footer from '../../components/layout/footer/footer'
 import OrderItem from './OrderItem'
-import CheckOut from './checkOut'
 import { HeaderContext } from '../../contexts/HeaderContext'
 import { Link, useNavigate } from "react-router-dom";
+import {orderService} from "../../services/order.service";
 
 const OrderDetail = () => {
 
@@ -63,6 +63,7 @@ const [customer,setcustomer] = useState([]);
 
   const fetchCustomerDetails = async ()=>{
     try{
+      
       const res = await axios.post("http://localhost:8081/api/v1/customer", {customerID})
       setcustomer(res.data[0]) ;
 
@@ -143,16 +144,13 @@ const handleSubmit = async (e) => {
   
   console.log('Form data:', formData);
 
-  try {
-    await axios.post("http://localhost:8081/api/v1/putorder", { formData: formData, cart: cart });
+    orderService.postFormData(formData,cart).then(response=>{
+      console.log(response.message)
+      navigate("/successful");
+  })
     setTrigger(true)
     console.log(formData)
-    navigate("/successful");
     
-  } catch (err) {
-    console.log(err);
-    setError(true)
-  }
 
 };
 

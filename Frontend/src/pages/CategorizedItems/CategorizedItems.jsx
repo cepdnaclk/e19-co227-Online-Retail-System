@@ -60,10 +60,10 @@ const CategorizedItems = () => {
   */ }
 <h5 className="section-title position-relative text-uppercase mx-xl-5 mb-4">
   <span className="bg-white pr-3">
-   {catname}  
+   {catname}   
    {subcatName.length > 0 && (
      <>
-       <FontAwesomeIcon icon={faChevronRight} className="black-arrow mr-2" /> 
+       
        <FontAwesomeIcon icon={faChevronRight} className="black-arrow mr-2" />
        {subcatName}
      </>

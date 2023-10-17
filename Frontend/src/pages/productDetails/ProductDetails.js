@@ -159,7 +159,7 @@ const ProductDetails = (props) => {
 
       <div className="col-lg-7 h-auto mb-30 bg-light" >
         <div className="h-100  p-30" >
-          <h1>{product.productName}</h1>
+          <h2>{product.productName}</h2>
           <p>{product.categoryName} {`->`} {product.subCategoryName}</p>
           <p><strong>Seller:</strong> {product.shopName}</p>
 

@@ -74,6 +74,26 @@ export const orderService = {
             throw error;
         }
 
+    },
+
+    postFormData:async(formData,cart)=>{
+        try {
+            const response = await axios.post(`${environment.baseUrl}/putorder`, { formData: formData, cart: cart });
+            return response.data;
+        } catch (error) {
+            throw error;
+        }
+
+    },
+
+    getCustomerDetails:async (id)=>{
+        try {
+            const response = await axios.post(`${environment.baseUrl}/customer`, {headers:{id}})
+            return response.data;
+        } catch (error) {
+            throw error;
+        }
+
     }
 
 }

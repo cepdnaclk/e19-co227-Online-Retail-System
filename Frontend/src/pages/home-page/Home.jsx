@@ -75,8 +75,8 @@ class Home extends React.Component {
               <img className="product-img w-100" src={product.productImage1} alt={product.productName} />
               <div className="product-action">
 
-                <Link to={`/product/${product.productID}`} className="btn btn-outline-dark btn-square">
-                  <i className="fa fa-eye" />
+                <Link to={`/product/${product.productID}`} className="btn btn-outline-dark btn-square" style={{width:'85px'}}>
+                  <i className="fa fa-eye" /> View
                 </Link>
 
               </div>
@@ -87,10 +87,10 @@ class Home extends React.Component {
                 {product.productName}
               </div>
               <div className="d-flex align-items-center justify-content-center mt-2">
-                <h6>{product.productPrice}</h6>
+                <h6>${product.productPrice}</h6>
                 <h6 className="text-muted ml-2">
                   <del>
-                    {product.productPrice < 5
+                    ${product.productPrice < 5
                       ? product.productPrice + product.productPrice / 10
                       : product.productPrice + Math.floor(product.productPrice / 20)}
                   </del>

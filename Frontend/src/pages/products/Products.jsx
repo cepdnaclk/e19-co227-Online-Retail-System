@@ -34,8 +34,8 @@ return (
             <img className="product-img w-100" src={product.productImage1} alt={product.productName} />
             <div className="product-action">
 
-              <Link to={`/product/${product.productID}`} className="btn btn-outline-dark btn-square">
-                <i className="fa fa-eye" />
+              <Link to={`/product/${product.productID}`} className="btn btn-outline-dark btn-square" style={{width:'85px'}}>
+                <i className="fa fa-eye" /> View
               </Link>
 
             </div>
