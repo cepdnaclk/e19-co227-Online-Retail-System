@@ -199,8 +199,8 @@ function UserDetails() {
     };
 
     return (
-        <div className="container rounded bg-white mt-5 mb-5" >
-            <div className="row" style={{ paddingTop: '200px' }}>
+        <div className="container rounded bg-white mt-5 mb-5 " >
+            <div className="row ml-5 pl-5 align-center" style={{ paddingTop: '200px' }} >
                 <div className="col-md-3 border-right">
                     <div className="d-flex flex-column align-items-center text-center p-3 py-5">
                         <img
@@ -215,7 +215,7 @@ function UserDetails() {
                     </div>
 
                 </div>
-                <div className="col-md-5 border-right">
+                <div className="col-md-5 ml-5">
                     <div className="p-3 py-5">
                         <div className="d-flex justify-content-between align-items-center mb-3">
                             <h4 className="text-right">Profile Settings</h4>
@@ -319,16 +319,16 @@ function UserDetails() {
                                 </div>
                             </div>
                         )}
-                        <button className="btn btn-primary" onClick={handleEditClick}>
+                        <button className="btn btn-primary" onClick={handleEditClick} style={{backgroundColor:'#eacd2c', color:'black', border:'none'}}>
                             {isEditing ? "Save" : "Edit"}
                         </button>
 
                         {manageAccount.getSellerID()===-1 ?
-                            <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#staticBackdrop" >
-                                Make Me Seller
+                            <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#staticBackdrop" style={{backgroundColor:'#ffa41c', color:'black', border:'none'}} >
+                                Make Me a Seller
                             </button>
                             :
-                            <button className="btn btn-primary" disabled onClick={handleSetAsSeller}>
+                            <button className="btn btn-primary" disabled onClick={handleSetAsSeller} style={{backgroundColor:'#eacd2c', color:'black', border:'none'}}>
                                 You are a Seller
                             </button>
                         }

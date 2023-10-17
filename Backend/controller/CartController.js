@@ -20,6 +20,7 @@ const getCartDetails = async(req, res)=>{
 
   const q = `SELECT
   ci.productID,
+  ci.sellerID,
   p.productName,
   p.productPrice,
   p.productImage1,

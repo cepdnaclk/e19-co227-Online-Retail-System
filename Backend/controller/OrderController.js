@@ -302,7 +302,7 @@ const getSalesAmount = async(req,res)=>{
                     }
 
             });
-                return  res.status(200).json({today:totalToday,past7Days:totalPast7Days,past30Days:totalPast30Days});
+                return  res.status(200).json({today:totalToday.toFixed(2),past7Days:totalPast7Days.toFixed(2),past30Days:totalPast30Days.toFixed(2)});
 
             }
 

@@ -185,7 +185,7 @@ class Home extends React.Component {
           <div className="product-offer mb-30" style={{ height: '200px' }}>
             <img className="img-fluid" src={imgoffer1} alt="" />
             <div className="offer-text">
-              <h6 className="text-white text-uppercase">Save 20%</h6>
+              <h6 className="text-white text-uppercase">Save 20% <br/>for Electronic Items</h6>
               <h3 className="text-white mb-3">Special Offer</h3>
               <a href="/products" className="btn custom-btn-primary" >Shop Now</a>
             </div>

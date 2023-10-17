@@ -49,9 +49,10 @@ const CartDetail = () => {
     fetchProductDetails()
   },[userID,updateCartTrigger])
 
-//console.log(cart)
+
 
 const [subTotal,setSubTotal] = useState(0)
+
 
 
 
@@ -68,6 +69,8 @@ useEffect(()=>{
   changeSubtotal()
 
 },[cart,updateCartTrigger])
+
+
 
 
 

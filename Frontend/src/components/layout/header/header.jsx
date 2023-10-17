@@ -118,7 +118,7 @@ const Header = () => {
     </div>
     <div className="row align-items-center bg-light py-2 px-xl-5 d-none d-lg-flex">
       <div className="col-lg-4">
-        <a href="" className="text-decoration-none">
+        <a href="/" className="text-decoration-none">
           <span className="h1 text-uppercase text-white bg-dark px-2 font-style">
             Gadget
           </span>

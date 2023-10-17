@@ -15,6 +15,7 @@ const OrderDetail = () => {
   const [updateCartTrigger, setUpdateCartTrigger] = useState(false); 
   const userID = manageAccount.getCustomerID()
   const cartInfo = useManageCart();
+  const [sellerID,setSellerID]= useState('');
 
   const { setIsInCart, } = useManageCart();
   let cartID = null
@@ -28,6 +29,7 @@ const OrderDetail = () => {
       try{
         const res = await axios.get("http://localhost:8081/api/v1/cart/"+userID)
         setCart(res.data) ;
+        
 
       }catch(err){
         console.log(err)
@@ -36,13 +38,21 @@ const OrderDetail = () => {
     fetchProductDetails()
   },[userID,updateCartTrigger])
 
-//console.log(cart)
+
+
+useEffect(()=>{
+  if (cart[1] ){
+    console.log('dasd',cart[0].sellerID)
+    setSellerID(cart[0].sellerID.toString())
+  }
+},[cart])
 
 const [subTotal,setSubTotal] = useState(0)
 
 useEffect(()=>{
 
   const changeSubtotal = ()=>{
+    
     let sub = 0
     cart.forEach(item => {
      sub += item.productPrice * item.qty
@@ -50,6 +60,8 @@ useEffect(()=>{
     setSubTotal(sub)
   }
   changeSubtotal()
+
+ 
 
 },[cart,updateCartTrigger])
 
@@ -59,7 +71,7 @@ const [customer,setcustomer] = useState([]);
 
 
   const customerID = manageAccount.getCustomerID();
-  const sellerID = manageAccount.getSellerID();
+ 
 
   const fetchCustomerDetails = async ()=>{
     try{
@@ -76,14 +88,14 @@ const [customer,setcustomer] = useState([]);
   }
 
 useEffect(() => {
-    // Call your fetchData function here
+   
     fetchCustomerDetails();
 
 }, []);
 
 const [formData, setFormData] = useState({
   customerid: customerID,
-  sellerid: sellerID,
+  sellerid: 0,
   firstName: '',
   lastName: '',
   email: '',
@@ -108,7 +120,7 @@ useEffect(()=>{
     address3: customer.addressL3,
   })
 
-},[customer])
+},[customer,sellerID,customerID])
 
 
 const handleInputChange = (e) => {
@@ -146,6 +158,7 @@ const handleSubmit = async (e) => {
 
     orderService.postFormData(formData,cart).then(response=>{
       console.log(response.message)
+      
       navigate("/successful");
   })
     setTrigger(true)
