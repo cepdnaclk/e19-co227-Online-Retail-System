@@ -13,8 +13,6 @@ function successful(){
             <NavLink to="/" style={{ textDecoration: 'none', backgroundColor: "#3CD2A2", padding: "10px 20px", borderRadius: "5px", color: "black" }}>Shop More</NavLink>
         </h4>
     </div>
-    
-
         );
 
 }

@@ -152,7 +152,7 @@ function CustomerOrders(){
                                         </button>
 
                                         :
-                                    <button type="button" className="btn btn-danger"
+                                    <button type="button" className="btn btn-danger rounded-pill"
                                             aria-expanded="false" data-bs-toggle="modal" data-bs-target="#staticBackdrop3">
                                         Remove
                                     </button>

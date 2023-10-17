@@ -56,7 +56,7 @@ const Header = () => {
         return( 
             <>
               {/* Topbar Start */}
-  <div className="container-fluid" >
+  <div className="container-fluid contentfixed" >
     <div className="row bg-light py-1 px-xl-5">
       <div className="col-lg-6 d-none d-lg-block">
         <div className="d-inline-flex align-items-center h-100">
@@ -213,7 +213,7 @@ const Header = () => {
   {/* Topbar End */}
 
               {/* Navbar Start */}
-  <div className="container-fluid background-color  " >
+  <div className="container-fluid background-color contentfixed-2 " >
     <div className="row px-xl-5">
       <div className="col-lg-3 d-none d-lg-block background-color2 pt-0 mb-1" >
         <a

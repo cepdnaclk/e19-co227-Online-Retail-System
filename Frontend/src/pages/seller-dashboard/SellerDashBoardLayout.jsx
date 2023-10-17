@@ -2,7 +2,7 @@ import { Outlet } from "react-router"
 
 const SellerDashBoardLayout = () => {
   return (
-    <><Outlet /></>
+    <div className="content"><Outlet /></div>
   )
 }
 

@@ -38,3 +38,21 @@
 .borderPrimary{
   border-color: #eacd2c;
 }
+.contentfixed {
+  top: 0; 
+  left: 0; 
+  width: 100%; 
+  background-color: #fff; 
+  z-index: 999;
+ 
+  position: fixed;
+}
+.contentfixed-2 {
+  top: 103px;
+  left: 0; 
+  width: 100%; 
+  overflow-block: 10px;
+  z-index: 999;
+ 
+  position: fixed;
+}

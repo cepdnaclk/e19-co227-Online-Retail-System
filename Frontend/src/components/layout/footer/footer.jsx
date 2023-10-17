@@ -9,13 +9,14 @@ import '../../../css/bootstrap-reboot.min.css'
 import '../../../css/bootstrap-grid.min.css'
 import '../../../css/bootstrap-grid.css'
 import '../../layout/themeColor.css'
-
+import { NavLink } from "react-router-dom"
+import {manageAccount} from "../../../services/manage-account.service";
 
 
 const Footer = () => {
   return (
     <footer className="footer">
-      <div className="container-fluid bg-secondary text-white mt-5 pt-5">
+      <div className="container-fluid bg-secondary text-white mt-5 pt-15">
   <div className="row px-xl-5 pt-5">
     <div className="col-lg-4 col-md-12 mb-5 pr-3 pr-xl-5 ">
       <h5 className="text-white text-uppercase mb-4 ">Get In Touch</h5>
@@ -23,18 +24,7 @@ const Footer = () => {
       Our company is dedicated to providing high-quality products and exceptional customer service. We take pride in our commitment to excellence and strive to meet the unique needs of each of our customers. With years of experience in the industry, we have established a strong reputation for reliability and innovation. We look forward to serving you and exceeding your expectations.
 
       </p>
-      <p className="mb-2">
-        <i className="fa fa-map-marker-alt custom-text-warning mr-3" />
-        123 Street, Colombo 9, Sri Lanka 
-      </p>
-      <p className="mb-2">
-        <i className="fa fa-envelope custom-text-warning mr-3 yellow"  />
-        info@example.com
-      </p>
-      <p className="mb-0">
-        <i className="fa fa-phone-alt custom-text-warning mr-3" />
-        +012 345 67890
-      </p>
+      
     </div>
     <div className="col-lg-8 col-md-12">
       <div className="row">
@@ -49,28 +39,22 @@ const Footer = () => {
               <i className="fa fa-angle-right mr-2" />
               Our Shop
             </a>
-            <a className="text-white mb-2 nav-link" href="#">
-              <i className="fa fa-angle-right mr-2" />
-              Shop Detail
-            </a>
-            <a className="text-white mb-2 nav-link" href="#">
+          
+            <NavLink to={`/cart/${manageAccount.getCustomerID()}`} className="text-white mb-2 nav-link" >
               <i className="fa fa-angle-right mr-2" />
               Shopping Cart
-            </a>
-            <a className="text-white mb-2 nav-link" href="#">
+            </NavLink>
+            <a className="text-white mb-2 nav-link" href="/checkout">
               <i className="fa fa-angle-right mr-2" />
               Checkout
             </a>
-            <a className="text-white nav-link" href="#">
-              <i className="fa fa-angle-right mr-2" />
-              Contact Us
-            </a>
+            
           </div>
         </div>
         <div className="col-md-4 mb-5">
           <h5 className="text-white text-uppercase mb-4 text-white">My Account</h5>
           <div className="d-flex flex-column justify-content-start">
-            <a className="text-white mb-2 nav-link" href="/">
+            <a className="text-white mb-2 nav-link text-10px" href="/">
               <i className="fa fa-angle-right mr-2" />
               Home
             </a>
@@ -78,26 +62,21 @@ const Footer = () => {
               <i className="fa fa-angle-right mr-2" />
               Our Shop
             </a>
-            <a className="text-white mb-2 nav-link" href="#">
-              <i className="fa fa-angle-right mr-2" />
-              Shop Detail
-            </a>
-            <a className="text-white mb-2 nav-link" href="#">
+            
+            <NavLink exact to={`/cart/${manageAccount.getCustomerID()}`} className="text-white mb-2 nav-link"> 
               <i className="fa fa-angle-right mr-2" />
               Shopping Cart
-            </a>
-            <a className="text-white mb-2 nav-link" href="#">
+            </NavLink>
+            <a className="text-white mb-2 nav-link" href="/checkout">
               <i className="fa fa-angle-right mr-2" />
               Checkout
             </a>
-            <a className="text-white nav-link" href="#">
-              <i className="fa fa-angle-right mr-2" />
-              Contact Us
-            </a>
+            
           </div>
         </div>
+        
         <div className="col-md-4 mb-5">
-          <h5 className="text-white text-uppercase mb-4 text-white">Newsletter</h5>
+        <h5 className="text-white text-uppercase mb-4 text-white">Follow Us</h5>{/*
           <p>Subscribe to our newsletter for the latest updates, exclusive offers, and news about our products and services.</p>
           <form action="">
             <div className="input-group">
@@ -110,8 +89,7 @@ const Footer = () => {
                 <button className="btn custom-btn-warning text-dark">Sign Up</button>
               </div>
             </div>
-          </form>
-          <h6 className="text-white text-uppercase mt-4 mb-3 text-white">Follow Us</h6>
+          </form>*/}
           <div className="d-flex">
             <a className="btn custom-btn-warning btn-square mr-2 " href="#">
               <i className="fab fa-twitter text-dark" />
@@ -126,10 +104,25 @@ const Footer = () => {
               <i className="fab fa-instagram text-dark" />
             </a>
           </div>
+
+          <div><br></br><br></br>
+          <p className="mb-2">
+        <i className="fa fa-map-marker-alt custom-text-warning mr-3" />
+        123 Street, Colombo 9, Sri Lanka 
+      </p>
+      <p className="mb-2">
+        <i className="fa fa-envelope custom-text-warning mr-3 yellow"  />
+        info@example.com
+      </p>
+      <p className="mb-0">
+        <i className="fa fa-phone-alt custom-text-warning mr-3" />
+        +012 345 67890
+      </p>
+          </div>
         </div>
       </div>
     </div>
-  </div>
+  </div> 
   <div
     className="row border-top mx-xl-5 py-4"
     style={{ borderColor: "rgba(256, 256, 256, .1) !important" }}
@@ -137,11 +130,8 @@ const Footer = () => {
     <div className="col-md-6 px-xl-0">
       <p className="mb-md-0 text-center text-md-left text-white">
         ©{" "}
-        <a className="custom-text-warning text-#ff377" href="#">
-          Domain
-        </a>
-        . All Rights Reserved. Designed by
-          Group 5
+        
+          Copyright 2023. All Rights Reserved. Designed by Group 5
         
       </p>
     </div>

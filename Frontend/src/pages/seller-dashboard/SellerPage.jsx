@@ -74,9 +74,9 @@ function SellerDashboard() {
                             <h5>Sales</h5>
                         </div>
                         <ul className="list-group list-group-flush">
-                            <li className="list-group-item">Today <span > {salesData.today}</span> </li>
-                            <li className="list-group-item">Last 7 Days <span> {salesData.past7Days}</span> </li>
-                            <li className="list-group-item">Last 30 Days <span> {salesData.past30Days}</span></li>
+                            <li className="list-group-item">Today <span > ${salesData.today}</span> </li>
+                            <li className="list-group-item">Last 7 Days <span> ${salesData.past7Days}</span> </li>
+                            <li className="list-group-item">Last 30 Days <span> ${salesData.past30Days}</span></li>
                         </ul>
                     </div>
                 </div>

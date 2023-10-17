@@ -199,8 +199,8 @@ function UserDetails() {
     };
 
     return (
-        <div className="container rounded bg-white mt-5 mb-5">
-            <div className="row">
+        <div className="container rounded bg-white mt-5 mb-5" >
+            <div className="row" style={{ paddingTop: '200px' }}>
                 <div className="col-md-3 border-right">
                     <div className="d-flex flex-column align-items-center text-center p-3 py-5">
                         <img
