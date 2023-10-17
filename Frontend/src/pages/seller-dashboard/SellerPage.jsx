@@ -35,7 +35,7 @@ function SellerDashboard() {
 
     return (
         <div>
-            <div className="main-wrap ">
+            <div className="main-wrap p-4">
                 <div className="card-container row">
                     <div className="card  mx-2 my-2 col-md-3 col-sm-6">
                         <img src={ListningImg} className="card-img-top" alt="" />
