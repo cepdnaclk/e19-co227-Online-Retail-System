@@ -255,7 +255,7 @@ class Home extends React.Component {
                   <div className="offer-text">
                     <h5 className="text-white text-uppercase">Save 10%</h5>
                     <h2 className="text-white mb-3 special-offer-text">Special Offer</h2>
-                    <a href="" className="btn custom-btn-primary">
+                    <a href="/products" className="btn custom-btn-primary">
                       Shop Now
                     </a>
                   </div>
@@ -267,7 +267,7 @@ class Home extends React.Component {
                   <div className="offer-text">
                     <h5 className="text-white text-uppercase">Save 20%</h5>
                     <h2 className="text-white mb-3">Special Offer</h2>
-                    <a href="" className="btn custom-btn-primary">
+                    <a href="/products" className="btn custom-btn-primary">
                       Shop Now
                     </a>
                   </div>
