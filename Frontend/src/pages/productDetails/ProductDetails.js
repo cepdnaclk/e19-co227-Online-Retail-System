@@ -9,6 +9,7 @@ import RecommendedProducts from '../../components/layout/RecommendedProducts'
 import { NavLink } from 'react-router-dom'
 import { FacebookShareButton, TwitterShareButton,PinterestShareButton,
   LinkedinShareButton } from 'react-share';
+import {cartService} from "../../services/cart.service";
 
 
 const ProductDetails = (props) => {
@@ -65,21 +66,25 @@ const ProductDetails = (props) => {
    if(cartID !== null){
     
      const fetchProductDetails = async ()=>{
-       try{
-         const res = await axios.post("http://localhost:8081/api/v1/checkcart",{cartID: cartID,
-         productID: product.productID})
+
+
+         cartService.checkInCart(cartID,product.productID).then(res=>{
+           const cartCheckQty = res.data[0]?.qty || 0; // Use optional chaining and provide a default value
+
+           if(cartCheckQty>0){
+             setIsInCart(true)
+             setTrigger(true)
+           }
+
+         }).catch(err=>{
+           console.log(err)
+
+         })
+         /*const res = await axios.post("http://localhost:8081/api/v1/checkcart",{cartID: cartID,
+         productID: product.productID})*/
   
-         const cartCheckQty = res.data[0]?.qty || 0; // Use optional chaining and provide a default value
-         
-         if(cartCheckQty>0){
-           setIsInCart(true)
-           setTrigger(true)
-         }
-  
-       }catch(err){
-         console.log(err)
-  
-       }
+
+
      }
      fetchProductDetails()
    }
@@ -93,15 +98,18 @@ const ProductDetails = (props) => {
     //console.log(manageAccount.isLoggedIn())
 
     if (customerID > 0 ){
-      try{
-        await axios.post("http://localhost:8081/api/v1/product",cartDetails)
+
+        cartService.addToCart(cartDetails).then(res =>{
+          setIsInCart(true)
+        }).catch(err=>{
+          console.log(err)
+        })
+
+        /*await axios.post("http://localhost:8081/api/v1/product",cartDetails)
         //console.log(cartDetails)
-        setIsInCart(true) // force render 
+         // force render */
         
-      }
-      catch(err){
-        console.log(err)
-      }
+
     }
     else{
       navigate("/SignIn")
@@ -219,7 +227,7 @@ const ProductDetails = (props) => {
           <div className="d-flex align-items-center mb-4 pt-2">
             <div className="input-group quantity mr-3" style={{ width: 130 }}>
               <div className="input-group-btn">   
-                <button className="btn btn-success btn-minus" style={{backgroundColor:'#ffd333', border:'none', color:'black'}} onClick={()=>handleQty(product,'minus') }>
+                <button data-testid="plus" className="btn btn-success btn-minus" style={{backgroundColor:'#ffd333', border:'none', color:'black'}} onClick={()=>handleQty(product,'minus') }>
                   <i className="fa fa-minus" />
                 </button>
               </div>
@@ -232,13 +240,13 @@ const ProductDetails = (props) => {
                 value={qty}
               />
               <div className="input-group-btn">    
-                <button className="btn btn-success btn-plus" style={{backgroundColor:'#ffd333', border:'none' ,color:'black'}} onClick={()=>handleQty  (product,'plus')}>    
+                <button data-testid="minus" className="btn btn-success btn-plus" style={{backgroundColor:'#ffd333', border:'none' ,color:'black'}} onClick={()=>handleQty  (product,'plus')}>
                   <i className="fa fa-plus" />
                 </button>
               </div>
             </div>
           
-            { isInCart && (<button className="btn btn-success text-dark px-3" style = {{backgroundColor:"#f0c53a", border:"none"}} onClick={()=>{navigate("/cart/"+{cartID})}} >
+            { isInCart && (<button data-testid="already-in-cart" className="btn btn-success text-dark px-3" style = {{backgroundColor:"#f0c53a", border:"none"}} onClick={()=>{navigate("/cart/"+{cartID})}} >
               <i className="fa fa-shopping-cart mr-1 " /> Already in Cart
             </button>)}
 

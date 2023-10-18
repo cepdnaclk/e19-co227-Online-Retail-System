@@ -4,6 +4,8 @@ import {environment} from "../environments/environment"
 
 export const productService = {
 
+
+
     addProduct:  async(productData) => {
         try {
             const response = await axios.post(`${environment.baseUrl}/addProduct`, productData);
@@ -78,6 +80,15 @@ export const productService = {
 
     },
     getAllP: async ()=>{
+        try {
+            const response = await axios.get(`${environment.baseUrl}/top-selling-products`);
+            return response.data;
+        } catch (error) {
+            throw error;
+        }
+    },
+
+    getProductById: async ()=>{
         try {
             const response = await axios.get(`${environment.baseUrl}/top-selling-products`);
             return response.data;

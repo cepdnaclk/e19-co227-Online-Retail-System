@@ -98,6 +98,7 @@ function AllOrders(){
         orderService.updateOrderStatus(id,status).then(response=>{
             console.log(response.message)
             setUpdate('updated')
+            getOrders()
         }).catch((e)=>{
             console.log(e)
         })

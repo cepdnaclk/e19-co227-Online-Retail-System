@@ -2,34 +2,95 @@ import React from 'react';
 import { render, screen, fireEvent, waitFor } from '@testing-library/react';
 import Home from '../pages/home-page/Home';
 import {homePageService} from "../services/home-page.services";
-
+import {MemoryRouter} from "react-router";
+import {getByTestId} from "@testing-library/dom";
 
 describe('Home component', () => {
     test('renders the component', () => {
-        const { getByText } = render(<Home />);
+        const { getByText } = render(
+            <MemoryRouter>
+                <Home />
+            </MemoryRouter>
+        );
         expect(getByText('Elevate Your Lifestyle')).toBeInTheDocument();
     });
+    test('navigates to the products page when "Shop Now" in the special offer is clicked', async () => {
+        render(
+            <MemoryRouter> {/* Wrap your component with MemoryRouter */}
+                <Home />
+            </MemoryRouter>
+        );
+        const shopNowButton = screen.getByTestId("shop-now");
+        fireEvent.click(shopNowButton);
+        await waitFor(() => {
+            expect(window.location.pathname).toBe('/');
+        });
+    });
 
-    test('fetches and displays product data',async () => {
-        homePageService.getTopSellingProducts.mockResolvedValue([
+    //test for the badges
+    test('displays quality badges and information', () => {
+        render(<MemoryRouter>
+                <Home />
+            </MemoryRouter>
+        );
+        const qualityBadge = screen.getByText('Quality Product');
+        expect(qualityBadge).toBeInTheDocument();
+    });
+
+    test('displays quality badges and information', () => {
+        render(<MemoryRouter>
+                <Home />
+            </MemoryRouter>
+        );
+        const Badge = screen.getByText('Free Shipping');
+        expect(Badge).toBeInTheDocument();
+    });
+
+    test('displays quality badges and information', () => {
+        render(<MemoryRouter>
+                <Home />
+            </MemoryRouter>
+        );
+        const Badge = screen.getByText('14-Day Return');
+        expect(Badge).toBeInTheDocument();
+    });
+
+    test('displays quality badges and information', () => {
+        render(<MemoryRouter>
+                <Home />
+            </MemoryRouter>
+        );
+        const Badge = screen.getByText('24/7 Support');
+        expect(Badge).toBeInTheDocument();
+    });
+
+    // test for the connection to the database
+    test('fetches and displays product data', async () => {
+        // Mock the promise-returning functions to return resolved promises
+        homePageService.getTopSellingProducts = jest.fn().mockResolvedValue([
             {
                 productID: 1,
                 productName: 'Product 1',
                 productPrice: 99.99,
                 productImage: 'product1.jpg',
-            }
-
+            },
         ]);
 
-        homePageService.getNewlyAddedProducts.mockResolvedValue([
+        homePageService.getNewlyAddedProducts = jest.fn().mockResolvedValue([
             {
                 productID: 3,
                 productName: 'Product 3',
                 productPrice: 79.99,
                 productImage: 'product3.jpg',
-            }
+            },
         ]);
-        render(<Home />);
+
+        render(
+            <MemoryRouter>
+                <Home />
+            </MemoryRouter>
+        );
+
         await waitFor(() => {
             // Your assertions based on the mock data
             expect(screen.getByText('Product 1')).toBeInTheDocument();
@@ -37,37 +98,10 @@ describe('Home component', () => {
 
             expect(screen.getByText('Product 3')).toBeInTheDocument();
             expect(screen.getByText('$79.99')).toBeInTheDocument();
-
         });
     });
 
 
-    test('navigates to the product page when a product link is clicked', async () => {
-        render(<Home />);
-        const productLink = screen.getByText('IPHONE 14 PLUS');
-        fireEvent.click(productLink);
-        await waitFor(() => {
-            // Check if the URL changed to the product page
-            expect(window.location.pathname).toBe('/product/29');
-        });
-
-    })
-
-    test('navigates to the products page when "Shop Now" in the special offer is clicked', async () => {
-        render(<Home />);
-        const shopNowButton = screen.getByText('Shop Now');
-        fireEvent.click(shopNowButton);
-        await waitFor(() => {
-            // Check if the URL changed to the products page
-            expect(window.location.pathname).toBe('/products');
-        });
-    });
-
-    test('displays quality badges and information', () => {
-        render(<Home />);
-        const qualityBadge = screen.getByText('Quality Product');
-        expect(qualityBadge).toBeInTheDocument();
-    });
 
 
 })

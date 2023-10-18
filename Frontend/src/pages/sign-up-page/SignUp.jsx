@@ -257,6 +257,7 @@ import { systemService } from "../../services/systemService";
 import { RegisterUserDTO } from "../../dto/RegisterUserDTO";
 import SignUpSvg from "../../assets/Sign up-amico.png";
 import {useNavigate} from "react-router-dom";
+import {manageAccount} from "../../services/manage-account.service";
 
 function SignUp() {
     const navigate = useNavigate();
@@ -314,6 +315,7 @@ function SignUp() {
                     } else {
                         console.log('User registered:', response);
                         setFormData({ ...formData, submittedMsg: "register_success", loading: false });
+                        manageAccount.logOut()
                         navigate("/SignIn", { replace: true });
                     }
                 })
@@ -332,15 +334,16 @@ function SignUp() {
             ) {
                 setFormData({ ...formData, submittedMsg: "fill_require_fields" });
             } else {
+                if (!isEmailValid) {
+                    setFormData({ ...formData, submittedMsg: "enter_valid_email" });
+                }
                 if (formData.password !== formData.rep_password) {
                     setFormData({ ...formData, submittedMsg: "pwd_not_match" });
                 }
                 if (formData.password.length <= 7) {
                     setFormData({ ...formData, submittedMsg: "pwd_not_enough" });
                 }
-                if (!isEmailValid) {
-                    setFormData({ ...formData, submittedMsg: "enter_valid_email" });
-                }
+
             }
         }
     };

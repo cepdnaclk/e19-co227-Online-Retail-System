@@ -7,6 +7,7 @@ import Footer from '../../components/layout/footer/footer'
 import { NavLink } from 'react-router-dom'
 import RecommendedProducts from '../../components/layout/RecommendedProducts'
 import { HeaderContext } from '../../contexts/HeaderContext'
+import {cartService} from "../../services/cart.service";
 
 const CartDetail = () => {
 
@@ -35,16 +36,20 @@ const CartDetail = () => {
 
   useEffect(()=>{
     const fetchProductDetails = async ()=>{
-      try{
-        const res = await axios.get("http://localhost:8081/api/v1/cart/"+userID)
+
+
+        cartService.getFromCart(userID).then(res=>{
+
+          setCart(res.data) ;
+        }).catch(err =>{
+          console.log(err)
+        })
+        /*const res = await axios.get("http://localhost:8081/api/v1/cart/"+userID)*/
 
         //console.log(res.data);
-        setCart(res.data) ;
 
-      }catch(err){
-        console.log(err)
 
-      }
+
     }
     fetchProductDetails()
   },[userID,updateCartTrigger])
@@ -138,7 +143,7 @@ useEffect(()=>{
               <h5>${subTotal+shipping}</h5>
             </div>
             <a href='/checkout'>
-              <button className="btn btn-block btn-primary font-weight-bold my-3 py-3" style={{backgroundColor:'#ffd333', border:'none'}}>
+              <button data-testid='buy' className="btn btn-block btn-primary font-weight-bold my-3 py-3" style={{backgroundColor:'#ffd333', border:'none'}}>
                 Proceed To Checkout
               </button>
             </a>

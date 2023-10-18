@@ -68,7 +68,8 @@ const CartItem = ({cartItem, changeSubtotal, setUpdateCartTrigger}) => {
 
 
   return (
-    <>
+      <>
+
     <td className="align-middle text-left " style={{paddingLeft:"25px"}}>
       <img src={cartItem.productImage1} alt="" style={{ width: 50 }} />{cartItem.productName}
       
@@ -80,7 +81,7 @@ const CartItem = ({cartItem, changeSubtotal, setUpdateCartTrigger}) => {
         style={{ width: 100 }}
       >
         <div className="input-group-btn">
-          <button className="btn btn-sm btn-primary btn-minus" style={{backgroundColor:'#ffd333', border:'none'}} onClick={()=>handleQty(productDetails(cartItem.productID),'minus',true) }>
+          <button data-testid = 'minusbt' className="btn btn-sm btn-primary btn-minus" style={{backgroundColor:'#ffd333', border:'none'}} onClick={()=>handleQty(productDetails(cartItem.productID),'minus',true) }>
 
             <i className="fa fa-minus" />
           </button>
@@ -98,7 +99,7 @@ const CartItem = ({cartItem, changeSubtotal, setUpdateCartTrigger}) => {
           
         />
         <div className="input-group-btn">
-          <button className="btn btn-sm btn-primary btn-plus" style={{backgroundColor:'#ffd333', border:'none'}} onClick={()=>{handleQty  (productDetails(cartItem.productID),'plus',true);
+          <button data-testid = 'plusbt' className="btn btn-sm btn-primary btn-plus" style={{backgroundColor:'#ffd333', border:'none'}} onClick={()=>{handleQty  (productDetails(cartItem.productID),'plus',true);
              }}>
             <i className="fa fa-plus" />
           </button>
@@ -114,7 +115,8 @@ const CartItem = ({cartItem, changeSubtotal, setUpdateCartTrigger}) => {
     </td>
   
   
-    </>
+
+      </>
   )
 }
 

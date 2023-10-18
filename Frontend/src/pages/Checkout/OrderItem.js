@@ -1,19 +1,25 @@
 import React, { useEffect, useState } from 'react'
 import { useManageCart } from '../../services/useManageCart'
 import axios from 'axios'
+import {cartService} from "../../services/cart.service";
 
 const OrderItem = ({cartItem, setUpdateCartTrigger}) => {
 
 
   const changeQty = async (qty)=>{
 
-    try{
+      cartService.updateCart(qty,cartID, productID).then(res=>{
+
+      }).catch(err =>{
+          console.log(err)
+      })
+    /*try{
       await axios.put("http://localhost:8081/api/v1/cart/"+{cartID},{ qty,cartID, productID})
 
       
     }catch(err){
       console.log(err)
-    }
+    }*/
   }
 
   
@@ -46,7 +52,7 @@ const OrderItem = ({cartItem, setUpdateCartTrigger}) => {
   return (
     <>
     <td className="align-middle">{cartItem.productName}</td>
-    <td className="align-middle">{qty}</td>
+    <td className="align-middle" >{qty}</td>
     <td className="align-middle">${total}</td>
     </>
   )

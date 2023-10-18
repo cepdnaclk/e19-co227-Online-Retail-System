@@ -48,6 +48,10 @@ class Home extends React.Component {
   fetchTopSellingProducts() {
 
     homePageService.getTopSellingProducts().then(response=>{
+
+      if(response!==undefined){
+        this.setState({ topSellingProducts: response });
+      }
       this.setState({ topSellingProducts: response });
     }).catch((error) => {
       console.error("Error fetching top selling products:", error);
@@ -57,7 +61,10 @@ class Home extends React.Component {
   fetchNewlyAddedProducts() {
 
     homePageService.getNewlyAddedProducts().then((response) => {
-      this.setState({ newlyAddedProducts: response });
+      if(response!==undefined){
+        this.setState({ newlyAddedProducts: response });
+      }
+
     }).catch((error) => {
       console.error("Error fetching newly added products:", error);
     });
@@ -150,7 +157,7 @@ class Home extends React.Component {
                   <h1 className="display-4 text-white mb-3 animate__animated animate__fadeInDown">Elevate Your Lifestyle</h1>
                   <p className="mx-md-5 px-5 animate__animated animate__bounceIn">Revamp your surroundings and enhance your daily living with our curated selection of home and lifestyle products</p>
                   <div className="text-center">
-                    <a className="btn btn-outline-light py-2 px-4 mt-3 animate__animated animate__fadeInUp" href="/products">Shop Now</a>
+                    <a data-testid="shop-now" className="btn btn-outline-light py-2 px-4 mt-3 animate__animated animate__fadeInUp" href="/products">Shop Now</a>
                   </div>
                 </div>
               </div>
@@ -163,7 +170,7 @@ class Home extends React.Component {
                   <div className="p-3"style={{ maxWidth: '700px', display: 'flex', flexDirection: 'column', alignItems: 'center', justifyContent: 'center' }}>
                     <h1 className="display-4 text-white mb-3 animate__animated animate__fadeInDown">Electronics</h1>
                     <p className="mx-md-5 px-5 animate__animated animate__bounceIn">Elevate your technology experience with our thoughtfully chosen range of electronic innovations and gadgets.</p>
-                    <a className="btn btn-outline-light py-2 px-4 mt-3 animate__animated animate__fadeInUp" href="/products">Shop Now</a>
+                    <a  className="btn btn-outline-light py-2 px-4 mt-3 animate__animated animate__fadeInUp" href="/products">Shop Now</a>
                   </div>
                 </div>
               </div>

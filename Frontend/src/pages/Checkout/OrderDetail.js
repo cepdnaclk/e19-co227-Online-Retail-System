@@ -80,7 +80,6 @@ const [customer,setcustomer] = useState([]);
       setcustomer(res.data[0]) ;
 
       console.log(res.data[0]);
-      console.log(customer);
       
     }catch(err){
       console.log(err)
@@ -365,7 +364,7 @@ const handleSubmit = async (e) => {
 
     </div>
   </div>
-  {/* Cart End */}
+
 
   <Footer />
     

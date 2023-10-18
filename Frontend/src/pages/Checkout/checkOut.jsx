@@ -37,6 +37,8 @@ function Checkout(handleSubmit) {
     });
   };
 
+
+
   const paymentMethods = [
     { id: "paypal", label: "Paypal" },
     { id: "creditCard", label: "Credit Card" },
@@ -55,8 +57,9 @@ function Checkout(handleSubmit) {
         <div className="bg-light p-30 mb-5">
           <div className="row">
             <div className="col-md-6 form-group">
-              <label>First Name</label>
-              <input 
+              <label htmlFor="firstName">First Name</label>
+              <input
+                  data-testid="firstName"
                 id="firstName"
                 name="firstName"
                 value={formData.firstName}            
@@ -67,7 +70,7 @@ function Checkout(handleSubmit) {
                 placeholder="John" />
             </div>
             <div className="col-md-6 form-group">
-              <label>Last Name</label>
+              <label htmlFor="lastName">Last Name</label>
               <input 
                 id="lastName"
                 name="lastName"
@@ -79,7 +82,7 @@ function Checkout(handleSubmit) {
                 placeholder="Doe" />
             </div>
             <div className="col-md-6 form-group">
-              <label>E-mail</label>
+              <label htmlFor="email">E-mail</label>
               <input
                 id="email"
                 name="email"
@@ -92,7 +95,7 @@ function Checkout(handleSubmit) {
               />
             </div>
             <div className="col-md-6 form-group">
-              <label>Mobile No</label>
+              <label htmlFor="mobile">Mobile No</label>
               <input
                 id="mobile"
                 name="mobile"
@@ -105,7 +108,7 @@ function Checkout(handleSubmit) {
               />
             </div>
             <div className="col-md-6 form-group">
-              <label>Address Line 1</label>
+              <label htmlFor="address1">Address Line 1</label>
               <input
                 id="address1"
                 name="address1"
@@ -118,7 +121,7 @@ function Checkout(handleSubmit) {
               />
             </div>
             <div className="col-md-6 form-group">
-              <label>Address Line 2</label>
+              <label htmlFor="address2">Address Line 2</label>
               <input
                 id="address2"
                 name="address2"
@@ -131,7 +134,7 @@ function Checkout(handleSubmit) {
               />
             </div>
             <div className="col-md-6 form-group">
-              <label>Address Line 3</label>
+              <label htmlFor="address3">Address Line 3</label>
               <input
                 id="address3"
                 name="address3"
