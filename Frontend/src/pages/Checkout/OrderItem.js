@@ -31,7 +31,7 @@ const OrderItem = ({cartItem, setUpdateCartTrigger}) => {
 
    useEffect(()=>{
     setQtycart(cartQty)
-    //setTotal(qty* cartItem.productPrice)
+  
    },[])
 
 

@@ -46,24 +46,23 @@ db.query(q,[customerID],(err,data)=>{
 
 const deleteCartItem = async(req,res)=>{
   const { cartID, productID } = req.body;
-//console.log(req.body)
   const q = "DELETE FROM cart_items WHERE cartID = ? AND productID = ?"
 
   db.query(q, [cartID, productID], (err, data) =>{
     if (err) return res.json(err);
-    //console.log(cartID, productID)
+
     return res.json("Item deleted")
   })
 }
 
 const changeQty = async(req,res)=>{
   const { cartID, productID, qty } = req.body;
- //console.log(req.body)
+
   const q = "UPDATE cart_items set `qty` = ? WHERE cartID = ? AND productID = ?"
 
   db.query(q, [qty,cartID, productID ], (err, data) =>{
     if (err) return res.json(err);
-    //console.log(cartID, productID)
+ 
     return res.json("Updated")
   })
 }

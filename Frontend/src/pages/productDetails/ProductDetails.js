@@ -86,16 +86,16 @@ const ProductDetails = (props) => {
  })
 
 
-  //console.log(cartDetails)
+
 
   const handleCart = async (e)=>{
     e.preventDefault()
-    //console.log(manageAccount.isLoggedIn())
+
 
     if (customerID > 0 ){
       try{
         await axios.post("http://localhost:8081/api/v1/product",cartDetails)
-        //console.log(cartDetails)
+        
         setIsInCart(true) // force render 
         
       }

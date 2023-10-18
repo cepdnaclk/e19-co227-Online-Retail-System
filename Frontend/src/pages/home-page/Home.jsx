@@ -18,16 +18,10 @@ import imgoffer1 from '../../assets/offer-1.jpg'
 import imgoffer2 from '../../assets/offer-2.jpg'
 import imgoffer3 from '../../assets/offer-3.jpg'
 import imgoffer4 from '../../assets/offer-4.jpg'
-//import Categories from "../../components/layout/categories/categories";
 import Categor from "../../components/layout/categories/categor";
 import { Link } from "react-router-dom";
 import '../../components/layout/themeColor.css'
 import {homePageService} from "../../services/home-page.services";
-
-
-//import 'animate.css/animate.min.css';
-
-
 
 
 class Home extends React.Component {

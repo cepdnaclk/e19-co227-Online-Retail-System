@@ -8,8 +8,6 @@ import {manageAccount} from "./manage-account.service";
 // TODO: Add SDKs for Firebase products that you want to use
 // https://firebase.google.com/docs/web/setup#available-libraries
 
-// Your web app's Firebase configuration
-// For Firebase JS SDK v7.20.0 and later, measurementId is optional
 const firebaseConfig = {
     apiKey: "AIzaSyAKHik13hFqQQ36UjUazVRZ0A88ATWo8lc",
     authDomain: "online-retail-system.firebaseapp.com",
@@ -53,18 +51,7 @@ export const firebaseService = {
         }
 
 
-        /*then(()=>{
-            getDownloadURL(imageRef)
-                .then((downloadURL) => {
-                    console.log("Image Successfully Uploaded!");
-                    console.log("Download URL:", downloadURL);
-                    resolve( {ref: imageRef, url: downloadURL});
-
-                })
-        }).catch((e)=>{
-            console.log(e)
-            reject(e)
-        })*/
+       
     },
 
     removeImage: (path)=>{
