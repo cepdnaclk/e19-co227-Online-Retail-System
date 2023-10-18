@@ -344,7 +344,7 @@ function EditProduct() {
                                 </div>
 
                                 <button
-                                    className="btn btn-primary "
+                                    className="btn btn-warning "
                                     onClick={(e) => {
 
                                         isSubmitted=true;

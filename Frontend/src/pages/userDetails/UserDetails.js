@@ -319,16 +319,16 @@ function UserDetails() {
                                 </div>
                             </div>
                         )}
-                        <button className="btn btn-primary" onClick={handleEditClick} style={{backgroundColor:'#eacd2c', color:'black', border:'none'}}>
+                        <button className="btn btn-warning" onClick={handleEditClick} style={{backgroundColor:'#eacd2c', color:'black', border:'none'}}>
                             {isEditing ? "Save" : "Edit"}
                         </button>
 
                         {manageAccount.getSellerID()===-1 ?
-                            <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#staticBackdrop" style={{backgroundColor:'#ffa41c', color:'black', border:'none'}} >
+                            <button type="button" class="btn btn-warning" data-bs-toggle="modal" data-bs-target="#staticBackdrop" style={{backgroundColor:'#ffa41c', color:'black', border:'none'}} >
                                 Make Me a Seller
                             </button>
                             :
-                            <button className="btn btn-primary" disabled onClick={handleSetAsSeller} style={{backgroundColor:'#eacd2c', color:'black', border:'none'}}>
+                            <button className="btn btn-warning" disabled onClick={handleSetAsSeller} style={{backgroundColor:'#eacd2c', color:'black', border:'none'}}>
                                 You are a Seller
                             </button>
                         }
@@ -354,7 +354,7 @@ function UserDetails() {
                                     </div>
                                     <div class="modal-footer">
                                         <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-                                        <button type="button" class="btn btn-primary" onClick={handleSetAsSeller} data-bs-dismiss="modal">Create Shop</button>
+                                        <button type="button" class="btn btn-warning" onClick={handleSetAsSeller} data-bs-dismiss="modal">Create Shop</button>
                                     </div>
                                 </div>
                             </div>

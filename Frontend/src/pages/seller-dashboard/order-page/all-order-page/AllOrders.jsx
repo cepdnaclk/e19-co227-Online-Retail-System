@@ -151,7 +151,7 @@ function AllOrders(){
                         <tr>
                             <th scope="row">
                                 <div className="btn-group">
-                                    <button type="button" className="btn btn-outline-primary dropdown-toggle"
+                                    <button type="button" className="btn btn-outline-warning dropdown-toggle"
                                             data-bs-toggle="dropdown" aria-expanded="false">
                                         Action
                                     </button>
@@ -184,7 +184,7 @@ function AllOrders(){
                                                 </div>
                                                 <div class="modal-footer">
                                                     <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-                                                    <button type="button" class="btn btn-primary" onClick={handleAddTracking} data-bs-dismiss="modal">Add</button>
+                                                    <button type="button" class="btn btn-warning" onClick={handleAddTracking} data-bs-dismiss="modal">Add</button>
                                                 </div>
                                             </div>
                                         </div>
@@ -230,7 +230,7 @@ function AllOrders(){
                                                     <button type="button" className="btn btn-secondary"
                                                             data-bs-dismiss="modal">Close
                                                     </button>
-                                                    <button type="button" className="btn btn-primary" style={{color:'red'}}
+                                                    <button type="button" className="btn btn-warning" style={{color:'red'}}
                                                             onClick={event => {
                                                                 handleDeleteOrder(event,order.orderID)
                                                             }}

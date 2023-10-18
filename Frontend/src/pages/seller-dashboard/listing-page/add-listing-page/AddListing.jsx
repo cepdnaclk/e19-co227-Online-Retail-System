@@ -282,7 +282,7 @@ class AddListing extends React.Component{
                                         <label htmlFor="floatingTextarea">Product Details</label>
                                     </div>
 
-                                    <button className="btn btn-primary " onClick={this.handleAddProduct}>Add Product</button>
+                                    <button className="btn btn-warning" onClick={this.handleAddProduct}>Add Product</button>
                                     {this.state.isSubmitted && <Link to='/dashboard'></Link> }
                                 </form>
                             </div>
