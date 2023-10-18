@@ -38,6 +38,7 @@ const CartDetail = () => {
     const fetchProductDetails = async ()=>{
 
 
+
         cartService.getFromCart(userID).then(res=>{
 
           setCart(res.data) ;
@@ -47,7 +48,6 @@ const CartDetail = () => {
         /*const res = await axios.get("http://localhost:8081/api/v1/cart/"+userID)*/
 
         //console.log(res.data);
-
 
 
     }
@@ -75,11 +75,6 @@ useEffect(()=>{
 
 },[cart,updateCartTrigger])
 
-
-
-
-
-//console.log(subTotal)
 
   return (
     <div style={{ paddingTop: '200px' }} >
@@ -186,10 +181,7 @@ useEffect(()=>{
             
       ))}
 
-      
-{/* {(<RecommendedProducts id={cart[0].productID}/>)} */}
   
-
   <Footer />
     
     </div>

@@ -23,8 +23,6 @@ const CategorizedItems = () => {
         
         const response = await productService.getProductByCategory(categoryId, subcategoryId);
         
-        //console.log('Response:', response);
-        
 
         if (response.length > 0) {
           setCatname(response[0].CategoryName);
@@ -48,16 +46,7 @@ const CategorizedItems = () => {
     <div style={{ paddingTop: '195px' }}>
 
 
-{/*
-<h4 className="section-title position-relative text-uppercase mx-xl-5 mb-4">
-  <span className="bg-white pr-3">
-   {catname}  
-   <FontAwesomeIcon icon={faChevronRight} className="black-arrow mr-2" /> 
-   <FontAwesomeIcon icon={faChevronRight} className="black-arrow mr-2" />
-  {subcatName}
-  </span>
-</h4>
-  */ }
+
 <h5 className="section-title position-relative text-uppercase mx-xl-5 mb-4">
   <span className="bg-white pr-3">
    {catname}   

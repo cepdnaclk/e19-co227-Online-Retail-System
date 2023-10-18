@@ -30,7 +30,6 @@ const CartItem = ({cartItem, changeSubtotal, setUpdateCartTrigger}) => {
 
   const productID = cartItem.productID
 
-  //console.log(cartID, productID)
 
   const{setTrigger} = useContext(HeaderContext)
 
@@ -51,7 +50,7 @@ const CartItem = ({cartItem, changeSubtotal, setUpdateCartTrigger}) => {
 
    useEffect(()=>{
     setQtycart(cartQty)
-    //setTotal(qty* cartItem.productPrice)
+    
    },[])
 
 
