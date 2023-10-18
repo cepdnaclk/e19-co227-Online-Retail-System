@@ -151,7 +151,7 @@ function AllOrders(){
                         <tr>
                             <th scope="row">
                                 <div className="btn-group">
-                                    <button type="button" className="btn btn-outline-warning dropdown-toggle"
+                                    <button type="button" className="btn btn-outline-secondary dropdown-toggle"
                                             data-bs-toggle="dropdown" aria-expanded="false">
                                         Action
                                     </button>
